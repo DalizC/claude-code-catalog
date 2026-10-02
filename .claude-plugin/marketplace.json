@@ -1,0 +1,14 @@
+{
+  "name": "cc-catalog",
+  "description": "Search a catalog of existing Claude Code plugins, skills and agents before building something new",
+  "owner": {
+    "name": "DalizC"
+  },
+  "plugins": [
+    {
+      "name": "cc-catalog",
+      "source": "./plugins/cc-catalog",
+      "description": "Check the Claude Code extensions catalog for a proven existing tool before building or automating something"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+name: Update catalog
+
+on:
+  schedule:
+    - cron: "17 5 * * *"   # daily, 05:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: catalog-update
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Restore HTTP cache
+        uses: actions/cache@v4
+        with:
+          path: cache
+          key: catalog-cache-${{ github.run_id }}
+          restore-keys: catalog-cache-
+
+      - name: Collect catalog
+        env:
+          # CATALOG_TOKEN (a PAT) is optional; falls back to the built-in token.
+          GITHUB_TOKEN: ${{ secrets.CATALOG_TOKEN || secrets.GITHUB_TOKEN }}
+        run: python catalog.py
+
+      - name: Build site
+        run: python build_site.py
+
+      - name: Commit data and site
+        run: |
+          git config user.name "catalog-bot"
+          git config user.email "catalog-bot@users.noreply.github.com"
+          git add data site
+          if git diff --cached --quiet; then
+            echo "no changes"
+          else
+            git commit -m "chore: daily catalog update $(date -u +%F)"
+            git push
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

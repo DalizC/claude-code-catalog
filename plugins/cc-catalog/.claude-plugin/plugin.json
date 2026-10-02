@@ -1,0 +1,9 @@
+{
+  "name": "cc-catalog",
+  "version": "0.1.0",
+  "description": "Search a catalog of Claude Code plugins, skills and agents (with tier, stars, trend and flags) before building something new",
+  "author": {
+    "name": "dzuri"
+  },
+  "keywords": ["catalog", "search", "plugins", "skills", "agents", "discovery"]
+}
