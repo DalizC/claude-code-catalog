@@ -8087,7 +8087,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "Digital-Process-Tools/claude-remember": {
-  "readme_sha": "5b7b15d116829d5865e87d650e78d3a7f12d46a3",
+  "readme_sha": "b5a537a782f514cf6ff5f682cd0a9592c57d081c",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python"
@@ -8126,7 +8126,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "render-oss/render-plugin-claude-code": {
   "readme_sha": "5ed560d7d7460f8388ede4701798442afa625f84",
@@ -11230,7 +11230,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "pitimon/8-habit-ai-dev": {
-  "readme_sha": "b1f5ce62de197f817c3dfcd7a45b5e78863e4108",
+  "readme_sha": "e124cacd4b7c798d50962754b88a8845a3fe60a0",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -11279,7 +11279,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "barnburner121/claude-plugin-marketplace": {
   "readme_sha": "ca75e75cefd74056ae58f81326bd63eef0e6a4d5",
@@ -13796,7 +13796,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "adimango/ai-adoption-playbook": {
-  "readme_sha": "cb2c5a1b350c5a367fb2709423833dfda448029f",
+  "readme_sha": "50b822e81f87753795ab53f2f7d2a971c3a1ba72",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -13817,7 +13817,7 @@
    }
   },
   "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "Austro-Intelligence/ai-brainmap": {
   "readme_sha": "0291d6fde02defd7d5c9253af071ba561bf45595",
@@ -15241,7 +15241,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "haandol/alps-writer-mcp": {
-  "readme_sha": "cf02b60f928035e316a7156cadcd3b87663d0dbf",
+  "readme_sha": "559363b4e752fadc0aefcae256d7e50d94c3d8a6",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "javascript"
@@ -15280,7 +15280,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "altertable-ai/skills": {
   "readme_sha": "6324cf43bced236b9b3f03cc9c83e50fdefb4786",
@@ -21447,7 +21447,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "JuliusBrussee/caveman": {
-  "readme_sha": "06ffc0f52a68890d61fac55a7e7d4e0977d5833a",
+  "readme_sha": "bf40ecc91e0d3c2326c81127c746f59dfec8e632",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -21484,7 +21484,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "anipotts/cc": {
   "readme_sha": "99399150db272fe188c934c3cb32229286a1bb3a",
@@ -25630,7 +25630,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "thedotmack/claude-mem": {
-  "readme_sha": "eafebd792d0675c74f06cdfc5f5580b1b9b60071",
+  "readme_sha": "58bbebbf173ffd078b8ebf77e9f99119e2bf4464",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "typescript",
@@ -25689,7 +25689,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "tars23364-bit/claude-memory": {
   "readme_sha": "585b231fa87565bddb33254d5dc29790d47a953a",
@@ -33160,7 +33160,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "Barnett-Studios/cxpak": {
-  "readme_sha": "66aec4ef4a47af78fb2c628cf5eb8dd4cd0c1619",
+  "readme_sha": "c454900ddc52e676a2cf2d1335f069a46345e8e0",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "rust"
@@ -33186,7 +33186,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "bonciarello/cyber-punk": {
   "readme_sha": "3c2c1c5d7518db7028fb34f61e33977d0fb3a9fc",
@@ -35765,7 +35765,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "yn01/claude-plugins": {
-  "readme_sha": "416aafac8289b5cb57015c00aef14d8ebdaf21c8",
+  "readme_sha": "81373f3b4dde68259124ce6302599bd6105565d6",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "databases",
@@ -35777,8 +35777,7 @@
    "docs-writing",
    "office-documents",
    "productivity",
-   "project-management",
-   "knowledge-management"
+   "project-management"
   ],
   "evidence": {
    "technologies": {
@@ -35800,10 +35799,10 @@
    },
    "areas": {
     "ai-agents": {
-     "rule_score": 3,
+     "rule_score": 4,
      "fields": {
       "description": 2,
-      "readme": 1
+      "readme": 2
      },
      "match": "multi agent"
     },
@@ -35846,19 +35845,11 @@
       "readme": 1
      },
      "match": "sprint"
-    },
-    "knowledge-management": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "knowledge management"
     }
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "juliuszfedyk/dev-journal": {
   "readme_sha": "5a5127ba43770c59f1a81eb7977e1622092b0554",
@@ -37254,7 +37245,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "zdanovichnick/dotnet-pilot": {
-  "readme_sha": "998d5e6e7ec80ba2fbd704447eb6b02d9d0700e6",
+  "readme_sha": "97775ca414d34ab82c6154892a2ff1cf388f0f80",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "javascript",
@@ -37312,7 +37303,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "dotsecenv/dotsecenv": {
   "readme_sha": "2eed9f024c65d6c46bee6e459f75992ec4d6c2c0",
@@ -41322,7 +41313,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "jeffallan/claude-skills": {
-  "readme_sha": "7752c24fa76c5a450768ca30347d6f8f1b8e6d46",
+  "readme_sha": "a5671f46ea3ecaed689dfc11d4d929a3439ca7d9",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python"
@@ -41398,7 +41389,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "ariadne-coil/future-video-render-claude-plugin": {
   "readme_sha": "97f4291e8e138b34117d159fc5ba2ecf36e07c36",
@@ -41528,7 +41519,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "zauberzeug/game-of-cards": {
-  "readme_sha": "f16ba7c79bea934676add45df30941e7b39cc9bb",
+  "readme_sha": "50ce81b48c7e84d9144c98688b5866891deb329f",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -41563,7 +41554,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "kucherenko/gangsta": {
   "readme_sha": "a2a1f0fa4c9ef48efa3e37d01ed2d57980185770",
@@ -41778,7 +41769,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "vaelen/gedcom-skills": {
-  "readme_sha": "0a22c47bf04dbe41b3ecf213d4990f837c6abdc3",
+  "readme_sha": "ce4f2f4bf38a660ac5d163a89a6f736b0b60c0a1",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -41799,7 +41790,7 @@
    }
   },
   "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "arescope/gemini-plugin-cc": {
   "readme_sha": "c15a74a4fcbfd8c7b192a88f715b9c5f2f9e3d64",
@@ -42993,7 +42984,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "carolinacherry/github-talent-mcp": {
-  "readme_sha": "a019408926edd7e30f67dd06c979e06405fe7bc0",
+  "readme_sha": "05ed7ef44783f4a0a2517f6dd620fbd8ba0cfd64",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python"
@@ -43043,7 +43034,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "gvzq/githubclip": {
   "readme_sha": "562299d796fcfcfb698580916949a626f14992b9",
@@ -46908,7 +46899,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "Mohammed-Abdelhady/hyperflow": {
-  "readme_sha": "d60f52167080e9ed3082fd556eaefb5fc00068c7",
+  "readme_sha": "cfab07be77a9db287ba9920eadb0f7182310d8ec",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -46968,7 +46959,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "hyperscope-sh/hyperscope-plugins": {
   "readme_sha": "430c9dbcd67b6ee0b982154fa7e3424e04c24417",
@@ -47493,7 +47484,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "drolosoft/immich-photo-manager": {
-  "readme_sha": "26552a640d8499fbf0cf9c2bfce37d1cabb8444b",
+  "readme_sha": "fe6a9ca0e84091c9b429287cbae5bd57f807f775",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python",
@@ -47531,7 +47522,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "Overbafer999/claude-impact-analysis": {
   "readme_sha": "d5fcfa2e267c1b7faff92bc8a69d44c2f7ee0196",
@@ -48264,7 +48255,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "inkbox-ai/inkbox": {
-  "readme_sha": "9c3e58f88dde9d26ac957eb3176eb7c013844046",
+  "readme_sha": "949039a465c5a4b6cfae9fa36954d6c0fe50b3f0",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python",
@@ -48301,7 +48292,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "InsForge/insforge-skills": {
   "readme_sha": "9313d1af4fd0454af9aca70d79890edfc404e87b",
@@ -48543,7 +48534,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "iris-eval/mcp-server": {
-  "readme_sha": "01a8ffd341f36f774cb78d4bae5b52180fd7af6d",
+  "readme_sha": "cd9a1ddb4e84bea317f6c9bdbb70b8fd55851ef8",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -48595,7 +48586,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "Zhijiang-Li1111/ironflow": {
   "readme_sha": "",
@@ -53313,7 +53304,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "labyrinth-analytics/loreconvo": {
-  "readme_sha": "07b6482d90c0cc28c0bea793539ec1708abfa868",
+  "readme_sha": "0d80f8c66444cd7757571df39ae23da8f2972d59",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python"
@@ -53353,7 +53344,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "labyrinth-analytics/loredocs": {
   "readme_sha": "1e721acd77a4cfcdf5f9a7548d9440f293cf871d",
@@ -53824,7 +53815,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "insideout-ai/make-it-work": {
-  "readme_sha": "a74efb38177c91d79cf0ffee6996324e5cf4a132",
+  "readme_sha": "ee6649b48c91f354b1466bd9babe7a774c74e07d",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -53857,7 +53848,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "drhalto/agentmako": {
   "readme_sha": "8ea238bed08e0be7666d9c87068ba74e66f929f0",
@@ -60055,7 +60046,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "nyldn/claude-octopus": {
-  "readme_sha": "c99bd913e0884f55480403c8d6e5932ed6cdd733",
+  "readme_sha": "3b196edb9dee073eb5fe320b0cd6f444d786fe13",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -60080,7 +60071,7 @@
    }
   },
   "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "octopusreview/claude-plugin": {
   "readme_sha": "66c4382ab7880a4f3c4267b0ce2ac90f7d9c2fce",
@@ -66690,7 +66681,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "pskoett/pskoett-ai-skills": {
-  "readme_sha": "465aff562413fd6fcb33630ae3e9c5f378ba695c",
+  "readme_sha": "7f22da475ede4b03f4d2e8480a72b5591cade365",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -66729,7 +66720,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "raychao-oao/pty-mcp": {
   "readme_sha": "70b7e87afb4171b2ce4b78b1f24d29ca0b2fe49f",
@@ -68930,9 +68921,10 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "respira-press/cowork-plugin-wordpress": {
-  "readme_sha": "9eabda32eb7b346bb7c4b07f09415f43f7a7f4ea",
+  "readme_sha": "86d6bd8c610b26bc49491b4e49ca4c6829addb9f",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
+   "typescript",
    "php",
    "wordpress"
   ],
@@ -68941,6 +68933,13 @@
   ],
   "evidence": {
    "technologies": {
+    "typescript": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    },
     "php": {
      "rule_score": 3,
      "fields": {
@@ -68949,10 +68948,9 @@
      "match": "wordpress"
     },
     "wordpress": {
-     "rule_score": 4,
+     "rule_score": 3,
      "fields": {
-      "name": 3,
-      "readme": 1
+      "name": 3
      },
      "match": "wordpress"
     }
@@ -68964,7 +68962,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "michaelzajer/job-application-toolkit": {
   "readme_sha": "f0a1d445a5c59beef86f263a3784b6bbe587f13e",
@@ -72677,7 +72675,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "Kanevry/session-orchestrator": {
-  "readme_sha": "c5c7d7d27bd1cfeaeebdd81c555f143c5dcde0fd",
+  "readme_sha": "ab2a4d9a039fd50792eb46073ff9a6a6551b7cc2",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -72726,7 +72724,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "edo-ceder/session-recharge": {
   "readme_sha": "331197de0a3fe7122104876747366d47a35639bf",
@@ -75985,10 +75983,10 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "farshidghyasi/spec-engine": {
-  "readme_sha": "0d2f91a9be8f19ff1aef4f0f87425fbfd3c678a6",
+  "readme_sha": "6fb9f369afc23c95479aa7b5aa75e54ca251777d",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
-   "general-purpose"
+   "python"
   ],
   "areas": [
    "ai-workflows",
@@ -75996,16 +75994,20 @@
   ],
   "evidence": {
    "technologies": {
-    "general-purpose": {
-     "method": "fallback"
+    "python": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
     }
    },
    "areas": {
     "ai-workflows": {
-     "rule_score": 4,
+     "rule_score": 3,
      "fields": {
       "description": 2,
-      "readme": 2
+      "readme": 1
      },
      "match": "spec driven development"
     },
@@ -76020,7 +76022,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "bitcraft-apps/spec-first": {
   "readme_sha": "03cd33aca7891b312eaabbf816012d52c28d0fd3",
@@ -78740,7 +78742,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "Digital-Process-Tools/claude-supertool": {
-  "readme_sha": "1a00c570c50ddd5903f1f2fd42690724f16f7e90",
+  "readme_sha": "881a60508b073d0138512f5c0a84fb348ff4dbc6",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python"
@@ -78765,7 +78767,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "Wolfgangrush/supreme-court-drafting-litigation": {
   "readme_sha": "c27c7bc4a2adeca6fbe23ea130bf11e986fa1056",
@@ -79786,7 +79788,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "ajbarea/techne": {
-  "readme_sha": "12f6ed0602ba15479a5629e8d7b27c99692bb601",
+  "readme_sha": "423fc3dacaddfb529615ee8526a1f54dd7a4b1c5",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -79847,7 +79849,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "mjavadalavi/claude-plugins-official": {
   "readme_sha": "107c8e16b940af9990965356e16f8ac717e2f6d1",
@@ -89152,7 +89154,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "DietrichGebert/ponytail": {
-  "readme_sha": "05ff66a2a3853f9c56f6ee5f9fca19ce9444ba37",
+  "readme_sha": "8422bda257ffe7b5dd59bc7383cd0ae07059defc",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "javascript"
@@ -89189,7 +89191,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "probabl-ai/skills": {
   "readme_sha": "bb17f7fca175fc02d742fa295c4f48fbd9a6ceed",
@@ -91408,7 +91410,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "EndeavorYen/chrome-cdp-ex": {
-  "readme_sha": "32d7f5d3b718c8d480deb16bfa16845c7ec3394f",
+  "readme_sha": "c1b2427adde454905f8453881fcfabba2297ef49",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "css",
@@ -91467,7 +91469,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "zyx77550/sparda": {
   "readme_sha": "eba4344dd1474f74d7f3896ab4bc06e704475486",
@@ -92546,7 +92548,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "renezander030/capcut-cli": {
-  "readme_sha": "b7ae4ac607e52da5bea927442842d84af4b6b711",
+  "readme_sha": "b426bc67c1d1ec76fa4cbd8a27a79c20cc7d008a",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python",
@@ -92593,7 +92595,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "iart-ai/motion-skills": {
   "readme_sha": "5578de88a13b4269151eea0dc36370aaaff31598",
@@ -94771,7 +94773,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "garrytan/gstack": {
-  "readme_sha": "c710840616e885ed500fc0f56348c03e815c47b5",
+  "readme_sha": "4eed92cd434bb844aa12f9ec6fce86786ae2e0ce",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -94801,7 +94803,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "luongnv89/claude-howto": {
   "readme_sha": "5242096b9226d588aa0b0a8a85c214e192ac11ae",
@@ -95770,7 +95772,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "tddworks/ClaudeBar": {
-  "readme_sha": "4eff2d0664e5edb4e98edec458913ce3b2ed332b",
+  "readme_sha": "e1970da3b482d7c6bda5f4fb2ef1d449e4a4e48a",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "swift"
@@ -95800,7 +95802,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "ccusage/ccusage": {
   "readme_sha": "5e547f50376fbadb7fc38e50e68a35dfaad8961e",
@@ -97382,7 +97384,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "dyoshikawa/rulesync": {
-  "readme_sha": "b95721f1c956a7503692375d027a6fddf9cf89b7",
+  "readme_sha": "2b5d92bed8bab54c3f30d0dff163c1a125756513",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "javascript",
@@ -97419,7 +97421,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "affaan-m/ECC": {
   "readme_sha": "787272418d21dcfeb9699b6e1606dc72f50e8f20",
@@ -100796,7 +100798,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "gmickel/flow-next": {
-  "readme_sha": "ca2daf2d04d2e457f953e65899327664e4d4367d",
+  "readme_sha": "da65241bd5241e7d7dccf96d44cba2a23914071c",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python"
@@ -100878,7 +100880,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "keli-wen/agy-staff": {
   "readme_sha": "1e1dcb4dd62c8ff62b8d7e2785b42c5bb3a06471",
@@ -101166,7 +101168,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "zenstory-ai/video-recap-skills": {
-  "readme_sha": "9939d4b14b0a268a2c318d9f49407fca7d7157f4",
+  "readme_sha": "542baf94fb2071631508d47bc8afc582d35bceb8",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -101207,7 +101209,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "karanb192/claude-code-hooks": {
   "readme_sha": "bfb129487a1bce10f587c11a4922b12df9003396",
@@ -101395,7 +101397,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "coldteadotai/abide": {
-  "readme_sha": "3d6542abf171ac090bead27b8cc606c886bcee76",
+  "readme_sha": "910d2f8dbe2278df1c38f1a2d532e56e5bfea834",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -101416,7 +101418,7 @@
    }
   },
   "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "KimGLee/Cambium": {
   "readme_sha": "d48c59429f5223ff3496a269969c01013f7b6d56",
@@ -102683,7 +102685,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "yonatangross/orchestkit": {
-  "readme_sha": "57c119ef36b5d7991e5fbc417addeabce065bd5c",
+  "readme_sha": "68d5ca37970e69e90845537bfeedaf07de03b72b",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python",
@@ -102775,7 +102777,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "testdouble/han": {
   "readme_sha": "bccc039bd93bd325bf856bcfdabdabe6802b3acb",
@@ -104219,7 +104221,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "sd0xdev/sd0x-harness": {
-  "readme_sha": "8cf080cb704f332d2fc1a30ec74e13998b4016f8",
+  "readme_sha": "53e089897944efd823e988709b5b5fbfe769c572",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "javascript"
@@ -104244,7 +104246,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "ilindaniel/ponytail-lite": {
   "readme_sha": "2f38e3ab9af0205adf073156e1bc8411bae85480",
@@ -104612,7 +104614,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "antonbabenko/deliberation": {
-  "readme_sha": "6b3a4e213a2c2c141722f0308d3699dd8925200c",
+  "readme_sha": "159debc98f7606bf90db08ce46b435f5905ab6f6",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "javascript"
@@ -104684,7 +104686,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "op7418/m5-paper-buddy": {
   "readme_sha": "0f5bb5e8f0a13a0a4313aba5403c43e96ad4d1d3",
@@ -105121,7 +105123,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "arbiterForge/codeArbiter": {
-  "readme_sha": "7b2697b223b448a992e61af6bbb8194023beb4eb",
+  "readme_sha": "c6f96c0b467695ebfffc5e1c81a97a552b81e349",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python"
@@ -105161,7 +105163,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "camilleroux/genart-skill": {
   "readme_sha": "7684c010ec058fcf28b0503305e2ee6665cc178a",
@@ -105955,7 +105957,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "JasonColapietro/suede-creator-skills": {
-  "readme_sha": "612f788b523b374ba781c1e8fc45af31b4847c4a",
+  "readme_sha": "6ccdbc421a722e3c5f6e0864bd9169b22a7fd257",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -106029,7 +106031,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "guhcostan/claude-mega-brain": {
   "readme_sha": "0c0334025e656b4e62b55e7e101195facb56c70d",
@@ -106599,7 +106601,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "fiorastudio/buddy": {
-  "readme_sha": "4c786d75f538cb95dbc25decd4c1e40c51d67739",
+  "readme_sha": "1ec5aab63bdabad3f26dd048d259eabbc08f2352",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "typescript"
@@ -106638,7 +106640,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "1iry/multi-agent-architecture-advisor": {
   "readme_sha": "3733a486d13792ffdb00dc9cdb5635fd5392a2db",
@@ -107898,7 +107900,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "Jeffallan/claude-skills": {
-  "readme_sha": "7752c24fa76c5a450768ca30347d6f8f1b8e6d46",
+  "readme_sha": "a5671f46ea3ecaed689dfc11d4d929a3439ca7d9",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -107923,7 +107925,7 @@
    }
   },
   "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "nexu-io/html-anything": {
   "readme_sha": "e0ecf16aa372e7168293e8a1c2403d1c1647049a",
@@ -107982,7 +107984,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "anbeime/skill": {
-  "readme_sha": "1fadc4de48a785ee179ecfddfd8c5ffd529d928b",
+  "readme_sha": "917871290473299836ee58c998cfdbeddf8859fc",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -108018,7 +108020,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "WenyuChiou/awesome-agentic-ai-zh": {
   "readme_sha": "25b7320c377e5bf475304fb4eab208137766b3e8",
@@ -108073,7 +108075,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "zenstory-ai/oh-story-claudecode": {
-  "readme_sha": "ac3f0059b138911d4f8124f32c419fd132dc7385",
+  "readme_sha": "0393cc5bb1590847d6e792ad3a0a993abd08ed0f",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -108113,7 +108115,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "SnailSploit/Claude-Red": {
   "readme_sha": "a4a0660e307fee62ab400bc665c90f8b838284de",
@@ -108222,7 +108224,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "ikaijua/Awesome-AITools": {
-  "readme_sha": "435b815956a5a3fe365de8c945b454f53d3e4d2e",
+  "readme_sha": "66666ce0b9f1a3b15d53425a91cce87f82fa8cd5",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -108247,7 +108249,7 @@
    }
   },
   "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "browser-act/skills": {
   "readme_sha": "6ec29d7be82a2590d22373b2456d9fc67845b125",
@@ -108972,7 +108974,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "zenstory-ai/drama-skills": {
-  "readme_sha": "b99b3cfc945f06a9ed9c11d2361c4363da9d4c6c",
+  "readme_sha": "b699004c1eea54f007aa785bfee49c39198f222d",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -109007,7 +109009,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "Appllama/appllama-skills": {
   "readme_sha": "6a83e827f4d8723a7d0a48054e8aab0fdcd5a78f",
@@ -109281,7 +109283,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "BayramAnnakov/claude-reflect": {
-  "readme_sha": "3d7a6b47e9d535e00bf3a86fb75063f6dd256227",
+  "readme_sha": "57a8b793b50cf6ae1cd465741fdbdc44ca72ebf2",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -109319,7 +109321,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "feiskyer/claude-code-settings": {
   "readme_sha": "624106ce6febbf055b05dd7026a4561486a37ecc",
@@ -111060,7 +111062,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "zenstory-ai/novel-to-game": {
-  "readme_sha": "f876b7d33a3b595addeb2e8c27bf253ab9fecff4",
+  "readme_sha": "e3162b82e748184bf90fa3768f0d6fcf8a4926d2",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -111081,7 +111083,7 @@
    }
   },
   "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "alexgreensh/anidoodle": {
   "readme_sha": "64880a2a358994e9162145d709c64714a79a0a44",
@@ -111830,7 +111832,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "JayPokale/Chisle": {
-  "readme_sha": "eff34291ec15557913be87a62df0d84527b026c0",
+  "readme_sha": "95d046018f6dcb3c8476061c713bf4db0093d619",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "javascript"
@@ -111886,7 +111888,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "liustack/modsearch": {
   "readme_sha": "34ce1faf1a23667b328d5d7e303bf6cbb7fccf2b",
@@ -112808,10 +112810,6 @@
      },
      "match": "seo"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -113174,7 +113172,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "xr843/Master-skill": {
-  "readme_sha": "040b839b1e463d2779edfc69cc08f49fa696f1b6",
+  "readme_sha": "78dd31a7e7af308807375b32b219258ab0ef5207",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -113195,7 +113193,7 @@
    }
   },
   "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "codeswithroh/tastemaker": {
   "readme_sha": "6c5d21ea5f410663409ca91a85ba5047340e8e06",
@@ -113544,7 +113542,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "jamditis/claude-skills-journalism": {
-  "readme_sha": "e4a0be40303ebdaf1c15d0febbcf5405f4d9f460",
+  "readme_sha": "fe80dd7137084d682929c477c9928a88cd4eb2e7",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -113577,7 +113575,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "cclank/lanshu-awesome-ai-video-kit": {
   "readme_sha": "0f5ad2042ba6a41c79b8fab867f2e3be1e76c8e4",
@@ -114115,7 +114113,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "zhuyansen/awesome-claude-video-skills": {
-  "readme_sha": "669f014e8adbf8c7516ac42425959e9b6e9515f5",
+  "readme_sha": "3e7a6743b121ae4773d595d24f214a414a2bcc89",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -114150,7 +114148,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "agamm/claude-code-owasp": {
   "readme_sha": "34ac5d614b6a020922d92e4ba5b8c195bfc9230d",
@@ -115294,7 +115292,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "alex-feel/claude-code-toolbox": {
-  "readme_sha": "edb1d5447508a81158755024faa121051acb0d50",
+  "readme_sha": "f31a8261a513a55acd31ddac931c837d271ba7b4",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python"
@@ -115333,7 +115331,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "didvc/claude-code-jsonl-editor": {
   "readme_sha": "4edd25c478fe3d3d745b3d31049e450e03cb57cb",
@@ -115872,7 +115870,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "shanraisshan/claude-code-best-practice": {
-  "readme_sha": "d4edbf3a5d755145ac3d8abf782e23a9296734f6",
+  "readme_sha": "0359da90ac48a88df9731fda443bac9e5a5a2be5",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -115911,10 +115909,10 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "sickn33/agentic-awesome-skills": {
-  "readme_sha": "c623d4a88071a283e490e2cec8b13186f537b5bc",
+  "readme_sha": "8ad137b8aefe9819a4cc264812bcb40798301b6c",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -115943,7 +115941,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "wanshuiyin/Auto-claude-code-research-in-sleep": {
   "readme_sha": "a52a1114bd8b8f1bd51a67f07a14b3a36d868a02",
@@ -116197,7 +116195,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "mex-memory/mex": {
-  "readme_sha": "519961868d0b6da869d7ace15167761f6bf92729",
+  "readme_sha": "243105f456953e9dd415fe093652aa4f9c045ad2",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "typescript"
@@ -116260,7 +116258,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "specstoryai/getspecstory": {
   "readme_sha": "9d5dbb1d2d4305ae140bde0206066488726b0a96",
@@ -119427,7 +119425,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "drobins25/craft": {
-  "readme_sha": "89adce177be06bbc3ca4b023e2f46d4942a1b57a",
+  "readme_sha": "1916e06a68a505a20140ec4895e7a10b5b1ccedc",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -119496,7 +119494,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "Mann1988/awesome-claude-skills": {
   "readme_sha": "ff1d1c1878ee294d5f5ae572f5ee87c4eaa3a622",
@@ -120531,7 +120529,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "J-nowcow/awesome-korean-agent-skills": {
-  "readme_sha": "5cb097320065f038c35298d392bdb88fb4fe961b",
+  "readme_sha": "d5b2c070036a42798f545efa339aed481c3cb53e",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -120564,7 +120562,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "pale-knight/redteam-skill": {
   "readme_sha": "de7fa4b76e4b89972ed8d5616b11a256958ab745",
@@ -120766,7 +120764,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "haabe/mycelium": {
-  "readme_sha": "0b4d13cd7065d0ef843154e32dcf892917faef1b",
+  "readme_sha": "816097d1f9e5fb9cee3d9e60f6e0ca78e635e795",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python"
@@ -120827,7 +120825,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "gabelul/stitch-kit": {
   "readme_sha": "e9bd08889ce41e8ef965ef5ed8556a2edc3d7746",
@@ -125573,7 +125571,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "insta-fusion/bettercallgpt": {
-  "readme_sha": "cd3e162c61ab89c1d667d16b67591c0c4fed309f",
+  "readme_sha": "456b8fd878ba78d23c2225bab489b77ea218a692",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python"
@@ -125598,7 +125596,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "ramboz/jig": {
   "readme_sha": "0aaf5dfc582e17c404a2508c2e19615e411838f3",
@@ -126037,7 +126035,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "bllshttng/footnote": {
-  "readme_sha": "f3b362c49bc9ef1e09e888936708ca531274b451",
+  "readme_sha": "3c4a0179f4d00a180395263cd55f8042b115a144",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "rust"
@@ -126062,7 +126060,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "joestump/claude-skills": {
   "readme_sha": "c9059d89b104aac714677eddf450df9c931f81f6",
@@ -131772,7 +131770,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "egeominotti/bunqueue": {
-  "readme_sha": "969c09f4491fe94f4248d98e7f136dea9bb6e145",
+  "readme_sha": "b330d25f62449f265083ed362632c6d318682554",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "javascript",
@@ -131834,7 +131832,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "0xnyn/canary": {
   "readme_sha": "49a7a73d624b6c7bb718d0b220321774eb084447",
@@ -131898,7 +131896,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "ioannisa/KSafe": {
-  "readme_sha": "60a3beda93ff46e1112a9722d45535e1f3d083b0",
+  "readme_sha": "85e42eb91eed8b7228a6262da484decc29dcee97",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "java"
@@ -131940,7 +131938,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "alirezarezvani/ClaudeForge": {
   "readme_sha": "743339e0bfa0a8ec66cd5b174f3b7a180d8502ec",
@@ -135604,7 +135602,12 @@
    "general-purpose"
   ],
   "areas": [
-   "general-purpose"
+   "ai-agents",
+   "orchestration",
+   "ai-workflows",
+   "spec-driven",
+   "git",
+   "devops"
   ],
   "evidence": {
    "technologies": {
@@ -135613,13 +135616,53 @@
     }
    },
    "areas": {
-    "general-purpose": {
-     "method": "fallback"
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "orchestration": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "ai-workflows": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "sdlc"
+    },
+    "spec-driven": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "git": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "devops": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
     }
    }
   },
-  "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "method": "rules",
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "grzmol/vibe-force": {
   "readme_sha": "d15787942141ad7131562baf1ac41598238796f6",
@@ -136240,7 +136283,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "vadimchernets/safecall": {
-  "readme_sha": "d923e735d01ad4bacf4ec538d120982f2568cc07",
+  "readme_sha": "6bf4ff15b72d82f999a473b4c92a2a8f680dd588",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python"
@@ -136265,7 +136308,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "MPMyburgh/dr-aria": {
   "readme_sha": "92a9a560b377eb217ce3c89fd55449063c51e749",
@@ -139455,7 +139498,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "contracko/contracko-skills": {
-  "readme_sha": "afe95c6670496bfdcfaa32ae3fe0f25af894d983",
+  "readme_sha": "af3d2f9471ed085e12dc049ae332c9e978ce2201",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -139476,7 +139519,7 @@
    }
   },
   "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "apisani1/vibe-coding": {
   "readme_sha": "5ff00bdfd88b76d13e0bc857f877e9074485b721",
@@ -139559,7 +139602,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "vadimchernets/nightcall": {
-  "readme_sha": "b4772756cd065b9b8a0afaeca53c93df553ea26c",
+  "readme_sha": "f478fbf5258c5d3b0c4e10eb07ebabf7cef626a7",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python"
@@ -139584,7 +139627,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "chrischall/pickuppatrol-mcp": {
   "readme_sha": "743cd0991356fc09a10f870c1d302706e2b6892c",
@@ -144286,7 +144329,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "event4u-app/agent-config": {
-  "readme_sha": "1a51e04fde964094b8ab3b6f8558dca6fff729ec",
+  "readme_sha": "b3fd78d4fa4e7672039e0e214521b9e64c8912cb",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python",
@@ -144333,7 +144376,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "PranavNagrecha/AwesomeSalesforceSkills": {
   "readme_sha": "0c312407e913805a0a2a378eee6c08716f84f149",
@@ -146623,23 +146666,11 @@
  "Bossax/arun-creagy": {
   "readme_sha": "",
   "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "python"
-  ],
+  "technologies": [],
   "areas": [],
-  "evidence": {
-   "technologies": {
-    "python": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "evidence": {},
+  "method": "none",
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "MHassan0000/Skills": {
   "readme_sha": "",
@@ -146835,7 +146866,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "agentskillexchange/skills": {
-  "readme_sha": "43651ee6b9294e6ef5401a7b6c507984fd0ed297",
+  "readme_sha": "e1635168a02e8a777efa6b40f48d42c341135e74",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -146856,7 +146887,7 @@
    }
   },
   "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "infinition/LaRuche": {
   "readme_sha": "a589b2668a7c02dc5f48f72b7ba8b3b03f99e0c8",
@@ -151341,7 +151372,7 @@
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "bmdhodl/agent47": {
-  "readme_sha": "4475c3ff8ba99b157020601de6b13814deabb6fe",
+  "readme_sha": "31575821335bfebb3610b0239cea5d11e68662ab",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "python"
@@ -151380,7 +151411,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-03T15:09:31Z"
  },
  "Bloodshed-Rain/TheMAGI": {
   "readme_sha": "c2cd588beeeb333c26c5653db293882e2b9f7e40",
