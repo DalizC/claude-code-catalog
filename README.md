@@ -41,6 +41,27 @@ Token: set `GITHUB_TOKEN` or put it in `.env` (`GITHUB_TOKEN=...` or a bare toke
 
 Outputs: `data/catalog.json`, `data/report.md`, `data/snapshots/YYYY-MM-DD.json` ({repo: stars}, used for trends).
 
+## Pipeline
+`catalog.py` -> `classify.py` -> `history.py` -> `build_site.py` -> commit `data/` + `site/` -> deploy to Pages. `classify` and `history` run with `continue-on-error`, so a failure in either never blocks publishing the catalog (the previous outputs are kept).
+- `classify.py`: rules plus local fastembed (ONNX) embeddings; README cache in `cache/readmes.json`; output `data/classifications.json`. Model cache dir is `FASTEMBED_CACHE_PATH`.
+- `history.py --budget N`: star-history backfill (default 1500 API calls per run), resumable via `data/history/_state.json`; writes `data/history/` and `site/history/`.
+- `taxonomy.json` is user-owned. Editing it changes its version and triggers reclassification on the next run.
+
+## Run the new stages locally
+```
+python -m venv .venv && .venv/Scripts/activate      # Linux/macOS: source .venv/bin/activate
+pip install -r requirements-classify.txt
+python catalog.py && python classify.py && python history.py --budget 300 && python build_site.py
+python -m http.server -d site                       # history shards load via fetch, so open http://localhost:8000, not file://
+```
+
+## Secrets
+- `CATALOG_TOKEN` (fine-grained PAT, public repos read-only): code search for catalog and classify. Optional; falls back to the built-in token.
+- Star history uses `GET /repos/{owner}/{repo}/stargazers/history` (daily counts, no user data) with `CATALOG_TOKEN`; no extra secret needed.
+
+## Zero-cost design
+Free GitHub Actions, Pages and REST/GraphQL APIs only; embeddings run locally with ONNX (no paid API); no hosted services. Model, pip and HTTP/README caches keep runs short.
+
 ## Tokens in Actions
 The workflow uses `secrets.CATALOG_TOKEN` if set, else the built-in `GITHUB_TOKEN`. GraphQL and repo search work with the built-in token. Whether the built-in token can call REST code search was not verified against the docs (no network doc check was done), so if the "code search" lines in the run log show 403/401, add a fine-grained PAT (public repos read-only) as the `CATALOG_TOKEN` secret.
 

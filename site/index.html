@@ -3,381 +3,67 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Claude Code Catalog</title>
+<title>Claude Code Extensions Catalog</title>
+<meta name="description" content="Searchable catalog of Claude Code plugins, skills, agents and marketplaces on GitHub, with trust tiers and star trends.">
 <meta name="color-scheme" content="light dark">
-<style>
-:root{
-  --bg:#f6f7f9;--panel:#fff;--ink:#14171c;--muted:#566070;--line:#d9dee6;--accent:#1d4ed8;--accent-ink:#fff;
-  --anthropic:#9a3412;--anthropic-bg:#ffedd5;
-  --official:#5b21b6;--official-bg:#ede9fe;
-  --listed:#1d4ed8;--listed-bg:#dbeafe;
-  --verified:#126a37;--verified-bg:#dcfce7;
-  --watch:#5b6472;--watch-bg:#e8ebf0;
-  --warn:#8a4b00;--warn-bg:#fef0c7;
-  --focus:#b45309;
-}
-@media (prefers-color-scheme:dark){
-  :root{
-    --bg:#0f1216;--panel:#171b21;--ink:#e8ebf0;--muted:#a1abba;--line:#2b323c;--accent:#7aa2ff;--accent-ink:#0b1220;
-    --anthropic:#fdba74;--anthropic-bg:#4a2410;
-    --official:#c9b3ff;--official-bg:#2e2150;
-    --listed:#9dbbff;--listed-bg:#1b2c52;
-    --verified:#7ee2a1;--verified-bg:#12341f;
-    --watch:#b3bcc9;--watch-bg:#272d36;
-    --warn:#ffcf70;--warn-bg:#40300b;
-    --focus:#fbbf24;
-  }
-}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-a{color:var(--accent)}
-:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:3px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-header{background:var(--panel);border-bottom:1px solid var(--line);padding:10px 16px}
-.wrap{max-width:1100px;margin:0 auto}
-h1{font-size:18px;margin:0;display:inline-block}
-.stats{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin-top:6px;color:var(--muted);font-size:13px}
-.stats b{color:var(--ink);font-variant-numeric:tabular-nums}
-.tabs{display:inline-flex;gap:4px;margin-left:12px;vertical-align:middle}
-.tabs button{font:inherit;padding:4px 12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;cursor:pointer}
-.tabs button[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.controls{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 16px}
-.row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:end}
-.field{display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--muted)}
-.field input,.field select{font:inherit;font-size:14px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:5px 8px;min-height:32px}
-.field.grow{flex:1 1 240px}
-.field.grow input{width:100%}
-#minstars{width:90px}
-fieldset{border:1px solid var(--line);border-radius:6px;padding:2px 8px 4px;margin:0;background:var(--panel)}
-legend{font-size:12px;color:var(--muted);padding:0 4px}
-fieldset label,.chk{display:inline-flex;align-items:center;gap:4px;margin-right:8px;font-size:13px;color:var(--ink);min-height:24px;cursor:pointer}
-.chk{border:1px solid var(--line);border-radius:6px;padding:4px 8px;background:var(--panel);min-height:32px}
-button.plain{font:inherit;font-size:13px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:5px 10px;min-height:32px;cursor:pointer}
-details.legend{margin:10px 0;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 10px}
-details.legend summary{cursor:pointer;font-weight:600}
-details.legend dl{margin:8px 0 2px;display:grid;grid-template-columns:auto 1fr;gap:6px 10px;align-items:center}
-details.legend dd{margin:0}
-.badge{display:inline-block;font-size:11.5px;font-weight:600;line-height:1.3;padding:1px 7px;border-radius:999px;white-space:nowrap}
-.t-anthropic{color:var(--anthropic);background:var(--anthropic-bg)}
-.t-official{color:var(--official);background:var(--official-bg)}
-.t-listed{color:var(--listed);background:var(--listed-bg)}
-.t-verified{color:var(--verified);background:var(--verified-bg)}
-.t-watch{color:var(--watch);background:var(--watch-bg)}
-.b-warn{color:var(--warn);background:var(--warn-bg)}
-.b-type{color:var(--muted);border:1px solid var(--line);font-weight:500}
-#status{margin:8px 0;color:var(--muted);font-size:13px}
-.note{background:var(--warn-bg);color:var(--warn);border-radius:6px;padding:8px 10px;margin:8px 0}
-ul.list{list-style:none;margin:0;padding:0}
-li.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin-bottom:6px}
-.head{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
-.name{font-weight:700;font-size:15px;overflow-wrap:anywhere}
-.repo{color:var(--muted);font-size:12.5px;overflow-wrap:anywhere}
-.desc{margin:2px 0 4px;overflow-wrap:anywhere}
-.meta{display:flex;flex-wrap:wrap;gap:2px 14px;color:var(--muted);font-size:12.5px;align-items:center}
-.meta .v{color:var(--ink);font-variant-numeric:tabular-nums}
-.up{color:var(--verified);font-weight:600}
-.tierwrap{position:relative;display:inline-block}
-.tierwrap button{font:inherit;border:0;cursor:help;padding:0;background:none}
-.tip{display:none;position:absolute;left:0;top:100%;z-index:4;min-width:200px;max-width:min(320px,80vw);background:var(--ink);color:var(--bg);padding:6px 10px;border-radius:6px;font-size:12.5px;font-weight:400;box-shadow:0 4px 14px rgba(0,0,0,.3)}
-.tierwrap:hover .tip,.tierwrap:focus-within .tip,.tierwrap.open .tip{display:block}
-.tip ul{margin:0;padding-left:16px}
-button.tog{font:inherit;font-size:12.5px;color:var(--accent);background:none;border:0;padding:2px 0;cursor:pointer;text-decoration:underline}
-ul.items{list-style:none;margin:6px 0 2px;padding:0;border-top:1px solid var(--line)}
-ul.items li{display:grid;grid-template-columns:1fr auto;gap:2px 8px;padding:5px 0;border-bottom:1px solid var(--line)}
-ul.items .iname{font-weight:600;overflow-wrap:anywhere}
-ul.items .idesc{grid-column:1;color:var(--muted);font-size:12.5px;overflow-wrap:anywhere}
-ul.items code{grid-column:1;font:12px ui-monospace,Consolas,monospace;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:2px 6px;overflow-wrap:anywhere}
-ul.items button.copy{grid-column:2;grid-row:1 / span 3;align-self:start}
-button.copy{font:inherit;font-size:12px;padding:3px 9px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;cursor:pointer;min-height:28px}
-button.copy.ok{background:var(--verified-bg);color:var(--verified);border-color:var(--verified)}
-#more{display:block;margin:12px auto 30px}
-footer{color:var(--muted);font-size:12px;padding:0 16px 24px}
-@media (max-width:600px){
-  header,.controls{padding-left:12px;padding-right:12px}
-  .tabs{margin:6px 0 0;display:flex}
-  .field.grow{flex-basis:100%}
-  ul.items li{grid-template-columns:1fr}
-  ul.items button.copy{grid-column:1;grid-row:auto;justify-self:start}
-  main{padding:0 8px}
-  .controls{position:static}
-}
-main{padding:0 16px}
-</style>
+<!--
+  Local testing: star history is lazy-loaded with fetch() from history/NN.json, which browsers
+  block over file://. The page works from file:// (without history); for the full experience run
+      python -m http.server -d site
+  and open http://localhost:8000
+-->
+<script>try{var t=localStorage.getItem("cc-theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%23116d78%22/%3E%3Ctext x=%2216%22 y=%2221%22 font-family=%22monospace%22 font-size=%2214%22 font-weight=%22700%22 fill=%22white%22 text-anchor=%22middle%22%3Ecc%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="app.css">
 </head>
-<body>
-<header><div class="wrap">
-  <h1>Claude Code Catalog</h1>
-  <span class="tabs" role="group" aria-label="View">
-    <button id="v-browse" type="button" aria-pressed="true">Browse</button>
-    <button id="v-trend" type="button" aria-pressed="false">Trending</button>
-  </span>
-  <div class="stats" id="stats" aria-live="polite"></div>
-</div></header>
-
-<div class="controls"><div class="wrap">
-  <div class="row">
-    <div class="field grow"><label for="q">Search name, repo, description, items</label>
-      <input id="q" type="search" autocomplete="off" placeholder="e.g. code review, mcp, tdd"></div>
-    <fieldset id="tiers"><legend>Tier</legend></fieldset>
-    <div class="field"><label for="type">Type</label><select id="type"><option value="">All types</option></select></div>
-    <div class="field"><label for="newd">First seen</label><select id="newd">
-      <option value="">Any time</option><option value="1">Last 1 day</option><option value="3">Last 3 days</option><option value="7">Last 7 days</option>
-      <option value="14">Last 14 days</option><option value="30">Last 30 days</option><option value="90">Last 90 days</option></select></div>
-    <div class="field"><label for="minstars">Min stars</label><input id="minstars" type="number" min="0" step="1" inputmode="numeric" placeholder="0"></div>
-    <div class="field"><label for="sort">Sort by</label><select id="sort">
-      <option value="stars">Stars</option><option value="trend">Trend (7d)</option><option value="pushed">Recently updated</option>
-      <option value="seen">Newest first seen</option><option value="name">Name</option></select></div>
-    <label class="chk"><input type="checkbox" id="hf"> Hide flagged</label>
-    <button class="plain" id="reset" type="button">Reset</button>
-  </div>
-</div></div>
-
-<main><div class="wrap">
-  <details class="legend"><summary>Tier legend and badges</summary>
-    <dl>
-      <dt><span class="badge t-anthropic">Anthropic</span></dt><dd>Made by Anthropic: the repo is owned by anthropics, or the plugin lives inside an anthropics marketplace repo.</dd>
-      <dt><span class="badge t-official">Official marketplace · 3rd-party</span></dt><dd>Listed in Anthropic's official marketplace, but the code lives in a third-party repo (partner and vendor plugins curated by Anthropic).</dd>
-      <dt><span class="badge t-listed">Community marketplace · 3rd-party</span></dt><dd>Listed in Anthropic's community marketplace; third-party code.</dd>
-      <dt><span class="badge t-verified">Verified</span></dt><dd>Curated by hand or backed by strong signals.</dd>
-      <dt><span class="badge t-watch">Watch</span></dt><dd>Discovered automatically, unproven. Hidden by default.</dd>
-      <dt><span class="badge b-warn">flag</span></dt><dd>Warning, e.g. star-anomaly or star-spike (star count looks unnatural). Hover or focus a tier badge to see why it got that tier.</dd>
-    </dl>
-  </details>
-  <div id="status" role="status" aria-live="polite"></div>
-  <div id="notes"></div>
-  <ul class="list" id="list"></ul>
-  <button class="plain" id="more" type="button" hidden>Show more</button>
-</div></main>
-<footer><div class="wrap">Data is untrusted third-party metadata. Review any extension before installing it.</div></footer>
-
+<body data-view="table">
+<a class="sr" href="#results">Skip to results</a>
+<div class="app">
+  <aside class="side" id="side" aria-label="Filters"></aside>
+  <main class="main">
+    <header class="top" id="top">
+      <button class="btn icon only-narrow" type="button" data-act="drawer" aria-label="Show filters" aria-controls="side" aria-expanded="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button>
+      <div class="search" role="search">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m20 20-4.2-4.2"/><circle cx="11" cy="11" r="6.5"/></svg>
+        <label class="sr" for="q">Search extensions</label>
+        <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search names, descriptions, tags" aria-keyshortcuts="/">
+        <kbd aria-hidden="true">/</kbd>
+      </div>
+      <span class="count" id="count" aria-live="polite"></span>
+      <span class="spacer"></span>
+      <div class="seg" role="group" aria-label="View">
+        <button type="button" data-act="view" data-v="table" aria-pressed="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>Table</span></button>
+        <button type="button" data-act="view" data-v="cards" aria-pressed="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><span>Cards</span></button>
+      </div>
+      <label class="sel"><span class="t">Sort</span><select id="sort"></select></label>
+      <button class="btn icon" type="button" id="theme" data-act="theme" aria-label="Toggle dark mode"></button>
+    </header>
+    <div id="chips" class="chips" aria-label="Active filters"></div>
+    <div id="results" tabindex="-1">
+      <div class="tablewrap" id="tableview">
+        <table class="grid" aria-label="Extensions" aria-describedby="count">
+          <colgroup><col style="width:40px"><col style="width:236px"><col style="width:98px"><col style="width:124px"><col><col style="width:72px"><col style="width:150px"><col style="width:140px"></colgroup>
+          <thead><tr>
+            <th scope="col"><span class="sr">Details</span></th>
+            <th scope="col" data-col="name"></th>
+            <th scope="col" data-col="tier"></th>
+            <th scope="col" data-col="type"></th>
+            <th scope="col">Technologies · Areas</th>
+            <th scope="col" class="r" data-col="stars"></th>
+            <th scope="col" class="r" data-col="trend"></th>
+            <th scope="col" data-col="pushed"></th>
+          </tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <div class="cards" id="cardview" role="list" aria-label="Extensions" hidden></div>
+      <div class="sentinel" id="sentinel" aria-hidden="true"></div>
+      <div class="loadmore" id="loadmore"></div>
+    </div>
+  </main>
+</div>
+<noscript><p class="empty"><b>This catalog needs JavaScript.</b>The raw data is in catalog.js.</p></noscript>
 <script src="catalog.js"></script>
-<script>
-(function(){
-"use strict";
-var TIERS=["anthropic","official","listed","verified","watch"];
-var TIER_LABEL={anthropic:"Anthropic",official:"Official marketplace · 3rd-party",listed:"Community marketplace · 3rd-party",verified:"Verified",watch:"Watch"};
-var TIER_HELP={anthropic:"Made by Anthropic",official:"In Anthropic's official marketplace, third-party code",listed:"In Anthropic's community marketplace, third-party code",verified:"Curated or strong signals",watch:"Discovered, unproven"};
-function tl(t){return TIER_LABEL[t]||t}
-var PAGE=50;
-var C=window.CATALOG||{repos:[]};
-var repos=C.repos||[];
-var $=function(id){return document.getElementById(id)};
-
-function h(tag,attrs){
-  var e=document.createElement(tag);
-  if(attrs)for(var k in attrs){
-    var v=attrs[k]; if(v==null||v===false)continue;
-    if(k==="class")e.className=v; else if(k==="text")e.textContent=v; else e.setAttribute(k,v===true?"":String(v));
-  }
-  for(var i=2;i<arguments.length;i++){var c=arguments[i]; if(c==null)continue; e.appendChild(typeof c==="string"?document.createTextNode(c):c);}
-  return e;
-}
-function safeUrl(u){
-  if(typeof u!=="string")return null;
-  try{var p=new URL(u); return (p.protocol==="https:"||p.protocol==="http:")?p.href:null;}catch(e){return null;}
-}
-function fmt(n){return n==null?"–":n>=10000?(n/1000).toFixed(0)+"k":n>=1000?(n/1000).toFixed(1)+"k":String(n)}
-var now=Date.now();
-function days(d){if(!d)return null;var t=Date.parse(d);return isNaN(t)?null:Math.floor((now-t)/864e5)}
-function rel(d){var n=days(d); if(n==null)return "unknown"; if(n<=0)return "today"; if(n<30)return n+"d ago"; if(n<365)return Math.floor(n/30)+"mo ago"; return (n/365).toFixed(1)+"y ago";}
-
-// precompute search text
-repos.forEach(function(r){
-  r._s=((r.n||"")+" "+(r.r||"")+" "+(r.d||"")+" "+(r.it||[]).map(function(i){return i.n}).join(" ")).toLowerCase();
-  r._p=r.p?Date.parse(r.p):0; r._fs=r.fs?Date.parse(r.fs):0;
-});
-var hasTrend=repos.some(function(r){return typeof r.t7==="number"});
-
-// ---- static UI setup
-var tierBox=$("tiers");
-TIERS.forEach(function(t){
-  var id="tier-"+t;
-  tierBox.appendChild(h("label",{"for":id},h("input",{type:"checkbox",id:id,value:t}),tl(t)));
-});
-var types={}; repos.forEach(function(r){if(r.t)types[r.t]=(types[r.t]||0)+1});
-Object.keys(types).sort().forEach(function(t){$("type").appendChild(h("option",{value:t,text:t+" ("+types[t]+")"}))});
-
-var tierCounts={}; repos.forEach(function(r){tierCounts[r.tr]=(tierCounts[r.tr]||0)+1});
-var st=$("stats");
-st.appendChild(h("span",null,h("b",{text:String(repos.length)})," repos"));
-TIERS.forEach(function(t){ if(tierCounts[t])st.appendChild(h("span",null,h("span",{class:"badge t-"+t,text:tl(t)})," ",h("b",{text:String(tierCounts[t])}))); });
-st.appendChild(h("span",{text:"Generated: "+(C.generated_at||"unknown")}));
-
-// ---- state
-var S;
-function defaults(){return {view:"browse",q:"",tiers:["anthropic","official","listed","verified"],type:"",newd:"",min:"",sort:"stars",hf:false};}
-function readHash(){
-  S=defaults();
-  var p=new URLSearchParams(location.hash.replace(/^#/,""));
-  if(p.get("view")==="trending")S.view="trending";
-  if(p.has("q"))S.q=p.get("q");
-  if(p.has("tier"))S.tiers=p.get("tier").split(",").filter(function(t){return TIERS.indexOf(t)>=0});
-  if(p.has("type"))S.type=p.get("type");
-  if(p.has("new")&&/^\d+$/.test(p.get("new")))S.newd=p.get("new");
-  if(p.has("min")&&/^\d+$/.test(p.get("min")))S.min=p.get("min");
-  if(["stars","trend","pushed","seen","name"].indexOf(p.get("sort"))>=0)S.sort=p.get("sort");
-  if(p.get("hf")==="1")S.hf=true;
-}
-function writeHash(){
-  var d=defaults(),p=new URLSearchParams();
-  if(S.view!==d.view)p.set("view",S.view);
-  if(S.q)p.set("q",S.q);
-  if(S.tiers.slice().sort().join()!==d.tiers.slice().sort().join())p.set("tier",S.tiers.join(","));
-  if(S.type)p.set("type",S.type);
-  if(S.newd)p.set("new",S.newd);
-  if(S.min)p.set("min",S.min);
-  var eff=effSort(); if(S.sort!==d.sort)p.set("sort",S.sort);
-  if(S.hf)p.set("hf","1");
-  var s=p.toString();
-  history.replaceState(null,"",s?"#"+s:location.pathname+location.search);
-}
-function effSort(){return S.view==="trending"?"trend":S.sort}
-function syncControls(){
-  $("q").value=S.q; $("type").value=S.type; $("newd").value=S.newd; $("minstars").value=S.min;
-  $("sort").value=effSort(); $("sort").disabled=S.view==="trending"; $("hf").checked=S.hf;
-  TIERS.forEach(function(t){$("tier-"+t).checked=S.tiers.indexOf(t)>=0});
-  $("v-browse").setAttribute("aria-pressed",S.view==="browse");
-  $("v-trend").setAttribute("aria-pressed",S.view==="trending");
-}
-
-// ---- filtering
-var results=[],shown=0;
-function apply(){
-  var q=S.q.trim().toLowerCase(), terms=q?q.split(/\s+/):[];
-  var min=S.min?parseInt(S.min,10):0, nd=S.newd?parseInt(S.newd,10):0;
-  var trend=S.view==="trending";
-  results=repos.filter(function(r){
-    if(S.tiers.indexOf(r.tr)<0)return false;
-    if(S.type&&r.t!==S.type&&(r.ts||[]).indexOf(S.type)<0)return false;
-    if(S.hf&&r.fl&&r.fl.length)return false;
-    if(min&&(r.s||0)<min)return false;
-    if(nd){var d=days(r.fs); if(d==null||d>nd)return false;}
-    if(trend&&typeof r.t7!=="number")return false;
-    for(var i=0;i<terms.length;i++)if(r._s.indexOf(terms[i])<0)return false;
-    return true;
-  });
-  var sk=effSort();
-  var cmp={
-    stars:function(a,b){return (b.s||0)-(a.s||0)},
-    trend:function(a,b){return (b.t7==null?-1e9:b.t7)-(a.t7==null?-1e9:a.t7)||(b.s||0)-(a.s||0)},
-    pushed:function(a,b){return b._p-a._p},
-    seen:function(a,b){return b._fs-a._fs||(b.s||0)-(a.s||0)},
-    name:function(a,b){return (a.n||a.r).toLowerCase()<(b.n||b.r).toLowerCase()?-1:1}
-  }[sk];
-  results.sort(cmp);
-  render(true);
-}
-
-// ---- rendering
-var list=$("list");
-function copyText(text,btn){
-  function ok(){var o=btn.textContent; btn.classList.add("ok"); btn.textContent="Copied"; setTimeout(function(){btn.classList.remove("ok");btn.textContent="Copy"},1400);}
-  function fallback(){
-    var ta=h("textarea",{"aria-hidden":"true"}); ta.value=text; ta.style.cssText="position:fixed;left:-999px;top:0";
-    document.body.appendChild(ta); ta.select();
-    try{document.execCommand("copy")?ok():btn.textContent="Failed"}catch(e){btn.textContent="Failed"}
-    document.body.removeChild(ta);
-  }
-  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(ok,fallback);}else fallback();
-}
-function trendCell(r){
-  if(typeof r.t7!=="number")return h("span",null,"trend ",h("span",{class:"v",text:"–"}));
-  var s=(r.t7>0?"+":"")+r.t7+"★/7d"; if(typeof r.t7p==="number")s+=" ("+(r.t7p>0?"+":"")+r.t7p.toFixed(1)+"%)";
-  return h("span",null,"trend ",h("span",{class:"v"+(r.t7>0?" up":""),text:s}));
-}
-function itemsList(r){
-  var ul=h("ul",{class:"items"});
-  (r.it||[]).forEach(function(it){
-    var li=h("li",null,h("span",{class:"iname"},it.n||"(unnamed)"," ",h("span",{class:"badge b-type",text:it.t||"?"})));
-    if(it.d)li.appendChild(h("span",{class:"idesc",text:it.d}));
-    if(it.i){
-      li.appendChild(h("code",{text:it.i}));
-      var b=h("button",{type:"button",class:"copy","aria-label":"Copy install command for "+(it.n||"item")},"Copy");
-      b.addEventListener("click",function(){copyText(it.i,b)});
-      li.appendChild(b);
-    }
-    ul.appendChild(li);
-  });
-  if((r.nit||0)>(r.it||[]).length)ul.appendChild(h("li",null,h("span",{class:"idesc",text:"… "+(r.nit-r.it.length)+" more items on GitHub"})));
-  return ul;
-}
-var uid=0;
-function card(r){
-  uid++;
-  var url=safeUrl(r.u)||safeUrl("https://github.com/"+r.r);
-  var title=url?h("a",{class:"name",href:url,target:"_blank",rel:"noopener noreferrer nofollow"},r.n||r.r):h("span",{class:"name",text:r.n||r.r});
-  var tierTip=h("span",{class:"tip",role:"tooltip",id:"tip"+uid});
-  tierTip.appendChild(h("b",{text:tl(r.tr)+": "+(TIER_HELP[r.tr]||"")}));
-  if(r.tx&&r.tx.length){var ul=h("ul");r.tx.forEach(function(x){ul.appendChild(h("li",{text:x}))});tierTip.appendChild(ul);}
-  var tb=h("button",{type:"button","aria-describedby":"tip"+uid,"aria-label":"Tier "+tl(r.tr)+", show reasons"},h("span",{class:"badge t-"+r.tr,text:tl(r.tr)}));
-  var tw=h("span",{class:"tierwrap"},tb,tierTip);
-  tb.addEventListener("click",function(){tw.classList.toggle("open")});
-  tb.addEventListener("blur",function(){tw.classList.remove("open")});
-  tb.addEventListener("keydown",function(e){if(e.key==="Escape")tw.classList.remove("open")});
-  var head=h("div",{class:"head"},title,h("span",{class:"repo",text:r.r}),tw);
-  if(r.t)head.appendChild(h("span",{class:"badge b-type",text:r.t}));
-  (r.fl||[]).forEach(function(f){head.appendChild(h("span",{class:"badge b-warn",title:"Flag: "+f,text:"⚠ "+f}))});
-  if(r.a)head.appendChild(h("span",{class:"badge b-warn",text:"archived"}));
-  var meta=h("div",{class:"meta"},
-    h("span",null,"★ ",h("span",{class:"v",text:fmt(r.s)})),
-    trendCell(r),
-    h("span",null,"pushed ",h("span",{class:"v",text:rel(r.p)})),
-    h("span",null,"license ",h("span",{class:"v",text:r.l||"none"})));
-  if(r.fs)meta.appendChild(h("span",null,"seen ",h("span",{class:"v",text:r.fs})));
-  if(r.src&&r.src.length)meta.appendChild(h("span",{text:"sources: "+r.src.join(", ")}));
-  var li=h("li",{class:"card"},head);
-  if(r.d)li.appendChild(h("p",{class:"desc",text:r.d}));
-  li.appendChild(meta);
-  var n=r.nit||(r.it||[]).length;
-  if(n){
-    var holder=h("div"), btn=h("button",{type:"button",class:"tog","aria-expanded":"false"},"Show "+n+" item"+(n>1?"s":"")+" / install");
-    btn.addEventListener("click",function(){
-      var open=btn.getAttribute("aria-expanded")==="true";
-      if(open){holder.textContent="";btn.setAttribute("aria-expanded","false");btn.textContent="Show "+n+" item"+(n>1?"s":"")+" / install";}
-      else{holder.appendChild(itemsList(r));btn.setAttribute("aria-expanded","true");btn.textContent="Hide items";}
-    });
-    li.appendChild(btn);li.appendChild(holder);
-  }
-  return li;
-}
-function render(reset){
-  if(reset){list.textContent="";shown=0;}
-  var end=Math.min(results.length,shown+PAGE), frag=document.createDocumentFragment();
-  for(;shown<end;shown++)frag.appendChild(card(results[shown]));
-  list.appendChild(frag);
-  $("more").hidden=shown>=results.length;
-  $("more").textContent="Show more ("+(results.length-shown)+" left)";
-  $("status").textContent=results.length+" of "+repos.length+" repos"+(S.view==="trending"?" with trend data, ranked by 7-day star gain":"")+(shown<results.length?" (showing "+shown+")":"");
-  var notes=$("notes"); notes.textContent="";
-  if(S.view==="trending"&&!hasTrend)notes.appendChild(h("div",{class:"note",text:"Trend data is not available yet. It needs at least 7 days of history; check back after a week of daily snapshots."}));
-  else if(S.view==="trending"&&!results.length)notes.appendChild(h("div",{class:"note",text:"No repos with trend data match these filters."}));
-  else if(!results.length)notes.appendChild(h("div",{class:"note",text:"No repos match. Try Reset, or enable the watch tier."}));
-}
-$("more").addEventListener("click",function(){render(false)});
-if("IntersectionObserver" in window){
-  new IntersectionObserver(function(es){if(es[0].isIntersecting&&!$("more").hidden)render(false)},{rootMargin:"600px"}).observe($("more"));
-}
-
-// ---- events
-function fromControls(){
-  S.q=$("q").value; S.type=$("type").value; S.newd=$("newd").value;
-  S.min=$("minstars").value.replace(/\D/g,""); if(S.view==="browse")S.sort=$("sort").value; S.hf=$("hf").checked;
-  S.tiers=TIERS.filter(function(t){return $("tier-"+t).checked});
-  writeHash(); apply();
-}
-var tm; $("q").addEventListener("input",function(){clearTimeout(tm);tm=setTimeout(fromControls,150)});
-["type","newd","sort","hf","minstars"].forEach(function(id){$(id).addEventListener("change",fromControls)});
-$("minstars").addEventListener("input",function(){clearTimeout(tm);tm=setTimeout(fromControls,250)});
-TIERS.forEach(function(t){$("tier-"+t).addEventListener("change",fromControls)});
-$("reset").addEventListener("click",function(){S=defaults();syncControls();writeHash();apply();});
-function setView(v){S.view=v;if(v==="trending")S.sort="trend";else if(S.sort==="trend")S.sort="stars";syncControls();writeHash();apply();}
-$("v-browse").addEventListener("click",function(){setView("browse")});
-$("v-trend").addEventListener("click",function(){setView("trending")});
-window.addEventListener("hashchange",function(){readHash();syncControls();apply();});
-
-readHash(); syncControls(); apply();
-})();
-</script>
+<script src="app.js"></script>
 </body>
 </html>

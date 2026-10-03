@@ -2,3 +2,6 @@
 cache/
 site/_screens/
 *.log
+.venv/
+__pycache__/
+mockups/

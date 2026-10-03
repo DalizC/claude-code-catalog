@@ -23,19 +23,46 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-classify.txt
 
-      - name: Restore HTTP cache
+      - name: Install classify requirements
+        run: pip install -r requirements-classify.txt
+
+      # cache/ holds HTTP responses and readmes.json. Unique key per run + prefix restore
+      # means the newest copy is always saved and the latest one restored.
+      - name: Restore HTTP + README cache
         uses: actions/cache@v4
         with:
           path: cache
           key: catalog-cache-${{ github.run_id }}
           restore-keys: catalog-cache-
 
+      - name: Restore fastembed model cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/fastembed_cache
+          key: fastembed-${{ hashFiles('requirements-classify.txt') }}
+
       - name: Collect catalog
         env:
           # CATALOG_TOKEN (a PAT) is optional; falls back to the built-in token.
           GITHUB_TOKEN: ${{ secrets.CATALOG_TOKEN || secrets.GITHUB_TOKEN }}
         run: python catalog.py
+
+      # Classification must never block publishing: failure keeps the previous classifications.json.
+      - name: Classify
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.CATALOG_TOKEN || secrets.GITHUB_TOKEN }}
+          FASTEMBED_CACHE_PATH: ${{ runner.temp }}/fastembed_cache
+        run: python classify.py
+
+      - name: Star history
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.CATALOG_TOKEN || secrets.GITHUB_TOKEN }}
+        run: python history.py --budget 1500
 
       - name: Build site
         run: python build_site.py
