@@ -75,3 +75,6 @@ The workflow uses `secrets.CATALOG_TOKEN` if set, else the built-in `GITHUB_TOKE
             items: [{name, type, description, install_hint, url}]}]}
 ```
 `type` is the primary type (plugin > marketplace > skill > agent > command > hook > collection); `trend_*` are star deltas against the newest snapshot at least 7 / 30 days old (null if none); `first_seen` persists across runs.
+
+## Roadmap
+Planned work: [ROADMAP.md](ROADMAP.md).
