@@ -1,43 +1,43 @@
 # Security scan report
 
-Generated 2026-10-04T14:23:05Z by security.py (rules e3d8ff624da7). Static pattern scan; content is never executed.
+Generated 2026-10-04T16:31:25Z by security.py (rules d2241ba97128). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 4091 (repos visited this run: 4286, 393s)
-- API calls this run: 0 (0 not-modified); raw files fetched 0, from cache 76419, failed 0
+- Entries with scanned components: 4269 (repos visited this run: 305, 53s)
+- API calls this run: 305 (5 not-modified); raw files fetched 2651, from cache 74, failed 0
 
 ## Entries by level
 
 | level | entries |
 |---|---|
 | high | 1 |
-| review | 186 |
-| ok | 3904 |
+| review | 191 |
+| ok | 4077 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 1 | 24 | 603 |
-| perm-skip-permissions | 0 | 65 | 152 |
-| cred-ssh-cloud-keys | 0 | 11 | 160 |
+| rce-pipe-shell | 1 | 24 | 628 |
+| perm-skip-permissions | 0 | 65 | 154 |
+| cred-ssh-cloud-keys | 0 | 11 | 166 |
 | inject-conceal-from-user | 0 | 1 | 166 |
-| inject-ignore-instructions | 0 | 4 | 154 |
-| perm-hook-auto-approve | 0 | 99 | 49 |
-| destructive-rm-root-home | 0 | 1 | 122 |
-| cred-token-dump | 0 | 53 | 47 |
+| inject-ignore-instructions | 0 | 4 | 155 |
+| perm-hook-auto-approve | 0 | 103 | 50 |
+| destructive-rm-root-home | 0 | 2 | 127 |
+| cred-token-dump | 0 | 53 | 48 |
 | rce-powershell-iex | 0 | 0 | 80 |
-| persist-launchd-systemd | 0 | 31 | 38 |
-| persist-shell-rc | 0 | 0 | 53 |
-| persist-cron | 0 | 16 | 34 |
-| destructive-force-push-main | 0 | 1 | 47 |
+| persist-launchd-systemd | 0 | 34 | 38 |
+| persist-shell-rc | 0 | 0 | 56 |
+| persist-cron | 0 | 16 | 36 |
+| destructive-force-push-main | 0 | 1 | 48 |
 | perm-default-bypass | 0 | 25 | 18 |
-| exfil-webhook-host | 0 | 0 | 36 |
+| exfil-webhook-host | 0 | 0 | 39 |
 | perm-allow-all | 0 | 23 | 9 |
 | cred-browser-store | 0 | 3 | 27 |
-| exfil-reverse-shell | 0 | 4 | 17 |
-| destructive-disk | 0 | 1 | 16 |
+| exfil-reverse-shell | 0 | 4 | 18 |
+| destructive-disk | 0 | 1 | 18 |
+| exfil-secrets-upload | 0 | 0 | 19 |
 | destructive-chmod-777 | 0 | 0 | 16 |
-| exfil-secrets-upload | 0 | 0 | 16 |
 | obfusc-decode-exec | 0 | 5 | 7 |
 | rce-eval-download | 0 | 0 | 9 |
 | inject-html-comment | 0 | 1 | 4 |
@@ -120,15 +120,15 @@ Generated 2026-10-04T14:23:05Z by security.py (rules e3d8ff624da7). Static patte
 - **bmrtnz/gestion-emballages** `perm-default-bypass` .claude/settings.local.json:3 — "defaultMode": "bypassPermissions"
 - **bybren-llc/a-safe-pulse** `cred-ssh-cloud-keys` .claude/commands/remote-logs.md:295 — SSH_KEY_PATH=~/.ssh/id_ed25519
 - **carta/plugins** `perm-hook-auto-approve` plugins/carta-cap-table/hooks/dispatch.sh:118 — printf '%s' '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"allow"}}'
+- **cdeust/Cortex** `perm-hook-auto-approve` mcp_server/hooks/agent_briefing_native.py:43 — permissionDecision="allow",
 - **chiKeka/csitrep-generator** `persist-cron` skills/schedule/SKILL.md:73 — crontab -l 2>/dev/null \| grep -v "csitrep-generator" \| crontab -
 - **chunxiaoxx/nautilus-compass** `persist-launchd-systemd` scripts/deploy_v09_to_cloud.sh:180 — sudo cp $REMOTE_DIR/scripts/compass.service /etc/systemd/system/
 - **civillizard/claude-lean-skill** `perm-hook-auto-approve` hooks/task-model-guard.py:150 — "permissionDecision": "allow",
 - **clay-run/agent-plugins** `perm-hook-auto-approve` clay/hooks/approve-cli.sh:326 — printf '%s\n' '{"hookSpecificOutput":{"hookEventName":"PermissionRequest","decision":{"behavior":"allow"}}}'
 - **clomia/claude-automata** `perm-skip-permissions` plugins/ploop/skills/define-mission/SKILL.md:23 — 4. 완료 후 'claude --permission-mode bypassPermissions'로 연 별도 session에 anchor text를 '/ploop:launch [anchor text]'로 넘기라고 안내하라.
 - **closedloop-ai/claude-plugins** `perm-hook-auto-approve` plugins/code/hooks/pretooluse-hook.sh:170 — …SpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"allow","permissionDecisionReason":"Auto-allow access to .closedloop-ai/ plugin workspace"}…
+- **codegraph-ai/CodeGraph** `perm-hook-auto-approve` mcp-package/hooks/codegraph-pre-edit.ps1:108 — permissionDecision = 'allow'
 - **codeninja/slop-gate** `perm-skip-permissions` scripts/e2e-claude.sh:25 — --permission-mode bypassPermissions \
 - **codyhxyz/create-claude-plugin** `perm-skip-permissions` scripts/cowork-smoke-test.sh:169 — --permission-mode bypassPermissions \
 - **costajohnt/oss-autopilot** `cred-token-dump` agents/contribution-strategist.md:42 — GITHUB_TOKEN=$(gh auth token) node "${CLAUDE_PLUGIN_ROOT}/packages/core/dist/cli.bundle.cjs" strategy --json
 - **crisandrews/ClawCode** `perm-skip-permissions` skills/messaging/SKILL.md:67 — claude --dangerously-load-development-channels plugin:whatsapp@claude-whatsapp --dangerously-skip-permissions
-- **dailydotdev/daily** `cred-token-dump` skills/daily-dev-ask/SKILL.md:43 — security find-generic-password -a "$USER" -s "daily-dev-api" -w
-- **dangogit/ncode-saas-toolkit** `inject-bidi-override` plugins/ncode-saas-toolkit/skills/ncode-anti-vibe-coding/references/css-logical-properties.md:208 — \| '<U+202A>' \| LRE \| Start LTR embedding \|

@@ -1,15 +1,15 @@
 {
- "cursor": "BV-Venky/excalidraw-architect-mcp",
+ "cursor": "n24q02m/crg",
  "last_run": {
-  "api_304": 0,
-  "api_calls": 0,
-  "full_api_calls": 0,
-  "rate_remaining": null,
-  "raw_cached": 76419,
+  "api_304": 5,
+  "api_calls": 305,
+  "full_api_calls": 300,
+  "rate_remaining": 4702,
+  "raw_cached": 74,
   "raw_failed": 0,
-  "raw_fetched": 0,
+  "raw_fetched": 2651,
   "stopped": "",
-  "visited": 4286
+  "visited": 305
  },
  "repos": {
   "0-AI-UG/cate": {
@@ -56,6 +56,11 @@
    "status": "ok",
    "tree_sha": "f34609682095665e37d283bd6fdf6e0c2fceb492",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "0xzr/freellmpool": {
+   "status": "ok",
+   "tree_sha": "40e62806f041286eee1593fe911b9114372624f5",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "1AyaNabil1/emsk-pr": {
    "status": "ok",
@@ -156,6 +161,11 @@
    "status": "ok",
    "tree_sha": "1ecf08acd887ff5e69950f0a4222b3acce2c9e9e",
    "visited_at": "2026-10-03T22:08:37Z"
+  },
+  "8enSmith/mcp-open-library": {
+   "status": "ok",
+   "tree_sha": "1d09ddc6f7d4b3f11cc5febd3dc3e428788e3af0",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "8lampard8/claude-science-cn": {
    "status": "ok",
@@ -307,10 +317,20 @@
    "tree_sha": "b736e3446d17a59b38342d521bfc960281602104",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "Affitor/open-affiliate": {
+   "status": "ok",
+   "tree_sha": "0805e7dd4353f5314d7127492437ed3a2ee0c9c1",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "AgentBuildersApp/eight-eyes": {
    "status": "ok",
    "tree_sha": "12e0d60ea8007bce76100b9a43b0db3032266456",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "AgentPhone-AI/agentphone-mcp": {
+   "status": "ok",
+   "tree_sha": "353991c54d7d75abf927a226861338c0b64b2ecc",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "AgentPowers-AI/agentpowers-plugin": {
    "status": "ok",
@@ -422,6 +442,11 @@
    "tree_sha": "9cbf05aa4963bac3684bb941270dcb62fc851ab7",
    "visited_at": "2026-10-04T14:05:48Z"
   },
+  "AliKarami/MikroMCP": {
+   "status": "ok",
+   "tree_sha": "7b58e04d7dc3c1b1e829dd104a3f68e4dfa79657",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "Alignment-GEOAI/alignment-workspace": {
    "status": "http-404"
   },
@@ -514,6 +539,11 @@
    "status": "ok",
    "tree_sha": "88bdfa66e58a40ce459d691ba8bfaf734fc0a45a",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "AndrewDryga/emisar": {
+   "status": "ok",
+   "tree_sha": "beec11edcaae5fa8eb0410827355a647141b9a75",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "AndrewPalet/cmux-ultimate": {
    "status": "ok",
@@ -805,6 +835,11 @@
    "tree_sha": "2dcab31e66e9d9e42ab4b294c824fc1f4958caa7",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "Battam1111/omniseek": {
+   "status": "ok",
+   "tree_sha": "6a18b3829fd78bbbeb33494f4cb710d95c98f4d7",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "BayramAnnakov/claude-reflect": {
    "status": "ok",
    "tree_sha": "b6c42326903af3dd2bf3772b979730a44d8548ca",
@@ -819,6 +854,11 @@
    "status": "ok",
    "tree_sha": "f97888d36b84d96a1c8c25dd4801bb248627d692",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "BeatAPI/BeatDesign": {
+   "status": "ok",
+   "tree_sha": "d2ef270174426da119574e9aa096e86edb777b5d",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "BeehiveInnovations/busycal-mcpb": {
    "status": "ok",
@@ -850,6 +890,11 @@
    "tree_sha": "a42012da5dfa8a6da19191608a3fe8fd3784eb42",
    "visited_at": "2026-10-04T14:05:48Z"
   },
+  "Bevel-Software/Hexis": {
+   "status": "ok",
+   "tree_sha": "57314c0f86d9ba04a7e30186875279330ca6f2a4",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "Bhanunamikaze/Agentic-SEO-Skill": {
    "status": "ok",
    "tree_sha": "69199160e18372bc5cdf9ddec20ccb9fb1b509f1",
@@ -864,6 +909,11 @@
    "status": "ok",
    "tree_sha": "c998fe3ed4d8627903a900d4fc2c622657a3be3f",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "BingoWon/apple-rag-mcp": {
+   "status": "ok",
+   "tree_sha": "707dcad95219aea9a289f6809855c40435687cd6",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "BinyaminEden/letmewatch": {
    "status": "ok",
@@ -910,6 +960,11 @@
    "tree_sha": "ca02ff7cc8eaedf36a14374c8fe2cbb527b708c7",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "BquantFinance/Administracion-fuentes-publicas": {
+   "status": "ok",
+   "tree_sha": "f4bfeab767b69daa9f7e1d6de5648983bedd8b84",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "Brainrot-Creations/claude-plugins": {
    "status": "ok",
    "tree_sha": "c69d68529b26f498b9645df5f79990e9dbc4e6ef",
@@ -934,6 +989,11 @@
    "status": "ok",
    "tree_sha": "f36b34fc539a7a3b801839bfff2c26277fd7ec69",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "BrightbeamAI/chap": {
+   "status": "ok",
+   "tree_sha": "2bf78a2fffc7228b945c466e71073d013c982ffc",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "Brmbobo/Web2podcast": {
    "status": "ok",
@@ -1118,6 +1178,11 @@
    "tree_sha": "214c040859ab0db74a9a11f09a3e44796847499f",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "CodeAlive-AI/codealive-mcp": {
+   "status": "ok",
+   "tree_sha": "3755fef4cc332c62dbc3b9c04390a3500c2551a4",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "CodeAlive-AI/codealive-skills": {
    "status": "ok",
    "tree_sha": "8e9d134404d7d7906208ca512423223ed6dd3fe7",
@@ -1132,6 +1197,11 @@
    "status": "ok",
    "tree_sha": "5f351d4eee5f143c2e7a4658e6f4a4a1cb1a1a45",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "Codeturion/unreal-api-mcp": {
+   "status": "ok",
+   "tree_sha": "21559e3932fc31db57cb383fd0f3172a18177934",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "ColeMurray/claude-code-otel": {
    "status": "ok",
@@ -1233,6 +1303,11 @@
    "tree_sha": "35ff4e8252c4a68002640399c346a84e64f1ef5d",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "CursorTouch/MacOS-MCP": {
+   "status": "ok",
+   "tree_sha": "a7e135c2509232f572f41ab6686cf71d8c1fdff1",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "CursorTouch/Windows-MCP": {
    "status": "ok",
    "tree_sha": "f51d6f14da57c290dac44f0f465c37c45ca4f394",
@@ -1277,6 +1352,11 @@
    "status": "ok",
    "tree_sha": "8c12bb178f0aab4a9c52b8645d3972e6de5e659b",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "DROOdotFOO/raxol": {
+   "status": "ok",
+   "tree_sha": "a761d42d891bdf395e31869c0819dcb225d44771",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "DVKolm/claude-plugin-manager": {
    "status": "ok",
@@ -1330,6 +1410,11 @@
    "status": "ok",
    "tree_sha": "b12f0b93db3401f45e58f2e3d092cff50c615b86",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "Dave-London/Pare": {
+   "status": "ok",
+   "tree_sha": "57e1980e8375d0f5426be573de0b0fc228227130",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "David-Li0406/meta-skill-evloving": {
    "status": "ok",
@@ -1476,6 +1561,11 @@
    "tree_sha": "b9c0748e6e43d6f06f21924a063b32c8e57e6266",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "DmitriyGolub/threejs-devtools-mcp": {
+   "status": "ok",
+   "tree_sha": "36b17f36ec12150af1d62a05ae879256a60867d4",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "DoHyun468/claw-hwp": {
    "status": "ok",
    "tree_sha": "ab2985ef7d27d29d000890c4e46781888bb7a9ec",
@@ -1510,6 +1600,11 @@
    "status": "ok",
    "tree_sha": "53b36701a60faefda926478b6993a4fa755f55fc",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "DottedSign-Official/dottedsign-mcp": {
+   "status": "ok",
+   "tree_sha": "d72d5201e55134409ad48bf80f7802753c1ba39e",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "DrNabeelKhan/maxim": {
    "status": "ok",
@@ -1646,6 +1741,11 @@
    "tree_sha": "a026be536c908ca1bddd7bac1a037bcc804fb2c6",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "Erodenn/godot-mcp-runtime": {
+   "status": "ok",
+   "tree_sha": "04925002e227749048bd95274c5bdb0c929bb8c4",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "EternaHybridExchange/openclaw-plugin": {
    "status": "ok",
    "tree_sha": "070dbb286123dbc5895003d87121964843bb1629",
@@ -1691,6 +1791,11 @@
    "tree_sha": "5a8b0b8d9d301160ad552ea449d50d439ac16fa4",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "FROWNINGdev/django-orm-lens": {
+   "status": "ok",
+   "tree_sha": "2611da05286a019f819eaa8ac25c53c8dbbe953c",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "FaerberK/devflow-mcp": {
    "status": "ok",
    "tree_sha": "d78e9c62e462313fd3ddbaa9e3f94fd7e18f8982",
@@ -1711,6 +1816,11 @@
    "tree_sha": "6e43296fa3bab362fb9f494a0c93646ffbf76772",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "Fanch-hui/codex-bridge": {
+   "status": "ok",
+   "tree_sha": "c112ba055b2b3576d24935585bb27c3c97b9598a",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "Farjmand/code-architecture-review": {
    "status": "ok",
    "tree_sha": "f46f761a35e88cc24a034fa4c568094b99de9a6d",
@@ -1720,6 +1830,11 @@
    "status": "ok",
    "tree_sha": "cbb17676d1d5bf829845b44848b2f7b222076d74",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "FavioVazquez/showtime": {
+   "status": "ok",
+   "tree_sha": "8d918fb01efb6bfdf2cd790f05437354e202f2e2",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "FearWhale/cs2-hammer-skills": {
    "status": "ok",
@@ -1884,6 +1999,11 @@
    "tree_sha": "84a4b60b21c783a9b135d12f9657a38126248c1c",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "Gingiris-1031/Competitor-analysis-tool": {
+   "status": "ok",
+   "tree_sha": "9bf577dc30e63176ed8dc29428aa8014d4a135d7",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "Giskard-AI/giskard-skills": {
    "status": "ok",
    "tree_sha": "432e95b6710b8e693d8d0a64b28959ede785d270",
@@ -1939,10 +2059,20 @@
    "tree_sha": "0dd8034c50d6bce0290b99190cd44b06fcbec2c1",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "GoogleCloudPlatform/gemini-cloud-assist-mcp": {
+   "status": "ok",
+   "tree_sha": "04988915771c8c7a1ffd4e7c28ee7798f7048246",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "GovTribe/claude-plugin": {
    "status": "ok",
    "tree_sha": "d3e0c82c6c4f960320c010ceb8aabb463f1fb7d2",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "GuangminJu/mellos-mapping": {
+   "status": "ok",
+   "tree_sha": "1fe8b5ce42f39eb018a3df86d64a77c8ff47f52e",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "GunjanGrunge/tylor": {
    "status": "ok",
@@ -1983,6 +2113,11 @@
    "status": "ok",
    "tree_sha": "e07adcad62197a3b6f84eb82b35d86419cb6472f",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "HaD0Yun/Doyunha-Gopeak": {
+   "status": "ok",
+   "tree_sha": "b7cb2ee5eab4bcbb80f2762297ea8d7a4461801b",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "HabitaNexus/monorepo": {
    "status": "ok",
@@ -2069,6 +2204,11 @@
    "tree_sha": "9cb8e90f8848e0fba176d6bf8c2658eb3ee63dcc",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "HiAi-gg/docsmint": {
+   "status": "ok",
+   "tree_sha": "672bdbf05dac4b7c26aecb2c579dcd870686a3a1",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "Higangssh/homebutler": {
    "status": "ok",
    "tree_sha": "c180322369b1c06011a113429bdd51d7a94020f8",
@@ -2098,6 +2238,11 @@
    "status": "ok",
    "tree_sha": "eec8375f72c8dcf516eb7dc67e223d20211252ce",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "Hylouis233/bibverify": {
+   "status": "ok",
+   "tree_sha": "87fc9236a39b4382ae5fbe286fb5a20bcecd8fd4",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "ICXCNIKAanon/claude-vitals": {
    "status": "ok",
@@ -2129,6 +2274,11 @@
    "tree_sha": "271ca20a17eae138bd5f3611ac5adb2a237e2258",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "IgniteUI/igniteui-cli": {
+   "status": "ok",
+   "tree_sha": "584591cfa45a4dbf430d2ba759be2e1324349874",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "IgorGanapolsky/ThumbGate": {
    "status": "ok",
    "tree_sha": "7a6ae0f73c546089ae9aee56642126105acdddf8",
@@ -2143,6 +2293,11 @@
    "status": "ok",
    "tree_sha": "a01c9f3ee98c37169cfb646d47f24502782b4e6c",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "IlyaGusev/academia_mcp": {
+   "status": "ok",
+   "tree_sha": "8f1fa0497c6a764644b9ec5947fbf06d4669baa9",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "Iman/agent-driven-options-desk-and-skills": {
    "status": "ok",
@@ -2224,6 +2379,11 @@
    "tree_sha": "a33cfce06b9d0cdb0d77b5cb20623988b94275a5",
    "visited_at": "2026-10-03T22:08:37Z"
   },
+  "IvenKooLab/loci": {
+   "status": "ok",
+   "tree_sha": "0365ec6d39a85ab4aa9e11aadad386830464032f",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "J-nowcow/awesome-korean-agent-skills": {
    "status": "ok",
    "tree_sha": "d2b10773642a920fe34b8614c81479a68f334e75",
@@ -2239,6 +2399,11 @@
    "tree_sha": "65d1d9a22a418961d26785141dfa18e3ebbda487",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "JKHeadley/instar": {
+   "status": "ok",
+   "tree_sha": "34e691b9404405ce3880ba23d7bde9496cc92b21",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "JPVT1977/n360-marketplace": {
    "status": "ok",
    "tree_sha": "4f6ab3de473cab4184d523e746fdce4783b75310",
@@ -2248,6 +2413,11 @@
    "status": "ok",
    "tree_sha": "372672bb2b1020b5e320b52d53708ee4edaaf9e6",
    "visited_at": "2026-10-04T14:05:48Z"
+  },
+  "JUNKDOGE-JOE/after-effects-mcp": {
+   "status": "ok",
+   "tree_sha": "959f9dbf7b63b9362c86016b268f4b0412f9d5e9",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "JYL123/resume-to-website": {
    "status": "ok",
@@ -2427,6 +2597,11 @@
   "Joys-Dawn/toolwright": {
    "status": "http-404"
   },
+  "JuanCF/scrcpy-mcp": {
+   "status": "ok",
+   "tree_sha": "5f93d15617f9eb047cbe8a28d244e5cc91151551",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "Juanpacol/Nab-": {
    "status": "ok",
    "tree_sha": "4ac3f067e2d9f4c37590c284b7379df67004b297",
@@ -2585,6 +2760,11 @@
    "tree_sha": "e041566046b6bb5d8ddf68defd34447922ff7c08",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "Kentucky-ai/opentakeoff": {
+   "status": "ok",
+   "tree_sha": "beaa4fe47947451addd83de8eabbf6439d497bf8",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "KeplerBrowser/Plugin": {
    "status": "ok",
    "tree_sha": "6c847a1c6d008a8ac08f310f5e574f7b2654e973",
@@ -2668,10 +2848,20 @@
    "tree_sha": "475705f8de04d79f1bca25fbd5c2c5fa7158d08c",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "KryptosAI/mcp-observatory": {
+   "status": "ok",
+   "tree_sha": "8f148e6fa0350ca48c62888f686a76ab547689f9",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "KumarSashank/motiscope": {
    "status": "ok",
    "tree_sha": "c0ce3ddedfbe59f445b74372a064e908587a648a",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "KuudoAI/amazon_ads_mcp": {
+   "status": "ok",
+   "tree_sha": "45c79b4518311127a5526bc9ddcd7bfd051b094c",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "KuvopLLC/yrdsl": {
    "status": "ok",
@@ -2791,6 +2981,11 @@
    "tree_sha": "b3918981bb34ef5d3090dc81cc5b184555ae3bd6",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "Licinexus/licinexus-mcp": {
+   "status": "ok",
+   "tree_sha": "72ceda9b83ba4a10f58b59f937a246053f861eb8",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "Lifecycle-Innovations-Limited/claude-ops": {
    "status": "ok",
    "tree_sha": "0b37c438826d940d0f8d4dc1e4ca6f1f8575c1bf",
@@ -2810,6 +3005,11 @@
    "status": "ok",
    "tree_sha": "1030d8feb824b2b0669b82b5bd5ce2621ea74124",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "LofiFren/PicoCalc": {
+   "status": "ok",
+   "tree_sha": "c711a366febe21061dbfff69a616cb22e0364ccd",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "LogRocket/logrocket-claude-plugin": {
    "status": "ok",
@@ -2875,6 +3075,11 @@
    "status": "ok",
    "tree_sha": "734d4cca59d8d9987eb39a7b45d6b425e680d71f",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "LuxAlgo/luxalgo-mcp-server": {
+   "status": "ok",
+   "tree_sha": "270c157fe739fd35c389da37b5ba3d95c335df9e",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "Lyellr88/marm-memory": {
    "status": "ok",
@@ -3151,6 +3356,16 @@
    "tree_sha": "377dbf4c330a7a8f74fef2eeead281c273ce6cf9",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "MikkoParkkola/mcp-gateway": {
+   "status": "ok",
+   "tree_sha": "6014d0bb5bf37e37080b73cfac1aa476894139c3",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "MikkoParkkola/trvl": {
+   "status": "ok",
+   "tree_sha": "f3c8b773f3a72a97c65ae83d78679c56c4caebee",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "MildyNora/envault": {
    "status": "ok",
    "tree_sha": "cc1c86c2f9677f26be1e4b25fdc615c0c53fd351",
@@ -3181,6 +3396,11 @@
    "tree_sha": "75348bb22c824f0a545b82fcc7ea43202e6298f6",
    "visited_at": "2026-10-04T14:05:48Z"
   },
+  "MobileReality/mdma": {
+   "status": "ok",
+   "tree_sha": "22b9a2e9aaccb9c7c22402a3f068ea9a2db19602",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "MohamadJoumaa/Direct": {
    "status": "ok",
    "tree_sha": "214554d2348d33c34954ca3ec97f86d8e19290f9",
@@ -3200,6 +3420,11 @@
    "status": "ok",
    "tree_sha": "cc40f10bc97dfa954909d37553c532a5e7b5d06c",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "MongLong0214/logic-pro-mcp": {
+   "status": "ok",
+   "tree_sha": "b3561548e3d19acb1e2f52cedc4ade8cccbb1cb8",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "MontgomeryBohde/PyLipidParse": {
    "status": "ok",
@@ -3269,6 +3494,11 @@
    "tree_sha": "35270064e42230dbc566e4134c55b5d581355db3",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "NVIDIA/elements": {
+   "status": "ok",
+   "tree_sha": "6bbb102831b0efd95fb55773721595e9671711f9",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "NVIDIA/skills": {
    "status": "ok",
    "tree_sha": "0e0d506f4eb67204a62586ac5f19df3cb7ad9b1f",
@@ -3303,6 +3533,11 @@
    "status": "ok",
    "tree_sha": "5c5cbc04d53c34ff6b2051763eb6bfb0f6ec6bcb",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "NameetP/pdfmux": {
+   "status": "ok",
+   "tree_sha": "c899e7c6fbd3f4ee9c7525eb38bbbe5e08e024fd",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "Nancy-Chauhan/preflight": {
    "status": "ok",
@@ -3384,6 +3619,11 @@
    "tree_sha": "23e2428e809d77717f8acc9659c374a3a1fcb93e",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "NeoZi12/dispatchseo": {
+   "status": "ok",
+   "tree_sha": "ddc70763420cf1880d1312ceea0b2ac05de5f97a",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "NetVar1337/agent-skill-canon": {
    "status": "ok",
    "tree_sha": "b4abbc95a92350b1683eff8061a61b244965d41e",
@@ -3433,6 +3673,11 @@
    "status": "ok",
    "tree_sha": "5fe18953bd4e9e5b68b9ff4f46b0462800f5e13c",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "NickCirv/engram": {
+   "status": "ok",
+   "tree_sha": "df445d3132583100e6d5106af4b4c91c01a2ba15",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "NickVanzo/hackathon-eth-global-2026": {
    "status": "ok",
@@ -3625,6 +3870,11 @@
    "tree_sha": "ab716597185366c3c08fe382284edefe4c32e840",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "OtaKit/otakit": {
+   "status": "ok",
+   "tree_sha": "1ebbd50cca8a5c0ecbe46a7b59e6ce0d34eceabd",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "OthmanAdi/openui-forge": {
    "status": "ok",
    "tree_sha": "977180d4d3e94f75f4f255ba9d0bf91040318dc5",
@@ -3678,6 +3928,11 @@
   "PKaldone/substrate-mcp-plugin": {
    "status": "http-404"
   },
+  "PSPDFKit/nutrient-dws-mcp-server": {
+   "status": "ok",
+   "tree_sha": "fb887d4ffaf275d4cdbee26a460ea15b4adbec2d",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "PV-Bhat/vibe-check-mcp-server": {
    "status": "ok",
    "tree_sha": "ed8452f2d626011526b0c62f7be7d0a6f67794c1",
@@ -3703,6 +3958,11 @@
    "tree_sha": "761cba75bd50fd561405c3b173ecf36084432089",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "PagerDuty/pagerduty-mcp-server": {
+   "status": "ok",
+   "tree_sha": "dcfbdb82e1a63584bf5c37b43007561498b06dc7",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "PalmCoast/clawlock-plugin": {
    "status": "ok",
    "tree_sha": "26fbd9e8001c9e7d56bca8cbfc63b6ce82363ab2",
@@ -3712,6 +3972,11 @@
    "status": "ok",
    "tree_sha": "d640d65e9f7a141e27679240b1de4ac737fcc6a7",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "Pantheon-Security/notebooklm-mcp-secure": {
+   "status": "ok",
+   "tree_sha": "100000b61382a7b0bb5b908d866f15e3ddb48fa6",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "Parcha-ai/grepai-skills": {
    "status": "ok",
@@ -3727,6 +3992,11 @@
    "status": "ok",
    "tree_sha": "5d78311bd4868c82cbaad3046298f28ed296fcb2",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "PascaleBeier/hitkeep": {
+   "status": "ok",
+   "tree_sha": "32c591d55e276dffd00eca7b5116f4bcdfa64619",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "Patchline-AI/Aria": {
    "status": "ok",
@@ -3747,6 +4017,11 @@
    "status": "ok",
    "tree_sha": "6067c9cd10948a01f81a212bc4259a031afd32e1",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "PayRam/payram-mcp": {
+   "status": "ok",
+   "tree_sha": "3d9abc6b301b0dbd2ac290de69dc50a557ff0a18",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "PedroLLou/humanizador": {
    "status": "ok",
@@ -3898,6 +4173,11 @@
    "tree_sha": "670411774857d4bccf9a4ea4bb4de67669086d7a",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "ProfessionalWiki/MediaWiki-MCP-Server": {
+   "status": "ok",
+   "tree_sha": "7d5609e39493d93ed6e9bf68965507fdcaf8b094",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "Prog-Jacob/habit": {
    "status": "ok",
    "tree_sha": "0e7732c53804a76f61f8af79b7bf0474f99f4b22",
@@ -3937,6 +4217,11 @@
    "status": "ok",
    "tree_sha": "8f6d57173ffb801967b0d4371483c403c4bd692a",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "PxyUp/fitter": {
+   "status": "ok",
+   "tree_sha": "67b2e8fdbf1283f9e18f554ef1e06ee3e5727a92",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "Q00/ouroboros": {
    "status": "ok",
@@ -4043,6 +4328,11 @@
    "tree_sha": "e91cd72c5a7680ce8fa7cdcada13e0a2aa2c66b3",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "Ranork/remnus-app": {
+   "status": "ok",
+   "tree_sha": "bc8ba5f090ebf4c77604fcbfb0d9749f571e1d29",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "RareSense/Nova3D": {
    "status": "ok",
    "tree_sha": "2299e02d57e513966afaa8cfcc510e8c01110dd7",
@@ -4082,6 +4372,11 @@
    "status": "ok",
    "tree_sha": "53643cf3152cf298fb0f91738bc21a4ac7ca2084",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "Regsorm/code-index-mcp": {
+   "status": "ok",
+   "tree_sha": "39b967e35868ef92f9ac4fc3374f7a26cf9e6b55",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "RehgLab/ArcDeck-Claude-Plugin": {
    "status": "ok",
@@ -4143,6 +4438,11 @@
    "tree_sha": "5317ebc8affd36a7132739d480ccfae22f4bb3ad",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "RollingGo-AI/RollingGo-Hotel-MCP-Global": {
+   "status": "ok",
+   "tree_sha": "b3e4c9e009085be0d84280932e0daa8b2e72f8a9",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "RoninForge/budgetclaw": {
    "status": "ok",
    "tree_sha": "cc2f1f407a8e38fd721fc8f39528e328330e0807",
@@ -4197,6 +4497,11 @@
    "status": "ok",
    "tree_sha": "abadd0aba32792b6378ed784e9f6d3e5b25dfc2a",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "SAP-samples/hana-developer-cli-tool-example": {
+   "status": "ok",
+   "tree_sha": "26cbc4ee54405fead738f2be0458ec541f80207f",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "SAP/mdk-mcp-server": {
    "status": "ok",
@@ -4288,6 +4593,11 @@
    "tree_sha": "09bf1539d41f9ff355ba3eb5d05d4a75813423bb",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "Sam-AEC/aec-model-bridge": {
+   "status": "ok",
+   "tree_sha": "90e9f33cac36b418ad623555a3670a12d84f3b13",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "SamGalanakis/pilcrow": {
    "status": "ok",
    "tree_sha": "55f49409c7035c05d31545a0e3052ae04b825884",
@@ -4343,10 +4653,20 @@
    "tree_sha": "7d2ae3f8b44bf468de37be08ddded19ca3069167",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "Scottcjn/rustchain-mcp": {
+   "status": "ok",
+   "tree_sha": "f4ed7e593b9c666e24b3933626a5e8790532538d",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "ScrapeCreators/social-media-research-skills": {
    "status": "ok",
    "tree_sha": "64ba7b4dea71e130d2712ffb6c1c1024b3b7c4b2",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "ScrapeGraphAI/scrapegraph-mcp": {
+   "status": "ok",
+   "tree_sha": "8372895aa6eaf72b1930ce634d3c1d74b412572e",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "SeJonJ/ChatForYou": {
    "status": "ok",
@@ -4468,6 +4788,11 @@
    "tree_sha": "dc271418fde22597350f1fc5a1582e151e1ab1b3",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "SigNoz/signoz-mcp-server": {
+   "status": "ok",
+   "tree_sha": "767fdc98dbe9b7e1122912b16bed9284ce8ce97b",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "SikamikanikoBG/homelab-monitor": {
    "status": "ok",
    "tree_sha": "0e44c8e5881c021e5939c7590517c03d1f31cb3b",
@@ -4482,6 +4807,11 @@
    "status": "ok",
    "tree_sha": "9f29de09478192a61c227919d824a26761666879",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "SimplyLiz/ckb": {
+   "status": "ok",
+   "tree_sha": "768a194c14fb4f92d496a22ef781ea9b408d59ce",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "SimplyPrint/simplyprint-claude-plugin": {
    "status": "ok",
@@ -4553,6 +4883,11 @@
    "tree_sha": "41564158e262d3229ed4efe1e0224576f3114276",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "Socialpranker/agentburn": {
+   "status": "ok",
+   "tree_sha": "a966ae9fcc66de92661eb0be440ed688b146c15f",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "Softeria/ms-365-mcp-server": {
    "status": "ok",
    "tree_sha": "c47197109dcf8ea6cea91ee08f7417adfbeac72b",
@@ -4619,6 +4954,11 @@
    "tree_sha": "7147dd3561a516af7e74894d7d2a4a43c8bcbb6f",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "Sriram-PR/doc-scraper": {
+   "status": "ok",
+   "tree_sha": "b309681a787f8cbcaf792017c2bfef590c6e6fa5",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "Srivatsa-Kasagar/canadian-regulatory-compliance": {
    "status": "ok",
    "tree_sha": "f972e80d71dd2da4e09c8d7c27bedcc5aa1b900b",
@@ -4633,6 +4973,11 @@
    "status": "ok",
    "tree_sha": "a87d48e0d79094d25001d4384635ac6706de2672",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "StayCurious-Xuan/wayfinder": {
+   "status": "ok",
+   "tree_sha": "7c5eb95da20f34730e6323122dd9632a1614292a",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "Stickman230/claude-pentest": {
    "status": "ok",
@@ -4720,6 +5065,11 @@
    "tree_sha": "8b2e634e5df869af763ebad5b36534375ee1546a",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "Supercompress/Supercompress": {
+   "status": "ok",
+   "tree_sha": "d425bcbb16cd26d75dfce16b6de11632a1ed9056",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "Superreal-io/maia-campaign-skills": {
    "status": "ok",
    "tree_sha": "131a3600ba8fb153362ca8f1a424d4f47fe386e4",
@@ -4755,10 +5105,20 @@
    "tree_sha": "94934721e8bc3a789aecf1d500aaf446e300e3d9",
    "visited_at": "2026-10-03T22:08:37Z"
   },
+  "SyncSo-Inc/syncso": {
+   "status": "ok",
+   "tree_sha": "e25b64398abf01b8472d9afa2eb107e6b743f8f1",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "SynthFlowAI/AnthropicPlugin": {
    "status": "ok",
    "tree_sha": "205871ee83508502d2c982ee1bb7e65a2a29190b",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "SystemCraftsman/strimzi-kafka-cli": {
+   "status": "ok",
+   "tree_sha": "17275727c8b86721a8e1e3669e7d77767779a499",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "SystemTce/dify-skills": {
    "status": "ok",
@@ -4819,6 +5179,11 @@
    "status": "ok",
    "tree_sha": "5223f821b6ec1bfa826842382530f656d4621ba0",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "Tapetide-hq/nse-bse-indian-stock-market-data-mcp": {
+   "status": "ok",
+   "tree_sha": "197cb537328a3c92858baa0ac4c0d054d7505df1",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "Tatsh/minchoc": {
    "status": "ok",
@@ -4960,6 +5325,11 @@
    "tree_sha": "37b2d3c13034f436e8a7aaa8fbd678888c38f46f",
    "visited_at": "2026-10-04T14:05:48Z"
   },
+  "TickTockBent/charlotte": {
+   "status": "ok",
+   "tree_sha": "942158ce35213d8eb1505152e2226033f5f7d891",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "TigerPassNet/tigerpass-skill": {
    "status": "http-404"
   },
@@ -4972,6 +5342,16 @@
    "status": "ok",
    "tree_sha": "5bd708a118cf7ba9683416bd80b6238e7af49281",
    "visited_at": "2026-10-04T14:05:48Z"
+  },
+  "TocharianOU/mcp-server-kibana": {
+   "status": "ok",
+   "tree_sha": "f1482a6779ab1917bcec783b274c029cd05abad4",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "Toloka/tendem-mcp": {
+   "status": "ok",
+   "tree_sha": "683885a2f63a57e0f56d4f3cd59cb03e702c080f",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "ToluVictor/canvas-apps-tools": {
    "status": "ok",
@@ -4992,6 +5372,11 @@
    "status": "ok",
    "tree_sha": "113e0bc68e98908a199af9c95475ca0f9c0d0c8a",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "TonyWang-hub/mcp-cn-commerce": {
+   "status": "ok",
+   "tree_sha": "18ae0adce7a07ff97c9ba5966dc30a48adecb24e",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "Topsy31/ICE": {
    "status": "ok",
@@ -5017,6 +5402,16 @@
    "status": "ok",
    "tree_sha": "9c5efcc86e8e21dd7eee94e411966f4ab6b68c0d",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "TwelveTake-Studios/reaper-mcp": {
+   "status": "ok",
+   "tree_sha": "3c26e2e91f9d28ce58034edb8f53ef0cc82225e6",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "UI5/mcp-server": {
+   "status": "ok",
+   "tree_sha": "5da9a6aca465c566a272b6f5818fba90a6c6c05e",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "UI5/plugins-coding-agents": {
    "status": "ok",
@@ -5198,6 +5593,11 @@
    "tree_sha": "f4ff98c9b33e0c5954fdea300fca04cd286bae16",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "VictoriaMetrics/mcp-victorialogs": {
+   "status": "ok",
+   "tree_sha": "7a1536a964f49e01a7ce8a3f5a62479dc9459700",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "VictoriaMetrics/mcp-victoriametrics": {
    "status": "ok",
    "tree_sha": "1a9d356ee337a8f3a3389d371e8c8e67d2da54d9",
@@ -5247,6 +5647,16 @@
    "status": "ok",
    "tree_sha": "25a7279ff36931fc4eab069999adb1ad988b5d27",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "Vladimir-Human/humanizer-ru": {
+   "status": "ok",
+   "tree_sha": "75c7711f174133139e3ff8e22c67bdc11231baee",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "Vladimir-Human/ru-marketplace-mcp": {
+   "status": "ok",
+   "tree_sha": "c17bd360de60780a9e8d3690288b70181bd07355",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "VoicenterTeam/claude-marketplace": {
    "status": "ok",
@@ -5303,6 +5713,11 @@
    "tree_sha": "03285a0b6fa6a9338782fe631e1966d68f9a2aba",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "WaterTian/wechat-devtools-mcp": {
+   "status": "ok",
+   "tree_sha": "31fbf94d2c4b4df458323df1561bc84ca03b565d",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "WatermelonCorp/watermelon-platform": {
    "status": "ok",
    "tree_sha": "31d3eee0f12095766c3169b440b77e150024d967",
@@ -5352,6 +5767,11 @@
    "status": "ok",
    "tree_sha": "d10b6d73a52517d24e8320d91f578f36de70f10d",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "Wide-Moat/open-computer-use": {
+   "status": "ok",
+   "tree_sha": "7318b2e7a5c23d3be3f4843f0955393b8058bcfd",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "WilliamChelman/sparqly": {
    "status": "ok",
@@ -5457,6 +5877,11 @@
    "status": "ok",
    "tree_sha": "36eac5abcae62b5d9507f507fd521027d12abfe5",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "XposedOrNot/XposedOrNot-API": {
+   "status": "ok",
+   "tree_sha": "a130eea20d911f384cbb8dd720f20ee3d91c0189",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "Xquik-dev/x-twitter-scraper": {
    "status": "ok",
@@ -5862,6 +6287,11 @@
    "tree_sha": "e9c5a021a451586ca3f58a997df1d49079ee8f27",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "adelinamart/robrain": {
+   "status": "ok",
+   "tree_sha": "7618df4bd2f1b856061ca2c5967f2e8b7516ad71",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "adeotek/claude-code": {
    "status": "ok",
    "tree_sha": "54dfb6932968d51016b3961d97c07b82bae3e9f6",
@@ -6160,6 +6590,11 @@
    "tree_sha": "9a38ee8c298e3e52f91a094282d3b5077c8f51b1",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "ahmedEid1/lumen": {
+   "status": "ok",
+   "tree_sha": "07635d3c81ad4f2ddd51b13266b7317285d75e37",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "ahmedesa/laravel-api-tool-kit": {
    "status": "ok",
    "tree_sha": "79793b2e80e0940c2314b82346763e49cf96badd",
@@ -6209,6 +6644,11 @@
    "status": "ok",
    "tree_sha": "e41a8412d474353cd2b7d286348c5a7f7578b769",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "aicanvas-me/aicanvas": {
+   "status": "ok",
+   "tree_sha": "2e7f310f9f85ffc570869932db56b1673cf31332",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "aicoincom/coinos-skills": {
    "status": "ok",
@@ -6340,6 +6780,11 @@
    "tree_sha": "3ca8d55367d3509e79e4ba4d82eb16821839154e",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "akutishevsky/lunchmoney-mcp": {
+   "status": "ok",
+   "tree_sha": "c431a326c80558acd0c027d89d3abf3a30645498",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "akzarma/claude-find-conversation": {
    "status": "ok",
    "tree_sha": "d8f4c94f570e666b16308ab3ed0083ebcb076ae9",
@@ -6379,6 +6824,11 @@
    "status": "ok",
    "tree_sha": "926cab1f155f4277b4e70acf1cc8dd9ae0684f23",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "alex-on-ai/WebReaper": {
+   "status": "ok",
+   "tree_sha": "c32d196e2e46d0443af7f8d71e8b4695b8b28249",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "alex-voloshin-dev/agentic-forge": {
    "status": "ok",
@@ -6633,6 +7083,11 @@
    "tree_sha": "05a476b42f210492a78c18fff8b127cc3319267e",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "amekala/ads-mcp": {
+   "status": "ok",
+   "tree_sha": "6c8812120063eb4b94a57c455d2b88d4746e5417",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "amekala/adspirer-mcp-plugin": {
    "status": "ok",
    "tree_sha": "e3067cec8803e28da91834d0f38e0405ad23429b",
@@ -6732,6 +7187,11 @@
    "status": "ok",
    "tree_sha": "3eabefb23f78addf266940ce1b5923932ae8d809",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "andreisirbu91-lab/MCPSpend": {
+   "status": "ok",
+   "tree_sha": "4c18b8258514f998fe66fc6cca91bbbb16d5a541",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "andres-ortizl/ty-lsp-claude-code-plugin": {
    "status": "ok",
@@ -6837,6 +7297,11 @@
    "status": "ok",
    "tree_sha": "2b2f9892d14dffa7f4fdedd05c4bcea09a4f61f5",
    "visited_at": "2026-10-03T22:08:37Z"
+  },
+  "ankimcp/anki-mcp-server-addon": {
+   "status": "ok",
+   "tree_sha": "61348a1d9d078b66c573baa83df1f858d1e57602",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "ankitkr3/compounded": {
    "status": "ok",
@@ -7056,6 +7521,11 @@
    "tree_sha": "ab3c90b37c95b7068f0c064dc562cf21958e8e19",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "appwrite/mcp": {
+   "status": "ok",
+   "tree_sha": "b24b7e91f0b6822645b0eb63052af6ac4665498a",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "aptos-labs/aptos-agent-skills": {
    "status": "ok",
    "tree_sha": "fdc663ede8da1a779520ec6f14a16dc71db7dcd5",
@@ -7101,6 +7571,11 @@
    "tree_sha": "dc42411438567cc8999b1cd33797ffdee1aa4d15",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "aresyn/codex-control-plane-mcp": {
+   "status": "ok",
+   "tree_sha": "a0756b4ebe5bad5a1d94b8cdabd10450b202194c",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "argon-lab/argon": {
    "status": "ok",
    "tree_sha": "c9aad2cc0506f852be8a913e97caa1137d09bf1c",
@@ -7120,6 +7595,11 @@
    "status": "ok",
    "tree_sha": "510e4dc187a94e936a54e7559e29d13dcfa26006",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "arm/mcp": {
+   "status": "ok",
+   "tree_sha": "b0b2f586b0b526f55482f714f823a58c2749740f",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "armoriq/armorClaude": {
    "status": "ok",
@@ -7155,6 +7635,11 @@
    "status": "ok",
    "tree_sha": "c00da8d583ec0e5fb2e9093120aeca1c9a92ce89",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "arthurpanhku/dvalincode": {
+   "status": "ok",
+   "tree_sha": "53a45e67e3f610e147f1921a01b9f0107d212de6",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "artokun/comfyui-mcp": {
    "status": "ok",
@@ -7271,6 +7756,11 @@
    "tree_sha": "e14f8fdc121c0a0c1f69f613652e0d5f01259808",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "astrogilda/tsbootstrap": {
+   "status": "ok",
+   "tree_sha": "2dd5236912dded5b425be4f1bf36a26baa26aeab",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "astronomer/agents": {
    "status": "ok",
    "tree_sha": "1ec1a1fa00efadd58037fc8bff4e06e707139fc5",
@@ -7285,6 +7775,11 @@
    "status": "ok",
    "tree_sha": "e994aee0c4068c91404aca1d5e2f42ce266b4111",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "atagon-GmbH/kogiqa-mcp": {
+   "status": "ok",
+   "tree_sha": "152c139a961710540c667e453d8c22cf30de30e7",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "atezer/FMCP": {
    "status": "ok",
@@ -7346,6 +7841,11 @@
    "tree_sha": "74a7208f044383c5e5eb34a208480a5bd04b0dbf",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "augmnt/augments-mcp-server": {
+   "status": "ok",
+   "tree_sha": "9ab9ca970a8b9c380a5e6a063f86efbc0c17e035",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "aurelio-amerio/review-mode-plugin": {
    "status": "ok",
    "tree_sha": "a9fbdb079b9072b012c8c2b0d0dc9eecf9f22336",
@@ -7365,6 +7865,11 @@
    "status": "ok",
    "tree_sha": "89188c37c2501cf5a2bd5eb44d1fb052e228ed4c",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "auth0/auth0-mcp-server": {
+   "status": "ok",
+   "tree_sha": "10390b40dc488fa4b582ba52ce861d33b518a86a",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "automazeio/ccpm": {
    "status": "ok",
@@ -7426,6 +7931,11 @@
    "tree_sha": "32554315602d167b8bc335bd08ec59f1fb7f34d2",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "avivsinai/langfuse-mcp": {
+   "status": "ok",
+   "tree_sha": "8913599d0e08245ed1ca0624f07de76d845bf9cc",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "awaken7050dev/anti-slop-ui": {
    "status": "http-404"
   },
@@ -7458,6 +7968,11 @@
    "status": "ok",
    "tree_sha": "edeaf4dd42395c532794175f84afb3d589a83b14",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "awv-informatik/classcad-ai": {
+   "status": "ok",
+   "tree_sha": "dcab19f1149d0d8930a32eb5eb98bbdc77b1f31f",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "ax-inc-dev/claude-cursor-orchestration": {
    "status": "ok",
@@ -7493,6 +8008,11 @@
    "status": "ok",
    "tree_sha": "c1eb08dbff0d918bdf65a103fda93e16e986c6ab",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "b1ff/atlassian-dc-mcp": {
+   "status": "ok",
+   "tree_sha": "fc98e0cc3ccff470af2c7ef9f8fe7f1a3abc502b",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "b1rdmania/hinge-profile-optimizer": {
    "status": "ok",
@@ -7584,6 +8104,11 @@
    "tree_sha": "2a735b2227dfb4a281b56eefb0b55b2d06e6612a",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "bardesss/arr-mcp": {
+   "status": "ok",
+   "tree_sha": "c625ab129a90b80baab311d895462985d2623065",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "barkermoney/barker-mcp": {
    "status": "ok",
    "tree_sha": "f3ce6c488e57807d8b8e470d05f52038c526021b",
@@ -7653,6 +8178,11 @@
    "status": "ok",
    "tree_sha": "4193fe155fe4d9b2ba2092e3e2bec4b3e893e51c",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "benseverndev-oss/goldenmatch": {
+   "status": "ok",
+   "tree_sha": "5c4ef9aeb5897f8872034861033693efadcd91f6",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "bento-dev-ia/smart-content-plugin": {
    "status": "ok",
@@ -7799,6 +8329,11 @@
    "tree_sha": "591c758960c18c26fe8342ddb8ad3ba4dcfac6fe",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "blackwell-systems/agent-lsp": {
+   "status": "ok",
+   "tree_sha": "09ea99ed030aa283b1f9a227f3f29b436c042962",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "blake-simpson/belmont": {
    "status": "ok",
    "tree_sha": "e479ec07b7526fe593c5292f149b56e72942483b",
@@ -7907,6 +8442,11 @@
    "tree_sha": "339f4f29829c91a2e61445b747f1298a0237707c",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "bourhaouta/vscode-tailwindshades": {
+   "status": "ok",
+   "tree_sha": "5769140a2dc98d06a49ef3ec6605d9b460fbe1a8",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "box/skills": {
    "status": "ok",
    "tree_sha": "35567f913a2bfd7f8b59367c9df3ae14b5ad4cfe",
@@ -7992,6 +8532,11 @@
    "tree_sha": "03254bbc54771906e3928077f487f3ff010e291d",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "bromoket/x64dbg_mcp": {
+   "status": "ok",
+   "tree_sha": "d8e6cac465128c18f63c51e5de55616d91c09bcf",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "browser-act/claude-code-browser-act": {
    "status": "ok",
    "tree_sha": "1d12bc9ff792710a39333ab46658c815f18bf428",
@@ -8026,6 +8571,11 @@
    "status": "ok",
    "tree_sha": "948c4bffc6542c2f117d6b783c5648a7b096c83b",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "browserstack/mcp-server": {
+   "status": "ok",
+   "tree_sha": "7509161fe641ebec4da8d279535a7e90a9474531",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "brunoborges/jdb-agentic-debugger": {
    "status": "ok",
@@ -8160,6 +8710,11 @@
    "tree_sha": "69de9e413cca3fe6b770c40a4dec204afd5b2b3c",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "bzsasson/screaming-frog-mcp": {
+   "status": "ok",
+   "tree_sha": "bb9223d0065e9a4b41a4c6e018eeb327f1db6cfa",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "c-narcissus/research-paper-figure-skill-factory": {
    "status": "ok",
    "tree_sha": "b9cc581e647f5687959af09ace033f8247517e6f",
@@ -8210,6 +8765,11 @@
    "tree_sha": "d396f3b509d9ed7cddaf170351ea6cf34e02ac16",
    "visited_at": "2026-10-03T22:08:37Z"
   },
+  "cameronrye/openzim-mcp": {
+   "status": "ok",
+   "tree_sha": "9358db06f205bb0b95cc938c68405851a0e205a8",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "camilleroux/genart-skill": {
    "status": "ok",
    "tree_sha": "e80ef8a72ec87fa9ea2956ae070aa50ae6b74f4f",
@@ -8234,6 +8794,11 @@
    "status": "ok",
    "tree_sha": "ef15f7b0dd6ed29349e1091fb314664d37bc4793",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "cappyeo/discord-mcp": {
+   "status": "ok",
+   "tree_sha": "7ed828f9979f261fbb3ce94c440a8f46c28b5716",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "carboneio/carbone-skill": {
    "status": "ok",
@@ -8339,6 +8904,11 @@
    "status": "ok",
    "tree_sha": "099d9d5de5bee0b0434c4f478e866604b5229ddb",
    "visited_at": "2026-10-03T22:08:37Z"
+  },
+  "cdeust/Cortex": {
+   "status": "ok",
+   "tree_sha": "7f6cf64e42ac4d7f4290f0d7c6a624468ffcc3a9",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "cdump/evmole": {
    "status": "ok",
@@ -8485,6 +9055,11 @@
    "tree_sha": "9c580c8160c7c58cbf2cef821a8d92cfcbb2fd62",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "chris-schra/mcp-funnel": {
+   "status": "ok",
+   "tree_sha": "12d44ef1fcbe97156c4dbd2996e136b3c2053f44",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "chrisdavidson/first-principles-skill": {
    "status": "ok",
    "tree_sha": "4b6c147d81a697628c9c2c4df12cbc62d19f879a",
@@ -8625,6 +9200,11 @@
    "tree_sha": "90afb59af3ecd67b68b85b011eb5af308f2c23e7",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "clarilayer/clarilayer": {
+   "status": "ok",
+   "tree_sha": "87188b035557ec08cdc18772746c71696c4b3024",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "claude-genasis/genasis": {
    "status": "ok",
    "tree_sha": "c1fdfff3ba86603de26d0ed44899e0f077a58b21",
@@ -8679,6 +9259,11 @@
    "status": "ok",
    "tree_sha": "8d259dbf485969e9fdb55ec780722ea8920ee410",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "clemensv/avrotize": {
+   "status": "ok",
+   "tree_sha": "0848ff37ad91aaf2b48e8f700b2cde79d2102b56",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "clidey/whodb": {
    "status": "ok",
@@ -8808,10 +9393,25 @@
    "tree_sha": "e0f9da86ec72cf75a9fb89aa9fa62f08a9666051",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "codefuturist/email-mcp": {
+   "status": "ok",
+   "tree_sha": "99ce431aa81dd4cafc2879bd35b6ee3acd0f2d74",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "codegraph-ai/CodeGraph": {
+   "status": "ok",
+   "tree_sha": "354889fb305cc11c585e0886ff2c3f7f6f38b559",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "codeninja/slop-gate": {
    "status": "ok",
    "tree_sha": "d52a646cfed6ae9648ab555d4c6048bc15c9745a",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "codeofaxel/Kiln": {
+   "status": "ok",
+   "tree_sha": "b326717f78c9b02f3c4c2558b93f8d966d6d6c1c",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "codeqr-io/codeqr-plugin": {
    "status": "ok",
@@ -8915,6 +9515,11 @@
    "status": "ok",
    "tree_sha": "5b45a110783cb5f81ef6514c3b0bcce674eb9a34",
    "visited_at": "2026-10-04T14:05:48Z"
+  },
+  "cometchat/docs-mcp": {
+   "status": "ok",
+   "tree_sha": "d87985f4831d7118276f4561724de205c89309d3",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "comment-hq/comment-io-claude-code-plugin": {
    "status": "ok",
@@ -9050,6 +9655,11 @@
    "status": "ok",
    "tree_sha": "78d46b2d13410a49389caeb365ed59eff2ef3e73",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "cortex-works/cortex-scout": {
+   "status": "ok",
+   "tree_sha": "34ae735ffc60c5418b8a7ca1c4f7da09292b809f",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "costajohnt/oss-autopilot": {
    "status": "ok",
@@ -9224,15 +9834,30 @@
    "tree_sha": "b14455e9db63d3e2599308e147e23893497dd059",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "cyanheads/clinicaltrialsgov-mcp-server": {
+   "status": "ok",
+   "tree_sha": "00c8cdd672792c0155ce63e225a5f2d132acbdc0",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "cyanheads/git-mcp-server": {
    "status": "ok",
    "tree_sha": "d34d83af201dc0c9012ca501336c3df6171da932",
    "visited_at": "2026-10-04T14:05:48Z"
   },
+  "cyanheads/mcp-ts-core": {
+   "status": "ok",
+   "tree_sha": "1d7fa83efd04c3ef21d0f0166bf7ce2290b2fc0b",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "cyanheads/obsidian-mcp-server": {
    "status": "ok",
    "tree_sha": "8ec39dc404f923956f8b5abeaab3d406ec0b6b59",
    "visited_at": "2026-10-03T22:08:37Z"
+  },
+  "cyanheads/pubmed-mcp-server": {
+   "status": "ok",
+   "tree_sha": "5a417fbedc598a7048801a11ec04edccb0e0e9b3",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "cyber-qais/justkeepswimming": {
    "status": "ok",
@@ -9241,6 +9866,11 @@
   },
   "cyberagentic/compliance-checks": {
    "status": "http-404"
+  },
+  "cyberlife-coder/VelesDB": {
+   "status": "ok",
+   "tree_sha": "b3b6f6b403ca4432b9ebc83f0fe657342d5c2069",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "cybrixcc/cybrix-skills": {
    "status": "ok",
@@ -9457,6 +10087,11 @@
    "tree_sha": "195f570c002beab3d7bd342739034d0019aa4863",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "datadrivenconstruction/DDC_Skills_for_AI_Agents_in_Construction": {
+   "status": "ok",
+   "tree_sha": "ce45bbfbdd63ab7868871061fdf5e83bc17f5020",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "dataforseo/mcp-server-typescript": {
    "status": "ok",
    "tree_sha": "1fc6d197f1141cca8d1a242e15804c5adc41916a",
@@ -9627,6 +10262,11 @@
    "tree_sha": "269f09ddc9075b0af9080f37fff57cbee846642a",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "deepmemteam/deepmem": {
+   "status": "ok",
+   "tree_sha": "d63016a47e9210075a8f6ca46a56a4b8b681010a",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "deepread-tech/skills": {
    "status": "ok",
    "tree_sha": "65619cf226ddfcbef238dbd4c12984bf6da0f967",
@@ -9686,6 +10326,11 @@
    "status": "ok",
    "tree_sha": "622db17228f74f3711786164f14bd6447efef1d8",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "desktop-commander/remote-desktop-commander": {
+   "status": "ok",
+   "tree_sha": "b480501dcca59f802ebaf97f2f57b45252d0b720",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "desplega-ai/agent-swarm": {
    "status": "ok",
@@ -9762,6 +10407,11 @@
    "tree_sha": "237e866a80ab3013cf5aa25a2557cf73c4eb61e4",
    "visited_at": "2026-10-03T22:08:37Z"
   },
+  "dialog-tools/reddit-research-mcp": {
+   "status": "ok",
+   "tree_sha": "36c75dd541ec9f4f48977028b1e77d3ec0074617",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "didvc/claude-code-jsonl-editor": {
    "status": "ok",
    "tree_sha": "7edc2d0f58db28b81e199a4ffa106d1e9ed96ff5",
@@ -9797,6 +10447,11 @@
    "tree_sha": "3f1724d491e75c3f359c0d95f1d09aec32f55651",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "dinglebear-ai/unraid": {
+   "status": "ok",
+   "tree_sha": "6d00e73cd7dd764a99e0f3a49fa4252d21617b75",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "dingtom336-gif/viral-video-replicator": {
    "status": "ok",
    "tree_sha": "dde67e034b3dbe681fa31d6ccdb8d7d038b4e8e7",
@@ -9816,6 +10471,11 @@
    "status": "ok",
    "tree_sha": "7d4f1bd8f1348000e9a66e3692750f5e20b73e07",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "discourse/discourse-mcp": {
+   "status": "ok",
+   "tree_sha": "bacb67c70aa24e347bd901e8e8972c1b3b6d7c48",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "disler/claude-code-hooks-multi-agent-observability": {
    "status": "ok",
@@ -9857,6 +10517,11 @@
    "tree_sha": "9a1010f1e7cc34e7f9158b83860a3f5602c99aac",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "dmarcguardhq/parse-dmarc": {
+   "status": "ok",
+   "tree_sha": "cb4a8b8ca6b5323aa80dd199a9e196de23e9f203",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "dmarchevsky/mash": {
    "status": "ok",
    "tree_sha": "897e83af65f39d0f00b46bed94403b85531d4ef7",
@@ -9877,6 +10542,11 @@
    "tree_sha": "f50425a2aba42849f7ac6d3ecff779d5047c1b60",
    "visited_at": "2026-10-04T14:05:48Z"
   },
+  "dns-aid/dns-aid-core": {
+   "status": "ok",
+   "tree_sha": "c4944f511e85cc58ed606ca186371c33d35478fe",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "docfork/docfork": {
    "status": "ok",
    "tree_sha": "3cb4ba2a354951d5093420f11517ef8a81e42610",
@@ -9886,6 +10556,11 @@
    "status": "ok",
    "tree_sha": "bfc9164590e9d0cd78b6310cdaaf48d3d27b800e",
    "visited_at": "2026-10-03T22:08:37Z"
+  },
+  "docmancer/docmancer": {
+   "status": "ok",
+   "tree_sha": "c5c76c69f77b6bfb8b54746f793cb14f8b98293c",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "docpler/docpler-claude-plugin": {
    "status": "ok",
@@ -9936,6 +10611,11 @@
    "status": "ok",
    "tree_sha": "0c9d517d7e35fc00ed16ba911136eb39b7a4f643",
    "visited_at": "2026-10-04T14:05:48Z"
+  },
+  "dominik1001/caldav-mcp": {
+   "status": "ok",
+   "tree_sha": "725de72d9dc26f3561a984387967273aa3cda0c9",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "dominodatalab/domino-claude-plugin": {
    "status": "ok",
@@ -10017,6 +10697,11 @@
    "tree_sha": "9cdf69c82dbdaea21c3bca004a4cffa9387cd58b",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "dreamrec/LivePilot": {
+   "status": "ok",
+   "tree_sha": "d2e0a7a725c8c5f019da83f94adc795d1f7a2aa9",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "drewalth/claude-xcindex": {
    "status": "ok",
    "tree_sha": "0680fb9a7bcb07a763b66d22cbb8f236785bfcb3",
@@ -10036,6 +10721,21 @@
    "status": "ok",
    "tree_sha": "bd1525e0ff4e4e0d4d5c7b6692587120ebfb4277",
    "visited_at": "2026-10-03T22:08:37Z"
+  },
+  "drhelius/Gearcoleco": {
+   "status": "ok",
+   "tree_sha": "56ad6b4250df18c6cc6f65c5db8271a871be0523",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "drhelius/Geargrafx": {
+   "status": "ok",
+   "tree_sha": "261c9a2a290b44910072d4434b0e5ea607b4d6f0",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "drhelius/Gearsystem": {
+   "status": "ok",
+   "tree_sha": "1e078456684caca5dd65f6ed0adc671376869492",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "drobins25/craft": {
    "status": "ok",
@@ -10126,6 +10826,11 @@
    "status": "ok",
    "tree_sha": "1e468f8aef385a26048acbb7c61c4c90e50e319b",
    "visited_at": "2026-10-04T14:05:48Z"
+  },
+  "dynatrace-oss/dynatrace-mcp": {
+   "status": "ok",
+   "tree_sha": "2a2d442f5c3de1fdf9585f64e1bca07437296ce5",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "dynos-fit/dynos-work": {
    "status": "ok",
@@ -10265,6 +10970,11 @@
    "tree_sha": "e04c3741e34b8ea9f10cd432771317d291922a26",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "embedded-society/altium-designer-mcp": {
+   "status": "ok",
+   "tree_sha": "f5e317703526d4c9db7bc4c7ae7056846d80c32c",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "emergent-wisdom/sema": {
    "status": "ok",
    "tree_sha": "386fdc35003e6a76ec0e594e93a36987d78073c2",
@@ -10349,6 +11059,11 @@
    "status": "ok",
    "tree_sha": "48cf76fb9675ebc54b1627825cbe88ca305c21fb",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "epheterson/applemusic-mcp": {
+   "status": "ok",
+   "tree_sha": "ca94ca2630cfd721ecf3ff008637c84ae60b0ea0",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "epicsagas/epic-harness": {
    "status": "ok",
@@ -10577,6 +11292,11 @@
    "status": "ok",
    "tree_sha": "90d523181438a46d59cf976ed9117174d29889da",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "explorium-ai/vibeprospecting-mcp": {
+   "status": "ok",
+   "tree_sha": "3a8a10348f9d8719d0c06c9366de55821837af65",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "explorium-ai/vibeprospecting-plugin": {
    "status": "ok",
@@ -10868,10 +11588,20 @@
    "tree_sha": "46b579e7c719e99742ae39b712c12117d1eb10cc",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "flightclaw/agents": {
+   "status": "ok",
+   "tree_sha": "4fd9eef249d4e1d8176d530ebdd4027fa5fef522",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "flop-labs/technocore-chat": {
    "status": "ok",
    "tree_sha": "0e47f770b13cc27e1e2e199d4cdf70a4778c97cc",
    "visited_at": "2026-10-04T14:05:48Z"
+  },
+  "flowing-abyss/obsidian-hybrid-search": {
+   "status": "ok",
+   "tree_sha": "9beab1c0e3b62fae93b85ca2c9d77450ba64b418",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "fltman/agent-factory": {
    "status": "ok",
@@ -10953,6 +11683,11 @@
    "tree_sha": "3b8ccca7c40f5865512ee1ef0920787e95e48154",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "fr0ster/mcp-abap-adt": {
+   "status": "ok",
+   "tree_sha": "32a8be9d676e19b940a5f9a0faf5b595292468e5",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "frametric/wayfinder-connector": {
    "status": "ok",
    "tree_sha": "ab583d55c227cc668e223d50ac7e74a297dcf7b6",
@@ -10973,6 +11708,11 @@
    "tree_sha": "1219ecc3ce65c372a93ba9404c7c55eabf33b375",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "frankchu91/mindbase-llm-wiki": {
+   "status": "ok",
+   "tree_sha": "7aa8fcdf498aa0709901222889deb04a6cc4fc49",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "franmastromarino/claude-prompt-library": {
    "status": "ok",
    "tree_sha": "6051a1d66cca3aba108cc2cbbba105faef83225a",
@@ -10988,10 +11728,25 @@
    "tree_sha": "38e84cf5b4d9722427efe731e97cb32027470f15",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "freema/mcp-design-system-extractor": {
+   "status": "ok",
+   "tree_sha": "20384f662c8208e29d37200c835cb122e271977e",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "freema/mcp-gsheets": {
+   "status": "ok",
+   "tree_sha": "632b6856213d0250c4643a5d41ca015cc7468a53",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "freema/openclaw-mcp": {
    "status": "ok",
    "tree_sha": "3514ac1aa8a1421ecdaa026ed1c063ee4b44b326",
    "visited_at": "2026-10-04T14:05:48Z"
+  },
+  "freeq-irc/freeq": {
+   "status": "ok",
+   "tree_sha": "b102fac2c0e03e0764bc5607c95a6aed4a6579ad",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "freestylefly/daily-reporter-skill": {
    "status": "ok",
@@ -11007,6 +11762,11 @@
    "status": "ok",
    "tree_sha": "8dd937a21672e56512af9746950dbe849bfb3604",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "frumu-ai/tandem": {
+   "status": "ok",
+   "tree_sha": "2c5aaf053bbdc02d18db50b6b865136baa5640d5",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "fseitun/claude-account-guard": {
    "status": "ok",
@@ -11083,6 +11843,11 @@
    "tree_sha": "378d4fe2207bc1e1c8e7bd3b2957765fe005505c",
    "visited_at": "2026-10-04T14:05:48Z"
   },
+  "gaopengbin/cesium-mcp": {
+   "status": "ok",
+   "tree_sha": "637610bacb86e8b9d0b66cf2373dbf3a7f42dc82",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "garagon/nanostack": {
    "status": "ok",
    "tree_sha": "0372aed555589e3d856b7eeff7051266ee564f4d",
@@ -11132,6 +11897,11 @@
    "status": "ok",
    "tree_sha": "0f95431a3e6c38f41de0f7f65cef55a991f00015",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "gebalamariusz/cloud-audit": {
+   "status": "ok",
+   "tree_sha": "0207aa0a82bf217e3fe68fc5ebb69625d304032c",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "geekjourneyx/claude-design-card": {
    "status": "ok",
@@ -11278,6 +12048,11 @@
    "tree_sha": "90659003f75c6fd27d8eb82cf5ce9afeb6922b88",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "getmockd/mockd": {
+   "status": "ok",
+   "tree_sha": "45c2906b095a0428842faaa931afab0edbde3fdb",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "getopenpost/openpost": {
    "status": "ok",
    "tree_sha": "77a4e0535c1f11b06cd29566422afbaf77cc886d",
@@ -11297,6 +12072,11 @@
    "status": "ok",
    "tree_sha": "2ef2d3db82199f2763a4c2f07d0408224f58a314",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "getsentry/toolkit": {
+   "status": "ok",
+   "tree_sha": "9f1a7b2147d96246859f42d6f2cbf02ee3985c01",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "getsentry/warden": {
    "status": "ok",
@@ -11461,6 +12241,11 @@
    "tree_sha": "e57259fd11e9c25fd683f1fc6be19d927ac7f499",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "gokeshenzhen/TraceWeave": {
+   "status": "ok",
+   "tree_sha": "c5517e2f4e4620bf2f4c063a96b24c508b1fa3af",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "gooddaysoftware/gd-mcp-skills-plugin": {
    "status": "ok",
    "tree_sha": "9d6f25dbb9fc96a480e89565d416c9ae564cdec4",
@@ -11470,6 +12255,11 @@
    "status": "ok",
    "tree_sha": "a24e5e68567fa014a42fc6cc711faa82b964d4c0",
    "visited_at": "2026-10-03T22:08:37Z"
+  },
+  "googlemaps/platform-ai": {
+   "status": "ok",
+   "tree_sha": "86fbbe74e8485b8c36842e71b92e4cc23680d0d0",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "goose-farm-future/foundation-model-skills": {
    "status": "ok",
@@ -11526,6 +12316,11 @@
    "tree_sha": "138aa50f9073d0111ab24a1620e70063d9f67dc4",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "gradion-ai/ipybox": {
+   "status": "ok",
+   "tree_sha": "264ed6c9cb0bdd38a50d532299090af15ba57f3c",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "grafana/ai-marketplace": {
    "status": "ok",
    "tree_sha": "12be5634a492f73c189d466c5449d09b853ad7a4",
@@ -11545,6 +12340,11 @@
    "status": "ok",
    "tree_sha": "cc25d21ae1875951c1b46710d43ee0e6056cce4f",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "grarcht/Shuttle": {
+   "status": "ok",
+   "tree_sha": "218a773c372a715cb1f3ed9ebf6297a887eb7970",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "greenflash-ai/agent-skills": {
    "status": "ok",
@@ -11606,6 +12406,11 @@
    "tree_sha": "c925a74fa7bc8d1fe9a31960bd881259c1e547e7",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "gtm-api/linkedin-mcp": {
+   "status": "ok",
+   "tree_sha": "9620b2f2b18caf8c82d0621aa9c73ef3dfedb117",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "guaardvark/guaardvark": {
    "status": "ok",
    "tree_sha": "869cf468377090c1476d3b126e3fec6280877efb",
@@ -11665,6 +12470,11 @@
    "status": "ok",
    "tree_sha": "50fe84af04702a34c20cdb51c02d1103be62d593",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "gybob/aai-gateway": {
+   "status": "ok",
+   "tree_sha": "8ef730b65ac79d7107e6f1bde9807aea2c2979cc",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "gyoz-ai/auto-research": {
    "status": "ok",
@@ -11791,6 +12601,11 @@
    "tree_sha": "9c3dec34dc8e0ed9d26de14a869900a714da8f9e",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "hashfunction/MarkuprPlus": {
+   "status": "ok",
+   "tree_sha": "dd622f9bd4c943cc4e084345db8421a2d6260f8b",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "hashgraph-online/hol-guard": {
    "status": "ok",
    "tree_sha": "4b04871b62c486cd953f703bf00445fd665fdcb6",
@@ -11901,6 +12716,11 @@
    "tree_sha": "b7343e3a95791bdc3448eddd6f00b4e73128b345",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "hhopke/intervals-icu-mcp": {
+   "status": "ok",
+   "tree_sha": "5cd7e1abf716ea28b7bc5a8da5b01860b4bf2aa4",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "hi0001234d/nexpath": {
    "status": "ok",
    "tree_sha": "f3d04d82639e58e62d45a5e4493dff7477ba9a7c",
@@ -12009,6 +12829,11 @@
    "tree_sha": "2fa3913c45712856a56b184469306c3a16b2af77",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "hongnoul/hwatu": {
+   "status": "ok",
+   "tree_sha": "7c86e0aab2dd83004b5ad0508fbc76e5d3c5ebc4",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "hookdeck/claude-channel-plugin": {
    "status": "ok",
    "tree_sha": "bbd9b801226aeb2cb272b79c042ba04535fca0fe",
@@ -12033,6 +12858,11 @@
    "status": "ok",
    "tree_sha": "3014a81d3ebc39d7b98d64c91cdc60939f8fa050",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "houtini-ai/houtini-lm": {
+   "status": "ok",
+   "tree_sha": "37df194a0d3634c43b8f1cefc89f7e0f3731fea1",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "hqhq1025/skill-optimizer": {
    "status": "ok",
@@ -12149,6 +12979,11 @@
    "tree_sha": "28b83762caa0a6be342dc5daaea5c9b8f6798030",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "iamtouchskyer/memex": {
+   "status": "ok",
+   "tree_sha": "453c0e33f527a02178dc51b5ea426145e9cd22f8",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "ianlokh/llm-wiki-codex": {
    "status": "ok",
    "tree_sha": "4d1c9b7eeadc8457a7e6335a6b0b933150bfcbe8",
@@ -12219,6 +13054,16 @@
    "tree_sha": "9804d5bdcfce1b3ce8b61e8eb66de9e97757df19",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "ie3jp/illustrator-mcp-server": {
+   "status": "ok",
+   "tree_sha": "57c5c101a5192c61535493f39b653e6f92b8eb29",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "ignaciohermosillacornejo/copilot-money-mcp": {
+   "status": "ok",
+   "tree_sha": "f844aec13e3933906834ace7c44b8047c914ab30",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "igor-holt/sear": {
    "status": "ok",
    "tree_sha": "059375a36e64593a40c7123ec9e70f1c594518b8",
@@ -12233,6 +13078,11 @@
    "status": "ok",
    "tree_sha": "ed8ae6e7c2b8e22ca700366d2e732e98f860d111",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "igorzheludkov/execbro": {
+   "status": "ok",
+   "tree_sha": "cc5ed8aea9a2877f5ddd6eef5c5e11afa7fd9603",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "ihlamury/design-drift": {
    "status": "ok",
@@ -12314,6 +13164,16 @@
    "tree_sha": "9e3c6e91eb6bf5253bf03883c3b9a8d9b29ef1c6",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "imbenrabi/Financial-Modeling-Prep-MCP-Server": {
+   "status": "ok",
+   "tree_sha": "17fbe04cfd0322c6e8a0794e99ae95d7b4908e25",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "imdinu/apple-mail-mcp": {
+   "status": "ok",
+   "tree_sha": "0398b86e7c505cb4bee89a1e362b9e44e3defde7",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "imfelixkim/job_assistant": {
    "status": "ok",
    "tree_sha": "d7290103c22881995b2ab1860ab319f815645928",
@@ -12328,6 +13188,11 @@
    "status": "ok",
    "tree_sha": "a387b50c829d871839a613732e1b97bfa1946124",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "imran-siddique/agent-os": {
+   "status": "ok",
+   "tree_sha": "a7ee6eb8a16744613df6ebca2a4a37242abcdf56",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "imsaif/design-with-claude": {
    "status": "ok",
@@ -12383,6 +13248,11 @@
    "status": "ok",
    "tree_sha": "6fa04ff4d6832e43138cd5e05a81e12bdef22066",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "infranodus/mcp-server-infranodus": {
+   "status": "ok",
+   "tree_sha": "9ef686b37c861ba129f426e5a96dd8c791db8581",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "ingo-lab/Guideone": {
    "status": "ok",
@@ -12649,6 +13519,16 @@
    "tree_sha": "3e8d0f005f9604e1dbdad3de693e39555384c5af",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "jamesmontemagno/MonkeyMCP": {
+   "status": "ok",
+   "tree_sha": "3e1bc2e45f97f57a7419443d630c1b6b3ea64ff7",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "jamesmontemagno/ohmyposh-configurator": {
+   "status": "ok",
+   "tree_sha": "b691706204b332cce43d2314a46592c43f7de347",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "jamieadams-nerd/umrs-project": {
    "status": "ok",
    "tree_sha": "543f2c8c14f3db25280a9f880f08fdf2e5035d01",
@@ -12849,6 +13729,11 @@
    "tree_sha": "e2a2c6178ff801e582c3a079f5e51021f396a345",
    "visited_at": "2026-10-04T14:05:48Z"
   },
+  "jgravelle/jdatamunch-mcp": {
+   "status": "ok",
+   "tree_sha": "7a6ab14cfd4ac5344076f4d200aad379db2b3c21",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "jgravelle/jdocmunch-mcp": {
    "status": "ok",
    "tree_sha": "ce96b17ee390b5d146cdc11c581e317f035a268b",
@@ -12899,6 +13784,11 @@
    "tree_sha": "210595eec73a39cd04e2fb175f6e69b1516f0dd4",
    "visited_at": "2026-10-04T14:05:48Z"
   },
+  "jkawamoto/mcp-bear": {
+   "status": "ok",
+   "tree_sha": "14b511f92b1f377b1d4d8b12c46eb5c9223fc8f5",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "jkawamoto/mcp-youtube-transcript": {
    "status": "ok",
    "tree_sha": "9aa39b444c48112cacbfc6a4e635256001797c80",
@@ -12908,6 +13798,11 @@
    "status": "ok",
    "tree_sha": "e96648fbafc973d83ae5616cde509a8460f356ba",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "jlsookiki/secondhand-mcp": {
+   "status": "ok",
+   "tree_sha": "ef9bca0a46731b8d980501af15e4d964b49b2f47",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "jmanhype/claude-code-plugin-marketplace": {
    "status": "ok",
@@ -12921,6 +13816,11 @@
    "status": "ok",
    "tree_sha": "9c4536ed1a885f12f9da9c20bbc475194876f14c",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "jnMetaCode/shellward": {
+   "status": "ok",
+   "tree_sha": "78444dd9a05ce72f25cc14bc05030fc7a702b536",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "jnorthrup/betonanet": {
    "status": "ok",
@@ -13022,6 +13922,11 @@
    "tree_sha": "7e263a435a9177da7a4f5d81ff55d85c18e44acc",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "jonashertner/opencaselaw": {
+   "status": "ok",
+   "tree_sha": "ce07805919fbdff63dbcd5ce33079c5766543ad6",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "joneri/agile-iteration-method": {
    "status": "ok",
    "tree_sha": "fe209b4263a49705d07de083d8ecea0531bca140",
@@ -13117,6 +14022,11 @@
    "tree_sha": "e9936fc3614cd5477397db023bf8f52495ba671a",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "js713-lab/sonic-match-mcp": {
+   "status": "ok",
+   "tree_sha": "870ebf12faba36d4b38e19f2b7214123717d463f",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "jshchnz/claude-code-scheduler": {
    "status": "ok",
    "tree_sha": "f44464eacf7f159407aec0e7fe83a4d6f9d4e026",
@@ -13182,6 +14092,11 @@
    "tree_sha": "685e438e33bf64760448e796a5fe6bc8dcf465fd",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "justyns/silverbullet-ai": {
+   "status": "ok",
+   "tree_sha": "4ae7673127aadf469cd55575455db30e99f14153",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "juuni26/claude-notif-sound": {
    "status": "ok",
    "tree_sha": "6f26f5ce82e46be6f08145dc79e9a38e01a7f852",
@@ -13201,6 +14116,16 @@
    "status": "ok",
    "tree_sha": "e31f082fb351d48e628b2d519f5a6ee4936db405",
    "visited_at": "2026-10-03T22:08:37Z"
+  },
+  "jztan/pdf-mcp": {
+   "status": "ok",
+   "tree_sha": "bdff0103ab6ec31ef043f8b3f1b6cc7e7073c837",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "jztan/redmine-mcp-server": {
+   "status": "ok",
+   "tree_sha": "038d28405b2549b5f340ab0e2ebbe3fe4fe1d049",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "kLOsk/adloop": {
    "status": "ok",
@@ -13251,6 +14176,11 @@
    "status": "ok",
    "tree_sha": "53bb79a8fe099d5ba4abc1727fec399c3fc1e7b9",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "karanb192/awesome-claude-code-mods": {
+   "status": "ok",
+   "tree_sha": "1d1ad2c6ee547062b2cd1007bc3f3dd320015a71",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "karanb192/awesome-claude-skills": {
    "status": "ok",
@@ -13339,6 +14269,11 @@
   },
   "ke11/skills": {
    "status": "http-404"
+  },
+  "keboola/mcp-server": {
+   "status": "ok",
+   "tree_sha": "cb2b1ecb6a4cf572a3e4087dc10250290f04cb54",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "keeganratner/website-one-shot": {
    "status": "ok",
@@ -13435,6 +14370,11 @@
    "tree_sha": "189b05b506074d1228099a0b32a7e4a6a71f120e",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "kesslerio/attio-mcp-server": {
+   "status": "ok",
+   "tree_sha": "cbf098bdd986b46ebbcf17d81e5814d242462f9c",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "kevdogg102396-afk/djclaude": {
    "status": "ok",
    "tree_sha": "f035014cf709724c049082c887fc91d64e600862",
@@ -13454,6 +14394,11 @@
    "status": "ok",
    "tree_sha": "2c47f5b46334b025605ea6107304476d8cb98482",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "keyline-icons/keyline-icons": {
+   "status": "ok",
+   "tree_sha": "74f33ceb9338fc427cb16e5096897f8557e88190",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "keysersoose/claude-agent-builder": {
    "status": "ok",
@@ -13523,6 +14468,11 @@
    "tree_sha": "0bae76f3c420b615113ca5dc412659d556f7fbe5",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "kirill-markin/flashcards-open-source-app": {
+   "status": "ok",
+   "tree_sha": "0813e2daeafc5e79f86ad3f2ee91db8ff92a0f60",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "kishormorol/cli-faq-shortcuts": {
    "status": "ok",
    "tree_sha": "bf9b9449fd073b9d0e8199a7ee3bb0e1cd0e6a9c",
@@ -13542,6 +14492,11 @@
    "status": "ok",
    "tree_sha": "4ffe0586bc3c83f491ccad295b56c281fc5791e2",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "knowall-ai/mcp-reverie": {
+   "status": "ok",
+   "tree_sha": "109468e773019163d51d6f7f38361796099f7acd",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "knowledgepa3/gia-chief-of-staff": {
    "status": "ok",
@@ -13616,6 +14571,11 @@
    "tree_sha": "36cfd838d75b76ebab3685adc052d2179f81c5c1",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "krmisystems/fantasy-football-manager": {
+   "status": "ok",
+   "tree_sha": "0c8bcf741936328af5bd655c42a3ed4426312ee4",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "kromahlusenii-ops/ham": {
    "status": "ok",
    "tree_sha": "7a24f7f972aae6ba678e1504ec603f9691dd1e6d",
@@ -13671,6 +14631,11 @@
    "tree_sha": "a7f2fc5cbd389b09d08f10a8cddf88d20cd6e116",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "kumoproductions/mcp-aftereffects": {
+   "status": "ok",
+   "tree_sha": "d0b910c00656559583aeede310b7fb80c25d2cce",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "kunal12203/graperoot-plugin": {
    "status": "ok",
    "tree_sha": "49d30c60c4374dfb9712193f3d59d3e59167ce10",
@@ -13690,6 +14655,11 @@
    "status": "ok",
    "tree_sha": "e758c9a91bbd3d860c3138e50b79d1d7a8a3619c",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "kunwar-shah/claudex": {
+   "status": "ok",
+   "tree_sha": "8458466693b073b5717818b4c551345ca1311aaa",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "kuratlielia/arc-library": {
    "status": "ok",
@@ -13844,6 +14814,11 @@
    "tree_sha": "2edad4a48d616a191c83417552ddc60eb79b526a",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "ldclabs/KIP": {
+   "status": "ok",
+   "tree_sha": "69a05ff71e5c1ef759311432151b1a28d6aa749a",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "lead411/lead411-mcp-plugin": {
    "status": "ok",
    "tree_sha": "3d0cef2593900f0eb0969710206929b66f5b2c12",
@@ -13908,6 +14883,11 @@
    "status": "ok",
    "tree_sha": "a0997741f4c9b68ba298796c83197a4ab66ba3d9",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "lennney/agent-search-mcp": {
+   "status": "ok",
+   "tree_sha": "dd91577d6972d0d60cae09673d9239a00cf8861d",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "lennney/mcp-slim-guard": {
    "status": "ok",
@@ -14034,6 +15014,11 @@
    "tree_sha": "5dfadd7eccb99fe18b6b2195897d21103f897eba",
    "visited_at": "2026-10-03T22:08:37Z"
   },
+  "linxule/mcp-music-studio": {
+   "status": "ok",
+   "tree_sha": "0eaae0d10fc4b6c856fd9d715a39ab2441d650df",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "lis186/ccxray": {
    "status": "ok",
    "tree_sha": "98a3d8f3036159ab06928c3df7c64f340af89ca3",
@@ -14082,6 +15067,11 @@
    "tree_sha": "66c49941aaadc2737e13b6d887363b3950629734",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "livetennisapi/livetennisapi-mcp": {
+   "status": "ok",
+   "tree_sha": "97ef5e26511e0967031a045f2a2c5483bd7d2fc1",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "livlign/claude-skills": {
    "status": "ok",
    "tree_sha": "c8bcd3d9e7f57c75991589f8b9e2ffcdce759307",
@@ -14127,6 +15117,11 @@
    "tree_sha": "3526362740dbdcc4bc9e871beb0d55a7b50e00b7",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "logclaw/logclaw": {
+   "status": "ok",
+   "tree_sha": "ff82088bd23a4a883f514157d74fba24b1373b5e",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "logospatrum/patristic-plugin": {
    "status": "ok",
    "tree_sha": "bf27459a98fd23c85b8e3fcb8d419a57becc2b26",
@@ -14141,6 +15136,11 @@
    "status": "ok",
    "tree_sha": "03c5fde151fb5e16d1ddd5088a06d299d9971eb8",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "longsizhuo/openInvest": {
+   "status": "ok",
+   "tree_sha": "e2b68f3e745c849f7a544cd12d1a329caca0fab2",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "lookatitude/guild": {
    "status": "ok",
@@ -14211,6 +15211,11 @@
    "status": "ok",
    "tree_sha": "b3a74d7054fa41dd50f35385b47eb070253181f7",
    "visited_at": "2026-10-03T22:08:37Z"
+  },
+  "luffysolution-svg/obsidian-vault-mcp": {
+   "status": "ok",
+   "tree_sha": "7161bdf16905c1ddae8ebe537cd58ad144a008ba",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "lujiafa/houtu-project-skills": {
    "status": "ok",
@@ -14322,6 +15327,11 @@
    "tree_sha": "414b597ec113b9c8d37c8de912ef80f92d9ad2f3",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "major7apps/pensyve": {
+   "status": "ok",
+   "tree_sha": "d2c56fa44d1ee7b2d504f0008c6b9c860bc7d25f",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "makenotion/claude-code-notion-plugin": {
    "status": "ok",
    "tree_sha": "9847f2aa1a15f25df35ed1fb7b4557dbb60cd651",
@@ -14352,6 +15362,11 @@
    "tree_sha": "bef35cf62f4ea3e1642915fae71bfd8ad510e9cc",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "manavmishra/ZeroSlop": {
+   "status": "ok",
+   "tree_sha": "c1633d840a8116bbd881c1fb14e0392d2b62236f",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "mangollc/claude-seo-skill": {
    "status": "ok",
    "tree_sha": "42894962c333856535f9a3b02c189f86bf0dcdd7",
@@ -14381,6 +15396,11 @@
    "status": "ok",
    "tree_sha": "17446c77af171c4dabbb35bb6a87e71d7e4f794a",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "manusa/podman-mcp-server": {
+   "status": "ok",
+   "tree_sha": "5fd49dbb496f74216c8c464d7c0cf84c9a9bd848",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "mapbox/mapbox-agent-skills": {
    "status": "ok",
@@ -14436,6 +15456,11 @@
    "status": "ok",
    "tree_sha": "42a4c501606794def24799a1cf6d61c03a412a4e",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "marcomoauro/substack-mcp": {
+   "status": "ok",
+   "tree_sha": "c148a3b176997077d2796530ae98660ef2f96d5a",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "marfoerst/the-pragmatic-pm": {
    "status": "ok",
@@ -14536,6 +15561,11 @@
    "status": "ok",
    "tree_sha": "cad4a94aaab9292c18e328cb026a76e5fdff9477",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "martingeidobler/android-mcp-server": {
+   "status": "ok",
+   "tree_sha": "15a4b90d1da908a7adb631990d9f65fed47a7be2",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "marylin/BuildLoud": {
    "status": "ok",
@@ -14686,6 +15716,11 @@
    "status": "ok",
    "tree_sha": "b04160cf7ec95114eb83263ec2040c9057155b28",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "maximem-ai/maximem_synap_sdk": {
+   "status": "ok",
+   "tree_sha": "76aa415eca7e4673391e20c81d55810844a59f66",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "maximilianozurita/makeDoc": {
    "status": "ok",
@@ -14917,6 +15952,11 @@
    "tree_sha": "903d58d0ed03d4b85251d34dd96687eb822b3291",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "mholzen/workflowy": {
+   "status": "ok",
+   "tree_sha": "86e8cd5abd695383a197c5b78744561c2b6aa2e2",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "micepad/skills": {
    "status": "ok",
    "tree_sha": "5c7b6e664d2412930cea50374fe425db71969ece",
@@ -15057,6 +16097,11 @@
    "tree_sha": "edc2b3268c9bd0c08a12c8193a7ace7ab2789261",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "mikusnuz/meta-ads-mcp": {
+   "status": "ok",
+   "tree_sha": "e9dfd7bfc84564492b894e146e69d897efd6130d",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "mil-orb/claude-gauge": {
    "status": "ok",
    "tree_sha": "1d0cd43760025396ee54dae23d2fffad20f26c71",
@@ -15126,6 +16171,11 @@
    "status": "ok",
    "tree_sha": "8a3ba437a292b434ff64ec8b09ef876090385fc7",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "mituan-ai/PaperBanana-CN": {
+   "status": "ok",
+   "tree_sha": "5f701ecbfff1aaf0433dec6d63f88c34a4d86716",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "mixelpixx/Nimrod": {
    "status": "ok",
@@ -15302,6 +16352,11 @@
    "tree_sha": "83a87cc528542bf019bb80afbbf12f4e878b1950",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "moira-mcp/moira": {
+   "status": "ok",
+   "tree_sha": "fe1fbeca4290fa649fedf8fd165f609a9fd98291",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "monasprox/openclaw-memory": {
    "status": "ok",
    "tree_sha": "437ab3656ecdf52c7ed0c3ee63a3cdae68d5b90f",
@@ -15356,6 +16411,16 @@
    "status": "ok",
    "tree_sha": "3fa758ba7eb29af430f599f3c15b5d144c70fa0f",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "mordechaipotash/brain-mcp": {
+   "status": "ok",
+   "tree_sha": "78d8a4fd7fbc879a0c75f431052af1b9b5618eaf",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "morluto/flameox": {
+   "status": "ok",
+   "tree_sha": "cab2f6b09585f67d286a20dae112857d7fc3ea02",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "morluto/jacobian": {
    "status": "ok",
@@ -15553,6 +16618,11 @@
    "tree_sha": "06a119c280e545bc3f55f2b7b036d4c187630d50",
    "visited_at": "2026-10-03T22:08:37Z"
   },
+  "muxinc/mux-ts": {
+   "status": "ok",
+   "tree_sha": "8cb225c0ab78b3dc9eedac68a789b92886645350",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "mvanhorn/last30days-skill": {
    "status": "ok",
    "tree_sha": "5103ba478b380552207a3754b74c7655d64208cd",
@@ -15602,6 +16672,11 @@
    "status": "ok",
    "tree_sha": "cdb43790dbe9774b1c332730d95ad56bdb329eaf",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "n24q02m/crg": {
+   "status": "ok",
+   "tree_sha": "13fd9f9c11297a8878c0548ae09c21af151faf7d",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "n2g7/agent-skills": {
    "status": "ok",
@@ -15763,6 +16838,11 @@
    "tree_sha": "5388ce499ae185a3ee1ed1a44427334a4a0cba88",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "neilberkman/ccrider": {
+   "status": "ok",
+   "tree_sha": "c646d27c6d776a380e9f02ece62a8024ac7f99fb",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "neilberkman/clippy": {
    "status": "ok",
    "tree_sha": "7aab75c0aa3effc7d85f57ae48fea61042b45815",
@@ -15777,6 +16857,11 @@
    "status": "ok",
    "tree_sha": "fcc8afe9b39a053678360b1e83f842866dc66ed4",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "neo4j-contrib/gds-agent": {
+   "status": "ok",
+   "tree_sha": "6dc2b4962aba0058ac257f5cd51900bbdb160437",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "neo4j-contrib/mcp-neo4j": {
    "status": "ok",
@@ -15973,6 +17058,11 @@
    "tree_sha": "f9f92fba8e8c791a685e98ba552172276860fd41",
    "visited_at": "2026-10-04T14:05:48Z"
   },
+  "nikolausm/imap-mcp-server": {
+   "status": "ok",
+   "tree_sha": "6867d5caa44d3be9cd4894656d502140b07fc81a",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "nilukush/plan-do-check-verify-retrospect": {
    "status": "ok",
    "tree_sha": "b81c6ca9e9dfd67d014d75402301f057330a84b0",
@@ -16007,6 +17097,21 @@
    "status": "ok",
    "tree_sha": "1ee40112cb690ecabb2be86a5929c51351e76f2a",
    "visited_at": "2026-10-03T22:08:37Z"
+  },
+  "nirholas/cryptocurrency.cv": {
+   "status": "ok",
+   "tree_sha": "5118a6a1b6c18f5fb754034b64c90a475e99ea15",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "nirholas/fresh-start": {
+   "status": "ok",
+   "tree_sha": "474f0d977b0914b2d7bfa077ba7c4091822cd33e",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "nirholas/pump-fun-sdk": {
+   "status": "ok",
+   "tree_sha": "fcfc87677540e1adfb6d4e99058c86f4173ecef0",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "nirholas/three.ws": {
    "status": "ok",
@@ -16141,6 +17246,11 @@
    "tree_sha": "e8db4813600f6973b0c911d7305186caf35939e2",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "nubo-db/dynoxide": {
+   "status": "ok",
+   "tree_sha": "a3abccd6f4ebf3e7b2b86d85a263dfee88b9ef2d",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "numman-ali/zai-cli": {
    "status": "ok",
    "tree_sha": "4a137081e769ea1596ebbaddab9034b758758554",
@@ -16195,6 +17305,11 @@
    "status": "ok",
    "tree_sha": "e28c280e72874d4c1ec5fd020dbd2f5239ce5edb",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "oaslananka/kicad-mcp-pro": {
+   "status": "ok",
+   "tree_sha": "1173feb4e80663ab8a7544302b5573208d4c3c61",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "obra/claude-session-driver": {
    "status": "ok",
@@ -16406,6 +17521,11 @@
    "tree_sha": "69f1cebb13b5903b2863340f057151ea64ce9817",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "oooscoos/Benzi": {
+   "status": "ok",
+   "tree_sha": "3fb3379412e2aa29841c4b78ce633b38a6a544a9",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "ooples/token-optimizer-mcp": {
    "status": "ok",
    "tree_sha": "011904cadab253fc4a4762a7b05af522acaf67d3",
@@ -16448,6 +17568,11 @@
   },
   "opendeploy-dev/opendeploy-claude-plugin": {
    "status": "http-404"
+  },
+  "openfate-ai/openfate-mcp": {
+   "status": "ok",
+   "tree_sha": "5850d1b00630d98f79c2be88eb7eedbba0d2b0c5",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "openfunnel/openfunnel-skills": {
    "status": "ok",
@@ -16589,6 +17714,11 @@
    "tree_sha": "a410198332b0008fa3e6afaaec395e55ff658633",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "oxylabs/oxylabs-mcp": {
+   "status": "ok",
+   "tree_sha": "e161e7b2c641178c5f762aa57fb14a377f832400",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "ozgurcd/gograph": {
    "status": "ok",
    "tree_sha": "9e4c8b426bee9f454aeb8eda821437442f1bc85c",
@@ -16689,6 +17819,11 @@
    "tree_sha": "d2d30a06f9b9d672edbc0f1ae7436bf8fdc77d42",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "parterburn/dabble.me": {
+   "status": "ok",
+   "tree_sha": "f6dc0d1683c7ef84d4aa4254cc57361f955d3994",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "pasie15/claude-trading-skills-marketplace": {
    "status": "ok",
    "tree_sha": "6257b185dafc8dc31e4ee33e6a488452cc629f5a",
@@ -16723,6 +17858,11 @@
    "status": "ok",
    "tree_sha": "b594eb48455f65da1e5a5d5c00d0313fc95373b2",
    "visited_at": "2026-10-03T22:08:37Z"
+  },
+  "patsnap/patent-literature-search-mcp": {
+   "status": "ok",
+   "tree_sha": "799f58a28dc33561a9fc5ee55ce3a089515d2cfa",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "pattern-ai-labs/agentcall": {
    "status": "ok",
@@ -16793,6 +17933,11 @@
    "status": "ok",
    "tree_sha": "7e850d742d6b002216894f0005b5dd7dd21365da",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "perforce/p4mcp-server": {
+   "status": "ok",
+   "tree_sha": "a8b284dd695e2c02028464a5e69606ceb56ca1a0",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "personaxis/persona.md": {
    "status": "ok",
@@ -16904,6 +18049,11 @@
    "tree_sha": "c383d38b5cc3c5ec219f2e68026e47ffbf46524a",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "pinkpixel-dev/web-scout-mcp": {
+   "status": "ok",
+   "tree_sha": "4603f61ef3035d3286df0f5bbba47cfbec91286f",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "pinotan2024-coder/jucho-kun": {
    "status": "ok",
    "tree_sha": "5e19f35ce81612786bf6017727481bfedb9910f8",
@@ -16984,10 +18134,20 @@
    "tree_sha": "85ef94730932891f8fca2a103e06375d51166145",
    "visited_at": "2026-10-04T14:05:48Z"
   },
+  "pmndrs/docs": {
+   "status": "ok",
+   "tree_sha": "0dabf279481b0a08f24ff463ff2f67f5238b43c7",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "pmprompt/claude-plugin-product-management": {
    "status": "ok",
    "tree_sha": "3114dbe33fa2c38f781414c0b835023508db445f",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "pnp/cli-microsoft365-mcp-server": {
+   "status": "ok",
+   "tree_sha": "6d897079f8a5368aab43089771e0e6532df749fb",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "pollinations/pollinations": {
    "status": "ok",
@@ -17008,6 +18168,16 @@
    "status": "ok",
    "tree_sha": "43843c7b9d03a5817afb6407410ce9c962810fd8",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "portel-dev/ncp": {
+   "status": "ok",
+   "tree_sha": "657586338dbdd518e771e134fa7619b0a23828e1",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "posecode-dev/posecode": {
+   "status": "ok",
+   "tree_sha": "3cb0d0911325a93b5d36e3c5a6bccd05b3402b80",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "posit-dev/skills": {
    "status": "ok",
@@ -17033,6 +18203,11 @@
    "status": "ok",
    "tree_sha": "6378fc4a039f56c89f093d1133de9e55ee531c1b",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "pouyahasanamreji/continuum": {
+   "status": "ok",
+   "tree_sha": "c5718cdf6211f1fcf326988a9bbf85c44b36d92b",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "povvo/claudikins-kernel": {
    "status": "ok",
@@ -17154,6 +18329,11 @@
    "tree_sha": "036b66c1554f36a65d6f7a0bf3c8ff9804e0f998",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "prometheus/prometheus-mcp": {
+   "status": "ok",
+   "tree_sha": "856fb45989013a0b020a900463884104ba0af11d",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "promptadvisers/claudex": {
    "status": "ok",
    "tree_sha": "1f7161d4e806861f901b4c67ceb3ca02fe27ac1a",
@@ -17189,6 +18369,11 @@
    "tree_sha": "eae7b3a680308a23885b74a8825b11bbed48740e",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "proxysoul/Empryo": {
+   "status": "ok",
+   "tree_sha": "28802a4f169abcc378032e0a4774bc162c12a00c",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "proyecto26/autoresearch-ai-plugin": {
    "status": "ok",
    "tree_sha": "65f6f60f5915515e0e940c9d50a063cb6a0b028f",
@@ -17209,6 +18394,11 @@
    "tree_sha": "92a21ceb0c9e97ea9b4783de6c1955f40960aae6",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "psyb0t/docker-stealthy-auto-browse": {
+   "status": "ok",
+   "tree_sha": "6afa03f6ec41f14b4856866161a649a54c3d61d0",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "psyduckler/veracityapi": {
    "status": "http-404"
   },
@@ -17222,6 +18412,11 @@
    "tree_sha": "911d585e086f6ff618d15631ef6b1fa28b4a85cd",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "pulsemcp/mcp-servers": {
+   "status": "ok",
+   "tree_sha": "0ed34de5c42a93317a7d1f7413264102db7d0257",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "pulumi/agent-skills": {
    "status": "ok",
    "tree_sha": "9b794aec9c4169f137285c2763c06064d247dd47",
@@ -17231,6 +18426,16 @@
    "status": "ok",
    "tree_sha": "97e01d08b621901f4aa7d6e53e7f6adb166339a2",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "putervision/state-memory-mcp": {
+   "status": "ok",
+   "tree_sha": "0f60ae4438c98d1787db9a3369d40ed655a38323",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "putervision/vision-memory-mcp": {
+   "status": "ok",
+   "tree_sha": "ce090305173f057906b71d45dfe572d105fdec82",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "pwdev-solucoes/pwdev-claude-marketplace": {
    "status": "ok",
@@ -17251,6 +18456,11 @@
    "status": "ok",
    "tree_sha": "2bb0eb54b2b3af8854d0c26f3884c28a0fce0802",
    "visited_at": "2026-10-04T14:05:48Z"
+  },
+  "pzfreo/build123d-mcp": {
+   "status": "ok",
+   "tree_sha": "eb76d294d69245cf673263aea33337025e9e5c71",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "qdhenry/Claude-Command-Suite": {
    "status": "ok",
@@ -17287,6 +18497,11 @@
    "tree_sha": "5cd3d90ec0cfa99773dd2c075e492bd280b3826a",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "qualixar/superlocalmemory": {
+   "status": "ok",
+   "tree_sha": "53ea99964f9a8d358ec60a398ded585cd15fef26",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "quant-sentiment-ai/claude-equity-research": {
    "status": "ok",
    "tree_sha": "e5535c9bfe6d0c4b972d902c4b5c2b141c331d68",
@@ -17321,6 +18536,11 @@
    "status": "ok",
    "tree_sha": "ac43cc7b0aad2f218b9c42bd639aee696dbee531",
    "visited_at": "2026-10-04T14:05:48Z"
+  },
+  "r3dbars/transcripted": {
+   "status": "ok",
+   "tree_sha": "faefb244d362c4a5b2729542daf15731017ce3c2",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "rachel-howell/spotify-playlist-curator": {
    "status": "ok",
@@ -17362,10 +18582,20 @@
    "tree_sha": "41eb9272f62eafd6fe968f381807154a16b0c71c",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "raintree-technology/hig-doctor": {
+   "status": "ok",
+   "tree_sha": "3ec08f5a6f9d2fa22a64950274ba6baee2a38838",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "raiyanyahya/recall": {
    "status": "ok",
    "tree_sha": "e65cb1e406fea99bee4931e7597715c47b3d2272",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "ralforion/orionbelt-semantic-layer": {
+   "status": "ok",
+   "tree_sha": "bf3ed17c32152bf6fe71940f4b3be70fc61bf4cf",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "ramakay/claude-self-reflect": {
    "status": "ok",
@@ -17401,6 +18631,11 @@
    "status": "ok",
    "tree_sha": "7a43c2952c6e4a3cc2eb541f70b016c49b492fbf",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "rasinmuhammed/misata": {
+   "status": "ok",
+   "tree_sha": "10da2a0040a3ff8ecd4f61e3e11b8e87ea549268",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "ratel-ai/ratel": {
    "status": "ok",
@@ -17698,11 +18933,6 @@
    "tree_sha": "f34ed02f68ef146d420eb03d7c4bd044bc9f6e3f",
    "visited_at": "2026-10-03T19:32:13Z"
   },
-  "rmyndharis/aimhooman": {
-   "status": "ok",
-   "tree_sha": "690bdf33b45805c7eedbc42f02ef127c9e23fa98",
-   "visited_at": "2026-10-03T19:32:13Z"
-  },
   "robconery/chappie": {
    "status": "ok",
    "tree_sha": "1ccb1c5efd4eb3a2a1cb1c9e5f0dc202fecc7d01",
@@ -17737,6 +18967,11 @@
    "status": "ok",
    "tree_sha": "fc574cc51be608aab3c0617b417969dcc2f25baf",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "roboticforce/sugar": {
+   "status": "ok",
+   "tree_sha": "eade16940789bc1f927af090f8a3b475e537eddd",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "robotmcp/ros-mcp-server": {
    "status": "ok",
@@ -17807,6 +19042,11 @@
    "status": "ok",
    "tree_sha": "f2e15c43112ddda9b80f53822185a21b6ad3b099",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "roman-rr/trading-skills": {
+   "status": "ok",
+   "tree_sha": "996f9a2a065bddf962863a374a42198dd8937f31",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "romiluz13/cc10x": {
    "status": "ok",
@@ -17953,6 +19193,11 @@
    "tree_sha": "e3dffc15498e9588e7815f37b9ecf10e8bc2c902",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "runxhq/runx": {
+   "status": "ok",
+   "tree_sha": "37f69a776a9f4a640b9ffddb7b8d6143a2be114f",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "ruromero/trustify-ai-workflow": {
    "status": "ok",
    "tree_sha": "f7c75afda7dfbe2ef61a08d08efc7b0d258e7cbf",
@@ -17967,6 +19212,11 @@
    "status": "ok",
    "tree_sha": "58cd9737d32ed173c62ad1a3bf8d80bdd54298c1",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "ruvnet/flow-nexus": {
+   "status": "ok",
+   "tree_sha": "1511b93c2abd82883b9234fa90231c4c3e207744",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "ruvnet/ruflo": {
    "status": "ok",
@@ -18187,6 +19437,11 @@
    "status": "ok",
    "tree_sha": "c7328651d6d64cae541d79c398e3cc1ca1f4f9f4",
    "visited_at": "2026-10-04T14:05:48Z"
+  },
+  "sathergate/sathergate-toolkit": {
+   "status": "ok",
+   "tree_sha": "f552fe87c91ea1a879ca46a8db51b7ae6a4df817",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "satyamamarpandey/ClaudeTokenSAP": {
    "status": "ok",
@@ -18561,6 +19816,11 @@
    "tree_sha": "6a9e839b534da0870d9a150dae089951bcab7a67",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "sheawinkler/ContextLattice": {
+   "status": "ok",
+   "tree_sha": "e0daa914fc3f3a9a21363470242ea3fc0bd88964",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "sheeki03/Few-Word": {
    "status": "ok",
    "tree_sha": "79587f926acf53670a63c0b768ec3f5016218b19",
@@ -18611,6 +19871,11 @@
    "tree_sha": "9b43f01ccd1546c5ee013f6c23492c5424f0d5f2",
    "visited_at": "2026-10-04T14:05:48Z"
   },
+  "shinpr/sub-agents-mcp": {
+   "status": "ok",
+   "tree_sha": "a486a782c91c81317be17e161b3d680d246cfed8",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "shipstatic/plugin": {
    "status": "ok",
    "tree_sha": "bc6b90fa279f9b1d2eb0076f60b557b2c8c23d67",
@@ -18625,6 +19890,11 @@
    "status": "ok",
    "tree_sha": "c5375ae067b737765acb1d8d35f1fd304df94ad2",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "shivasurya/code-pathfinder": {
+   "status": "ok",
+   "tree_sha": "460d0d3b4d86d398380affeca824d812b270fdf1",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "shivyadavus/hipaalint": {
    "status": "ok",
@@ -18645,6 +19915,11 @@
    "status": "ok",
    "tree_sha": "3addb4b40e56dc860659245115018ea3ed4385e3",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "shuotao/REVIT_MCP_study": {
+   "status": "ok",
+   "tree_sha": "2faacc5f948e4588c8e2c48036550e834220afbb",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "sickn33/agentic-awesome-skills": {
    "status": "ok",
@@ -18716,6 +19991,11 @@
    "tree_sha": "054f9a3429a976b7a8fbc54c2b63362cbf11b4b8",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "sinewaveai/agent-security-scanner-mcp": {
+   "status": "ok",
+   "tree_sha": "ef3f20e1de3b8c62861f90231ad1caa6ca3404ac",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "singhsume123/xml-to-compose-skill": {
    "status": "ok",
    "tree_sha": "735bae41e054033c42878dd0f32697b94dee5d71",
@@ -18745,6 +20025,11 @@
    "status": "ok",
    "tree_sha": "b98c6ec032cef287e371d3bafcfc2bf22fae5835",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "sitbon/magg": {
+   "status": "ok",
+   "tree_sha": "dafa9c9ccbfc7209f7bd8e5f303d51598d19f59c",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "siteboon/claudecodeui": {
    "status": "ok",
@@ -18841,6 +20126,11 @@
    "tree_sha": "9f9c4de3c80e689cb002e9047501e6d3e0ab686a",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "slow-stack/mneme": {
+   "status": "ok",
+   "tree_sha": "59029fecc98ca4ac27f71b44ea8f9d033de287c1",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "slusset/intention-driven-design": {
    "status": "ok",
    "tree_sha": "9c84bb64d87a8a7af8791fccd40a5007854753dc",
@@ -18860,6 +20150,11 @@
    "status": "ok",
    "tree_sha": "0563aa3b1c03d1d61883751f02381dc95742a05a",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "smith-horn/skillsmith": {
+   "status": "ok",
+   "tree_sha": "446c37848f94d62e5c2761064b33db9bae6809f6",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "smithdak/sleuth": {
    "status": "ok",
@@ -18950,6 +20245,16 @@
    "status": "ok",
    "tree_sha": "bb56c094ce07cceab29cda068ee3c6a95745cdee",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "sololabstr/uisight": {
+   "status": "ok",
+   "tree_sha": "876281159bfbac7da6a3fba2f67b12c77c367ee2",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "sonatype/dependency-management-mcp-server": {
+   "status": "ok",
+   "tree_sha": "6ce32d101ad69c5eeaffa427db214b2fba5c60ab",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "sonatype/guide-claude-plugin": {
    "status": "ok",
@@ -19054,10 +20359,25 @@
    "tree_sha": "9d05c8cd8c8559552f84e27fe30f46b7693ce69a",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "spranab/brainstorm-mcp": {
+   "status": "ok",
+   "tree_sha": "0c129762609b162f11d862c668a1923d4defc5fa",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "spronta/crawlie": {
+   "status": "ok",
+   "tree_sha": "810e836874214d8aac29ee37a1521b7361027d79",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "spyrae/gemini-plugin-cc": {
    "status": "ok",
    "tree_sha": "0171ed0ef05044713254f4e608ab2b6d04d6e8f6",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "sqlsure/sqlsure": {
+   "status": "ok",
+   "tree_sha": "d1b98e741f848ce7d756ee1d672e206d6ec39daa",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "squirrelscan/squirrelscan": {
    "status": "ok",
@@ -19078,6 +20398,11 @@
    "status": "ok",
    "tree_sha": "40e0f9704d4d20c6b58e9eec9137c546bd24a305",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "stabgan/openrouter-mcp-multimodal": {
+   "status": "ok",
+   "tree_sha": "e33b3d94f95ec6a8b9af55937f7602fc81327183",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "stackhawk/agent-skills": {
    "status": "ok",
@@ -19128,6 +20453,11 @@
    "status": "ok",
    "tree_sha": "748f962554d6f9616e92a59c98e8880144227b96",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "stefanoamorelli/fred-mcp-server": {
+   "status": "ok",
+   "tree_sha": "cb1db30d6080df1ce24e6e6b193a67ea92a39fc2",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "stefanoamorelli/sec-edgar-mcp": {
    "status": "ok",
@@ -19379,6 +20709,11 @@
    "tree_sha": "1a3ba88bba598c6734533c48e23cb5d37424b618",
    "visited_at": "2026-10-04T14:05:48Z"
   },
+  "sverklo/sverklo": {
+   "status": "ok",
+   "tree_sha": "b0a7b816b1a122082ebc4544690780d99994e1a4",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "sverrirsig/claude-control": {
    "status": "ok",
    "tree_sha": "58ee685f2842c4eff8b3fae52f0a4b4efd0c72ba",
@@ -19409,10 +20744,20 @@
    "tree_sha": "f4951a2816b001e4985dc3661ff5a2ffa2e79bde",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "sweetcornna/free-search-mcp": {
+   "status": "ok",
+   "tree_sha": "e4bf2342d68cf3e4aa05801f363c88695f944dbf",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "swim2sun/claude-code-wechat": {
    "status": "ok",
    "tree_sha": "314ffe700457cc03d7583d6f82156800191c4db9",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "swimmwatch/cloakbrowser-mcp": {
+   "status": "ok",
+   "tree_sha": "7e5ddd045e82f8ed1d8ddd8d37b9598393d9ae43",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "swingerman/engineer": {
    "status": "ok",
@@ -19433,6 +20778,11 @@
    "status": "ok",
    "tree_sha": "40ceed966697131a849f46f5ab236cdd720a822c",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "sysevol-ai/CodeNib": {
+   "status": "ok",
+   "tree_sha": "4232ddfab2ee0cf08d1649d4e97fa416848873fd",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "syst3mctl/usectl-plugin": {
    "status": "ok",
@@ -19572,10 +20922,20 @@
    "tree_sha": "c0591e956251590b8e0b01b19ddd8f9355c2e714",
    "visited_at": "2026-10-04T14:05:48Z"
   },
+  "tata1mg/catalyst-core": {
+   "status": "ok",
+   "tree_sha": "e85e02178df986c5b699a126cea3220e4896f90a",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "tatertot365/claude-persona-plugin": {
    "status": "ok",
    "tree_sha": "2913f3d6af5b9d754bfdf2f22a28874a2b46b591",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "tathagat22/plumb-mcp": {
+   "status": "ok",
+   "tree_sha": "029df11caa9e630cab67e981e6048ccea239abc7",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "tauseef-cmyk/Supply-Chain-Multi-Orchestrator-AI-Agent-Plug-ins": {
    "status": "ok",
@@ -19672,6 +21032,11 @@
    "tree_sha": "b394be7ca751a586495c2584cd03d45dbc35b8a7",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "tenequm/pond": {
+   "status": "ok",
+   "tree_sha": "8727357e5ffb21b092b62255fccbc549eb35ed00",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "tenfoldmarc/website-builder-setup": {
    "status": "ok",
    "tree_sha": "83d94dac66b90b1da37152084ac671989379b692",
@@ -19751,6 +21116,11 @@
    "status": "ok",
    "tree_sha": "47640e45e7b42994020d77a46444259f6c9dd72e",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "thebriangao/totem": {
+   "status": "ok",
+   "tree_sha": "f9ac7f18198ccc1ea3a21e4d6bdc83733b4ef702",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "thedaviddias/Front-End-Checklist": {
    "status": "ok",
@@ -19855,6 +21225,11 @@
    "tree_sha": "9aca84e8c4721d4e7623df5f4d67153477ec40a5",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "tight-studio/OpenBrand": {
+   "status": "ok",
+   "tree_sha": "a21d34fadc3dcf15271d71fdb3f7d95baf7578d8",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "tigrisdata/tigris-agents-plugins": {
    "status": "ok",
    "tree_sha": "f3df44a834e1e6a271c1d4a416e2752151ac8f6f",
@@ -19875,6 +21250,11 @@
    "tree_sha": "b236d3583fb51f5ef009d2c95d4fc361df748280",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "timescale/tiger-cli": {
+   "status": "ok",
+   "tree_sha": "94e3fe19e15ba267256164cfc702b068d08ee025",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "timmx7/styx": {
    "status": "ok",
    "tree_sha": "48ddf8995d12f811b5a8b6aafe30aedce78e6470",
@@ -19889,6 +21269,11 @@
    "status": "ok",
    "tree_sha": "44eb39f5e9523726ccb4994ae34738042f99decb",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "tin-computer/tin": {
+   "status": "ok",
+   "tree_sha": "78470ca5d22e60bd1c0edbbb2bd8df2f4255c381",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "tinyfish-io/tinyfish-web-agent-integrations": {
    "status": "ok",
@@ -20085,6 +21470,11 @@
    "tree_sha": "e5ba80930fee2512afce5b2def5048b63564e0d4",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "transloadit/node-sdk": {
+   "status": "ok",
+   "tree_sha": "1aeda9db0ea25d40d0a5d7068dcb805e7c2d4730",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "trapicAi/trapic-plugin": {
    "status": "ok",
    "tree_sha": "62617e969cdc2b8d5b76a41a5ab2e917b8c68643",
@@ -20155,6 +21545,11 @@
    "tree_sha": "9ab84436a4bff62a98810c73bf94278f3b409a9d",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "trustabl/agent-reliability-analyzer": {
+   "status": "ok",
+   "tree_sha": "583e4ee47093d6e25dac76198e6c1f668958042b",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "tryflint/claude-code-plugin": {
    "status": "ok",
    "tree_sha": "f3d56e33ed2fb3ed9b4f02e0fc65d0a79b24bf4d",
@@ -20185,11 +21580,6 @@
    "tree_sha": "a44f29075c5575266e1f00debb8c816823046f30",
    "visited_at": "2026-10-04T14:05:48Z"
   },
-  "tt-a1i/archify": {
-   "status": "ok",
-   "tree_sha": "7158026e852f3aa6578c741e673b46d7878c92c1",
-   "visited_at": "2026-10-04T14:05:48Z"
-  },
   "tt-a1i/matt-skills-with-to-goal": {
    "status": "ok",
    "tree_sha": "7b44372accb65b7a6966f2d0cf7c134be41e73a4",
@@ -20199,6 +21589,11 @@
    "status": "ok",
    "tree_sha": "a0069c0c640c2a53b5c17f3cb46e5d04da485511",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "tuannvm/mcp-trino": {
+   "status": "ok",
+   "tree_sha": "3e0be007e203057318a098c5b846ba881e8f427c",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "tufantunc/ssh-mcp": {
    "status": "ok",
@@ -20234,6 +21629,11 @@
    "status": "ok",
    "tree_sha": "a8490457e7adaa45a7b7dc976ef63d8abde909f7",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "twelvedata/mcp": {
+   "status": "ok",
+   "tree_sha": "d139a77ea0f7d40995e6979cd09c22dd142fbfe8",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "twelvelabs-io/twelve-labs-claude-code-plugin": {
    "status": "ok",
@@ -20324,6 +21724,11 @@
    "status": "ok",
    "tree_sha": "76994d48bfdcc6cc9727006df6d4ea0f6973fd00",
    "visited_at": "2026-10-03T22:08:37Z"
+  },
+  "unmodeled-tyler/vessel-browser": {
+   "status": "ok",
+   "tree_sha": "5cb5e53f3823556428e6ad7bd1d73a9a5b6778d5",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "upstash/context7": {
    "status": "ok",
@@ -20425,6 +21830,11 @@
    "tree_sha": "84fd5f42524082dcded7a6d0c8c2697a279302d1",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "vbcherepanov/total-agent-memory": {
+   "status": "ok",
+   "tree_sha": "db3086e752c5aa15a51e00bb5372429cde9ece2d",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "vchelaru/FlatRedBall2": {
    "status": "ok",
    "tree_sha": "36c3e67f23a274fd19f5f7b51dca7eefc5da8ee1",
@@ -20434,6 +21844,11 @@
    "status": "ok",
    "tree_sha": "1eddefd1ffd456918a06869923c816508915eb40",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "vectora-foundry/native-devtools-mcp": {
+   "status": "ok",
+   "tree_sha": "cf346e05df02eaf9cd1d2228233fe52b4cfa9213",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "vegastack/oss-notion-markdown-sync": {
    "status": "ok",
@@ -20550,6 +21965,11 @@
    "tree_sha": "a4537ddda848aaef66ff889b253a79d7bdb5bed4",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "vintasoftware/django-ai-boost": {
+   "status": "ok",
+   "tree_sha": "c8007a5fe743953352e706e773bb903e627097bb",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "vishalsachdev/canvas-mcp": {
    "status": "ok",
    "tree_sha": "6ff8db5788141d460ffda69284f39ce64db47f29",
@@ -20590,6 +22010,11 @@
    "tree_sha": "7475f95adb2055e75225d241f96f38f872b3858f",
    "visited_at": "2026-10-03T22:08:37Z"
   },
+  "vmware-skills/VMware-AIops": {
+   "status": "ok",
+   "tree_sha": "d0a80f3df8e8be8fdcddc3fbfcfb742f9d507287",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "vndee/llm-sandbox": {
    "status": "ok",
    "tree_sha": "7361f5e5ca06b5597f977f13efbe859f481cb01e",
@@ -20614,6 +22039,11 @@
    "status": "ok",
    "tree_sha": "4592475ad5b7a6ca61cf082cf271f9cb531704c2",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "vouchdev/vouch": {
+   "status": "ok",
+   "tree_sha": "0530942a91bc53858038a53903e6963f5efe758e",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "voxel51/fiftyone-skills": {
    "status": "ok",
@@ -20659,6 +22089,16 @@
    "status": "ok",
    "tree_sha": "6a96d575dfe9338600a88ad44abf1fe03cab5078",
    "visited_at": "2026-10-04T14:05:48Z"
+  },
+  "w0h1v/mcp-virustotal": {
+   "status": "ok",
+   "tree_sha": "75d27df75726cf84d8d3a6621854a96b06b67d83",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "w1ckedxt/cynical-sally": {
+   "status": "ok",
+   "tree_sha": "68c83034beb8595e001370a53b9a100c6ac5ae17",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "wahahaazhe/KnowGT": {
    "status": "ok",
@@ -20730,6 +22170,11 @@
    "tree_sha": "f526d73545fb634e2a9da7456bdd14d9d58de8dd",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "watt-mind/coach": {
+   "status": "ok",
+   "tree_sha": "4d8d65c297cb326897b74553ee4766ead971b6a7",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "watzon/semantouch": {
    "status": "ok",
    "tree_sha": "e4bbdc514fc4f3c8fa7938670def433ba6461a2e",
@@ -20749,6 +22194,11 @@
    "status": "ok",
    "tree_sha": "f84b3ccfa6b2adbf7e895527d12286b61670ca17",
    "visited_at": "2026-10-03T22:08:37Z"
+  },
+  "webflow/mcp-server": {
+   "status": "ok",
+   "tree_sha": "c4fa339cd9ba7a93d771e710db89302fc443c447",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "websentry-ai/claude-code-plugin": {
    "status": "ok",
@@ -20790,6 +22240,11 @@
    "tree_sha": "d9e93740193aeae2cd661c7ddf6f0c8f8989860b",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "wgt19861219/godot-mcp-enhanced": {
+   "status": "ok",
+   "tree_sha": "b460afcf973ab1f3709d6b31f923812bacf4b847",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "whiskeyjack-net/icon-stack": {
    "status": "ok",
    "tree_sha": "79a2f0852a9c36fff01ff0ba3daee135a7bfde34",
@@ -20799,6 +22254,11 @@
    "status": "ok",
    "tree_sha": "4aa96d0ae7d4b6e7d362a5732b9ebe1425210f60",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "whistlegraph/aesthetic-computer": {
+   "status": "ok",
+   "tree_sha": "1d459e24a40dbd5acac4f75ee42ebe5999280b32",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "whitegloveai/claude-skills-gov": {
    "status": "ok",
@@ -20880,6 +22340,11 @@
    "tree_sha": "5f5d9524cc7673e4eaf8ffb378647081e7b60e1c",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "wise-vision/ros2_mcp": {
+   "status": "ok",
+   "tree_sha": "56ec53f41bf08f641bdcd5516866ce2bae8cf09e",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "wix/skills": {
    "status": "ok",
    "tree_sha": "edbf804695930526e21cbdd9e26c11edf785cc21",
@@ -20889,6 +22354,11 @@
    "status": "ok",
    "tree_sha": "1d685ffc072a5029bafd8ccca3083cf8e6315414",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "wlsdks/ontology-atlas": {
+   "status": "ok",
+   "tree_sha": "d4d8575a6029f0a7dcfce34ab15a79258c2af0f4",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "wojciechkapala/claude-chronicle": {
    "status": "ok",
@@ -21000,6 +22470,11 @@
    "tree_sha": "156b7a5e7a8b93642628a339ee4039c925b34c7f",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "wso2/fhir-mcp-server": {
+   "status": "ok",
+   "tree_sha": "3cea71fece25b9e5d4ad2e781eb3de06664b2e88",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "wtthornton/Core2": {
    "status": "ok",
    "tree_sha": "48ceb795b99e7fe0df6d39c785a08ffc6859f075",
@@ -21047,6 +22522,11 @@
    "status": "ok",
    "tree_sha": "9d3091e8a1ff26ec5ce5f613cd3b36b35c9b98f6",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "xiaojiou176-open/codeflow": {
+   "status": "ok",
+   "tree_sha": "c3f6c2c287d574ff50123d7681fb1f20772ac1ee",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "xiaolai/cc-suite": {
    "status": "ok",
@@ -21102,6 +22582,11 @@
    "status": "ok",
    "tree_sha": "8ca22f4c671de9a2f35bbba616b7f078982a5977",
    "visited_at": "2026-10-03T19:32:13Z"
+  },
+  "xorrkaz/cml-mcp": {
+   "status": "ok",
+   "tree_sha": "ffc70aa9e3ddc348ba31a379a3ecb20fa6868d6d",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "xr843/Master-skill": {
    "status": "ok",
@@ -21271,6 +22756,16 @@
    "tree_sha": "8b19a49c51fcdb8108115ba6a82df194db604fcc",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "yokingma/one-search-mcp": {
+   "status": "ok",
+   "tree_sha": "16eb424608888949165f6a668d476cbdf79afc20",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
+  "yokingma/time-mcp": {
+   "status": "ok",
+   "tree_sha": "5bc003e14465812becb9c96159841af5d6430c0e",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "yolfinance/yolfi-agent": {
    "status": "ok",
    "tree_sha": "9a437541b5e24375d0f26d1e104ff9a12b17c566",
@@ -21316,6 +22811,11 @@
    "tree_sha": "6dabe2051288fcf0dd204e13612d97814692cb11",
    "visited_at": "2026-10-03T19:32:13Z"
   },
+  "yuna0x0/anilist-mcp": {
+   "status": "ok",
+   "tree_sha": "7c5cf1e374c09e3ddbd9c68f92c4c08a43e65477",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "yuque/yuque-mcp-server": {
    "status": "ok",
    "tree_sha": "757a408c29cb21ba493a22de2ac99126d2460f75",
@@ -21340,6 +22840,11 @@
    "status": "ok",
    "tree_sha": "9d43d989dc9f7c96498243ce9c8c293574d84bde",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "yuvalsuede/memory-mcp": {
+   "status": "ok",
+   "tree_sha": "c434710b73f6d4eb588fee25c00a336871ddd7b5",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "yya007/SkillFinder": {
    "status": "ok",
@@ -21400,6 +22905,11 @@
    "status": "ok",
    "tree_sha": "e9a5eab57a0d105d2dc0fe66dfb42ed45321131c",
    "visited_at": "2026-10-03T15:52:19Z"
+  },
+  "zcag/tela": {
+   "status": "ok",
+   "tree_sha": "c6dae4e9c40bd9c4f6a9d4397e47b18594255636",
+   "visited_at": "2026-10-04T16:31:25Z"
   },
   "zdanovichnick/dotnet-pilot": {
    "status": "ok",
@@ -21584,6 +23094,11 @@
    "tree_sha": "68530c6f296ccd2f5e99c79782f3e0fbf962c51a",
    "visited_at": "2026-10-03T15:52:19Z"
   },
+  "zxyasfas/paper_format_agent": {
+   "status": "ok",
+   "tree_sha": "f17a9e4e7e01eb90085ac24c841e52a25a93ab06",
+   "visited_at": "2026-10-04T16:31:25Z"
+  },
   "zy-zmc/tianming-skill": {
    "status": "ok",
    "tree_sha": "b5ef6e30817e086022ecbd09f9c2d2e781dd8b43",
@@ -21595,6 +23110,6 @@
    "visited_at": "2026-10-03T19:32:13Z"
   }
  },
- "rules": "e3d8ff624da7",
- "updated_at": "2026-10-04T14:23:05Z"
+ "rules": "d2241ba97128",
+ "updated_at": "2026-10-04T16:31:25Z"
 }
