@@ -10,15 +10,23 @@ License: MIT.
 /plugin install cc-catalog@cc-catalog
 ```
 
-Autonomous catalog of Claude Code extensions: plugins, skills, subagents, commands/hooks. MCP-only servers are excluded. One stdlib-only Python script (`catalog.py`, Python 3.12) collects, enriches and tiers repos; `build_site.py` renders `site/` from `data/catalog.json`. A daily GitHub Actions job (`.github/workflows/update.yml`) runs both, commits `data/` and `site/`, and deploys `site/` to GitHub Pages. The workflow expects this folder to be the repository root.
+Autonomous catalog of Claude Code extensions: plugins, skills, subagents, commands/hooks, and standalone MCP servers from the official MCP Registry. MCP-only repos found by topic or code search are still excluded unless the Registry lists them (see below). One stdlib-only Python script (`catalog.py`, Python 3.12) collects, enriches and tiers repos; `build_site.py` renders `site/` from `data/catalog.json`. A daily GitHub Actions job (`.github/workflows/update.yml`) runs both, commits `data/` and `site/`, and deploys `site/` to GitHub Pages. The workflow expects this folder to be the repository root.
 
 ## Sources
 1. Anthropic marketplaces (`claude-plugins-official`, `skills`, `claude-code`, `claude-plugins-community`) via raw `marketplace.json`.
 2. Curated list: `hesreallyhim/awesome-claude-code` (CSV).
 3. Discovery: repo search by topic (`claude-code-plugin`, `claude-skills`, `claude-code-subagents`, `claude-code-skills`, stars>=5), GitHub code search (`marketplace.json`, `plugin.json`, `SKILL.md`, `.claude/agents/*.md`, 3 pages each), and expansion of up to 50 discovered marketplaces.
-4. Enrichment: GitHub GraphQL, 100 repos per query (stars, forks, dates, license, archived, owner type, topics).
+4. Official MCP Registry (`https://registry.modelcontextprotocol.io/v0/servers?limit=100&version=latest`, public, no auth, paged with `cursor`, cached by the HTTP cache like everything else). Only latest, `active` servers are read (deprecated/deleted and older versions dropped), then the inclusion rule below applies; the parser is defensive because the schema drifts between versions. See "MCP servers" below.
+5. Enrichment: GitHub GraphQL, 100 repos per query (stars, forks, dates, license, archived, owner type, topics).
 
 All fetched text is untrusted data and is never executed; descriptions are cut to 300 chars.
+
+## MCP servers (type `mcp-server`)
+- **Inclusion rule** (in `catalog.py`, after enrichment because it needs stars): a registry server is included only if it has a GitHub `repository.url` AND (its repo reaches tier verified or higher, OR has >= 10 stars, OR its repo is already in the catalog for another reason, e.g. a plugin repo). Remote-only servers (no repo) and low-signal servers are excluded; the excluded counts are logged in `data/report.md` ("MCP Registry") and in `counts.mcp` (`excluded_remote_only`, `excluded_low_signal`).
+- An included server attaches to its repo's record as an item (`mcp:<registry name>`); a repo not yet in the catalog gets a new record enriched through the same GraphQL path (stars, license, node_id, dedup). Several servers in one repo (monorepos) become several items of one record. `sources` contains `mcp-registry`.
+- Same tier rules as everything else. The site hides the `watch` tier by default (a note above the results toggles it; an explicit tier selection overrides the default, and `#watch=1` in the URL shows it). `search.py` also excludes `watch` unless `--tier-min watch` is given.
+- `install_hint`: remote HTTP/SSE `claude mcp add --transport http|sse <short-name> <url>`; npm `claude mcp add <short-name> -- npx -y <pkg>@<version>`; pypi `-- uvx <pkg>`; oci `-- docker run -i --rm <image>`. Remote wins when both exist. Required env vars/headers are named (never valued) in a trailing `# requires: A, B` note. Registry text is validated against strict patterns before it enters a command; a server with no runnable remote or package gets a `# ...` note instead of a command.
+- The v1 MCP-only filter is unchanged: repos named/topic-tagged like MCP servers with no Claude Code plugin/skill/agent evidence are dropped from topic and code search (counted in `excluded_mcp`), except when they are registered in the Registry, in which case they come in through that path as `mcp-server`.
 
 ## Tiers (one record per repo, highest wins)
 Order, highest first (display label in parentheses):
@@ -74,7 +82,7 @@ The workflow uses `secrets.CATALOG_TOKEN` if set, else the built-in `GITHUB_TOKE
             tier, tier_reasons[], flags[], trend_7d, trend_30d, trend_7d_pct, first_seen,
             items: [{name, type, description, install_hint, url}]}]}
 ```
-`type` is the primary type (plugin > marketplace > skill > agent > command > hook > collection); `trend_*` are star deltas against the newest snapshot at least 7 / 30 days old (null if none); `first_seen` persists across runs.
+`type` is the primary type (plugin > marketplace > skill > agent > command > hook > mcp-server > collection); `counts.mcp` has the Registry stats; `trend_*` are star deltas against the newest snapshot at least 7 / 30 days old (null if none); `first_seen` persists across runs.
 
 ## Roadmap
 Planned work: [ROADMAP.md](ROADMAP.md).

@@ -5,3 +5,5 @@ site/_screens/
 .venv/
 __pycache__/
 mockups/
+site/catalog.js
+site/history/

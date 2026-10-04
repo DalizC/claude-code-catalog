@@ -18,6 +18,16 @@ bucket) older than DAILY_DAYS, daily for the last DAILY_DAYS days.
 After the series is built, trend_7d / trend_30d / trend_7d_pct and the "star-spike" flag
 (trend_7d > max(500, 20% of stars)) are written back into data/catalog.json (those fields only).
 
+Star-farming (flag "star-farming", recomputed from the stored series on every run, so it clears on its own):
+a day D within the last FARM_WINDOW (30) days is suspicious when ALL hold
+  1. gain(D) >= max(300, 10 x median daily gain of the up-to-30 days before D; needs >= 14 daily points before D)
+  2. gain(D) >= 40% of the 14-day total (D and the 13 days before it)
+  3. no matching activity: the repo's pushed_at is not within +-2 days of D (pushed_at is the latest push only,
+     so this is a coarse check; a repo that keeps pushing is simply never flagged for that day)
+Evidence is stored on the record as star_farming {date, gain, median, share_14d_pct}. The old age-based
+"star-anomaly" flag (catalog.py) now exists only for repos that have no series here; it is removed for repos with one.
+Series are only daily for the last DAILY_DAYS (90) days, so a day is testable only inside that window.
+
 Files: data/history/series.json {repo: {"points": [[YYYY-MM-DD, stars]...], "backfilled_at": date}},
 data/history/_state.json, site/history/NN.json shards ({repo: points}).
 
@@ -145,6 +155,34 @@ def value_at(points, d):
         else: break
     return v
 
+FARM_WINDOW, FARM_MIN_GAIN, FARM_MULT, FARM_SHARE, FARM_BASE_MIN, FARM_PUSH_DAYS = 30, 300, 10, 0.40, 14, 2
+
+def farming(points, pushed_at):
+    """Return evidence dict for the strongest star-farming day in the last FARM_WINDOW days, else None."""
+    pts = {}
+    for d, c in points:
+        pts[date.fromisoformat(d)] = c
+    pushed = None
+    if pushed_at:
+        try: pushed = datetime.fromisoformat(pushed_at.replace("Z", "+00:00")).date()
+        except ValueError: pass
+    def gain(d):
+        a, b = pts.get(d), pts.get(d - timedelta(days=1))
+        return None if a is None or b is None else a - b
+    best = None
+    for k in range(1, FARM_WINDOW + 1):   # k=0 (today) is a partial day, skipped
+        d = TODAY - timedelta(days=k); g = gain(d)
+        if g is None: continue
+        base = sorted(x for x in (gain(d - timedelta(days=j)) for j in range(1, 31)) if x is not None)
+        if len(base) < FARM_BASE_MIN: continue
+        med = (base[len(base) // 2] + base[(len(base) - 1) // 2]) / 2
+        tot14 = sum(x for x in (gain(d - timedelta(days=j)) for j in range(14)) if x is not None)
+        if g < max(FARM_MIN_GAIN, FARM_MULT * med) or tot14 <= 0 or g < FARM_SHARE * tot14: continue
+        if pushed and abs((pushed - d).days) <= FARM_PUSH_DAYS: continue
+        ev = {"date": d.isoformat(), "gain": g, "median": med, "share_14d_pct": round(100 * g / tot14)}
+        if not best or g > best["gain"]: best = ev
+    return best
+
 def scope(catalog):
     seen, rows = set(), []
     for r in catalog["repos"]:
@@ -168,8 +206,10 @@ def apply_trends(catalog, series):
         t7 = st - value_at(pts, TODAY - timedelta(days=7)); t30 = st - value_at(pts, TODAY - timedelta(days=30))
         r["trend_7d"], r["trend_30d"] = t7, t30
         r["trend_7d_pct"] = round(100 * t7 / (st - t7), 2) if st - t7 > 0 else None
-        fl = [f for f in (r.get("flags") or []) if f != "star-spike"]
+        fl = [f for f in (r.get("flags") or []) if f not in ("star-spike", "star-farming", "star-anomaly")]
         if t7 > max(500, 0.2 * st): fl.append("star-spike")
+        ev = farming(pts, r.get("pushed_at")); r.pop("star_farming", None)
+        if ev: fl.append("star-farming"); r["star_farming"] = ev
         r["flags"] = fl; n += 1
     return n
 
@@ -181,6 +221,12 @@ def main():
     rows = scope(catalog)
     state = jload(HIST / "_state.json", {"cursor": 0, "runs": 0})
     series = jload(HIST / "series.json", {})
+    for r in rows:   # renamed repo: carry the series over from the old name until it is refreshed
+        if r["repo"] not in series:
+            for al in r.get("aliases") or []:
+                if al in series: series[r["repo"]] = series[al]; break
+    keep = {r["repo"] for r in rows}
+    for k in [k for k in series if k not in keep]: del series[k]
     cur = state.get("cursor", 0) % max(1, len(rows))
     order = rows[cur:] + rows[:cur]
     client = Client(load_token(), budget)
@@ -212,6 +258,11 @@ def main():
     state["last_run"] = NOW.isoformat(timespec="seconds"); state["stop"] = client.stop
     jsave(HIST / "_state.json", state); jsave(HIST / "series.json", series); write_shards(series)
     n = apply_trends(catalog, series)
+    if isinstance(catalog.get("counts"), dict):
+        fc = {}
+        for r in catalog["repos"]:
+            for f in r.get("flags") or []: fc[f] = fc.get(f, 0) + 1
+        catalog["counts"]["flags"] = fc
     cpath.write_text(json.dumps(catalog, indent=1), encoding="utf-8")
     big = sorted(mism.items(), key=lambda kv: -abs(kv[1][0]))[:3]
     print(f"calls {client.calls}; refreshed {len(results)}; series {len(series)}; trends written {n}; "

@@ -4,50 +4,52 @@ Constraint for every item: **zero monetary cost** (free GitHub API, Actions, Pag
 
 ## v3 — next
 
+Status: A1, B2, B3, C4, C5, C7, D8, D9 and E are implemented (marked DONE). C6 is still open.
+
 Priority order: B2 → A1 → B3 → C4 → C7 → C5, with D8 and D9 bundled in. UI/UX items (E) are prioritized separately below; E2 and E9 are bugs and go first.
 
 ### A. Catalog scope
 
-**A1. Standalone MCP servers** — effort M
+**A1. Standalone MCP servers** — effort M — DONE
 - Source: official MCP Registry (`GET https://registry.modelcontextprotocol.io/v0/servers`, public, paginated with `cursor`, incremental with `updated_since`).
 - Same tiers, classification and trends as the rest of the catalog. Plugins that bundle MCP are already covered.
-- Open decision: inclusion threshold (the registry holds tens of thousands of servers; namespace ownership is verified, quality is not).
+- Decided inclusion rule (applied in `catalog.py` after enrichment, since it needs stars): a registry server is included only if it has a GitHub repository AND (its repo reaches tier verified or higher, OR has >= 10 stars, OR the repo is already in the catalog for another reason). Remote-only servers (no repo) are excluded. Counts of excluded servers are logged in `data/report.md`. Watch-tier records are hidden by default on the site.
 - Install hint: `claude mcp add ...` for remote (HTTP) and local (stdio: npx/uvx/docker) servers.
 
 ### B. Trust and security
 
-**B2. Static security scan per extension** — impact H, effort M
+**B2. Static security scan per extension** — impact H, effort M — DONE
 - Free, rule-based scan of SKILL.md, agent files, hooks, commands and bundled scripts.
 - Risk patterns: destructive commands, `curl | sh` style remote execution, data exfiltration to external hosts, credential access, hidden prompt-injection instructions, obfuscated code.
 - Output: a `security` flag with findings and evidence, shown as a warning badge and weighted in the Claude Code skill ranking.
 - Content scanned is untrusted data: never executed.
 
-**B3. Star-farming detection from history** — effort S
+**B3. Star-farming detection from history** — effort S — DONE
 - Use the daily star series: flag sudden single-day jumps with no matching repo activity (pushes, issues, forks).
 - Replaces the coarse age-based `star-anomaly` heuristic.
 
 ### C. Catalog usefulness
 
-**C4. Runnable install commands for everything** — effort S
+**C4. Runnable install commands for everything** — effort S — DONE
 - Replace "copy skills from owner/repo" hints with an executable command (e.g. clone into `.claude/skills/`).
 
-**C5. Deduplicate renamed repos** — effort S
+**C5. Deduplicate renamed repos** — effort S — DONE
 - Key repos by GitHub node id; merge entries like the two `Understand-Anything` records.
 
 **C6. Comparison view** — effort M
 - Side-by-side comparison of 2–4 extensions before choosing.
 
-**C7. Taxonomy-aware Claude Code skill** — effort S
+**C7. Taxonomy-aware Claude Code skill** — effort S — DONE
 - `search.py` filters by technology/area/tier, e.g. "testing for React, verified or better".
 
 ### D. Maintenance
 
-**D8. Control repo growth** — effort S
+**D8. Control repo growth** — effort S — DONE
 - Stop committing data that only the site needs (`site/history/`, `site/catalog.js`); build it in the workflow and ship it only to Pages.
 
-**D9. Apply sort from URL hash on load** — effort trivial
+**D9. Apply sort from URL hash on load** — effort trivial — DONE
 
-### E. UI/UX
+### E. UI/UX (all DONE)
 
 Source: UX critique of the live v2 site (2026-10-03), full detail in [docs/ux-critique-v2.md](docs/ux-critique-v2.md). None of these revert the decided layout (table default, cards alternative, no description/install in summary rows).
 

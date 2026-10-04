@@ -101,6 +101,7 @@ def fetch_readmes(repos, token, offline, refresh):
         if (i // B) % 10 == 0:
             print(f"  readmes {min(i + B, len(need))}/{len(need)}", flush=True)
             CACHE.mkdir(exist_ok=True); README_CACHE.write_text(json.dumps(cache), encoding="utf-8")
+    keep = {r["repo"] for r in repos}; cache = {k: v for k, v in cache.items() if k in keep}  # prune README cache of records no longer in the catalog
     CACHE.mkdir(exist_ok=True); README_CACHE.write_text(json.dumps(cache), encoding="utf-8")
     return cache, time.time() - t0
 

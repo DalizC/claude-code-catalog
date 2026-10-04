@@ -14,7 +14,11 @@ SRC = ROOT / "data" / "catalog.json"
 CLS = ROOT / "data" / "classifications.json"
 TAX = ROOT / "taxonomy.json"
 OUT = ROOT / "site" / "catalog.js"
-DESC, ITEM_DESC, HINT, MAX_ITEMS = 280, 160, 240, 40
+DESC, ITEM_DESC, HINT, MAX_ITEMS = 280, 160, 600, 40
+SEC_FINDINGS, SEC_EXCERPT = 12, 160
+# Standalone MCP servers (type mcp-server only) are ~85% of the records, so they are slimmed: shorter descriptions and hints,
+# at most 3 tier reasons, and the single item drops its name/type when they equal the record's (the page falls back to them).
+MCP_DESC, MCP_HINT, MCP_TX = 140, 240, 3
 
 
 def cut(s, n):
@@ -22,6 +26,36 @@ def cut(s, n):
         return ""
     s = " ".join(s.split())
     return s if len(s) <= n else s[: n - 1].rstrip() + "…"
+
+
+def cut_hint(s, n):
+    """Like cut(), but keeps line breaks: a hint may be a multi-step, runnable command."""
+    if not isinstance(s, str):
+        return ""
+    lines = [" ".join(x.split()) for x in s.splitlines()]
+    s = chr(10).join(x for x in lines if x)
+    return s if len(s) <= n else s[: n - 1].rstrip() + "…"
+
+
+def fallback_tags(c, group):
+    ev = ((c.get("evidence") or {}).get(group) or {}) if isinstance(c, dict) else {}
+    out = [t for t, e in ev.items() if isinstance(e, dict) and e.get("method") == "fallback"]
+    return [] if out == ["general-purpose"] else out  # the page always treats "general-purpose" as a fallback tag
+
+
+def security(v):
+    """Slim the optional security scan result: {"level", "findings": [...], "scanned_at"}."""
+    if not isinstance(v, dict) or v.get("level") not in ("ok", "review", "high"):
+        return None
+    out = []
+    for f in (v.get("findings") or [])[:SEC_FINDINGS]:
+        if not isinstance(f, dict):
+            continue
+        o = {"r": cut(f.get("rule"), 60), "s": cut(f.get("severity"), 12), "p": cut(f.get("file"), 120),
+             "l": num(f.get("line")), "x": cut(f.get("excerpt"), SEC_EXCERPT)}
+        out.append({k: x for k, x in o.items() if x not in (None, "")})
+    o = {"lv": v["level"], "n": len(v.get("findings") or []), "f": out, "at": (v.get("scanned_at") or "")[:10]}
+    return {k: x for k, x in o.items() if x not in (None, "", [])}
 
 
 def num(v):
@@ -55,7 +89,8 @@ def tree(nodes):
 
 
 def slim(r, cls):
-    desc = cut(r.get("description"), DESC)
+    mcp = r.get("types") == ["mcp-server"]
+    desc = cut(r.get("description"), MCP_DESC if mcp else DESC)
     items = []
     for it in (r.get("items") or [])[:MAX_ITEMS]:
         if not isinstance(it, dict):
@@ -63,7 +98,12 @@ def slim(r, cls):
         d = cut(it.get("description"), ITEM_DESC)
         o = {"n": cut(it.get("name"), 80), "t": it.get("type") or "",
              "d": "" if d == cut(r.get("description"), ITEM_DESC) else d,
-             "i": cut(it.get("install_hint"), HINT)}
+             "i": cut_hint(it.get("install_hint"), MCP_HINT if mcp else HINT)}
+        if mcp:
+            if len(r.get("items") or []) == 1:
+                o["d"] = ""
+                if o["n"] == cut(r.get("name"), 80): o["n"] = ""
+            o["t"] = ""
         items.append({k: v for k, v in o.items() if v})
     rid, key = r.get("id") or r.get("repo") or "", r.get("repo") or ""
     c = cls.get(rid) or cls.get(key) or {}
@@ -81,7 +121,7 @@ def slim(r, cls):
         "l": r.get("license"),
         "a": 1 if r.get("archived") else 0,
         "tr": r.get("tier") or "watch",
-        "tx": [cut(x, 160) for x in (r.get("tier_reasons") or [])][:6],
+        "tx": [cut(x, 100 if mcp else 160) for x in (r.get("tier_reasons") or [])][:MCP_TX if mcp else 6],
         "fl": ids(r.get("flags")),
         "src": sorted({s.split(":")[0] if s.startswith("search:") else s
                        for s in (r.get("sources") or []) if isinstance(s, str)}),
@@ -92,12 +132,16 @@ def slim(r, cls):
         "tg": ids(c.get("technologies")),
         "ar": ids(c.get("areas")),
         "cm": METHOD.get(c.get("method")),
+        "tgf": fallback_tags(c, "technologies"),
+        "arf": fallback_tags(c, "areas"),
+        "al": [cut(a, 120) for a in ids(r.get("aliases"))][:8],
+        "sec": security(r.get("security")),
     }
     # omitted u = https://github.com/{r}; omitted t7/t30 = no trend data (shown as "—")
     return {k: v for k, v in o.items() if v not in (None, [], "", 0) or k in ("s", "r", "n", "tr") or (k in ("t7", "t30") and v == 0)}
 
 
-METHOD = {"rules": "r", "embedding": "e", "embedding+rules": "er"}
+METHOD = {"rules": "r", "embedding": "e", "embedding+rules": "er", "fallback": "f"}
 
 
 def intern(repos, key):

@@ -17,16 +17,16 @@
 <link rel="stylesheet" href="app.css">
 </head>
 <body data-view="table">
-<a class="sr" href="#results">Skip to results</a>
+<nav class="skip" aria-label="Skip links"><a href="#q" data-act="skip">Skip to search</a><a href="#results" data-act="skip">Skip to results</a><a href="#side" data-act="skip">Skip to filters</a></nav>
 <div class="app">
-  <aside class="side" id="side" aria-label="Filters"></aside>
+  <aside class="side" id="side" aria-label="Filters" tabindex="-1"></aside>
   <main class="main">
     <header class="top" id="top">
       <button class="btn icon only-narrow" type="button" data-act="drawer" aria-label="Show filters" aria-controls="side" aria-expanded="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button>
       <div class="search" role="search">
         <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m20 20-4.2-4.2"/><circle cx="11" cy="11" r="6.5"/></svg>
         <label class="sr" for="q">Search extensions</label>
-        <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search names, descriptions, tags" aria-keyshortcuts="/">
+        <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search extensions" title="Searches names, descriptions, tags and items" aria-keyshortcuts="/">
         <kbd aria-hidden="true">/</kbd>
       </div>
       <span class="count" id="count" aria-live="polite"></span>
@@ -38,20 +38,21 @@
       <label class="sel"><span class="t">Sort</span><select id="sort"></select></label>
       <button class="btn icon" type="button" id="theme" data-act="theme" aria-label="Toggle dark mode"></button>
     </header>
+    <div id="presets" class="presets" role="group" aria-label="Quick views"></div>
     <div id="chips" class="chips" aria-label="Active filters"></div>
+    <div id="assist" class="assist" aria-live="polite"></div>
     <div id="results" tabindex="-1">
       <div class="tablewrap" id="tableview">
         <table class="grid" aria-label="Extensions" aria-describedby="count">
-          <colgroup><col style="width:40px"><col style="width:236px"><col style="width:98px"><col style="width:124px"><col><col style="width:72px"><col style="width:150px"><col style="width:140px"></colgroup>
           <thead><tr>
-            <th scope="col"><span class="sr">Details</span></th>
-            <th scope="col" data-col="name"></th>
-            <th scope="col" data-col="tier"></th>
-            <th scope="col" data-col="type"></th>
-            <th scope="col">Technologies · Areas</th>
-            <th scope="col" class="r" data-col="stars"></th>
-            <th scope="col" class="r" data-col="trend"></th>
-            <th scope="col" data-col="pushed"></th>
+            <th scope="col" class="c-exp"><span class="sr">Details</span></th>
+            <th scope="col" class="c-name" data-col="name"></th>
+            <th scope="col" class="c-tier" data-col="tier"></th>
+            <th scope="col" class="c-type" data-col="type"></th>
+            <th scope="col" class="c-tags">Areas · Technologies</th>
+            <th scope="col" class="c-stars r" data-col="stars"></th>
+            <th scope="col" class="c-trend r" data-col="trend"></th>
+            <th scope="col" class="c-act" data-col="pushed"></th>
           </tr></thead>
           <tbody id="tbody"></tbody>
         </table>

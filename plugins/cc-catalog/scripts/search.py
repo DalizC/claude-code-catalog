@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 """Search the Claude Code extensions catalog (data/catalog.json). Stdlib only.
 
-  search.py "<need>" [--type skill|plugin|agent] [--tier-min verified] [--limit 15] [--json]
+  search.py "<need>" [--type skill|plugin|agent|mcp-server] [--tier-min watch|verified|...] [--limit 15] [--json]
+            [--tech <id|label>]... [--area <id|label>]...
+  search.py --tech react --area testing        (facets alone, no text query, ranked by quality)
   search.py --trending [--limit 20]
   search.py --new --days 14
-  search.py --info owner/repo
+  (the Watch tier is excluded unless --tier-min watch is given)
+  search.py --info owner/repo        (or an id such as mcp:io.github.owner/server)
+  search.py "browser automation" --type mcp-server   (standalone MCP servers from the official MCP Registry)
 """
 import argparse
 import json
@@ -24,6 +28,8 @@ OWNER = "DalizC"
 REPO = "claude-code-catalog"
 # --------------------------------------------------------------------------
 REMOTE_URL = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/data/catalog.json"
+REMOTE_CLASS_URL = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/data/classifications.json"
+REMOTE_TAXO_URL = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/taxonomy.json"
 CACHE_TTL = 24 * 3600
 TIER_RANK = {"watch": 0, "verified": 1, "listed": 2, "official": 3, "anthropic": 4}
 TIER_WEIGHT = {"watch": 0.0, "verified": 0.15, "listed": 0.3, "official": 0.45, "anthropic": 0.6}
@@ -141,6 +147,72 @@ def load_catalog():
     return d.get("repos", []), d, path
 
 
+def cached_json(url, name, local=None):
+    """Local file if given and present, else the remote URL cached in the temp dir like the catalog. None on failure."""
+    if local and Path(local).is_file():
+        path = Path(local)
+    else:
+        path = Path(tempfile.gettempdir()) / name
+        if not path.is_file() or time.time() - path.stat().st_mtime > CACHE_TTL:
+            try:
+                req = urllib.request.Request(url, headers={"User-Agent": "cc-catalog-search"})
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    path.write_bytes(r.read())
+            except Exception as e:  # noqa: BLE001
+                if not path.is_file():
+                    print(f"warning: cannot load {url}: {e}", file=sys.stderr)
+                    return None
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return None
+
+
+def load_facets(catalog_path):
+    """(classifications {record id: {technologies, areas}}, taxonomy {technologies: [...], areas: [...]})"""
+    base = Path(catalog_path).parent
+    root = Path(__file__).resolve().parent.parent.parent.parent
+    cls = cached_json(REMOTE_CLASS_URL, "cc-catalog-classifications-cache.json", base / "classifications.json")
+    tax = cached_json(REMOTE_TAXO_URL, "cc-catalog-taxonomy-cache.json", root / "taxonomy.json")
+    return cls or {}, tax or {}
+
+
+def taxonomy_index(nodes):
+    """id -> {"label", "ids": {id and all descendant ids}} for a taxonomy tree (list of nodes with children)."""
+    idx = {}
+
+    def walk(n):
+        ids = {n["id"]}
+        for c in n.get("children") or []:
+            ids |= walk(c)
+        idx[n["id"]] = {"label": n.get("label", n["id"]), "ids": ids}
+        return ids
+
+    for n in nodes or []:
+        walk(n)
+    return idx
+
+
+def resolve_facet(values, idx, classes, field, kind):
+    """Selected tag ids (nodes plus descendants) for repeated --tech/--area values, matched on id or label,
+    case-insensitively. Unknown values exit with the valid ids."""
+    if not idx:  # taxonomy unavailable: fall back to the tag ids seen in the classifications
+        seen = {t for c in classes.values() for t in c.get(field, [])}
+        idx = {t: {"label": t, "ids": {t}} for t in seen}
+    out = set()
+    for v in values:
+        key = v.strip().lower()
+        hit = [i for i, n in idx.items() if i.lower() == key or n["label"].lower() == key]
+        if not hit:
+            hit = [i for i, n in idx.items() if key in n["label"].lower()]
+        if not hit:
+            sys.exit(f"unknown {kind} '{v}'. Valid: " + ", ".join(sorted(idx)))
+        for i in hit:
+            out |= idx[i]["ids"]
+    return out
+
+
 # ---------------------------------------------------------------- scoring
 def rel_score(repo, groups):
     if not groups:
@@ -179,7 +251,12 @@ def quality(repo):
             q -= 0.4
     flags = repo.get("flags") or []
     if "star-anomaly" in flags: q -= 0.8
+    if "star-farming" in flags: q -= 0.8
     if "star-spike" in flags: q -= 0.4
+    sec = repo.get("security")
+    lvl = sec.get("level") if isinstance(sec, dict) else sec
+    if lvl == "high": q -= 1.0
+    elif lvl == "review": q -= 0.5
     if repo.get("archived"): q -= 1.0
     return q
 
@@ -226,9 +303,13 @@ def short(s, n):
 
 def print_repo(i, r, groups=None, detail=False):
     flags = ",".join(r.get("flags") or []) or "-"
+    sec = r.get("security")
+    lvl = sec.get("level") if isinstance(sec, dict) else sec
+    if lvl in ("review", "high"):
+        flags = f"security:{lvl}" if flags == "-" else f"security:{lvl}," + flags
     if r.get("archived"):
         flags = "archived," + flags if flags != "-" else "archived"
-    print(f"{i}. {r['id'] if r.get('container') else r['repo']} [{TIER_LABEL.get(r.get('tier'), r.get('tier'))}] {r.get('type')} | {r.get('stars') if r.get('stars') is not None else '?'} stars | trend {fmt_trend(r)} "
+    print(f"{i}. {r['id'] if r.get('container') or not r.get('repo') else r['repo']} [{TIER_LABEL.get(r.get('tier'), r.get('tier'))}] {r.get('type')} | {r.get('stars') if r.get('stars') is not None else '?'} stars | trend {fmt_trend(r)} "
           f"| pushed {fmt_push(r)} | {r.get('license') or 'no-license'} | flags: {flags}")
     print(f"   {short(r.get('description'), 160)}")
     print(f"   {r.get('url')}")
@@ -249,9 +330,11 @@ def header(meta, path, n=None):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("query", nargs="?", default="")
-    ap.add_argument("--type", choices=["skill", "plugin", "agent", "marketplace"])
+    ap.add_argument("--type", choices=["skill", "plugin", "agent", "marketplace", "mcp-server"])
     ap.add_argument("--tier-min", choices=list(TIER_RANK), default=None)
     ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--tech", action="append", default=[], metavar="ID", help="technology id or label (repeatable, any of; includes child technologies)")
+    ap.add_argument("--area", action="append", default=[], metavar="ID", help="area id or label (repeatable, any of; includes child areas)")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--trending", action="store_true")
     ap.add_argument("--new", action="store_true")
@@ -262,11 +345,27 @@ def main():
         sys.stdout.reconfigure(encoding="utf-8")
 
     repos, meta, path = load_catalog()
+    tech_ids = area_ids = None
+    classes = {}
+    if a.tech or a.area:
+        classes, tax = load_facets(path)
+        if not classes:
+            sys.exit("classifications unavailable; cannot apply --tech/--area")
+        if a.tech:
+            tech_ids = resolve_facet(a.tech, taxonomy_index(tax.get("technologies")), classes, "technologies", "technology")
+        if a.area:
+            area_ids = resolve_facet(a.area, taxonomy_index(tax.get("areas")), classes, "areas", "area")
 
     def keep(r):
+        if tech_ids is not None or area_ids is not None:
+            c = classes.get(r.get("id")) or {}
+            if tech_ids is not None and not tech_ids & set(c.get("technologies") or []):
+                return False
+            if area_ids is not None and not area_ids & set(c.get("areas") or []):
+                return False
         if a.type and a.type not in (r.get("types") or [r.get("type")]) and r.get("type") != a.type:
             return False
-        if a.tier_min and TIER_RANK.get(r.get("tier"), 0) < TIER_RANK[a.tier_min]:
+        if TIER_RANK.get(r.get("tier"), 0) < TIER_RANK[a.tier_min or "verified"]:  # watch is excluded unless --tier-min watch
             return False
         return True
 
@@ -293,7 +392,7 @@ def main():
         note = ""
         if have:
             res = sorted(have, key=lambda r: -((r.get("trend_7d") or 0) * 4 + (r.get("trend_30d") or 0)))
-            res = [r for r in res if not r.get("archived") and "star-anomaly" not in (r.get("flags") or [])]
+            res = [r for r in res if not r.get("archived") and not {"star-anomaly", "star-farming"} & set(r.get("flags") or [])]
         else:
             note = "no trend data in catalog yet; showing recently pushed, non-flagged repos by tier and stars"
             res = [r for r in pool if not r.get("archived") and not (r.get("flags") or [])
@@ -313,7 +412,7 @@ def main():
             d = days_since(r.get("first_seen"))
             return d if d is not None else days_since(r.get("created_at"))
         res = [r for r in pool if (first(r) is not None and first(r) <= a.days)
-               and not r.get("archived") and "star-anomaly" not in (r.get("flags") or [])]
+               and not r.get("archived") and not {"star-anomaly", "star-farming"} & set(r.get("flags") or [])]
         res.sort(key=lambda r: (-TIER_RANK.get(r.get("tier"), 0), -(r.get("stars") or 0)))
         res = res[:limit]
         if a.json:
@@ -323,12 +422,16 @@ def main():
         for i, r in enumerate(res, 1): print_repo(i, r, [])
         return
 
-    if not a.query.strip():
-        ap.error("query required (or --trending / --new / --info)")
-    groups = query_groups(a.query)
-    if not groups:
+    facets_only = not a.query.strip() and bool(a.tech or a.area)
+    if not a.query.strip() and not facets_only:
+        ap.error("query required (or --tech/--area / --trending / --new / --info)")
+    groups = [] if facets_only else query_groups(a.query)
+    if not groups and not facets_only:
         sys.exit("query has no searchable terms")
-    scored = [(final_score(r, groups), r) for r in pool]
+    if facets_only:  # no text to match: rank by catalog quality
+        scored = [(1.0 + max(quality(r), -0.9), r) for r in pool]
+    else:
+        scored = [(final_score(r, groups), r) for r in pool]
     scored = [x for x in scored if x[0] > 0]
     scored.sort(key=lambda x: -x[0])
     res = [r for _, r in scored[: a.limit or 15]]
