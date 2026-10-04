@@ -2,6 +2,7 @@
 """Star-history from GitHub's GET /repos/{o}/{r}/stargazers/history. stdlib only, free API only.
 
 Usage: python history.py [--budget N]      (default 4500 API calls per run)
+       python history.py --shards-only       (rebuild site/history shards from data/history/series.json, no network)
 
 The endpoint returns weekly buckets, newest first: [{"week": unix_ts_of_sunday_utc, "total": N,
 "days": [d0..d6]}] where total/days are NEW stars (d0 = Sunday). Page size is fixed at 30 weeks
@@ -214,6 +215,8 @@ def apply_trends(catalog, series):
     return n
 
 def main():
+    if "--shards-only" in sys.argv:
+        write_shards(jload(HIST / "series.json", {})); return
     budget = int(sys.argv[sys.argv.index("--budget") + 1]) if "--budget" in sys.argv else 4500
     cpath = ROOT / "data" / "catalog.json"
     catalog = jload(cpath, None)

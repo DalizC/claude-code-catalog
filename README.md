@@ -50,7 +50,9 @@ Token: set `GITHUB_TOKEN` or put it in `.env` (`GITHUB_TOKEN=...` or a bare toke
 Outputs: `data/catalog.json`, `data/report.md`, `data/snapshots/YYYY-MM-DD.json` ({repo: stars}, used for trends).
 
 ## Pipeline
-`catalog.py` -> `classify.py` -> `history.py` -> `build_site.py` -> commit `data/` + `site/` -> deploy to Pages. `classify` and `history` run with `continue-on-error`, so a failure in either never blocks publishing the catalog (the previous outputs are kept).
+Two workflows:
+- `update.yml` (daily cron, or manual): `catalog.py` -> `classify.py` -> `history.py` -> `security.py` -> `build_site.py` -> commit `data/` -> deploy to Pages. `classify`, `history` and `security` run with `continue-on-error`, so a failure in any of them never blocks publishing the catalog (the previous outputs are kept).
+- `deploy-site.yml` (on push touching `site/**`, `build_site.py` or `favorites.json`): rebuilds the page from the committed data (`history.py --shards-only` + `build_site.py`) and deploys it in about a minute, with no data collection.
 - `classify.py`: rules plus local fastembed (ONNX) embeddings; README cache in `cache/readmes.json`; output `data/classifications.json`. Model cache dir is `FASTEMBED_CACHE_PATH`.
 - `history.py --budget N`: star-history backfill (default 1500 API calls per run), resumable via `data/history/_state.json`; writes `data/history/` and `site/history/`.
 - `taxonomy.json` is user-owned. Editing it changes its version and triggers reclassification on the next run.

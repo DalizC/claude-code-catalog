@@ -1,0 +1,53 @@
+name: Deploy site
+
+# Site-only deploy: rebuilds the page from the committed data (no network collection)
+# whenever the page, its builder or favorites change. The full pipeline stays in update.yml.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "build_site.py"
+      - "favorites.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rebuild history shards from committed series
+        run: python history.py --shards-only
+
+      - name: Build site
+        run: python build_site.py
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
