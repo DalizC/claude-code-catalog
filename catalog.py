@@ -14,6 +14,29 @@ OFFLINE = "--offline" in sys.argv  # cache-only: no network, ignore TTL, reuse r
 CACHE_TTL_H = float(os.environ.get("CATALOG_CACHE_TTL_HOURS", "20"))  # cached HTTP responses older than this are refetched
 NOW = datetime.now(timezone.utc)
 
+# Resilience. A partial upstream failure must never shrink or degrade the published catalog: transient errors are retried
+# with exponential backoff, and whatever still fails falls back to the previous data/catalog.json (read before it is overwritten).
+DELAYS = (2, 4, 8, 16)                                              # backoff between retries of 5xx / network errors (seconds)
+RETRY_SCALE = float(os.environ.get("CATALOG_RETRY_SCALE", "1"))     # test only: scales every backoff sleep
+GQL_PACE = float(os.environ.get("CATALOG_GQL_PACE", "1.0"))         # seconds between GraphQL queries (secondary rate limit)
+GQL_403_SLEEP = float(os.environ.get("CATALOG_GQL_403_SLEEP", "60"))  # wait after a 403 without Retry-After
+# CATALOG_FAULT (testing only): comma list of kind@n that inject failures.
+#   registry500@N   registry page N (1-based) always answers HTTP 500          registry500t@N  only its first attempt does
+#   gql403@K        the K-th GraphQL query always answers 403 (secondary rate limit)   gql403t@K  only its first attempt does
+FAULTS = {}
+for _f in os.environ.get("CATALOG_FAULT", "").split(","):
+    _k, _, _n = _f.strip().partition("@")
+    if _k and _n.isdigit(): FAULTS.setdefault(_k, set()).add(int(_n))
+RETRIES = {"http": 0}
+
+def load_prev():
+    try:
+        j = json.loads((ROOT / "data" / "catalog.json").read_text(encoding="utf-8"))
+        return [e for e in (j["repos"] if isinstance(j, dict) else j) if isinstance(e, dict)]
+    except Exception: return []
+PREV = load_prev()   # the last published catalog, read before this run overwrites it
+STALE = set()        # repos whose metadata was reused from PREV because enrichment failed
+
 def load_token():
     t = os.environ.get("GITHUB_TOKEN")
     if t: return t.strip()
@@ -31,10 +54,17 @@ CALLS = {"core": 0, "search": 0}
 ERRORS = []; RATE = {}; STATE = {"search_last": 0.0, "rl_stop": False}
 CACHE.mkdir(exist_ok=True)
 
+def _inject(url, attempt):
+    """CATALOG_FAULT hook (testing): HTTP status to simulate for this request, or 0."""
+    if url.startswith(MCP_REG):
+        pg = STATE.get("reg_page")
+        if pg in FAULTS.get("registry500", ()) or (pg in FAULTS.get("registry500t", ()) and attempt == 0): return 500
+    return 0
+
 def http_get(url, api=False, search=False):
-    """Returns (status, body_text). Caches 200/404 bodies keyed by URL."""
+    """Returns (status, body_text). Caches 200/404 bodies keyed by URL. Retries 5xx and network errors with backoff."""
     key = CACHE / (hashlib.sha1(url.encode()).hexdigest() + ".json")
-    if key.exists() and not REFRESH and (OFFLINE or (time.time() - key.stat().st_mtime) < CACHE_TTL_H * 3600):
+    if key.exists() and not REFRESH and not _inject(url, 0) and (OFFLINE or (time.time() - key.stat().st_mtime) < CACHE_TTL_H * 3600):
         c = json.loads(key.read_text(encoding="utf-8"))
         return c["status"], c["body"]
     if OFFLINE: return 0, ""
@@ -47,16 +77,25 @@ def http_get(url, api=False, search=False):
         STATE["search_last"] = time.time()
     h = {"User-Agent": "cc-catalog-poc", "Accept": "application/vnd.github+json" if api else "*/*"}
     if TOKEN and api: h["Authorization"] = f"Bearer {TOKEN}"
-    status, body, hd = 0, "", None
-    if api: CALLS["search" if search else "core"] += 1
-    try:
-        with urllib.request.urlopen(urllib.request.Request(url, headers=h), timeout=30) as r:
-            status, body, hd = r.status, r.read().decode("utf-8", "replace"), r.headers
-    except urllib.error.HTTPError as e:
-        status, hd = e.code, e.headers
-        body = e.read().decode("utf-8", "replace")
-    except Exception as e:
-        ERRORS.append(f"{url}: {type(e).__name__} {e}"); return 0, ""
+    for attempt in range(len(DELAYS) + 1):
+        status, body, hd, err = 0, "", None, ""
+        if api: CALLS["search" if search else "core"] += 1
+        inj = _inject(url, attempt)
+        if inj: status, body = inj, "injected fault"
+        else:
+            try:
+                with urllib.request.urlopen(urllib.request.Request(url, headers=h), timeout=30) as r:
+                    status, body, hd = r.status, r.read().decode("utf-8", "replace"), r.headers
+            except urllib.error.HTTPError as e:
+                status, hd = e.code, e.headers
+                body = e.read().decode("utf-8", "replace")
+            except Exception as e:
+                err = f"{type(e).__name__} {e}"
+        if (status == 0 or status >= 500) and attempt < len(DELAYS):
+            RETRIES["http"] += 1; time.sleep(DELAYS[attempt] * RETRY_SCALE); continue
+        break
+    if status == 0 and err:
+        ERRORS.append(f"{url}: {err}"); return 0, ""
     if api and hd is not None:
         rem = hd.get("X-RateLimit-Remaining")
         if rem is not None:
@@ -297,7 +336,7 @@ def expand_marketplaces():
 # https://registry.modelcontextprotocol.io/v0/servers, public, no auth. `version=latest` makes the registry return only each
 # server's latest version; isLatest and status are still checked because the schema drifts between versions.
 MCP_REG = "https://registry.modelcontextprotocol.io/v0/servers"
-MCP_STATS = {"pages": 0, "fetched": 0, "kept": 0, "dropped": 0, "bad": 0, "complete": True, "excluded_remote_only": 0, "excluded_low_signal": 0}
+MCP_STATS = {"pages": 0, "fetched": 0, "kept": 0, "dropped": 0, "bad": 0, "complete": True, "excluded_remote_only": 0, "excluded_low_signal": 0, "fallback_merged": 0}
 _SAFE_ID = re.compile(r"[\w@./:+=~-]+")
 _SAFE_VER = re.compile(r"[\w.+~-]+")
 _SAFE_URL = re.compile(r"https?://[^\s'\"`$;&|<>\\{}^]+")
@@ -382,6 +421,7 @@ def src_mcp_registry():
     seen = {}; cursor = None
     for _ in range(3000):
         url = f"{MCP_REG}?limit=100&version=latest" + (f"&cursor={quote(cursor, safe='')}" if cursor else "")
+        STATE["reg_page"] = MCP_STATS["pages"] + 1
         s, b = http_get(url)
         if s != 200:
             MCP_STATS["complete"] = False; ERRORS.append(f"mcp registry: page {MCP_STATS['pages'] + 1} HTTP {s}"); break
@@ -408,8 +448,25 @@ def src_mcp_registry():
         hint = m["hint"] or f"# no runnable package or remote listed in the registry: see {url}"
         add(f"mcp:{m['name']}", short, "mcp-server", m["desc"], m["repo"], url, "mcp-registry", hint)
     MCP_STATS["kept"] = len(seen)
+    if not MCP_STATS["complete"]: merge_prev_mcp()
     print(f"mcp registry: {MCP_STATS['pages']} pages, {MCP_STATS['fetched']} entries, {len(seen)} latest+active servers, {MCP_STATS['dropped']} dropped, "
           f"{MCP_STATS['excluded_remote_only']} remote-only excluded")
+
+def merge_prev_mcp():
+    """Incomplete registry fetch: keep the MCP servers of the previous catalog that this run did not re-fetch."""
+    fresh = {(e["repo"], e["name"]) for e in ENTRIES.values() if e["type"] == "mcp-server"}
+    n = 0
+    for r in PREV:
+        repo = r.get("repo") or ""
+        if not repo or r.get("container") or "mcp-registry" not in (r.get("sources") or []): continue
+        for it in r.get("items") or []:
+            if it.get("type") != "mcp-server" or (repo, it.get("name")) in fresh: continue
+            eid = f"mcp:prev:{repo}:{it.get('name')}"
+            add(eid, it.get("name") or repo, "mcp-server", it.get("description"), repo, it.get("url") or f"https://github.com/{repo}",
+                "mcp-registry", it.get("install_hint") or "")
+            ENTRIES[eid]["prev"] = True; n += 1
+    MCP_STATS["fallback_merged"] = n
+    print(f"mcp registry INCOMPLETE: {n} servers of the previous catalog merged in")
 
 def filter_mcp():
     """Inclusion rule, applied after enrichment (it needs stars): a registry server is kept only when its GitHub repo is
@@ -422,7 +479,7 @@ def filter_mcp():
     attached = {r for r, es in others.items() if not mcp_only(r, es, (META.get(r) or {}).get("topics"))}
     drop = []
     for k, e in ENTRIES.items():
-        if e["type"] != "mcp-server" or e["sources"] != ["mcp-registry"]: continue
+        if e["type"] != "mcp-server" or e["sources"] != ["mcp-registry"] or e.get("prev"): continue  # prev: already passed the rule once
         r = canon(e["repo"])
         if r in attached: continue
         if tier(None, False, e["repo"], ["mcp-registry"])[0] != "watch" or ((META.get(e["repo"]) or {}).get("stars") or 0) >= 10: continue
@@ -434,23 +491,47 @@ def filter_mcp():
 # ---------- 4 enrichment (GraphQL, ~100 repos per query) ----------
 GQL_FIELDS = ("id nameWithOwner stargazerCount forkCount pushedAt createdAt licenseInfo{spdxId} isArchived owner{__typename} "
               "repositoryTopics(first:20){nodes{topic{name}}}")
-GQL = {"calls": 0, "cost": 0, "remaining": None, "limit": None, "stopped": False}
+GQL = {"calls": 0, "cost": 0, "remaining": None, "limit": None, "stopped": False, "queries": 0, "n403": 0, "secondary": 0, "retries": 0,
+       "failed": 0, "batch": 100}
 
 def gql(query):
+    """One GraphQL query. 5xx/network errors: 4 retries with 2/4/8/16s backoff. 403/429 (secondary rate limit): wait Retry-After
+    (else 60s) and retry up to 4 times, then give up (the caller falls back to the previous catalog's metadata)."""
+    GQL["queries"] += 1; qn = GQL["queries"]
     h = {"User-Agent": "cc-catalog", "Authorization": f"Bearer {TOKEN}", "Content-Type": "application/json"}
     data = json.dumps({"query": query}).encode()
-    for attempt in range(3):
-        try:
-            GQL["calls"] += 1
-            with urllib.request.urlopen(urllib.request.Request("https://api.github.com/graphql", data=data, headers=h), timeout=90) as r:
-                return json.loads(r.read().decode("utf-8", "replace"))
-        except urllib.error.HTTPError as e:
-            if e.code in (502, 503, 504) and attempt < 2:
-                time.sleep(3 * (attempt + 1)); continue
-            ERRORS.append(f"graphql: HTTP {e.code}"); return None
-        except Exception as e:
-            if attempt < 2: time.sleep(3); continue
-            ERRORS.append(f"graphql: {type(e).__name__} {e}"); return None
+    t403 = t5 = 0
+    while True:
+        GQL["calls"] += 1
+        status, body, hd = 0, "", {}
+        if qn in FAULTS.get("gql403", ()) or (qn in FAULTS.get("gql403t", ()) and t403 == 0):
+            status, body, hd = 403, "You have exceeded a secondary rate limit (injected fault)", {"Retry-After": "1"}
+        else:
+            try:
+                with urllib.request.urlopen(urllib.request.Request("https://api.github.com/graphql", data=data, headers=h), timeout=90) as r:
+                    return json.loads(r.read().decode("utf-8", "replace"))
+            except urllib.error.HTTPError as e:
+                status, hd, body = e.code, e.headers, e.read().decode("utf-8", "replace")
+            except Exception as e:
+                status, body = 0, f"{type(e).__name__} {e}"
+        if status in (403, 429):
+            GQL["n403"] += 1
+            ra = hd.get("Retry-After")
+            secondary = "secondary rate limit" in body.lower() or "abuse" in body.lower() or ra is not None
+            if secondary: GQL["secondary"] += 1
+            if hd.get("X-RateLimit-Remaining") == "0" and not secondary:
+                ERRORS.append("graphql: primary rate limit exhausted (HTTP %d)" % status); GQL["failed"] += 1; return None
+            GQL["batch"] = 50   # smaller batches after any 403
+            if t403 >= 4:
+                ERRORS.append(f"graphql: HTTP {status} {'secondary rate limit' if secondary else 'forbidden'} persisted after 4 retries"); GQL["failed"] += 1; return None
+            wait = min(float(ra), 300) if ra and str(ra).isdigit() else GQL_403_SLEEP
+            ERRORS.append(f"graphql: HTTP {status} {'secondary rate limit' if secondary else 'forbidden'}, waiting {wait:.0f}s (retry {t403 + 1}/4)")
+            t403 += 1; GQL["retries"] += 1; time.sleep(wait); continue
+        if status == 0 or status >= 500:
+            if t5 < len(DELAYS):
+                GQL["retries"] += 1; time.sleep(DELAYS[t5] * RETRY_SCALE); t5 += 1; continue
+            ERRORS.append(f"graphql: HTTP {status or 'network error'} after {len(DELAYS)} retries {body[:80]}"); GQL["failed"] += 1; return None
+        ERRORS.append(f"graphql: HTTP {status}"); GQL["failed"] += 1; return None
 
 def set_meta_gql(repo, n):
     META[repo] = {"stars": n.get("stargazerCount"), "forks": n.get("forkCount"), "pushed_at": n.get("pushedAt"),
@@ -458,6 +539,19 @@ def set_meta_gql(repo, n):
                   "archived": n.get("isArchived"), "owner_type": (n.get("owner") or {}).get("__typename"),
                   "topics": [x["topic"]["name"] for x in ((n.get("repositoryTopics") or {}).get("nodes") or [])],
                   "node_id": n.get("id"), "canonical": n.get("nameWithOwner")}
+
+def apply_stale(repos):
+    """Enrichment failed for these repos: reuse their metadata from the previous catalog (flagged meta_stale)."""
+    pm = {}
+    for e in PREV:
+        if e.get("repo") and not e.get("container") and e.get("stars") is not None:
+            m = {k: e.get(k) for k in ("stars", "forks", "pushed_at", "created_at", "license", "archived", "owner_type", "topics", "node_id")}
+            m["canonical"] = e["repo"]; m["meta_stale"] = True
+            for nm in [e["repo"]] + (e.get("aliases") or []): pm.setdefault(nm, m)
+    for r in repos:
+        m = META.get(r) or {}
+        if m.get("stars") is None and not m.get("not_found") and r in pm:
+            META[r] = dict(pm[r]); STALE.add(r)
 
 def enrich():
     prio = {}
@@ -477,6 +571,7 @@ def enrich():
         except Exception as ex: ERRORS.append(f"offline: cannot load previous catalog {ex}")
         return 0, 0
     if not TOKEN:
+        apply_stale(repos)
         miss = [r for r in repos if META.get(r, {}).get("stars") is None]
         print(f"enrichment SKIPPED (no token): {len(miss)} repos lack metadata"); return len(miss), 0
     done = 0
@@ -487,19 +582,21 @@ def enrich():
     fresh = {r for r in repos if r in gmeta and time.time() - gmeta[r]["t"] < CACHE_TTL_H * 3600}
     for r in fresh: META[r] = gmeta[r]["m"]; done += 1
     todo = [r for r in repos if r not in fresh]
-    print(f"graphql: {len(fresh)} repos from cache, {len(todo)} to fetch in {-(-len(todo) // 100)} queries")
+    print(f"graphql: {len(fresh)} repos from cache, {len(todo)} to fetch")
     repos_all, repos = repos, todo
-    for i in range(0, len(repos), 100):
-        if i and (i // 100) % 20 == 0:
-            gc.write_text(json.dumps(gmeta), encoding="utf-8"); print(f"graphql: {i}/{len(repos)}", flush=True)
+    pos = nq = 0
+    while pos < len(repos):
+        if nq and nq % 20 == 0:
+            gc.write_text(json.dumps(gmeta), encoding="utf-8"); print(f"graphql: {pos}/{len(repos)}", flush=True)
         if GQL["remaining"] is not None and GQL["remaining"] < 50:
             GQL["stopped"] = True; ERRORS.append("graphql: stopped, rateLimit nearly exhausted"); break
-        chunk = repos[i:i + 100]
+        if nq: time.sleep(GQL_PACE)   # ~1s between queries keeps clear of the secondary rate limit
+        chunk = repos[pos:pos + GQL["batch"]]; pos += len(chunk); nq += 1
         fields = "".join(f'r{j}:repository(owner:{json.dumps(r.split("/")[0])},name:{json.dumps(r.split("/")[1])}){{{GQL_FIELDS}}} '
                          for j, r in enumerate(chunk))
         d = gql("query{rateLimit{cost remaining limit} " + fields + "}")
         if not d or not d.get("data"):
-            ERRORS.append(f"graphql chunk {i}: no data {str((d or {}).get('errors'))[:200]}"); continue
+            ERRORS.append(f"graphql chunk {nq}: no data {str((d or {}).get('errors'))[:200]}"); continue
         rl = d["data"].get("rateLimit") or {}
         GQL["cost"] += rl.get("cost", 0); GQL["remaining"] = rl.get("remaining"); GQL["limit"] = rl.get("limit")
         for j, r in enumerate(chunk):
@@ -511,6 +608,7 @@ def enrich():
             else: META[r] = {"stars": None, "not_found": True}; gmeta[r] = {"t": time.time(), "m": META[r]}
     gc.write_text(json.dumps(gmeta), encoding="utf-8")
     repos = repos_all
+    apply_stale(repos)
     miss = [r for r in repos if META.get(r, {}).get("stars") is None]
     return len(miss), done
 
@@ -721,10 +819,17 @@ def build():
                     "owner_type": m.get("owner_type"), "topics": m.get("topics") or [], "tier": t, "tier_reasons": r,
                     **({"node_id": m["node_id"]} if m.get("node_id") and not item_level else {}),
                     **({"aliases": aliases} if aliases and not item_level else {}),
+                    **({"meta_stale": True} if m.get("meta_stale") and not item_level else {}),
                     "trend_7d": t7, "trend_30d": t30, "trend_7d_pct": pct, "flags": fl,
                     "first_seen": min([prev[x]["first_seen"] for x in [rid] + aliases if x in prev and prev[x].get("first_seen")] or [TODAY]),
                     **({"container": repo} if item_level else {})})
     return out, flat_tiers
+
+def degradation(out):
+    return {"registry_complete": MCP_STATS["complete"], "registry_pages": MCP_STATS["pages"], "registry_fetched": MCP_STATS["fetched"],
+            "mcp_fallback_merged": MCP_STATS["fallback_merged"], "graphql_403": GQL["n403"], "graphql_secondary": GQL["secondary"],
+            "graphql_retries": GQL["retries"], "graphql_failed_queries": GQL["failed"], "http_retries": RETRIES["http"],
+            "stale_metadata_repos": sum(1 for e in out if e.get("meta_stale")), "injected_faults": os.environ.get("CATALOG_FAULT", "")}
 
 def mcp_counts(out):
     """Registry stats. attached_existing = record also found by another source; new_repo = GitHub repo found only through the
@@ -748,7 +853,7 @@ def main():
     counts = {"repos": len(out), "items": sum(len(e["items"]) for e in out),
               "tiers": dict(Counter(e["tier"] for e in out)), "types": dict(Counter(e["type"] for e in out)),
               "item_types": dict(Counter(i["type"] for e in out for i in e["items"])),
-              "flags": dict(Counter(f for e in out for f in e["flags"])), "excluded_mcp": len(EXCLUDED_MCP), "mcp": mcp_counts(out),
+              "flags": dict(Counter(f for e in out for f in e["flags"])), "excluded_mcp": len(EXCLUDED_MCP), "mcp": mcp_counts(out), "degradation": degradation(out),
               "without_metadata": sum(1 for e in out if e["stars"] is None)}
     doc = {"generated_at": NOW.strftime("%Y-%m-%dT%H:%M:%SZ"), "schema": 1, "counts": counts, "repos": out}
     (DATA / "catalog.json").write_text(json.dumps(doc, indent=1), encoding="utf-8")
@@ -778,6 +883,12 @@ def report(out, flat, nmiss, ndone, secs):
           f"- reasons: {dict(Counter('repo not found' if META.get(e['repo'], {}).get('not_found') else ('no repo (non-github link)' if not e['repo'] else 'unfetched') for e in nf))}"]
     L += ["", f"## MCP-only repos excluded: {len(EXCLUDED_MCP)}"] + [f"- {x['repo']} *{x['stars']}* {x['topics']} - {x['description']}" for x in
           sorted(EXCLUDED_MCP, key=lambda x: -(x['stars'] or 0))[:15]]
+    dg = degradation(out)
+    L += ["", "## Degradation", f"- registry complete: {dg['registry_complete']} ({dg['registry_pages']} pages, {dg['registry_fetched']} entries)",
+          f"- MCP servers merged from the previous catalog (not re-fetched): {dg['mcp_fallback_merged']}",
+          f"- GraphQL 403s: {dg['graphql_403']} (secondary rate limit: {dg['graphql_secondary']}); retries: {dg['graphql_retries']}; queries that gave up: {dg['graphql_failed_queries']}",
+          f"- HTTP retries (5xx/network): {dg['http_retries']}",
+          f"- repos with stale metadata reused from the previous catalog (meta_stale): {dg['stale_metadata_repos']}"]
     mc = mcp_counts(out)
     L += ["", "## MCP Registry", f"- {json.dumps(mc)}"]
     tr = sorted([e for e in out if e["trend_7d"] is not None], key=lambda e: -e["trend_7d"])[:20]
