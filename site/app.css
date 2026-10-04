@@ -14,6 +14,7 @@
   --bad:oklch(0.5 0.17 25);
   --bad-bg:oklch(0.95 0.035 25);
   --mark:oklch(0.93 0.09 95);
+  --fav:oklch(0.62 0.15 75);
   --accent:oklch(0.47 0.085 200);
   --accent-ink:oklch(0.99 0 0);
   --accent-soft:oklch(0.94 0.03 200);
@@ -58,6 +59,7 @@
   --bad:oklch(0.78 0.13 25);
   --bad-bg:oklch(0.32 0.07 25);
   --mark:oklch(0.42 0.08 90);
+  --fav:oklch(0.82 0.14 85);
 
   --t-anthropic:oklch(0.82 0.1 55);  --t-anthropic-bg:oklch(0.3 0.05 50);
   --t-official:oklch(0.82 0.09 290); --t-official-bg:oklch(0.3 0.06 290);
@@ -91,6 +93,7 @@
   --bad:oklch(0.78 0.13 25);
   --bad-bg:oklch(0.32 0.07 25);
   --mark:oklch(0.42 0.08 90);
+  --fav:oklch(0.82 0.14 85);
 
   --t-anthropic:oklch(0.82 0.1 55);  --t-anthropic-bg:oklch(0.3 0.05 50);
   --t-official:oklch(0.82 0.09 290); --t-official-bg:oklch(0.3 0.06 290);
@@ -517,7 +520,7 @@ button.flag{cursor:pointer}
 .trend .tv span.u{min-width:0}
 
 /* table columns (fit the pane; never cut off) */
-th.c-exp{width:40px}
+th.c-exp{width:66px}
 th.c-name{width:250px}
 th.c-tier{width:104px}
 th.c-type{width:118px}
@@ -539,7 +542,7 @@ tr.emptyrow td{height:auto!important;white-space:normal!important}
   .act .lic{display:none}
 }
 @container main (max-width:859px){
-  th.c-exp{width:34px}
+  th.c-exp{width:60px}
   th.c-name{width:196px}
   th.c-tier{width:96px}
   th.c-type{width:48px}
@@ -663,3 +666,19 @@ table.grid thead th button.s-t30{display:inline-flex}
 .brand{white-space:nowrap}
 
 table.grid tr.r[data-view="hist"] td.tic{vertical-align:top;padding-top:10px}
+
+/* favorites */
+.ecs{display:flex;align-items:center;gap:2px}
+.fav{width:22px;height:24px;display:grid;place-items:center;border:0;border-radius:5px;background:none;color:var(--ink-3);cursor:pointer;padding:0;flex:none}
+.fav svg.i{width:15px;height:15px}
+.fav:hover{background:var(--line);color:var(--fav)}
+.fav[aria-pressed="true"]{color:var(--fav)}
+.fav[data-s="repo"] svg.i{fill:currentColor}
+.fav[data-s="local"] svg.i{fill:color-mix(in oklch,currentColor 28%,transparent);stroke-dasharray:2.4 1.8}
+.card .fav{width:26px;height:26px;margin-top:-2px}
+.favtools{padding:0 8px}
+.favstat{margin:4px 0 8px;font-size:12px;color:var(--ink-2)}
+.favbtns{display:flex;gap:6px;flex-wrap:wrap}
+.favtools .fnote{margin:8px 0 0}
+.pre svg.i{width:12px;height:12px;vertical-align:-1px;margin-right:4px;color:var(--fav)}
+.pre[aria-pressed="true"] svg.i{color:inherit}

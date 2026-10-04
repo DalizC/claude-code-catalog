@@ -2,6 +2,8 @@
 """Write site/catalog.js (window.CATALOG) from data/catalog.json, data/classifications.json
 and taxonomy.json. site/index.html, site/app.css and site/app.js are hand-written.
 
+favorites.json (repo root, tracked) is embedded as window.CATALOG.favorites, so it works over http and file://.
+
 Star history is NOT embedded: the page lazy-loads site/history/NN.json shards (written by
 history.py) with fetch(), so it only appears when the site is served over http:
     python -m http.server -d site      ->  http://localhost:8000
@@ -13,6 +15,7 @@ ROOT = pathlib.Path(__file__).resolve().parent
 SRC = ROOT / "data" / "catalog.json"
 CLS = ROOT / "data" / "classifications.json"
 TAX = ROOT / "taxonomy.json"
+FAV = ROOT / "favorites.json"
 OUT = ROOT / "site" / "catalog.js"
 DESC, ITEM_DESC, HINT, MAX_ITEMS = 280, 160, 600, 40
 SEC_FINDINGS, SEC_EXCERPT = 12, 160
@@ -75,6 +78,15 @@ def load(p, default):
         return json.loads(p.read_text(encoding="utf-8"))
     except Exception:
         return default
+
+
+def favorites(v):
+    """Slim favorites.json to {"version":1,"favorites":[{id, added, note}]}; anything malformed is dropped."""
+    out = []
+    for f in (v.get("favorites") if isinstance(v, dict) else None) or []:
+        if isinstance(f, dict) and isinstance(f.get("id"), str) and f["id"].strip():
+            out.append({"id": f["id"].strip()[:200], "added": cut(f.get("added"), 10), "note": cut(f.get("note"), 300)})
+    return {"version": 1, "favorites": out}
 
 
 def tree(nodes):
@@ -174,6 +186,7 @@ def main():
         "counts": meta.get("counts") or {},
         "taxonomy": {"placeholder": bool(tax.get("_placeholder")),
                      "technologies": tree(tax.get("technologies")), "areas": tree(tax.get("areas"))},
+        "favorites": favorites(load(FAV, {})),
         "history_shards": 16,
         "repos": [slim(r, cls) for r in repos],
     }

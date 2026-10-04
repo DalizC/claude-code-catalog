@@ -8,6 +8,8 @@
   search.py --new --days 14
   (the Watch tier is excluded unless --tier-min watch is given)
   search.py --info owner/repo        (or an id such as mcp:io.github.owner/server)
+  search.py --favorites ["<need>"]   (only favorites from favorites.json; favorites also get a small ranking boost and a star)
+  search.py --fav-add <id-or-repo> [--note "..."]   /   --fav-remove <id-or-repo>   (edit the LOCAL favorites.json; commit and push yourself)
   search.py "browser automation" --type mcp-server   (standalone MCP servers from the official MCP Registry)
 """
 import argparse
@@ -29,8 +31,13 @@ REPO = "claude-code-catalog"
 # --------------------------------------------------------------------------
 REMOTE_URL = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/data/catalog.json"
 REMOTE_CLASS_URL = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/data/classifications.json"
+REMOTE_FAV_URL = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/favorites.json"
 REMOTE_TAXO_URL = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main/taxonomy.json"
 CACHE_TTL = 24 * 3600
+ROOT = Path(__file__).resolve().parent.parent.parent.parent
+FAV_LOCAL = ROOT / "favorites.json"
+FAV_BOOST = 1.25  # multiplier on the relevance score of a favorite
+FAV_IDS = set()  # record ids of the favorites (filled in main)
 TIER_RANK = {"watch": 0, "verified": 1, "listed": 2, "official": 3, "anthropic": 4}
 TIER_WEIGHT = {"watch": 0.0, "verified": 0.15, "listed": 0.3, "official": 0.45, "anthropic": 0.6}
 TIER_LABEL = {"anthropic": "Anthropic", "official": "Official marketplace · 3rd-party",
@@ -213,6 +220,65 @@ def resolve_facet(values, idx, classes, field, kind):
     return out
 
 
+# ---------------------------------------------------------------- favorites
+def find_record(repos, ref):
+    """Catalog record for an id, repo name or alias (case-insensitive). Exits with candidates when ambiguous."""
+    want = ref.strip().strip("/").lower()
+    for key in (lambda r: (r.get("id") or "").lower(), lambda r: (r.get("repo") or "").lower(),
+                lambda r: [x.lower() for x in r.get("aliases") or []]):
+        hit = [r for r in repos if want == key(r) or (isinstance(key(r), list) and want in key(r))]
+        if len(hit) == 1:
+            return hit[0]
+        if len(hit) > 1:
+            sys.exit(f"'{ref}' is ambiguous; use one of these ids: " + ", ".join(r.get("id", "?") for r in hit[:10]))
+    return None
+
+
+def favorite_entries():
+    """Entries of favorites.json: the local file in a repo checkout, else the remote file cached like the catalog."""
+    d = cached_json(REMOTE_FAV_URL, "cc-catalog-favorites-cache.json", FAV_LOCAL)
+    out = d.get("favorites") if isinstance(d, dict) else None
+    return [f for f in out or [] if isinstance(f, dict) and isinstance(f.get("id"), str)]
+
+
+def favorite_ids(repos, entries):
+    ids = set()
+    for f in entries:
+        r = find_record(repos, f["id"])
+        if r:
+            ids.add(r.get("id"))
+    return ids
+
+
+def edit_favorites(repos, add=None, remove=None, note=""):
+    if not (ROOT / "build_site.py").is_file():
+        sys.exit(f"--fav-add/--fav-remove edit favorites.json in a repo checkout; {ROOT} is not one")
+    try:
+        data = json.loads(FAV_LOCAL.read_text(encoding="utf-8")) if FAV_LOCAL.is_file() else {}
+    except ValueError:
+        sys.exit(f"{FAV_LOCAL} is not valid JSON; fix it first")
+    favs = [f for f in (data.get("favorites") if isinstance(data, dict) else None) or [] if isinstance(f, dict) and isinstance(f.get("id"), str)]
+    ref = add or remove
+    rec = find_record(repos, ref)
+    if add:
+        if not rec:
+            sys.exit(f"not found in catalog: {ref} (use an id, owner/repo or a former repo name; see --info)")
+        if any((find_record(repos, f["id"]) or {}).get("id") == rec["id"] or f["id"] == rec["id"] for f in favs):
+            sys.exit(f"already a favorite: {rec['id']}")
+        favs.append({"id": rec["id"], "added": datetime.now().strftime("%Y-%m-%d"), "note": note or ""})
+        msg = f"added {rec['id']}"
+    else:
+        keep = [f for f in favs if not (f["id"].lower() == ref.strip().lower()
+                                         or (rec and (find_record(repos, f["id"]) or {}).get("id") == rec["id"]))]
+        if len(keep) == len(favs):
+            sys.exit(f"not in favorites.json: {ref}")
+        favs, msg = keep, f"removed {rec['id'] if rec else ref}"
+    favs.sort(key=lambda f: f["id"])
+    FAV_LOCAL.write_text(json.dumps({"version": 1, "favorites": favs}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"{msg} ({len(favs)} favorites in {FAV_LOCAL})")
+    print("Reminder: favorites.json is only changed locally. Review, commit and push it yourself so the site and other machines see it.")
+
+
 # ---------------------------------------------------------------- scoring
 def rel_score(repo, groups):
     if not groups:
@@ -265,7 +331,7 @@ def final_score(repo, groups):
     r = rel_score(repo, groups)
     if r <= 0:
         return 0.0
-    return r * (1.0 + max(quality(repo), -0.9))
+    return r * (1.0 + max(quality(repo), -0.9)) * (FAV_BOOST if repo.get("id") in FAV_IDS else 1.0)
 
 
 def matching_items(repo, groups, n=3):
@@ -309,7 +375,8 @@ def print_repo(i, r, groups=None, detail=False):
         flags = f"security:{lvl}" if flags == "-" else f"security:{lvl}," + flags
     if r.get("archived"):
         flags = "archived," + flags if flags != "-" else "archived"
-    print(f"{i}. {r['id'] if r.get('container') or not r.get('repo') else r['repo']} [{TIER_LABEL.get(r.get('tier'), r.get('tier'))}] {r.get('type')} | {r.get('stars') if r.get('stars') is not None else '?'} stars | trend {fmt_trend(r)} "
+    star = "\u2b50 " if r.get("id") in FAV_IDS else ""
+    print(f"{i}. {star}{r['id'] if r.get('container') or not r.get('repo') else r['repo']} [{TIER_LABEL.get(r.get('tier'), r.get('tier'))}] {r.get('type')} | {r.get('stars') if r.get('stars') is not None else '?'} stars | trend {fmt_trend(r)} "
           f"| pushed {fmt_push(r)} | {r.get('license') or 'no-license'} | flags: {flags}")
     print(f"   {short(r.get('description'), 160)}")
     print(f"   {r.get('url')}")
@@ -340,11 +407,21 @@ def main():
     ap.add_argument("--new", action="store_true")
     ap.add_argument("--days", type=int, default=14)
     ap.add_argument("--info", metavar="owner/repo")
+    ap.add_argument("--favorites", action="store_true", help="only favorites (from favorites.json; the Watch tier is included)")
+    ap.add_argument("--fav-add", metavar="ID_OR_REPO", help="add to the local favorites.json (id, owner/repo or alias)")
+    ap.add_argument("--fav-remove", metavar="ID_OR_REPO", help="remove from the local favorites.json")
+    ap.add_argument("--note", default="", help="note stored with --fav-add")
     a = ap.parse_args()
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
 
     repos, meta, path = load_catalog()
+    if a.fav_add or a.fav_remove:
+        if a.fav_add and a.fav_remove:
+            ap.error("use only one of --fav-add / --fav-remove")
+        return edit_favorites(repos, add=a.fav_add, remove=a.fav_remove, note=a.note)
+    entries = favorite_entries()
+    FAV_IDS.update(favorite_ids(repos, entries))
     tech_ids = area_ids = None
     classes = {}
     if a.tech or a.area:
@@ -365,7 +442,9 @@ def main():
                 return False
         if a.type and a.type not in (r.get("types") or [r.get("type")]) and r.get("type") != a.type:
             return False
-        if TIER_RANK.get(r.get("tier"), 0) < TIER_RANK[a.tier_min or "verified"]:  # watch is excluded unless --tier-min watch
+        if a.favorites and r.get("id") not in FAV_IDS:
+            return False
+        if TIER_RANK.get(r.get("tier"), 0) < TIER_RANK[a.tier_min or ("watch" if a.favorites else "verified")]:  # watch is excluded unless --tier-min watch (or --favorites)
             return False
         return True
 
@@ -422,9 +501,9 @@ def main():
         for i, r in enumerate(res, 1): print_repo(i, r, [])
         return
 
-    facets_only = not a.query.strip() and bool(a.tech or a.area)
+    facets_only = not a.query.strip() and bool(a.tech or a.area or a.favorites)
     if not a.query.strip() and not facets_only:
-        ap.error("query required (or --tech/--area / --trending / --new / --info)")
+        ap.error("query required (or --tech/--area / --favorites / --trending / --new / --info)")
     groups = [] if facets_only else query_groups(a.query)
     if not groups and not facets_only:
         sys.exit("query has no searchable terms")
@@ -439,7 +518,7 @@ def main():
         print(json.dumps([{**r, "_score": round(s, 3)} for s, r in scored[: a.limit or 15]], indent=1, ensure_ascii=False))
         return
     header(meta, path, len(res))
-    if not res: print("no matches; try other keywords (English works best)")
+    if not res: print("no favorites yet; add one with --fav-add <id-or-repo>" if a.favorites and not FAV_IDS else "no matches; try other keywords (English works best)")
     for i, r in enumerate(res, 1): print_repo(i, r, groups)
 
 

@@ -84,5 +84,10 @@ The workflow uses `secrets.CATALOG_TOKEN` if set, else the built-in `GITHUB_TOKE
 ```
 `type` is the primary type (plugin > marketplace > skill > agent > command > hook > mcp-server > collection); `counts.mcp` has the Registry stats; `trend_*` are star deltas against the newest snapshot at least 7 / 30 days old (null if none); `first_seen` persists across runs.
 
+## Favorites
+Star any row or card on the site. Favorites are kept in the browser (localStorage, key `cc-catalog:favorites:v1`) and merged with `favorites.json` at the repo root (`{"version":1,"favorites":[{"id","added","note"}]}`, ids are catalog record ids; renamed repos resolve through `aliases`). The page shows repo-saved favorites as a solid star and local-only ones as a dashed star. The sidebar "Favorites" filter, the "Favorites" quick view and `#fav=1` show only favorites, including those in the hidden Watch tier. Un-starring a repo-saved favorite hides it locally and is written to the export.
+To save: use "Export favorites" in the sidebar, put the downloaded `favorites.json` in the repo root, commit and push ("Import" merges a file back into the browser). `build_site.py` embeds the file into `catalog.js`.
+CLI: `search.py --favorites ["<need>"]`, `--fav-add <id-or-repo> [--note "..."]`, `--fav-remove <id-or-repo>` (the last two edit the local `favorites.json` only; commit and push yourself). Favorites rank slightly higher in normal searches and are marked with a star. Remote copy: `https://raw.githubusercontent.com/DalizC/claude-code-catalog/main/favorites.json`, cached like the catalog.
+
 ## Roadmap
 Planned work: [ROADMAP.md](ROADMAP.md).

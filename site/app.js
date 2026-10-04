@@ -225,9 +225,93 @@
   R.forEach(r => { r.hitTech.forEach(t => GLOBAL.tech[t] = (GLOBAL.tech[t] || 0) + 1); r.hitArea.forEach(t => GLOBAL.area[t] = (GLOBAL.area[t] || 0) + 1); });
   for (const g of ["tech", "area"]) TREES[g].sort((a, b) => (a.id === FALLBACK_ID) - (b.id === FALLBACK_ID) || (GLOBAL[g][b.id] || 0) - (GLOBAL[g][a.id] || 0));
 
+  // ---------------------------------------------------------------- favorites
+  // Effective favorites = repo file (embedded as C.favorites) + local additions - local removals.
+  // r.fv: 0 = not a favorite, 1 = saved in the repo file, 2 = local only (not exported yet).
+  const FAVKEY = "cc-catalog:favorites:v1";
+  const BYL = new Map(), ALIAS = new Map();
+  R.forEach(r => {
+    [r.k, r.r].forEach(x => { x = x.toLowerCase(); if (x && !BYL.has(x)) BYL.set(x, r); });
+    r.al.forEach(a => { a = a.toLowerCase(); if (!ALIAS.has(a)) ALIAS.set(a, r); });
+  });
+  const findRec = id => { const x = String(id || "").trim().toLowerCase(); return BYL.get(x) || ALIAS.get(x) || null; };
+  const todayStr = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+  const RAWFAV = [], REPOFAV = new Set();
+  (C.favorites && Array.isArray(C.favorites.favorites) ? C.favorites.favorites : []).forEach(f => {
+    if (!f || typeof f.id !== "string" || !f.id) return;
+    const rec = findRec(f.id), key = rec ? rec.k : null;
+    RAWFAV.push({ id: key || f.id, key, added: String(f.added || "").slice(0, 10), note: String(f.note || "").slice(0, 300) });
+    if (key) REPOFAV.add(key);
+  });
+  const LOC = { added: Object.create(null), removed: new Set() };
+  let STORE_OK = true, FAVN = 0;
+  try {
+    const j = JSON.parse(localStorage.getItem(FAVKEY) || "null");
+    if (j && typeof j === "object") {
+      if (j.added && typeof j.added === "object") for (const id in j.added) {
+        const rec = findRec(id), v = j.added[id] || {};
+        LOC.added[rec ? rec.k : id] = { added: String(v.added || "").slice(0, 10), note: String(v.note || "").slice(0, 300) };
+      }
+      if (Array.isArray(j.removed)) j.removed.forEach(id => { const rec = findRec(id); if (rec) LOC.removed.add(rec.k); });
+    }
+  } catch (e) { STORE_OK = false; }
+  function saveLoc() {
+    try { localStorage.setItem(FAVKEY, JSON.stringify({ version: 1, added: LOC.added, removed: [...LOC.removed] })); STORE_OK = true; } catch (e) { STORE_OK = false; }
+    return STORE_OK;
+  }
+  function refreshFav() {
+    FAVN = 0;
+    R.forEach(r => { r.fv = REPOFAV.has(r.k) && !LOC.removed.has(r.k) ? 1 : LOC.added[r.k] ? 2 : 0; if (r.fv) FAVN++; });
+  }
+  refreshFav();
+  function toggleFav(r) {
+    const k = r.k;
+    if (r.fv) { if (REPOFAV.has(k)) LOC.removed.add(k); delete LOC.added[k]; }
+    else if (REPOFAV.has(k)) LOC.removed.delete(k);
+    else LOC.added[k] = { added: todayStr(), note: "" };
+    refreshFav();
+    return saveLoc();
+  }
+  function favExport() {
+    const seen = new Set(), out = [];
+    const push = (id, added, note, key) => { const u = key || id; if (seen.has(u)) return; seen.add(u); out.push({ id, added, note }); };
+    RAWFAV.forEach(f => { if (!(f.key && LOC.removed.has(f.key))) push(f.id, f.added, f.note, f.key); });
+    for (const id in LOC.added) { const v = LOC.added[id]; push(id, v.added || todayStr(), v.note || "", id); }
+    out.sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+    return { version: 1, favorites: out };
+  }
+  const favPending = () => { let add = 0; for (const id in LOC.added) if (!REPOFAV.has(id) || LOC.removed.has(id)) add++; let rm = 0; LOC.removed.forEach(k => { if (REPOFAV.has(k)) rm++; }); return { add, rm }; };
+  function favDownload() {
+    const blob = new Blob([JSON.stringify(favExport(), null, 2) + "\n"], { type: "application/json" });
+    const url = URL.createObjectURL(blob), a = h("a", { href: url, download: "favorites.json", style: "display:none" });
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    toast("Exported favorites.json. Put it in the repo root, then commit.", true);
+  }
+  function favImport(file) {
+    const rd = new FileReader();
+    rd.onerror = () => toast("Could not read that file.", false);
+    rd.onload = () => {
+      let j; try { j = JSON.parse(String(rd.result)); } catch (e) { return toast("Not a valid favorites.json file.", false); }
+      const list = j && Array.isArray(j.favorites) ? j.favorites : null;
+      if (!list) return toast("Not a valid favorites.json file.", false);
+      let n = 0, miss = 0;
+      list.forEach(f => {
+        const rec = f && typeof f.id === "string" ? findRec(f.id) : null;
+        if (!rec) { miss++; return; }
+        if (REPOFAV.has(rec.k)) { if (LOC.removed.delete(rec.k)) n++; }
+        else if (!LOC.added[rec.k]) { LOC.added[rec.k] = { added: String(f.added || todayStr()).slice(0, 10), note: String(f.note || "").slice(0, 300) }; n++; }
+      });
+      refreshFav(); saveLoc(); update();
+      toast("Imported " + plural(n, "favorite") + (miss ? " (" + miss + " not in the catalog)" : ""), true);
+    };
+    rd.readAsText(file);
+  }
+
   const ADDED = [{ id: "1", label: "Since yesterday", days: 1 }, { id: "7", label: "Last 7 days", days: 7 }, { id: "30", label: "Last 30 days", days: 30 }];
   const FLAGORDER = ["star-farming", "star-spike", "star-anomaly", "security-high", "security-review", "archived"];
   const GROUPS = [
+    { key: "fav", label: "Favorites", nodes: [{ id: "1", label: "Starred only", icon: "star", kids: [] }], tags: r => r.fv ? ["1"] : [], hits: r => r.fv ? ["1"] : [] },
     { key: "tier", label: "Tier", nodes: TIERS.map(t => ({ id: t.id, label: t.label, dot: t.id, desc: t.desc, kids: [] })), tags: r => [r.tr], hits: r => [r.tr] },
     { key: "added", label: "New in", radio: true, nodes: ADDED.map(a => ({ ...a, kids: [] })) },
     { key: "type", label: "Type", nodes: TYPES.map(t => ({ id: t, label: TLABEL[t] || t[0].toUpperCase() + t.slice(1), icon: t, kids: [] })), tags: r => [r.t], hits: r => [r.t] },
@@ -268,7 +352,7 @@
   function passes(g, r, st) {
     if (g.radio) return !st.added || r.age < st.added;
     const sel = st.sel[g.key];
-    if (!sel.size) return g.key === "tier" && !st.watch ? r.tr !== "watch" : true;
+    if (!sel.size) return g.key === "tier" && !st.watch ? (r.tr !== "watch" || (st.sel.fav.size > 0 && r.fv > 0)) : true; // a favorite stays visible in the Watch tier when the Favorites filter is on
     const t = g.tags(r);
     for (let i = 0; i < t.length; i++) if (sel.has(t[i])) return true;
     return g.key === "tech" && st.anyStack && r.anyStack;
@@ -381,6 +465,18 @@
       const b = h("button", { type: "button", class: cls, "data-tip": "flag", "data-act": "tip", "data-flag": f, "aria-label": flagLabel(f) + ". " + (F.tip || "") }, ic(f === "archived" ? "archive" : F.sec ? "shield" : "flag"), h("span", { class: "fl-l" }, flagLabel(f)), h("span", { class: "fl-s", "aria-hidden": "true" }, F.short || flagLabel(f)));
       return b;
     });
+  }
+  function favTitle(r) { return r.fv === 1 ? "Favorite, saved in the repo file. Click to remove." : r.fv === 2 ? "Favorite, local only (not exported yet). Click to remove." : "Add to favorites"; }
+  function paintFav(b, r) {
+    b.setAttribute("aria-pressed", String(r.fv > 0));
+    b.setAttribute("aria-label", "Favorite " + r.n + (r.fv === 2 ? " (local only, not exported yet)" : ""));
+    b.title = favTitle(r);
+    b.dataset.s = r.fv === 1 ? "repo" : r.fv === 2 ? "local" : "";
+  }
+  function favBtn(r) {
+    const b = h("button", { type: "button", class: "fav", "data-act": "fav" }, ic("star"));
+    paintFav(b, r);
+    return b;
   }
   function nameLink(r) {
     return r.url
@@ -692,7 +788,7 @@
     const flipped = S.flip.has(r.k), open = S.open.has(r.k);
     const tr = h("tr", { class: "r" + (r.sus ? " sus" : ""), "data-id": r.k, "data-view": flipped ? "hist" : "norm", "data-open": String(open) });
     tr.append(
-      h("td", { class: "ec" }, expandBtn(r, open, "d-" + r.i)),
+      h("td", { class: "ec" }, h("div", { class: "ecs" }, favBtn(r), expandBtn(r, open, "d-" + r.i))),
       h("td", { class: "nmc" }, h("div", { class: "nmcell" + (r.flg.length ? " hasflag" : "") }, nameLink(r), r.own ? h("span", { class: "ow" }, r.own) : null, flagPills(r))),
       h("td", { class: "tic" }, tierBadge(r)));
     if (flipped) tr.append(h("td", { class: "histcell", colspan: "3" }, histEl(r)));
@@ -718,7 +814,7 @@
     else swap.append(h("p", { class: "d" + (r.d ? "" : " nodesc") }, r.d || "No description provided."), tagsEl(r));
     const old = stale(r.p);
     return h("article", { class: "card" + (r.sus ? " sus" : ""), role: "listitem", "data-id": r.k, "data-view": flipped ? "hist" : "norm", "data-open": String(open), "aria-label": r.n },
-      h("div", { class: "ch" }, h("div", { class: "who" }, nameLink(r), h("span", { class: "ow" }, r.own)), tierBadge(r)),
+      h("div", { class: "ch" }, h("div", { class: "who" }, nameLink(r), h("span", { class: "ow" }, r.own)), favBtn(r), tierBadge(r)),
       r.flg.length ? h("div", { class: "cflags" }, flagPills(r)) : null,
       swap,
       h("div", { class: "meta" }, typeTag(r, r.nit > 1),
@@ -767,6 +863,10 @@
     return opts.filter(o => !seen.has(o.label) && seen.add(o.label)).sort((a, b) => b.n - a.n);
   }
   function emptyEl() {
+    if (S.sel.fav.size && !FAVN) return h("div", { class: "empty" }, h("b", null, "No favorites yet"),
+      h("p", null, "Click the star next to any extension (in the table or on a card) to add it here."),
+      h("p", null, "Favorites are kept in this browser. Use Export favorites in the sidebar to save them to favorites.json in the repo."),
+      h("button", { class: "clear", type: "button", "data-act": "clearall" }, "Show all extensions"));
     const opts = relaxOptions();
     RELAX = opts;
     const good = opts.filter(o => o.n > 0).slice(0, 6), dead = opts.filter(o => o.n === 0);
@@ -852,6 +952,7 @@
       groupHeads[g.key] = n;
       const body = h("div", { class: "fbody", id: bodyId });
       if (g.key === "tier") body.append(h("p", { class: "fnote rk" }, "Ranked by trust, highest first"));
+      if (g.key === "fav") body.append(h("p", { class: "fnote" }, "Star any row or card. Stored in this browser."));
       if (g.key === "tech") body.append(h("p", { class: "fnote prov" }, ic("info"), h("span", null, (TAX.placeholder ? "Provisional taxonomy. " : "") + "Tags are auto-classified. A repo can carry several tags, so counts overlap.")));
       const ul = h("ul", { class: "facets", role: g.radio ? "radiogroup" : null, "aria-label": g.label });
       if (g.radio) ul.append(nodeLi(g, { id: "", label: "Any time", kids: [] }));
@@ -861,11 +962,19 @@
         const b = h("button", { class: "showall", type: "button", "data-act": "showall", "data-g": g.key, "aria-expanded": "false" }, "Show all " + g.nodes.length);
         body.append(b);
       }
+      if (g.key === "fav") body.append(h("div", { class: "favtools" },
+        h("p", { class: "favstat", id: "favstat", "aria-live": "polite" }),
+        h("div", { class: "favbtns" },
+          h("button", { type: "button", class: "btn", "data-act": "favexport" }, ic("copy"), "Export favorites"),
+          h("button", { type: "button", class: "btn", "data-act": "favimport" }, ic("plus"), "Import"),
+          h("input", { type: "file", id: "favfile", accept: "application/json,.json", hidden: true, "aria-label": "Import favorites.json" })),
+        h("p", { class: "fnote" }, "Export downloads favorites.json. Put it in the repo root, then commit it.")));
       side.append(h("section", { class: "fgroup", "aria-label": g.label + " filter" },
         h("button", { class: "fhead", type: "button", "data-act": "fold", "aria-expanded": "true", "aria-controls": bodyId }, ic("chev", "chev"), h("span", null, g.label), n), body));
     });
     if (location.protocol === "file:") side.append(h("p", { class: "side-foot" }, "Opened from a file, so star history is off. Run ", h("code", null, "python -m http.server -d site"), " to enable it."));
     side.addEventListener("change", onFacet);
+    $("favfile").addEventListener("change", e => { const f = e.target.files && e.target.files[0]; e.target.value = ""; if (f) favImport(f); });
   }
   function syncTopN() {
     GROUPS.forEach(g => {
@@ -921,6 +1030,14 @@
       if (groupHeads[g.key]) groupHeads[g.key].textContent = nsel ? nsel + " selected" : "";
     });
     syncTopN();
+    syncFavTools();
+  }
+  function syncFavTools() {
+    const el = $("favstat"); if (!el) return;
+    const p = favPending(), bits = [];
+    if (p.add) bits.push(p.add + " local only");
+    if (p.rm) bits.push(p.rm + (p.rm === 1 ? " removal" : " removals") + " pending");
+    el.textContent = plural(FAVN, "favorite") + (bits.length ? " · " + bits.join(", ") : FAVN ? " · all saved in the repo file" : "") + (STORE_OK ? "" : ". Browser storage is blocked: favorites last only for this visit.");
   }
   function chipsFor(g) {
     const chips = [];
@@ -1019,13 +1136,14 @@
     { id: "trending", label: "Trending this week", apply: () => ({ sort: "t7" }) },
     { id: "new", label: "New this week", apply: () => ({ sort: "stars", added: 7 }) },
     { id: "updated", label: "Recently updated", apply: () => ({ sort: "pushed" }) },
+    { id: "fav", label: "Favorites", icon: "star", apply: () => ({ sort: "stars", fav: true }) },
   ];
   function presetOf() {
-    const otherSel = Object.entries(S.sel).filter(([k, v]) => k !== "tier" && v.size).length;
+    const otherSel = Object.entries(S.sel).filter(([k, v]) => k !== "tier" && k !== "fav" && v.size).length;
     if (S.q || otherSel || S.anyStack || (S.watch && !S.sel.tier.size) || S.dir !== SORT[S.sort].dir) return null;
     return PRESETS.find(p => {
       const x = p.apply(), tiers = x.tier || [];
-      return x.sort === S.sort && (x.added || 0) === S.added && (x.flagged || "demote") === S.flagged && tiers.length === S.sel.tier.size && tiers.every(t => S.sel.tier.has(t));
+      return x.sort === S.sort && (x.added || 0) === S.added && (x.flagged || "demote") === S.flagged && (x.fav ? 1 : 0) === S.sel.fav.size && tiers.length === S.sel.tier.size && tiers.every(t => S.sel.tier.has(t));
     }) || null;
   }
   function applyPreset(id) {
@@ -1033,13 +1151,14 @@
     const x = p.apply();
     S.sel = newSel(); S.q = ""; $("q").value = ""; S.anyStack = false; S.watch = false;
     (x.tier || []).forEach(t => S.sel.tier.add(t));
+    if (x.fav) S.sel.fav.add("1");
     S.added = x.added || 0; S.flagged = x.flagged || "demote";
     S.sort = x.sort; S.dir = SORT[x.sort].dir;
     update();
   }
   function buildPresets() {
     const el = $("presets");
-    el.append(h("span", { class: "al" }, "Quick views"), ...PRESETS.map(p => h("button", { type: "button", class: "pre", "data-act": "preset", "data-p": p.id, "aria-pressed": "false" }, p.label)));
+    el.append(h("span", { class: "al" }, "Quick views"), ...PRESETS.map(p => h("button", { type: "button", class: "pre", "data-act": "preset", "data-p": p.id, "aria-pressed": "false" }, p.icon ? ic(p.icon) : null, p.label)));
   }
   function syncPresets() {
     const cur = presetOf();
@@ -1254,6 +1373,16 @@
     const act = a.dataset.act, host = a.closest("[data-id]");
     switch (act) {
       case "copy": e.preventDefault(); return copy(a.dataset.copy, a);
+      case "fav": {
+        const r = host && BY.get(host.dataset.id); if (!r) return;
+        const ok = toggleFav(r);
+        document.querySelectorAll('[data-id="' + CSS.escape(r.k) + '"] .fav').forEach(b => paintFav(b, r));
+        const { cnt } = compute(); COUNTS = cnt; syncSide(cnt); syncPresets();
+        toast((r.fv ? "Added to favorites: " : "Removed from favorites: ") + r.n + (ok ? "" : " (browser storage is blocked, not saved)"), ok);
+        return;
+      }
+      case "favexport": return favDownload();
+      case "favimport": return $("favfile").click();
       case "tip": { if (pinned && popFor === a) hidePop(true); else { clearTimeout(popT); showPop(a); pinned = true; } return; }
       case "hist": return host && toggleHist(host.dataset.id);
       case "expand": return host && toggleOpen(host.dataset.id);
