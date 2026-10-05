@@ -12,7 +12,7 @@ DATA = ROOT / "data"; CACHE = ROOT / "cache"
 OUT = DATA / "classifications.json"; REPORT = DATA / "classification-report.md"
 README_CACHE = CACHE / "readmes.json"
 README_MAX = 4000; README_TTL_D = 7; README_EMBED = 300
-EMBED_TIERS = {"anthropic", "official", "listed", "verified"}; EMBED_MIN_STARS = 50
+EMBED_TIERS = {"anthropic", "official", "listed", "verified"}; EMBED_MIN_STARS = 0  # every non-watch repo gets the embedding pass
 MODEL = os.environ.get("CLASSIFY_MODEL", "BAAI/bge-small-en-v1.5")
 # bge-small cosine scores are compressed and some nodes are hubs (high similarity to everything), so each node
 # carries its own threshold `embed_min` = mean + Z*sd of its scores over all embed-eligible repos (set by
@@ -207,6 +207,10 @@ def _count(c, text, use_ctx):
     split and the larger count wins: the split reads identifiers ("reactNative"), the unsplit text keeps words
     such as "TypeScript" and "JavaScript" whole."""
     if not text: return 0, None, 0
+    pre = _norm_cached(text)  # exclusions only remove hits, so a text without any raw hit needs no exclusion pass
+    if not (any(p.search(text) for p in c["pats"]) or (c["rx"] and any(c["rx"].search(t) for t in pre))
+            or (use_ctx and c["ctx"] and any(c["ctx"].search(t) for t in pre))):
+        return 0, None, 0
     if c["excl"]:  # blank exclusions in the raw text and again after normalization (names use '-' for spaces)
         text = c["excl"].sub(" ", text); ts = [c["excl"].sub(" ", norm(text)), c["excl"].sub(" ", norm(text, camel=False))]
     else: ts = list(_norm_cached(text))
