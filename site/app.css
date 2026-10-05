@@ -347,6 +347,7 @@ img.ti{display:block;width:16px;height:16px;opacity:.72;pointer-events:none}
 .lic.none .lm{background:var(--bad-bg);color:var(--bad)}
 .lic.oth .lm{background:var(--t-watch-bg);color:var(--ink-3)}
 .lic .lt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lic .ldc{color:var(--ink-3);font-size:var(--fs-meta)}
 
 /* ---------- TABLE (CSS grid + subgrid; flexible Name / Areas / Technologies) ---------- */
 .tablewrap{min-width:0}

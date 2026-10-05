@@ -31,9 +31,21 @@ UNMAINTAINED_DAYS = 180  # "unmaintained" flag: last push older than this, relat
 
 
 def license_group(lic):
+    """An "A OR B" expression lets the user pick, so any permissive alternative makes it ok; "unclear" is other."""
     if not isinstance(lic, str) or not lic:
         return "none"
-    return "ok" if PERMISSIVE.match(lic) else "copyleft" if COPYLEFT.match(lic) else "other"
+    alts = [x.strip() for x in lic.split(" OR ")]
+    if any(PERMISSIVE.match(x) for x in alts):
+        return "ok"
+    return "copyleft" if any(COPYLEFT.match(x) for x in alts) else "other"
+
+
+def effective_license(r):
+    """(license, declared): the GitHub-detected license, else a license declared in a manifest or the README."""
+    if r.get("license"):
+        return r["license"], None
+    d = r.get("license_declared") if isinstance(r.get("license_declared"), dict) else None
+    return (d.get("id"), d) if d and isinstance(d.get("id"), str) else (None, None)
 
 
 def parse_dt(s):
@@ -152,6 +164,7 @@ def slim(r, cls, ref=None):
             o["t"] = ""
         items.append({k: v for k, v in o.items() if v})
     rid, key = r.get("id") or r.get("repo") or "", r.get("repo") or ""
+    lic, decl = effective_license(r)
     c = cls.get(rid) or cls.get(key) or {}
     o = {
         "k": rid if rid != key else "",  # unique record id; omitted when equal to the repo
@@ -164,13 +177,15 @@ def slim(r, cls, ref=None):
         "f": num(r.get("forks")),
         "p": (r.get("pushed_at") or "")[:10] or None,
         "fs": (r.get("first_seen") or "")[:10] or None,
-        "l": r.get("license"),
+        "l": lic,
+        "ld": ", ".join(str(x) for x in decl.get("src") or [])[:80] if decl else None,
+        "lb": "; ".join(f"{k}: {v}" for k, v in (decl.get("by") or {}).items())[:160] if decl and lic == "unclear" else None,
         "a": 1 if r.get("archived") else 0,
         "tr": r.get("tier") or "watch",
         "tx": [cut(x, 100 if mcp else 160) for x in (r.get("tier_reasons") or [])][:MCP_TX if mcp else 6],
         "fl": ids(r.get("flags")) + (["unmaintained"] if unmaintained(r, ref) and "unmaintained" not in ids(r.get("flags")) else [])
               + (["unscanned"] if key and unscanned(r) else []),
-        "lg": license_group(r.get("license")),
+        "lg": license_group(lic),
         "src": sorted({s.split(":")[0] if s.startswith("search:") else s
                        for s in (r.get("sources") or []) if isinstance(s, str)}),
         "t7": num(r.get("trend_7d")),

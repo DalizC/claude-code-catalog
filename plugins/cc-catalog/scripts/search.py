@@ -58,13 +58,21 @@ REF_TIME = None  # catalog generated_at (set in main); falls back to now
 
 
 def license_group(lic):
+    """An "A OR B" expression lets the user pick, so any permissive alternative makes it commercial; "unclear" is other."""
     if not lic:
         return "none"
-    if PERMISSIVE.match(lic):
+    alts = [x.strip() for x in lic.split(" OR ")]
+    if any(PERMISSIVE.match(x) for x in alts):
         return "commercial"
-    if COPYLEFT.match(lic):
+    if any(COPYLEFT.match(x) for x in alts):
         return "copyleft"
     return "other"
+
+
+def lic_of(r):
+    """GitHub-detected license, else the license declared in a manifest or README (no LICENSE file)."""
+    d = r.get("license_declared") if isinstance(r.get("license_declared"), dict) else {}
+    return r.get("license") or d.get("id")
 
 
 STOP = set("""a an the of for to and or in on with by from is are be do does how i me my we you it this that
@@ -419,7 +427,7 @@ def print_repo(i, r, groups=None, detail=False):
     flags = ",".join(f.replace("security-", "security:") for f in all_flags(r)) or "-"
     star = "\u2b50 " if r.get("id") in FAV_IDS else ""
     print(f"{i}. {star}{r['id'] if r.get('container') or not r.get('repo') else r['repo']} [{TIER_LABEL.get(r.get('tier'), r.get('tier'))}] {r.get('type')} | {r.get('stars') if r.get('stars') is not None else '?'} stars | trend {fmt_trend(r)} "
-          f"| pushed {fmt_push(r)} | {r.get('license') or 'no-license'} ({license_group(r.get('license'))}) | flags: {flags}")
+          f"| pushed {fmt_push(r)} | {lic_of(r) or 'no-license'}{' (declared)' if not r.get('license') and lic_of(r) else ''} ({license_group(lic_of(r))}) | flags: {flags}")
     print(f"   {short(r.get('description'), 160)}")
     print(f"   {r.get('url')}")
     items = r.get("items") or []
@@ -434,7 +442,7 @@ def print_repo(i, r, groups=None, detail=False):
 
 def mark(r):
     """Record copy with the derived flags and license group, for --json output."""
-    return {**r, "_flags": all_flags(r), "_license_group": license_group(r.get("license"))}
+    return {**r, "_flags": all_flags(r), "_license_group": license_group(lic_of(r))}
 
 
 def header(meta, path, n=None):
@@ -496,7 +504,7 @@ def main():
             return False
         if a.favorites and r.get("id") not in FAV_IDS:
             return False
-        if a.license and license_group(r.get("license")) != a.license:
+        if a.license and license_group(lic_of(r)) != a.license:
             return False
         if a.exclude_flag and set(a.exclude_flag) & set(all_flags(r)):
             return False

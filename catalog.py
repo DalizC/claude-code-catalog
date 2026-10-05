@@ -654,7 +654,7 @@ def apply_stale(repos):
     pm = {}
     for e in PREV:
         if e.get("repo") and not e.get("container") and e.get("stars") is not None:
-            m = {k: e.get(k) for k in ("stars", "forks", "pushed_at", "created_at", "license", "archived", "owner_type", "topics", "node_id")}
+            m = {k: e.get(k) for k in ("stars", "forks", "pushed_at", "created_at", "license", "license_declared", "archived", "owner_type", "topics", "node_id")}
             m["canonical"] = e["repo"]; m["meta_stale"] = True
             for nm in [e["repo"]] + (e.get("aliases") or []): pm.setdefault(nm, m)
     for r in repos:
@@ -673,7 +673,7 @@ def enrich():
         try:
             for e in json.loads((DATA / "catalog.json").read_text(encoding="utf-8"))["repos"]:
                 if e.get("repo") and not e.get("container"):
-                    m = {k: e.get(k) for k in ("stars", "forks", "pushed_at", "created_at", "license", "archived", "owner_type", "topics", "node_id")}
+                    m = {k: e.get(k) for k in ("stars", "forks", "pushed_at", "created_at", "license", "license_declared", "archived", "owner_type", "topics", "node_id")}
                     m["canonical"] = e["repo"]
                     for nm in [e["repo"]] + (e.get("aliases") or []):
                         META.setdefault(nm, m)
@@ -720,6 +720,104 @@ def enrich():
     apply_stale(repos)
     miss = [r for r in repos if META.get(r, {}).get("stars") is None]
     return len(miss), done
+
+# ---------- 4b declared licenses (no LICENSE file GitHub recognizes) ----------
+# A license is the author's grant, not a file: a clear SPDX-style declaration in .claude-plugin/plugin.json, package.json,
+# pyproject.toml, Cargo.toml or the README's License section counts as that grant. It is published as "declared" because
+# there is no LICENSE file (so no copyright notice to keep), and declarations that disagree are published as "unclear".
+SPDX_RX = re.compile(r"\b(?:" + "|".join(f"(?P<{g}>{p})" for g, p in [
+    ("MIT0", r"MIT-0|MIT No Attribution"), ("AGPL3", r"AGPL(?:[- ]?v?3(?:\.0)?)?(?:-only|-or-later)?|GNU Affero General Public License"),
+    ("LGPL3", r"LGPL(?:[- ]?v?3(?:\.0)?)?(?:-only|-or-later)?|GNU Lesser General Public License"),
+    ("LGPL21", r"LGPL[- ]?v?2\.1(?:-only|-or-later)?"),
+    ("GPL3", r"GPL[- ]?v?3(?:\.0)?(?:-only|-or-later)?|GNU General Public License,? v(?:ersion)? ?3"),
+    ("GPL2", r"GPL[- ]?v?2(?:\.0)?(?:-only|-or-later)?|GNU General Public License,? v(?:ersion)? ?2"),
+    ("APACHE2", r"Apache(?:[- ]License)?,?[- ]*(?:v(?:ersion)?\.?\s*)?2(?:\.0)?"),
+    ("BSD3", r"BSD[- ]3(?:[- ]Clause)?|New BSD|Modified BSD"), ("BSD2", r"BSD[- ]2(?:[- ]Clause)?|Simplified BSD"),
+    ("ZEROBSD", r"0BSD"), ("ISC", r"ISC(?: License)?"), ("UNLICENSE", r"(?:The )?Unlicense"),
+    ("CC0", r"CC0(?:[- ]1\.0)?"), ("CCBYSA4", r"CC[- ]BY[- ]SA[- ]4\.0"), ("CCBY4", r"CC[- ]BY[- ]4\.0"),
+    ("MPL2", r"MPL[- ]?v?2(?:\.0)?|Mozilla Public License,? v?(?:ersion )?2(?:\.0)?"), ("BSL1", r"BSL-1\.0|Boost Software License"),
+    ("MIT", r"MIT(?: License)?|Expat")]) + r")\b", re.I)
+SPDX_ID = {"MIT0": "MIT-0", "AGPL3": "AGPL-3.0", "LGPL3": "LGPL-3.0", "LGPL21": "LGPL-2.1", "GPL3": "GPL-3.0", "GPL2": "GPL-2.0",
+           "APACHE2": "Apache-2.0", "BSD3": "BSD-3-Clause", "BSD2": "BSD-2-Clause", "ZEROBSD": "0BSD", "ISC": "ISC",
+           "UNLICENSE": "Unlicense", "CC0": "CC0-1.0", "CCBYSA4": "CC-BY-SA-4.0", "CCBY4": "CC-BY-4.0", "MPL2": "MPL-2.0",
+           "BSL1": "BSL-1.0", "MIT": "MIT"}
+LIC_SECTION = re.compile(r"^[ \t]{0,3}#{1,6}[ \t]*\W{0,3}[ \t]*licen[sc]e\b[^\n]*\n(.{0,600}?)(?=^[ \t]{0,3}#{1,6}[ \t]|\Z)", re.I | re.M | re.S)
+LIC_SENTENCE = re.compile(r"\b(?:licen[sc]ed|released|distributed|available)\s+under\s+(?:the\s+(?:terms\s+of\s+(?:the\s+)?)?)?(.{0,60})", re.I)
+DECL_TTL_D = 7; DECL_V = 1
+
+def spdx_ids(text):
+    """Distinct SPDX ids named in a short license text ("MIT OR Apache-2.0" gives both)."""
+    return sorted({SPDX_ID[m.lastgroup] for m in SPDX_RX.finditer(text or "")})
+
+def _manifest_license(raw, kind):
+    if not raw: return None
+    if kind == "json":
+        try: v = json.loads(raw).get("license")
+        except Exception: return None
+        if isinstance(v, dict): v = v.get("type")
+        return spdx_ids(v) if isinstance(v, str) and v.strip().upper() != "UNLICENSED" else None
+    m = re.search(r'(?m)^\s*license\s*=\s*(?:"([^"\n]+)"|\{[^}\n]*?text\s*=\s*"([^"\n]+)")', raw)
+    ids = spdx_ids(m.group(1) or m.group(2)) if m else []
+    if not ids and kind == "pyproject":  # trove classifiers
+        ids = sorted({x for c in re.findall(r"License :: OSI Approved :: ([^\"'\n]+)", raw) for x in spdx_ids(c)})
+    return ids or None
+
+def _readme_license(raw):
+    if not raw: return None
+    sec = LIC_SECTION.search(raw)
+    ids = spdx_ids(sec.group(1)) if sec else []
+    if not ids:
+        ids = sorted({x for m in LIC_SENTENCE.finditer(raw) for x in spdx_ids(m.group(1))})
+    return ids or None
+
+def declared_license(n):
+    """{"id": spdx expression | "unclear", "src": [...], "by": {source: expression}} or None from the fetched files."""
+    blob = lambda k: ((n.get(k) or {}).get("text") or "")[:200_000]
+    by = {}
+    for src, key, kind in (("plugin.json", "p", "json"), ("package.json", "k", "json"), ("pyproject.toml", "y", "pyproject"),
+                           ("Cargo.toml", "c", "toml")):
+        ids = _manifest_license(blob(key), kind)
+        if ids: by[src] = " OR ".join(ids)
+    ids = _readme_license(blob("r") or blob("r2"))
+    if ids: by["README"] = " OR ".join(ids)
+    if not by: return None
+    if by.get("package.json") == "ISC" and len(set(by.values())) > 1: by.pop("package.json")  # npm init's default, not a choice
+    vals = set(by.values())
+    return {"id": vals.pop() if len(vals) == 1 else "unclear", "src": sorted(by), "by": by}
+
+def declared_licenses(repos):
+    """Fills META[repo]["license_declared"] for repos without a GitHub-detected license (cached, re-checked within ~7 days)."""
+    todo_all = [r for r in repos if META.get(r, {}).get("stars") is not None and not META[r].get("license")]
+    dc = CACHE / "license_decl.json"
+    try: cache = json.loads(dc.read_text(encoding="utf-8")) if dc.exists() and not REFRESH else {}
+    except Exception: cache = {}
+    ttl = lambda r: DECL_TTL_D * 86400 * (0.5 + int(hashlib.sha1(r.encode()).hexdigest()[:4], 16) / 0xFFFF)
+    fresh = lambda r: r in cache and cache[r].get("v") == DECL_V and (OFFLINE or time.time() - cache[r]["t"] < ttl(r))
+    todo = [r for r in todo_all if not fresh(r)]
+    if todo and TOKEN and not OFFLINE:
+        f = lambda a, p: f'{a}:object(expression:"HEAD:{p}"){{...on Blob{{text}}}}'
+        F = " ".join([f("p", ".claude-plugin/plugin.json"), f("k", "package.json"), f("y", "pyproject.toml"), f("c", "Cargo.toml"),
+                      f("r", "README.md"), f("r2", "readme.md")])
+        B = 10
+        for k in range(0, len(todo), B):
+            chunk = todo[k:k + B]
+            if k: time.sleep(GQL_PACE)
+            if k and k % (B * 20) == 0:
+                CACHE.mkdir(exist_ok=True); dc.write_text(json.dumps(cache), encoding="utf-8"); print(f"declared licenses: {k}/{len(todo)}", flush=True)
+            d = gql("query{" + " ".join(f'r{j}:repository(owner:{json.dumps(r.split("/")[0])},name:{json.dumps(r.split("/")[1])}){{{F}}}'
+                                        for j, r in enumerate(chunk)) + "}")
+            if not d or not d.get("data"):
+                ERRORS.append(f"declared licenses chunk {k // B + 1}: no data {str((d or {}).get('errors'))[:200]}"); continue
+            for j, r in enumerate(chunk):
+                n = d["data"].get(f"r{j}")
+                if n is not None: cache[r] = {"t": time.time(), "v": DECL_V, "decl": declared_license(n)}
+        CACHE.mkdir(exist_ok=True); dc.write_text(json.dumps(cache), encoding="utf-8")
+    found = Counter()
+    for r in todo_all:
+        dl = (cache.get(r) or {}).get("decl")
+        if dl:
+            META[r]["license_declared"] = dl; found["unclear" if dl["id"] == "unclear" else "clear"] += 1
+    print(f"declared licenses: {len(todo_all)} repos without a detected license, {len(todo)} checked now, found {dict(found)}")
 
 # ---------- runnable install hints ----------
 # install_hint is one string. Claude Code slash-command steps are joined with " ; " (type each on its own line in
@@ -811,9 +909,10 @@ def tier(hint, curated, repo, sources, origin="", item_level=False):
     if stale: reasons.append("stale/archived")
     if st is None:
         reasons.append("no metadata"); return "watch", reasons, flags
-    lic = m.get("license"); fams = {family(x) for x in sources}
+    dl = m.get("license_declared") or {}
+    lic = m.get("license") or (dl.get("id") if dl.get("id") != "unclear" else None); fams = {family(x) for x in sources}
     checks = [(st >= 200, f"stars>=200 ({st})"), (age is not None and age >= 90, f"age>=90d ({age})"),
-              (push is not None and push <= 90, f"pushed<=90d ({push})"), (bool(lic) and lic != "NOASSERTION", f"license ({lic})"),
+              (push is not None and push <= 90, f"pushed<=90d ({push})"), (bool(lic) and lic != "NOASSERTION", f"license ({lic}{', declared' if lic and not m.get('license') else ''})"),
               (not m.get("archived"), "not archived"), ("star-anomaly" not in flags, "no star-anomaly")]
     forks = m.get("forks") or 0
     corro = [x for ok, x in [(forks >= 20, f"forks>=20 ({forks})"), (len(fams) >= 2, f"found by {len(fams)} independent sources"),
@@ -925,6 +1024,7 @@ def build():
                     "url": es[0]["url"] if item_level else f"https://github.com/{repo}" if repo else es[0]["url"],
                     "stars": st, "forks": m.get("forks"), "pushed_at": m.get("pushed_at"),
                     "created_at": m.get("created_at"), "license": m.get("license"), "archived": m.get("archived"),
+                    **({"license_declared": m["license_declared"]} if m.get("license_declared") and not m.get("license") else {}),
                     "owner_type": m.get("owner_type"), "topics": m.get("topics") or [], "tier": t, "tier_reasons": r,
                     **({"node_id": m["node_id"]} if m.get("node_id") and not item_level else {}),
                     **({"aliases": aliases} if aliases and not item_level else {}),
@@ -955,6 +1055,7 @@ def main():
     print("mode:", "TOKEN" if TOKEN else "NO-TOKEN")
     src_official(); src_curated(); src_repo_search(); src_code_search(); src_broad_search(); verify_broad(); expand_marketplaces(); src_mcp_registry()
     nmiss, ndone = enrich()
+    declared_licenses(sorted({e["repo"] for e in ENTRIES.values() if e["repo"]}))
     filter_mcp()
     finalize_hints()
     out, flat = build()

@@ -656,13 +656,20 @@
   function expandBtn(r, open, ctrl) {
     return h("button", { class: "exp", type: "button", "data-act": "expand", "aria-expanded": String(open), "aria-controls": open ? ctrl : null, "aria-label": "Details for " + r.n }, ic("chev"));
   }
-  function licEl(r) {
+  // r.ld: sources of a license declared without a LICENSE file (plugin.json, README...); r.l "unclear": declarations disagree (r.lb)
+  const licText = r => r.l === "unclear" ? "Unclear" : r.lg === "none" ? "None" : r.l === "NOASSERTION" ? "Custom" : r.l;
+  function licTip(r) {
     const g = r.lg;
-    const text = g === "none" ? "None" : r.l === "NOASSERTION" ? "Custom" : r.l;
+    if (r.l === "unclear") return "Declared licenses disagree (" + (r.lb || r.ld) + ") and there is no LICENSE file: ask the author before reusing";
+    const base = g === "ok" ? r.l + " · Commercial use OK" : g === "copyleft" ? r.l + " · Copyleft: commercial use with obligations" : g === "none" ? "No license: not legally reusable" : (r.l === "NOASSERTION" ? "Unrecognized license" : r.l) + ": read the LICENSE file before reusing";
+    return r.ld ? base + ". Declared in " + r.ld + ", no LICENSE file: there is no copyright notice to keep, so credit the author when reusing" : base;
+  }
+  function licEl(r) {
+    const g = r.lg, tip = licTip(r);
     const cls = { ok: "ok", copyleft: "cl", none: "none", other: "oth" }[g];
     const mark = g === "ok" ? ic("check") : g === "copyleft" ? ic("share") : g === "none" ? ic("minus") : ic("q");
-    const tip = g === "ok" ? r.l + " · Commercial use OK" : g === "copyleft" ? r.l + " · Copyleft: commercial use with obligations" : g === "none" ? "No license: not legally reusable" : (r.l === "NOASSERTION" ? "Unrecognized license" : r.l) + ": read the LICENSE file before reusing";
-    return h("span", { class: "lic " + cls, tabindex: "0", "data-tt": tip, "aria-label": "License: " + tip }, h("span", { class: "lm", "aria-hidden": "true" }, mark), h("span", { class: "lt" }, text));
+    return h("span", { class: "lic " + cls, tabindex: "0", "data-tt": tip, "aria-label": "License: " + tip }, h("span", { class: "lm", "aria-hidden": "true" }, mark),
+      h("span", { class: "lt" }, licText(r), r.ld && r.l !== "unclear" ? h("span", { class: "ldc" }, " declared") : null));
   }
   function updEl(r) {
     const pd = r.pd;
@@ -912,7 +919,7 @@
       tags,
       h("p", { class: "prov" },
         h("span", { class: "nar" }, "By " + (r.own || "unknown")),
-        h("span", { class: "nar" }, "License: " + (r.lg === "none" ? "none" : r.l === "NOASSERTION" ? "custom / unrecognized" : r.l) + " · " + LIC[r.lg].label),
+        h("span", { class: "nar" }, "License: " + (r.lg === "none" ? "none" : r.l === "NOASSERTION" ? "custom / unrecognized" : licText(r)) + (r.ld ? " (declared in " + r.ld + ")" : "") + " · " + LIC[r.lg].label),
         r.f ? h("span", null, plural(r.f, "fork")) : null,
         r.fs ? h("span", null, "In catalog since " + sdate(r.fs)) : null,
         src.length ? h("span", null, "Found via " + src.join(", ")) : null,
