@@ -59103,10 +59103,6 @@
      },
      "match": "security scanner"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -59635,10 +59631,6 @@
     "general-purpose": {
      "method": "fallback"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "fallback",
@@ -60299,10 +60291,6 @@
      },
      "match": "image generation"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -62874,7 +62862,9 @@
    "css",
    "tailwind"
   ],
-  "areas": [],
+  "areas": [
+   "general-purpose"
+  ],
   "evidence": {
    "technologies": {
     "javascript": {
@@ -62899,10 +62889,15 @@
      },
      "match": "tailwind css"
     }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-04T16:29:51Z"
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "fadelabs/phantom": {
   "readme_sha": "c26481ab4a3db5d5f05056068b83060c46920f16",
@@ -78260,28 +78255,25 @@
    },
    "areas": {
     "ai-workflows": {
-     "rule_score": 5,
+     "rule_score": 3,
      "fields": {
       "description": 2,
-      "items": 2,
       "readme": 1
      },
      "match": "brainstorm, plan, tdd"
     },
     "testing": {
-     "rule_score": 6,
+     "rule_score": 4,
      "fields": {
       "description": 2,
-      "items": 2,
       "readme": 2
      },
      "match": "tdd"
     },
     "tdd": {
-     "rule_score": 6,
+     "rule_score": 4,
      "fields": {
       "description": 2,
-      "items": 2,
       "readme": 2
      },
      "match": "tdd"
@@ -79592,7 +79584,9 @@
  "Techknowmadlabs/techknowmad-ai-skills": {
   "readme_sha": "e76559f6e9eb5a98d51f393aecafaaf2f1084fbc",
   "taxonomy_version": "093d4aa269c9",
-  "technologies": [],
+  "technologies": [
+   "general-purpose"
+  ],
   "areas": [
    "security",
    "ai-agents",
@@ -79603,6 +79597,11 @@
    "research"
   ],
   "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
    "areas": {
     "security": {
      "rule_score": 3,
@@ -79663,7 +79662,7 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-04T16:29:51Z"
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "ajbarea/techne": {
   "readme_sha": "423fc3dacaddfb529615ee8526a1f54dd7a4b1c5",
@@ -90012,11 +90011,26 @@
  "proofable/network": {
   "readme_sha": "e0cc57d87da39e9de3084aaa8eb70f597a32582e",
   "taxonomy_version": "093d4aa269c9",
-  "technologies": [],
-  "areas": [],
-  "evidence": {},
-  "method": "none",
-  "classified_at": "2026-10-04T16:29:51Z"
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "sonukapoor/angular-ssr": {
   "readme_sha": "c0ef39370b4816fe21745195c0159a11b7d98543",
@@ -91252,10 +91266,6 @@
     "general-purpose": {
      "method": "fallback"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "fallback",
@@ -96273,10 +96283,6 @@
      },
      "match": "context engineering"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -96343,10 +96349,6 @@
      },
      "match": "deep research"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -98114,10 +98116,6 @@
      },
      "match": "pr"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -98304,10 +98302,6 @@
     "general-purpose": {
      "method": "fallback"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "fallback",
@@ -98618,10 +98612,6 @@
      },
      "match": null
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -99794,6 +99784,10 @@
     "general-purpose": {
      "method": "fallback"
     }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
    }
   },
   "method": "rules",
@@ -99837,6 +99831,30 @@
    }
   },
   "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "rehan-remade/universal-modder": {
+  "readme_sha": "bf5e24da0517d6e04cc73f41c0dd65d4c90a7740",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "nateherkai/scroll-craft": {
@@ -99944,30 +99962,6 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "rehan-remade/universal-modder": {
-  "readme_sha": "bf5e24da0517d6e04cc73f41c0dd65d4c90a7740",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "zilliztech/memsearch": {
@@ -100263,30 +100257,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "kharmanskyi/open-steps": {
-  "readme_sha": "bfc84784bc510372d5d5baa16be8c76a3b512687",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "michael-denyer/pstack-claude": {
   "readme_sha": "147990d1f3c5ab21d6cc499c97dfabb50db6f7b6",
   "taxonomy_version": "093d4aa269c9",
@@ -100327,6 +100297,117 @@
   },
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "kharmanskyi/open-steps": {
+  "readme_sha": "bfc84784bc510372d5d5baa16be8c76a3b512687",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "lemomo-ai/lemo-opuscar": {
+  "readme_sha": "0613a2e477c3ae3a305d9b0cb427a04f20450e29",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "javascript",
+   "threejs"
+  ],
+  "areas": [
+   "frontend",
+   "animation",
+   "ai-agents",
+   "prompt-engineering",
+   "design",
+   "media-generation"
+  ],
+  "evidence": {
+   "technologies": {
+    "javascript": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "webgl",
+     "implied_by": "threejs"
+    },
+    "threejs": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "webgl"
+    }
+   },
+   "areas": {
+    "frontend": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null,
+     "implied_by": "animation"
+    },
+    "animation": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null,
+     "implied_by": "prompt-engineering"
+    },
+    "prompt-engineering": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "design": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "video generation"
+    },
+    "media-generation": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "text to speech"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T22:03:15Z"
  },
  "ccplugins/awesome-claude-code-plugins": {
   "readme_sha": "792baf9ec5ba314fe48de355faa3590f73ca3cc5",
@@ -100437,93 +100518,6 @@
   },
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
- },
- "lemomo-ai/lemo-opuscar": {
-  "readme_sha": "0613a2e477c3ae3a305d9b0cb427a04f20450e29",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "javascript",
-   "threejs"
-  ],
-  "areas": [
-   "frontend",
-   "animation",
-   "ai-agents",
-   "prompt-engineering",
-   "design",
-   "media-generation"
-  ],
-  "evidence": {
-   "technologies": {
-    "javascript": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "webgl",
-     "implied_by": "threejs"
-    },
-    "threejs": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "webgl"
-    }
-   },
-   "areas": {
-    "frontend": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null,
-     "implied_by": "animation"
-    },
-    "animation": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null,
-     "implied_by": "prompt-engineering"
-    },
-    "prompt-engineering": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "design": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "video generation"
-    },
-    "media-generation": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "text to speech"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T22:03:15Z"
  },
  "keskinonur/claude-code-ios-dev-guide": {
   "readme_sha": "f74bfde6cb6f8a004743328c7e058ac67c72e024",
@@ -100781,19 +100775,15 @@
   "readme_sha": "9b92086f60714ef9ca0b2ad7871ccb379a5b1207",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
-   "typescript"
+   "general-purpose"
   ],
   "areas": [
    "general-purpose"
   ],
   "evidence": {
    "technologies": {
-    "typescript": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
+    "general-purpose": {
+     "method": "fallback"
     }
    },
    "areas": {
@@ -100806,14 +100796,13 @@
     "areas": {}
    }
   },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "method": "fallback",
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "kitfunso/hippo-memory": {
   "readme_sha": "6a74ab6a03bd9b23a2f48961dd04b74327ccc142",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
-   "typescript",
    "databases",
    "sqlite"
   ],
@@ -100823,28 +100812,19 @@
   ],
   "evidence": {
    "technologies": {
-    "typescript": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    },
     "databases": {
-     "rule_score": 6,
+     "rule_score": 4,
      "fields": {
       "topic": 3,
-      "description": 2,
       "readme": 1
      },
      "match": "sqlite",
      "implied_by": "sqlite"
     },
     "sqlite": {
-     "rule_score": 6,
+     "rule_score": 4,
      "fields": {
       "topic": 3,
-      "description": 2,
       "readme": 1
      },
      "match": "sqlite"
@@ -100852,25 +100832,26 @@
    },
    "areas": {
     "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "memory-context": {
-     "rule_score": 7,
+     "rule_score": 5,
      "fields": {
       "topic": 3,
-      "description": 3,
+      "description": 2
+     },
+     "match": "long term memory"
+    },
+    "memory-context": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "description": 2,
       "readme": 1
      },
-     "match": "memory for ai"
+     "match": "long term memory"
     }
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "divar-ir/ai-doc-gen": {
   "readme_sha": "fb2693572eb405814be0360719277a7cfd56f804",
@@ -101374,43 +101355,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "vladikk/modularity": {
-  "readme_sha": "7bc5571f298da431659729c48ffdb0fdbb5bd084",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "backend",
-   "backend-best-practices"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "backend": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null,
-     "implied_by": "backend-best-practices"
-    },
-    "backend-best-practices": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "zenstory-ai/video-recap-skills": {
   "readme_sha": "542baf94fb2071631508d47bc8afc582d35bceb8",
   "taxonomy_version": "093d4aa269c9",
@@ -101455,6 +101399,43 @@
   "method": "rules",
   "classified_at": "2026-10-04T16:29:51Z"
  },
+ "vladikk/modularity": {
+  "readme_sha": "7bc5571f298da431659729c48ffdb0fdbb5bd084",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "backend",
+   "backend-best-practices"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "backend": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null,
+     "implied_by": "backend-best-practices"
+    },
+    "backend-best-practices": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "coldteadotai/abide": {
   "readme_sha": "910d2f8dbe2278df1c38f1a2d532e56e5bfea834",
   "taxonomy_version": "093d4aa269c9",
@@ -101478,6 +101459,34 @@
   },
   "method": "fallback",
   "classified_at": "2026-10-04T16:29:51Z"
+ },
+ "bitwize-music-studio/claude-ai-music-skills": {
+  "readme_sha": "490afc8cb4b92b589c58da8c912bb664c55e24f6",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
  },
  "karanb192/claude-code-hooks": {
   "readme_sha": "bfb129487a1bce10f587c11a4922b12df9003396",
@@ -101510,62 +101519,6 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "bitwize-music-studio/claude-ai-music-skills": {
-  "readme_sha": "490afc8cb4b92b589c58da8c912bb664c55e24f6",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "posit-dev/skills": {
-  "readme_sha": "f7a410cd7caa7b90103ac27f98bda4abcf3d8fbf",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "Hainrixz/the-architect": {
@@ -101608,8 +101561,8 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "rsmdt/the-startup": {
-  "readme_sha": "4456769cf3913ade07f2484ff5e1a1146abb0035",
+ "posit-dev/skills": {
+  "readme_sha": "f7a410cd7caa7b90103ac27f98bda4abcf3d8fbf",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -101638,6 +101591,34 @@
  },
  "jqueryscript/awesome-claude-code": {
   "readme_sha": "2fdca3e02d46b4737f275a439893b1c248854412",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "rsmdt/the-startup": {
+  "readme_sha": "4456769cf3913ade07f2484ff5e1a1146abb0035",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -101845,6 +101826,83 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "emotixco/claude-skills-founder": {
+  "readme_sha": "95cb88010b79f97ce7210da3e9e35e6c6b4c3ef6",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "marketing",
+   "docs-writing",
+   "office-documents",
+   "productivity",
+   "project-management",
+   "research"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "marketing": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "gtm"
+    },
+    "docs-writing": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "pitch deck"
+    },
+    "office-documents": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "pitch deck"
+    },
+    "productivity": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "project-management": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "research": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "description": 2
+     },
+     "match": "competitor analysis"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "GRCEngClub/claude-grc-engineering": {
   "readme_sha": "5eed761920632dd83e6885786bbd4ec081fb2e84",
   "taxonomy_version": "093d4aa269c9",
@@ -101928,83 +101986,6 @@
       "readme": 2
      },
      "match": "papers"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "emotixco/claude-skills-founder": {
-  "readme_sha": "95cb88010b79f97ce7210da3e9e35e6c6b4c3ef6",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "marketing",
-   "docs-writing",
-   "office-documents",
-   "productivity",
-   "project-management",
-   "research"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "marketing": {
-     "rule_score": 6,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 1
-     },
-     "match": "gtm"
-    },
-    "docs-writing": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "pitch deck"
-    },
-    "office-documents": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "pitch deck"
-    },
-    "productivity": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "project-management": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "research": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "description": 2
-     },
-     "match": "competitor analysis"
     }
    },
    "embedding": {
@@ -102815,6 +102796,38 @@
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "codeaashu/free-claude-code": {
+  "readme_sha": "23ed0f514fb11fc658ce2375c21e36b7220400e2",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "python"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "Mertcikla/tld": {
   "readme_sha": "314cd820607212f05a584ac7c69a8e6de07cff2e",
   "taxonomy_version": "093d4aa269c9",
@@ -102972,18 +102985,19 @@
   "method": "rules",
   "classified_at": "2026-10-04T16:29:51Z"
  },
- "codeaashu/free-claude-code": {
-  "readme_sha": "23ed0f514fb11fc658ce2375c21e36b7220400e2",
+ "aerovato/operator-memory": {
+  "readme_sha": "a4975842a899546782988ed660689d83431bfdb0",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
-   "python"
+   "typescript"
   ],
   "areas": [
-   "general-purpose"
+   "ai-agents",
+   "memory-context"
   ],
   "evidence": {
    "technologies": {
-    "python": {
+    "typescript": {
      "rule_score": 3,
      "fields": {
       "language": 3
@@ -102992,17 +103006,24 @@
     }
    },
    "areas": {
-    "general-purpose": {
-     "method": "fallback"
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "memory-context": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-04T14:01:26Z"
  },
  "testdouble/han": {
   "readme_sha": "bccc039bd93bd325bf856bcfdabdabe6802b3acb",
@@ -103104,6 +103125,34 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "danjdewhurst/story-skills": {
+  "readme_sha": "b68f871cc7672954aba2fa91e733e81ce1bee19e",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "Aboudjem/humanizer-skill": {
   "readme_sha": "0bd58ec87496d60c21596dce6aa528ff61b60d20",
   "taxonomy_version": "093d4aa269c9",
@@ -103181,34 +103230,6 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "danjdewhurst/story-skills": {
-  "readme_sha": "b68f871cc7672954aba2fa91e733e81ce1bee19e",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "baidu-netdisk/bdpan-storage": {
@@ -103391,6 +103412,48 @@
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "Avijit07x/claude-db": {
+  "readme_sha": "d1458c5dd45ba01faa1dac4ca87492bc01a26d60",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "typescript"
+  ],
+  "areas": [
+   "ai-agents",
+   "memory-context"
+  ],
+  "evidence": {
+   "technologies": {
+    "typescript": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "persistent memory"
+    },
+    "memory-context": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "persistent memory"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "ItamarZand88/CLI-Anything-WEB": {
   "readme_sha": "acb0922366d06c5062a87e34f1fa74251a33a535",
   "taxonomy_version": "093d4aa269c9",
@@ -103439,48 +103502,6 @@
    "embedding": {
     "technologies": {},
     "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "Avijit07x/claude-db": {
-  "readme_sha": "d1458c5dd45ba01faa1dac4ca87492bc01a26d60",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "typescript"
-  ],
-  "areas": [
-   "ai-agents",
-   "memory-context"
-  ],
-  "evidence": {
-   "technologies": {
-    "typescript": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "persistent memory"
-    },
-    "memory-context": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "persistent memory"
-    }
    }
   },
   "method": "rules",
@@ -104303,28 +104324,37 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "RobThePCGuy/Claude-Patent-Creator": {
-  "readme_sha": "2cd8e65edc74ec1a8d617d0413c026bea726d91d",
+ "ilindaniel/ponytail-lite": {
+  "readme_sha": "2f38e3ab9af0205adf073156e1bc8411bae85480",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
-   "python"
+   "general-purpose"
   ],
   "areas": [
-   "general-purpose"
+   "ai-agents",
+   "prompt-engineering"
   ],
   "evidence": {
    "technologies": {
-    "python": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
+    "general-purpose": {
+     "method": "fallback"
     }
    },
    "areas": {
-    "general-purpose": {
-     "method": "fallback"
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "prompt-engineering": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "system prompt"
     }
    }
   },
@@ -104343,6 +104373,34 @@
   "evidence": {
    "technologies": {
     "typescript": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "RobThePCGuy/Claude-Patent-Creator": {
+  "readme_sha": "2cd8e65edc74ec1a8d617d0413c026bea726d91d",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "python"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
      "rule_score": 3,
      "fields": {
       "language": 3
@@ -104407,43 +104465,6 @@
       "readme": 1
      },
      "match": "project management"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "ilindaniel/ponytail-lite": {
-  "readme_sha": "2f38e3ab9af0205adf073156e1bc8411bae85480",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "prompt-engineering"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "prompt-engineering": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "system prompt"
     }
    }
   },
@@ -105201,6 +105222,30 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "karanb192/awesome-claude-code-mods": {
+  "readme_sha": "806cb9b540cb05ffabecdae9f878da77771823a2",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-04T14:01:26Z"
+ },
  "assafkip/research-mode": {
   "readme_sha": "2b89f6a8dc3c46048d95a1351a68ca7f2ac9a7b3",
   "taxonomy_version": "093d4aa269c9",
@@ -105604,6 +105649,102 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "hermes-labs-ai/lintlang": {
+  "readme_sha": "fed4bb626e175153f6fee86a2b51b19ce3e00e6a",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "python"
+  ],
+  "areas": [
+   "security",
+   "agent-guardrails",
+   "ai-agents",
+   "prompt-engineering",
+   "code-review",
+   "static-analysis",
+   "devops",
+   "ci-cd"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "security": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null,
+     "implied_by": "agent-guardrails"
+    },
+    "agent-guardrails": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "prompt-engineering": {
+     "rule_score": 8,
+     "fields": {
+      "topic": 3,
+      "description": 3,
+      "readme": 2
+     },
+     "match": "system prompts"
+    },
+    "code-review": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "static analysis"
+    },
+    "static-analysis": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "static analysis"
+    },
+    "devops": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "ci-cd": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "popmechanic/VibesOS": {
   "readme_sha": "9169a6b8a58da9fb6da62ec1e491946d99331c26",
   "taxonomy_version": "093d4aa269c9",
@@ -105696,31 +105837,22 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "hermes-labs-ai/lintlang": {
-  "readme_sha": "fed4bb626e175153f6fee86a2b51b19ce3e00e6a",
+ "aaddrick/building-with-typesafe-jev": {
+  "readme_sha": "94ca0123d5c2d1841f33bece6c76c1e5c8aa409c",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
-   "python"
+   "general-purpose"
   ],
   "areas": [
    "security",
    "agent-guardrails",
    "ai-agents",
-   "prompt-engineering",
-   "code-review",
-   "static-analysis",
-   "devops",
-   "ci-cd"
+   "prompt-engineering"
   ],
   "evidence": {
    "technologies": {
-    "python": {
-     "rule_score": 6,
-     "fields": {
-      "topic": 3,
-      "language": 3
-     },
-     "match": null
+    "general-purpose": {
+     "method": "fallback"
     }
    },
    "areas": {
@@ -105729,8 +105861,7 @@
      "fields": {
       "topic": 3
      },
-     "match": null,
-     "implied_by": "agent-guardrails"
+     "match": null
     },
     "agent-guardrails": {
      "rule_score": 3,
@@ -105747,40 +105878,6 @@
      "match": null
     },
     "prompt-engineering": {
-     "rule_score": 8,
-     "fields": {
-      "topic": 3,
-      "description": 3,
-      "readme": 2
-     },
-     "match": "system prompts"
-    },
-    "code-review": {
-     "rule_score": 7,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "static analysis"
-    },
-    "static-analysis": {
-     "rule_score": 7,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "static analysis"
-    },
-    "devops": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "ci-cd": {
      "rule_score": 3,
      "fields": {
       "topic": 3
@@ -105893,82 +105990,6 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "aaddrick/building-with-typesafe-jev": {
-  "readme_sha": "94ca0123d5c2d1841f33bece6c76c1e5c8aa409c",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "security",
-   "agent-guardrails",
-   "ai-agents",
-   "prompt-engineering"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "security": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "agent-guardrails": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "prompt-engineering": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "hyqibot/A-share-Ai": {
-  "readme_sha": "4e674e319c532149db6f645748f12523402c1e65",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "Ovid/paad": {
@@ -106088,6 +106109,30 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "hyqibot/A-share-Ai": {
+  "readme_sha": "4e674e319c532149db6f645748f12523402c1e65",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "DojoCodingLabs/remotion-superpowers": {
   "readme_sha": "ac3573626f34cd6ddeb5928749cce055d5237d2b",
   "taxonomy_version": "093d4aa269c9",
@@ -106169,46 +106214,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "daypunk/LockedIn": {
-  "readme_sha": "60294764f808d088f32a44cbc8ce1217f74f9459",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "python"
-  ],
-  "areas": [
-   "productivity",
-   "knowledge-management"
-  ],
-  "evidence": {
-   "technologies": {
-    "python": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "productivity": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "knowledge-management": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "bradautomates/content-ideas": {
   "readme_sha": "bd15a76c57549104ecb4cf4a5677abe874587734",
   "taxonomy_version": "093d4aa269c9",
@@ -106246,6 +106251,46 @@
       "readme": 1
      },
      "match": "instagram"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "daypunk/LockedIn": {
+  "readme_sha": "60294764f808d088f32a44cbc8ce1217f74f9459",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "python"
+  ],
+  "areas": [
+   "productivity",
+   "knowledge-management"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "productivity": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "knowledge-management": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
     }
    }
   },
@@ -106454,46 +106499,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "aerovato/operator-memory": {
-  "readme_sha": "a4975842a899546782988ed660689d83431bfdb0",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "typescript"
-  ],
-  "areas": [
-   "ai-agents",
-   "memory-context"
-  ],
-  "evidence": {
-   "technologies": {
-    "typescript": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "memory-context": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-04T14:01:26Z"
- },
  "TAJD/economist-style-guide-plugin": {
   "readme_sha": "3913ae6d16e4bcedbe50448caa47609a67fe63c5",
   "taxonomy_version": "093d4aa269c9",
@@ -106563,6 +106568,116 @@
   },
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "AgentToolkit/altk-evolve": {
+  "readme_sha": "0e706c6a5901eb3160579b4da93c0529669a3375",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "memory-context",
+   "devops",
+   "observability"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "agent memory"
+    },
+    "memory-context": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "agent memory"
+    },
+    "devops": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "observability": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "Avinash-jetwani/jevmem": {
+  "readme_sha": "e0f3235c734c68d51ae399f5f339ac7be45e5dbd",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "security",
+   "agent-guardrails",
+   "ai-agents",
+   "memory-context"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "security": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "sandbox"
+    },
+    "agent-guardrails": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "sandbox"
+    },
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "memory-context": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "items": 2,
+      "readme": 1
+     },
+     "match": "project memory"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-04T16:29:51Z"
  },
  "KumarSashank/motiscope": {
   "readme_sha": "e3ff444b1bf8ad2c42e1cdefe2f3c9613a4a8d71",
@@ -106643,84 +106758,6 @@
   },
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
- },
- "AgentToolkit/altk-evolve": {
-  "readme_sha": "0e706c6a5901eb3160579b4da93c0529669a3375",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "memory-context",
-   "devops",
-   "observability"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "agent memory"
-    },
-    "memory-context": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "agent memory"
-    },
-    "devops": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "observability": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "karanb192/awesome-claude-code-mods": {
-  "readme_sha": "806cb9b540cb05ffabecdae9f878da77771823a2",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-04T14:01:26Z"
  },
  "Vitorlindo201/Themata-Claude-Scribe": {
   "readme_sha": "4731930ac2b4fe49a36f8b8abc05c6abd5632f22",
@@ -106816,6 +106853,79 @@
       "readme": 2
      },
      "match": "orchestrator"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "aaddrick/attention-control": {
+  "readme_sha": "e373731969ec11c6d97179ef1f0ba98c56076434",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "python"
+  ],
+  "areas": [
+   "frontend",
+   "accessibility",
+   "ai-agents",
+   "prompt-engineering",
+   "docs-writing",
+   "documentation"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "frontend": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null,
+     "implied_by": "accessibility"
+    },
+    "accessibility": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "prompt-engineering": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "docs-writing": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "documentation": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
     }
    }
   },
@@ -106999,90 +107109,14 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "aaddrick/attention-control": {
-  "readme_sha": "e373731969ec11c6d97179ef1f0ba98c56076434",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "python"
-  ],
-  "areas": [
-   "frontend",
-   "accessibility",
-   "ai-agents",
-   "prompt-engineering",
-   "docs-writing",
-   "documentation"
-  ],
-  "evidence": {
-   "technologies": {
-    "python": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "frontend": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null,
-     "implied_by": "accessibility"
-    },
-    "accessibility": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "prompt-engineering": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "docs-writing": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "documentation": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "Avinash-jetwani/jevmem": {
-  "readme_sha": "e0f3235c734c68d51ae399f5f339ac7be45e5dbd",
+ "ThinkFlowLab/system1-agents": {
+  "readme_sha": "740cd34ab84325f85de2c3a98db0fd88b34f2172",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
   ],
   "areas": [
-   "security",
-   "agent-guardrails",
-   "ai-agents",
-   "memory-context"
+   "general-purpose"
   ],
   "evidence": {
    "technologies": {
@@ -107091,43 +107125,13 @@
     }
    },
    "areas": {
-    "security": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "sandbox"
-    },
-    "agent-guardrails": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "sandbox"
-    },
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "memory-context": {
-     "rule_score": 8,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "items": 2,
-      "readme": 1
-     },
-     "match": "project memory"
+    "general-purpose": {
+     "method": "fallback"
     }
    }
   },
-  "method": "rules",
-  "classified_at": "2026-10-04T16:29:51Z"
+  "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
  },
  "pillar-labs/sail-skill": {
   "readme_sha": "8c55237a39ac8e5c081e0c8b8c3292c1d8f55e02",
@@ -107284,6 +107288,52 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "Stickman230/claude-pentest": {
+  "readme_sha": "3831fc27702b7d5ac62e2931d57eddb504da9a8c",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "python"
+  ],
+  "areas": [
+   "security",
+   "security-audit"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "security": {
+     "rule_score": 10,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "pentest"
+    },
+    "security-audit": {
+     "rule_score": 10,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "pentest"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "HermeticOrmus/LibreUIUX-Claude-Code": {
   "readme_sha": "f7784fb7d4d2e46044fafecd2ea342402d507a3b",
   "taxonomy_version": "093d4aa269c9",
@@ -107409,30 +107459,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "ThinkFlowLab/system1-agents": {
-  "readme_sha": "740cd34ab84325f85de2c3a98db0fd88b34f2172",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "ojowwalker77/Claude-Matrix": {
   "readme_sha": "f88d3315e7e2b35d7da837ccc69127ecc186e5d2",
   "taxonomy_version": "093d4aa269c9",
@@ -107462,51 +107488,29 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "Stickman230/claude-pentest": {
-  "readme_sha": "3831fc27702b7d5ac62e2931d57eddb504da9a8c",
+ "tt-a1i/archify": {
+  "readme_sha": "2799852d401f98dafd4a678204f3f3196236d489",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
-   "python"
+   "general-purpose"
   ],
   "areas": [
-   "security",
-   "security-audit"
+   "general-purpose"
   ],
   "evidence": {
    "technologies": {
-    "python": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
+    "general-purpose": {
+     "method": "fallback"
     }
    },
    "areas": {
-    "security": {
-     "rule_score": 10,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "pentest"
-    },
-    "security-audit": {
-     "rule_score": 10,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "pentest"
+    "general-purpose": {
+     "method": "fallback"
     }
    }
   },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "method": "fallback",
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "code-yeongyu/oh-my-openagent": {
   "readme_sha": "90d726f9c26e61f8d6f222020b0164cc2db4e9a1",
@@ -108000,6 +108004,65 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "Vincentwei1021/video-shotcraft": {
+  "readme_sha": "bd4ceb28d846955a06b8d8580dc67d1b6a24dcea",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "frontend",
+   "animation",
+   "design",
+   "media-generation"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "frontend": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "motion design",
+     "implied_by": "animation"
+    },
+    "animation": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "motion design"
+    },
+    "design": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "remotion"
+    },
+    "media-generation": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "remotion"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
+ },
  "nexu-io/html-anything": {
   "readme_sha": "e0ecf16aa372e7168293e8a1c2403d1c1647049a",
   "taxonomy_version": "093d4aa269c9",
@@ -108153,6 +108216,39 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "SnailSploit/Claude-Red": {
+  "readme_sha": "a4a0660e307fee62ab400bc665c90f8b838284de",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "python"
+  ],
+  "areas": [
+   "security"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "security": {
+     "rule_score": 5,
+     "fields": {
+      "description": 3,
+      "readme": 2
+     },
+     "match": "offensive security"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "zenstory-ai/oh-story-claudecode": {
   "readme_sha": "0393cc5bb1590847d6e792ad3a0a993abd08ed0f",
   "taxonomy_version": "093d4aa269c9",
@@ -108195,39 +108291,6 @@
   },
   "method": "rules",
   "classified_at": "2026-10-04T16:29:51Z"
- },
- "SnailSploit/Claude-Red": {
-  "readme_sha": "a4a0660e307fee62ab400bc665c90f8b838284de",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "python"
-  ],
-  "areas": [
-   "security"
-  ],
-  "evidence": {
-   "technologies": {
-    "python": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "security": {
-     "rule_score": 5,
-     "fields": {
-      "description": 3,
-      "readme": 2
-     },
-     "match": "offensive security"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
  },
  "deanpeters/Product-Manager-Skills": {
   "readme_sha": "35b12a680063b776388946fa47b51ac92b2e3341",
@@ -108547,6 +108610,48 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "Ryze-AI-Adgent/open-seo-mcp-skills": {
+  "readme_sha": "0ea0838aa8b668b7a9136094135824b05f67d8b6",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "marketing",
+   "seo"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "marketing": {
+     "rule_score": 10,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "seo"
+    },
+    "seo": {
+     "rule_score": 11,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 3,
+      "readme": 2
+     },
+     "match": "seo"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "glitternetwork/pinme": {
   "readme_sha": "4fb5e2b38724fc65d9492575a924e1e6e8a4cce2",
   "taxonomy_version": "093d4aa269c9",
@@ -108626,48 +108731,6 @@
       "readme": 1
      },
      "match": "humanize"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "Ryze-AI-Adgent/open-seo-mcp-skills": {
-  "readme_sha": "0ea0838aa8b668b7a9136094135824b05f67d8b6",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "marketing",
-   "seo"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "marketing": {
-     "rule_score": 10,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "seo"
-    },
-    "seo": {
-     "rule_score": 11,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 3,
-      "readme": 2
-     },
-     "match": "seo"
     }
    }
   },
@@ -108778,35 +108841,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T22:03:15Z"
  },
- "codeaashu/claude-code": {
-  "readme_sha": "591c5f1fc530953dce78581c1934a890d2607bdb",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "git"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "git": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "git workflows"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "irinabuht12-oss/marketing-skills": {
   "readme_sha": "fc3d7c5aa21b6558cb87ff738c715a3075cd51c7",
   "taxonomy_version": "093d4aa269c9",
@@ -108852,6 +108886,35 @@
       "readme": 2
      },
      "match": "google ads"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "codeaashu/claude-code": {
+  "readme_sha": "591c5f1fc530953dce78581c1934a890d2607bdb",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "git"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "git": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "git workflows"
     }
    }
   },
@@ -109000,46 +109063,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "Natively-AI-assistant/natively-cluely-ai-assistant": {
-  "readme_sha": "a12cc25b018ed763af53b78e8fd0fb9150e73e57",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "typescript"
-  ],
-  "areas": [
-   "productivity",
-   "knowledge-management"
-  ],
-  "evidence": {
-   "technologies": {
-    "typescript": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "productivity": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "knowledge-management": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "filtalgo/Filtmall-Shopping-Skill": {
   "readme_sha": "e144a9a8c02487408028b87953142dc473908676",
   "taxonomy_version": "093d4aa269c9",
@@ -109084,33 +109107,41 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "romainsimon/paperasse": {
-  "readme_sha": "8e69b9815626c7fa3fb73e19a1fdba7a1a2e54bf",
+ "Natively-AI-assistant/natively-cluely-ai-assistant": {
+  "readme_sha": "a12cc25b018ed763af53b78e8fd0fb9150e73e57",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
-   "general-purpose"
+   "typescript"
   ],
   "areas": [
-   "ai-agents"
+   "productivity",
+   "knowledge-management"
   ],
   "evidence": {
    "technologies": {
-    "general-purpose": {
-     "method": "fallback"
+    "typescript": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
     }
    },
    "areas": {
-    "ai-agents": {
+    "productivity": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "knowledge-management": {
      "rule_score": 3,
      "fields": {
       "topic": 3
      },
      "match": null
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -109153,6 +109184,38 @@
   },
   "method": "rules",
   "classified_at": "2026-10-04T16:29:51Z"
+ },
+ "romainsimon/paperasse": {
+  "readme_sha": "8e69b9815626c7fa3fb73e19a1fdba7a1a2e54bf",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
  },
  "Appllama/appllama-skills": {
   "readme_sha": "6a83e827f4d8723a7d0a48054e8aab0fdcd5a78f",
@@ -109219,6 +109282,48 @@
       "topic": 3
      },
      "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "kaankiziltug/logo-design-skill": {
+  "readme_sha": "cc316b346378b01b1e1887cb00ed567eab9148da",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "design",
+   "brand"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "design": {
+     "rule_score": 10,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "logo"
+    },
+    "brand": {
+     "rule_score": 10,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "logo"
     }
    }
   },
@@ -109424,48 +109529,6 @@
    }
   },
   "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "kaankiziltug/logo-design-skill": {
-  "readme_sha": "cc316b346378b01b1e1887cb00ed567eab9148da",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "design",
-   "brand"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "design": {
-     "rule_score": 10,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "logo"
-    },
-    "brand": {
-     "rule_score": 10,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "logo"
-    }
-   }
-  },
-  "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "BayramAnnakov/claude-reflect": {
@@ -110013,72 +110076,6 @@
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "gooseworks-ai/goose-skills": {
-  "readme_sha": "ab56d2f428d595578e024f6731a4c6da74062153",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "marketing",
-   "seo"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "marketing": {
-     "rule_score": 5,
-     "fields": {
-      "description": 3,
-      "readme": 2
-     },
-     "match": "gtm"
-    },
-    "seo": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "seo"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "alexgreensh/attention-span": {
-  "readme_sha": "3835a7f8f7cf2ea755c239b382ce184269e23826",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "Jakeschincariol/linkedin-agent-skill": {
   "readme_sha": "8f02dd73c436b3aef3c30f3a350adfe1430ba369",
   "taxonomy_version": "093d4aa269c9",
@@ -110143,6 +110140,72 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "alexgreensh/attention-span": {
+  "readme_sha": "3835a7f8f7cf2ea755c239b382ce184269e23826",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "gooseworks-ai/goose-skills": {
+  "readme_sha": "ab56d2f428d595578e024f6731a4c6da74062153",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "marketing",
+   "seo"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "marketing": {
+     "rule_score": 5,
+     "fields": {
+      "description": 3,
+      "readme": 2
+     },
+     "match": "gtm"
+    },
+    "seo": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "seo"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "ferdinandobons/startup-skill": {
   "readme_sha": "98cbb17b2e00acd2dd73068e793c208406660182",
   "taxonomy_version": "093d4aa269c9",
@@ -110166,6 +110229,53 @@
       "readme": 1
      },
      "match": "market research"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "reticlehq/reticle": {
+  "readme_sha": "b3de5018cc807178d8125406025ac241c500ba90",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "typescript",
+   "test-frameworks",
+   "playwright"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "typescript": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    },
+    "test-frameworks": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "playwright",
+     "implied_by": "playwright"
+    },
+    "playwright": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "playwright"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
     }
    }
   },
@@ -110226,53 +110336,6 @@
       "tech": 1
      },
      "match": "kubernetes"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "reticlehq/reticle": {
-  "readme_sha": "b3de5018cc807178d8125406025ac241c500ba90",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "typescript",
-   "test-frameworks",
-   "playwright"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "typescript": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    },
-    "test-frameworks": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "playwright",
-     "implied_by": "playwright"
-    },
-    "playwright": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "playwright"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
     }
    }
   },
@@ -110866,34 +110929,6 @@
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "oxylabs/agent-skills": {
-  "readme_sha": "62adb355f4565691555b66d5cdf00c4ec86670a1",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "laolaoshiren/claude-code-skills-zh": {
   "readme_sha": "a57475093c2eb9d54d7a42fd06652a2307d43f5f",
   "taxonomy_version": "093d4aa269c9",
@@ -110934,44 +110969,68 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "karanb192/itr-wala": {
-  "readme_sha": "683e8cb7e0e7a866a3852d2457bd1dfaeebb2e58",
+ "oxylabs/agent-skills": {
+  "readme_sha": "62adb355f4565691555b66d5cdf00c4ec86670a1",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
-   "python"
+   "general-purpose"
   ],
   "areas": [
-   "business",
-   "finance"
+   "general-purpose"
   ],
   "evidence": {
    "technologies": {
-    "python": {
-     "rule_score": 6,
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "scenario-labs/skills": {
+  "readme_sha": "8a2c315906f9267b3102fc443899103527a64b78",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "csharp"
+  ],
+  "areas": [
+   "design",
+   "media-generation"
+  ],
+  "evidence": {
+   "technologies": {
+    "csharp": {
+     "rule_score": 3,
      "fields": {
-      "topic": 3,
-      "language": 3
+      "topic": 3
      },
      "match": null
     }
    },
    "areas": {
-    "business": {
-     "rule_score": 4,
+    "design": {
+     "rule_score": 3,
      "fields": {
-      "description": 2,
-      "readme": 2
+      "topic": 3
      },
-     "match": "tax",
-     "implied_by": "finance"
+     "match": null
     },
-    "finance": {
-     "rule_score": 4,
+    "media-generation": {
+     "rule_score": 3,
      "fields": {
-      "description": 2,
-      "readme": 2
+      "topic": 3
      },
-     "match": "tax"
+     "match": null
     }
    }
   },
@@ -111033,40 +111092,44 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "scenario-labs/skills": {
-  "readme_sha": "8a2c315906f9267b3102fc443899103527a64b78",
+ "karanb192/itr-wala": {
+  "readme_sha": "683e8cb7e0e7a866a3852d2457bd1dfaeebb2e58",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
-   "csharp"
+   "python"
   ],
   "areas": [
-   "design",
-   "media-generation"
+   "business",
+   "finance"
   ],
   "evidence": {
    "technologies": {
-    "csharp": {
-     "rule_score": 3,
+    "python": {
+     "rule_score": 6,
      "fields": {
-      "topic": 3
+      "topic": 3,
+      "language": 3
      },
      "match": null
     }
    },
    "areas": {
-    "design": {
-     "rule_score": 3,
+    "business": {
+     "rule_score": 4,
      "fields": {
-      "topic": 3
+      "description": 2,
+      "readme": 2
      },
-     "match": null
+     "match": "tax",
+     "implied_by": "finance"
     },
-    "media-generation": {
-     "rule_score": 3,
+    "finance": {
+     "rule_score": 4,
      "fields": {
-      "topic": 3
+      "description": 2,
+      "readme": 2
      },
-     "match": null
+     "match": "tax"
     }
    }
   },
@@ -111505,6 +111568,48 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "leopard627/fire-your-seo-agency": {
+  "readme_sha": "96fbd8929bbb4999f652f3cd340bc06fde64663a",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "marketing",
+   "seo"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "marketing": {
+     "rule_score": 11,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 3,
+      "readme": 2
+     },
+     "match": "seo"
+    },
+    "seo": {
+     "rule_score": 11,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 3,
+      "readme": 2
+     },
+     "match": "seo"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "jaredrhod/ai-memory-vault": {
   "readme_sha": "b73ba7cfde99a766b0faaac370876f276d2cf20a",
   "taxonomy_version": "093d4aa269c9",
@@ -111707,48 +111812,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "leopard627/fire-your-seo-agency": {
-  "readme_sha": "96fbd8929bbb4999f652f3cd340bc06fde64663a",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "marketing",
-   "seo"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "marketing": {
-     "rule_score": 11,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 3,
-      "readme": 2
-     },
-     "match": "seo"
-    },
-    "seo": {
-     "rule_score": 11,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 3,
-      "readme": 2
-     },
-     "match": "seo"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "aiworkskills/wechat-article-skills": {
   "readme_sha": "bc5607b0e77e34b9ac082b39ad79363f84ded7f4",
   "taxonomy_version": "093d4aa269c9",
@@ -111863,6 +111926,65 @@
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "JayPokale/Chisle": {
+  "readme_sha": "95d046018f6dcb3c8476061c713bf4db0093d619",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "javascript"
+  ],
+  "areas": [
+   "ai-agents",
+   "memory-context",
+   "docs-writing",
+   "writing"
+  ],
+  "evidence": {
+   "technologies": {
+    "javascript": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null,
+     "implied_by": "memory-context"
+    },
+    "memory-context": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "docs-writing": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "prose"
+    },
+    "writing": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "prose"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-04T16:29:51Z"
+ },
  "anombyte93/prd-taskmaster": {
   "readme_sha": "4dedfb29c6233bc510ad9b32fafc683dfff4fc80",
   "taxonomy_version": "093d4aa269c9",
@@ -111974,65 +112096,6 @@
   },
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
- },
- "JayPokale/Chisle": {
-  "readme_sha": "95d046018f6dcb3c8476061c713bf4db0093d619",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "javascript"
-  ],
-  "areas": [
-   "ai-agents",
-   "memory-context",
-   "docs-writing",
-   "writing"
-  ],
-  "evidence": {
-   "technologies": {
-    "javascript": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null,
-     "implied_by": "memory-context"
-    },
-    "memory-context": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "docs-writing": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "prose"
-    },
-    "writing": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "prose"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-04T16:29:51Z"
  },
  "liustack/modsearch": {
   "readme_sha": "34ce1faf1a23667b328d5d7e303bf6cbb7fccf2b",
@@ -112199,6 +112262,34 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "24kchengYe/human-skill-tree": {
+  "readme_sha": "a340c7ef2ac02ec4c84bb739dab07cff069ea9bb",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "business"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "business": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "axtonliu/smart-illustrator": {
   "readme_sha": "604b25b6b1339da35781e7b9326ebb8fa054c531",
   "taxonomy_version": "093d4aa269c9",
@@ -112222,34 +112313,6 @@
       "readme": 1
      },
      "match": "illustrations"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "24kchengYe/human-skill-tree": {
-  "readme_sha": "a340c7ef2ac02ec4c84bb739dab07cff069ea9bb",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "business"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "business": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
     }
    }
   },
@@ -112726,30 +112789,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "YurunChen/repo-docs-skills": {
-  "readme_sha": "c269c8d8756b76177e11b32117bd3d9d35f06fe2",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "coffeefuelbump/csv-data-summarizer-claude-skill": {
   "readme_sha": "b0567e5dd0a7efc31e1a7f39ff37d1bcabef27dd",
   "taxonomy_version": "093d4aa269c9",
@@ -112794,6 +112833,30 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "YurunChen/repo-docs-skills": {
+  "readme_sha": "c269c8d8756b76177e11b32117bd3d9d35f06fe2",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "ratel-ai/ratel": {
   "readme_sha": "08019cdd174fbfe02c1954127336a96fae44e6cb",
   "taxonomy_version": "093d4aa269c9",
@@ -112828,6 +112891,38 @@
       "readme": 1
      },
      "match": "context engineering"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "malob/nix-config": {
+  "readme_sha": "72cc0c49951a7ef61587a195549a7c1d28ca620c",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "shell"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "shell": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
     }
    },
    "embedding": {
@@ -112889,38 +112984,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "malob/nix-config": {
-  "readme_sha": "72cc0c49951a7ef61587a195549a7c1d28ca620c",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "shell"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "shell": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "Masriyan/Claude-Code-CyberSecurity-Skill": {
   "readme_sha": "2e0a1d278a1341ed1c9c90b98fd7c926e83bf2d6",
   "taxonomy_version": "093d4aa269c9",
@@ -112949,82 +113012,6 @@
    "embedding": {
     "technologies": {},
     "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "ViryaZheng/recomby-geo": {
-  "readme_sha": "864e4763d989c1d6959b6950796cc236d14a5543",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "marketing",
-   "seo"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "marketing": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "seo"
-    },
-    "seo": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "seo"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "gcpdev/llm-council-skill": {
-  "readme_sha": "28246e17fa1bfa0dbf088db8b005013be5ff75eb",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-workflows",
-   "spec-driven"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-workflows": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "brainstorming with other llms (chatgpt, gemini) before presenting the implementation plan"
-    },
-    "spec-driven": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "implementation plan"
-    }
    }
   },
   "method": "rules",
@@ -113071,6 +113058,82 @@
    "embedding": {
     "technologies": {},
     "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "gcpdev/llm-council-skill": {
+  "readme_sha": "28246e17fa1bfa0dbf088db8b005013be5ff75eb",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-workflows",
+   "spec-driven"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-workflows": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "brainstorming with other llms (chatgpt, gemini) before presenting the implementation plan"
+    },
+    "spec-driven": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "implementation plan"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "ViryaZheng/recomby-geo": {
+  "readme_sha": "864e4763d989c1d6959b6950796cc236d14a5543",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "marketing",
+   "seo"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "marketing": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "seo"
+    },
+    "seo": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "seo"
+    }
    }
   },
   "method": "rules",
@@ -113339,14 +113402,16 @@
   "method": "fallback",
   "classified_at": "2026-10-04T16:29:51Z"
  },
- "codeswithroh/tastemaker": {
-  "readme_sha": "6c5d21ea5f410663409ca91a85ba5047340e8e06",
+ "BrianRWagner/ai-marketing-claude-code-skills": {
+  "readme_sha": "fae13ffbc899aaad6e88d8549a79f8b87ac2a169",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
   ],
   "areas": [
-   "general-purpose"
+   "marketing",
+   "design",
+   "brand"
   ],
   "evidence": {
    "technologies": {
@@ -113355,16 +113420,37 @@
     }
    },
    "areas": {
-    "general-purpose": {
-     "method": "fallback"
+    "marketing": {
+     "rule_score": 10,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "marketing"
+    },
+    "design": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "brand": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
     }
    }
   },
-  "method": "fallback",
+  "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "aiskillstore/marketplace": {
-  "readme_sha": "d968e6ecccd3bc48fa36ff11abcd91c73432474a",
+ "codeswithroh/tastemaker": {
+  "readme_sha": "6c5d21ea5f410663409ca91a85ba5047340e8e06",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
@@ -113441,16 +113527,14 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "BrianRWagner/ai-marketing-claude-code-skills": {
-  "readme_sha": "fae13ffbc899aaad6e88d8549a79f8b87ac2a169",
+ "aiskillstore/marketplace": {
+  "readme_sha": "d968e6ecccd3bc48fa36ff11abcd91c73432474a",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
    "general-purpose"
   ],
   "areas": [
-   "marketing",
-   "design",
-   "brand"
+   "general-purpose"
   ],
   "evidence": {
    "technologies": {
@@ -113459,33 +113543,12 @@
     }
    },
    "areas": {
-    "marketing": {
-     "rule_score": 10,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "marketing"
-    },
-    "design": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "brand": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
+    "general-purpose": {
+     "method": "fallback"
     }
    }
   },
-  "method": "rules",
+  "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "sanjay3290/ai-skills": {
@@ -113773,6 +113836,44 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "zhuyansen/awesome-claude-video-skills": {
+  "readme_sha": "3e7a6743b121ae4773d595d24f214a414a2bcc89",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "design",
+   "media-generation"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "design": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "remotion"
+    },
+    "media-generation": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "remotion"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-04T16:29:51Z"
+ },
  "ilyautov/humanizer-ru": {
   "readme_sha": "d327b80d1b60735bfe790e2aebacc4c5de6a33c8",
   "taxonomy_version": "093d4aa269c9",
@@ -114004,6 +114105,30 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "Jakeschincariol/replica-skill": {
+  "readme_sha": "976a5f2ca16d3859a2325286957104c4c24ffd17",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-05T05:44:12Z"
+ },
  "Microck/ordinary-claude-skills": {
   "readme_sha": "bf605eeed29ea250b78b5c8e80002ea62d26bc30",
   "taxonomy_version": "093d4aa269c9",
@@ -114027,44 +114152,6 @@
   },
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
- },
- "zhuyansen/awesome-claude-video-skills": {
-  "readme_sha": "3e7a6743b121ae4773d595d24f214a414a2bcc89",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "design",
-   "media-generation"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "design": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "remotion"
-    },
-    "media-generation": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "remotion"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-04T16:29:51Z"
  },
  "AThevon/genjutsu": {
   "readme_sha": "863666a8f2efcb22452fb3b1a3429507bfd3ad9a",
@@ -114674,62 +114761,6 @@
   },
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
- },
- "robrohan/WebArchiveExtractor": {
-  "readme_sha": "cb1dc09bbcf83125ec9e131731796e1eb1190b5a",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "swift"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "swift": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "datadrivenconstruction/DDC_Skills_for_AI_Agents_in_Construction": {
-  "readme_sha": "1b35646cfe5900287a965541f5cca95da79d9cd1",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-04T16:29:51Z"
  },
  "VoltAgent/awesome-claude-code-subagents": {
   "readme_sha": "3ef58244a02b7a8033952b7a4911ccebe9cc843d",
@@ -115417,44 +115448,6 @@
       "readme": 2
      },
      "match": "prompt engineering"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "xbim08/awesome-claude-code-plugins": {
-  "readme_sha": "caf656ed884dee2facc9163fe3d6ec120e3fea62",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "orchestration"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "subagents"
-    },
-    "orchestration": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "subagents"
     }
    }
   },
@@ -117292,6 +117285,38 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "tamtom/play-console-cli": {
+  "readme_sha": "5f1e0d1377f4a0f60165434f575eac876254f5b6",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "go"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "go": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "gbessoni/seobuild-onpage": {
   "readme_sha": "128846bd96f3d9226384c23b222981bec7755699",
   "taxonomy_version": "093d4aa269c9",
@@ -117340,38 +117365,6 @@
      },
      "match": "competitive analysis"
     }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "tamtom/play-console-cli": {
-  "readme_sha": "5f1e0d1377f4a0f60165434f575eac876254f5b6",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "go"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "go": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -117602,6 +117595,42 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "hqhq1025/skill-optimizer": {
+  "readme_sha": "76a1803b1c9319ad7d57d7e1e6ce69d3f8f93b2d",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "prompt-engineering"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "prompt-engineering": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "mattgierhart/PRD-driven-context-engineering": {
   "readme_sha": "1866f76e7e6fe8bb0ceb0fad25169645ecd4f924",
   "taxonomy_version": "093d4aa269c9",
@@ -117684,42 +117713,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "hqhq1025/skill-optimizer": {
-  "readme_sha": "76a1803b1c9319ad7d57d7e1e6ce69d3f8f93b2d",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "prompt-engineering"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "prompt-engineering": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "wanshuiyin/Anti-Autoresearch": {
   "readme_sha": "df500d26983b5acdfe01f85aedef8fab044a539a",
   "taxonomy_version": "093d4aa269c9",
@@ -117779,30 +117772,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "JuneYaooo/xhs-writer-skill": {
-  "readme_sha": "f9da0a292111e6b3bfac45f1530a7f6f90e464c5",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "Frappucc1no/recall-loom": {
   "readme_sha": "03674b8c3a2886341b3fcf5ee3b59670574cdce1",
   "taxonomy_version": "093d4aa269c9",
@@ -117838,6 +117807,30 @@
    }
   },
   "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "JuneYaooo/xhs-writer-skill": {
+  "readme_sha": "f9da0a292111e6b3bfac45f1530a7f6f90e464c5",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "UiPath/coder_eval": {
@@ -118161,44 +118154,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "chengzhongwei/Prompt-sensei": {
-  "readme_sha": "9ec8f4570b220d2cba07cca7971e88703b347006",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "prompt-engineering"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "prompt-engineering": {
-     "rule_score": 7,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "prompts"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "ahacker-1/cre-agent-skills": {
   "readme_sha": "aaa0d085a0751d1b48c871064f697a53da40cde5",
   "taxonomy_version": "093d4aa269c9",
@@ -118250,6 +118205,44 @@
       "readme": 1
      },
      "match": "legal"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "chengzhongwei/Prompt-sensei": {
+  "readme_sha": "9ec8f4570b220d2cba07cca7971e88703b347006",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "prompt-engineering"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "prompt-engineering": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "prompts"
     }
    }
   },
@@ -118371,30 +118364,6 @@
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "omergocmen/vibe-coder-kit": {
-  "readme_sha": "82b6f0e14d497937303387239c08cdcf69e0a53f",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "motiful/product-shots": {
   "readme_sha": "71f1895ceda055b13922caaa1a6fc0d845e8d397",
   "taxonomy_version": "093d4aa269c9",
@@ -118429,6 +118398,30 @@
    }
   },
   "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "omergocmen/vibe-coder-kit": {
+  "readme_sha": "82b6f0e14d497937303387239c08cdcf69e0a53f",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "joeyvansommeren/journey-mapper": {
@@ -118739,6 +118732,41 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "claude-world/claude-skill-antivirus": {
+  "readme_sha": "466b8c70194da3e5a7fb4e333d878092eea65292",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "javascript"
+  ],
+  "areas": [
+   "security"
+  ],
+  "evidence": {
+   "technologies": {
+    "javascript": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "language": 1
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "security": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "security scanner"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "claude-world/director-mode-lite": {
   "readme_sha": "fcc7f494b725ae14d6f74b618736ee6ebf65a611",
   "taxonomy_version": "093d4aa269c9",
@@ -118769,41 +118797,6 @@
       "topic": 3
      },
      "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "claude-world/claude-skill-antivirus": {
-  "readme_sha": "466b8c70194da3e5a7fb4e333d878092eea65292",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "javascript"
-  ],
-  "areas": [
-   "security"
-  ],
-  "evidence": {
-   "technologies": {
-    "javascript": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "language": 1
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "security": {
-     "rule_score": 7,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "security scanner"
     }
    }
   },
@@ -119521,6 +119514,63 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "dembrandt/dembrandt-skills": {
+  "readme_sha": "8a2a46912e2da4d3deb3b64f4e6c57d88e1a9bd2",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "frontend",
+   "accessibility",
+   "design",
+   "design-systems"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "frontend": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "accessibility": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "wcag"
+    },
+    "design": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "design system"
+    },
+    "design-systems": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "design system"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "jomeswang/agnes-ai-skill": {
   "readme_sha": "272b8f1e9dd570e50692498139938926e4c9eaa1",
   "taxonomy_version": "093d4aa269c9",
@@ -119591,63 +119641,6 @@
       "readme": 2
      },
      "match": "investing"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "dembrandt/dembrandt-skills": {
-  "readme_sha": "8a2a46912e2da4d3deb3b64f4e6c57d88e1a9bd2",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "frontend",
-   "accessibility",
-   "design",
-   "design-systems"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "frontend": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "accessibility": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "wcag"
-    },
-    "design": {
-     "rule_score": 7,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "design system"
-    },
-    "design-systems": {
-     "rule_score": 7,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "design system"
     }
    }
   },
@@ -119774,30 +119767,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "chiruu12/OSS-Skills": {
-  "readme_sha": "4b7d7db01352468d9713136eb7e3e6c2d0a10ac4",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "nostrband/ServiceGraph": {
   "readme_sha": "0acfb855d49a8f466f42fe8dd9db6773960a34f6",
   "taxonomy_version": "093d4aa269c9",
@@ -119824,6 +119793,30 @@
    }
   },
   "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "chiruu12/OSS-Skills": {
+  "readme_sha": "4b7d7db01352468d9713136eb7e3e6c2d0a10ac4",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "scdenney/open-science-skills": {
@@ -119990,43 +119983,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "hanfang/claude-memory-skill": {
-  "readme_sha": "d995b54b1f87b872222533d9c479bcd7cb81e19f",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "memory-context"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "memory-context": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "description": 2
-     },
-     "match": "memory system"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "cgallic/kai-cmo-harness": {
   "readme_sha": "605d15995423ec60cbaf2aad1f32c77b19b36789",
   "taxonomy_version": "093d4aa269c9",
@@ -120078,6 +120034,43 @@
       "readme": 1
      },
      "match": "cro"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "hanfang/claude-memory-skill": {
+  "readme_sha": "d995b54b1f87b872222533d9c479bcd7cb81e19f",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "memory-context"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "memory-context": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "description": 2
+     },
+     "match": "memory system"
     }
    }
   },
@@ -120403,6 +120396,30 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "massimodeluisa/recursive-decomposition-skill": {
+  "readme_sha": "7163c5db38f17e2e6c221ae5a591adec1df81497",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "fcavalcantirj/claude-code-eyes": {
   "readme_sha": "2e694f38370f640af801b1f8695e83b56f4fc412",
   "taxonomy_version": "093d4aa269c9",
@@ -120438,30 +120455,6 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "massimodeluisa/recursive-decomposition-skill": {
-  "readme_sha": "7163c5db38f17e2e6c221ae5a591adec1df81497",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "shahshrey/awesome-claude-code-mastery": {
@@ -121066,30 +121059,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "foyzulkarim/skills": {
-  "readme_sha": "7f00e399bd94020507615e836b984bb2ab98834b",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "skyf0xx/hedgehog": {
   "readme_sha": "44a3bda86aed1fe82b0e4d9eef99b98c5600245a",
   "taxonomy_version": "093d4aa269c9",
@@ -121148,6 +121117,30 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "foyzulkarim/skills": {
+  "readme_sha": "7f00e399bd94020507615e836b984bb2ab98834b",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "AsiaOstrich/universal-dev-skills": {
   "readme_sha": "057a652aeb392f73f4ec70ade806405c3c392859",
   "taxonomy_version": "093d4aa269c9",
@@ -121204,6 +121197,30 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "lool-ventures/founder-skills": {
+  "readme_sha": "1faa62082503e23400a1aa93f06ca0abd0a5b415",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "DeliciousBuding/xiaohongshu-skill": {
   "readme_sha": "2fc4e4bc8b5d09e80915994fab1f57c27fe8931c",
   "taxonomy_version": "093d4aa269c9",
@@ -121253,30 +121270,6 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "lool-ventures/founder-skills": {
-  "readme_sha": "1faa62082503e23400a1aa93f06ca0abd0a5b415",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "wanshuiyin/ALIGN-Agentic-Loop-Image-GeneratioN": {
@@ -121757,46 +121750,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "sheeki03/Few-Word": {
-  "readme_sha": "05b75a502cb46f0cbcc68324bd718297f16f9eb8",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "python"
-  ],
-  "areas": [
-   "ai-agents",
-   "memory-context"
-  ],
-  "evidence": {
-   "technologies": {
-    "python": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "memory-context": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "tanweai/wooyun-legacy": {
   "readme_sha": "b8d6f2e723ac986900f8799e8bf77f45dcf016d6",
   "taxonomy_version": "093d4aa269c9",
@@ -121842,34 +121795,6 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "Quenty/NevermoreEngine": {
-  "readme_sha": "714784faf86c4846760a47b4a828b9f3ea9a6e74",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "tristanisham/zvm": {
@@ -122678,6 +122603,75 @@
   },
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "sendaifun/skills": {
+  "readme_sha": "dad6035c88fdf96fa80c57d63c990174f1ed6c8b",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "javascript",
+   "react"
+  ],
+  "areas": [
+   "frontend",
+   "apis",
+   "business",
+   "finance"
+  ],
+  "evidence": {
+   "technologies": {
+    "javascript": {
+     "rule_score": 2,
+     "fields": {
+      "items": 2
+     },
+     "match": "react",
+     "implied_by": "react"
+    },
+    "react": {
+     "rule_score": 2,
+     "fields": {
+      "items": 2
+     },
+     "match": "react"
+    }
+   },
+   "areas": {
+    "frontend": {
+     "rule_score": 3,
+     "fields": {
+      "items": 2,
+      "tech": 1
+     },
+     "match": "frontend"
+    },
+    "apis": {
+     "rule_score": 4,
+     "fields": {
+      "items": 2,
+      "readme": 2
+     },
+     "match": "grpc"
+    },
+    "business": {
+     "rule_score": 4,
+     "fields": {
+      "items": 2,
+      "readme": 2
+     },
+     "match": "trading"
+    },
+    "finance": {
+     "rule_score": 4,
+     "fields": {
+      "items": 2,
+      "readme": 2
+     },
+     "match": "trading"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "lean-explore/lean-explore": {
   "readme_sha": "c280661b02e29c417accba38a8a485f3dd4131f8",
@@ -123814,6 +123808,46 @@
   },
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "cjpatten/canadian-finance-planner-skill": {
+  "readme_sha": "73f0f538d3f82c1e591f738ebfc8e61ce23cb9d8",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "business",
+   "finance"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "business": {
+     "rule_score": 7,
+     "fields": {
+      "name": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "finance"
+    },
+    "finance": {
+     "rule_score": 7,
+     "fields": {
+      "name": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "finance"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "memi-design/memi": {
   "readme_sha": "a9c636e5aaeeeff6e0cbf09c127795ed6c46badb",
@@ -125192,6 +125226,45 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "legioncodeinc/honeycomb": {
+  "readme_sha": "984a56b20fbc20829701951f7e2c3c940d013b1d",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "memory-context"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "persistent memory"
+    },
+    "memory-context": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "across sessions"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
+ },
  "awss1i/assay": {
   "readme_sha": "407a62e2e0fd6975127d0960233c8962a750195a",
   "taxonomy_version": "093d4aa269c9",
@@ -125288,6 +125361,30 @@
   },
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "alberduris/skills": {
+  "readme_sha": "c1cb08e87bb29633e0a5b5a79bd1a68b37d37666",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "cp-yu/md2word": {
   "readme_sha": "d3709349c2478dc7c30df3575727bea6f46305b0",
@@ -126367,30 +126464,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "s0up4200/skills": {
-  "readme_sha": "695f983463968d2bf2a9c4c650bf6816814edc25",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-04T14:01:26Z"
- },
  "killerwolf/skills": {
   "readme_sha": "bcce30fa784fc037718c6f51615929a1cff9d800",
   "taxonomy_version": "093d4aa269c9",
@@ -126752,72 +126825,6 @@
       "readme": 2
      },
      "match": "spec kit"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "iamantoniodinuzzo/claude-flutter": {
-  "readme_sha": "9cc7991507f8541d4c719c1d85a2db521b6932c1",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "flutter"
-  ],
-  "areas": [
-   "backend",
-   "backend-best-practices",
-   "devops",
-   "observability"
-  ],
-  "evidence": {
-   "technologies": {
-    "flutter": {
-     "rule_score": 9,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 3
-     },
-     "match": "flutter"
-    }
-   },
-   "areas": {
-    "backend": {
-     "rule_score": 6,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 1
-     },
-     "match": "clean architecture",
-     "implied_by": "backend-best-practices"
-    },
-    "backend-best-practices": {
-     "rule_score": 6,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 1
-     },
-     "match": "clean architecture"
-    },
-    "devops": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "sentry",
-     "implied_by": "observability"
-    },
-    "observability": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "sentry"
     }
    }
   },
@@ -127219,6 +127226,30 @@
   },
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "Provable-Games/onchain-midi-player": {
+  "readme_sha": "30509618aad7bc4e83e700853b87d13351738e53",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "BULDEE/oh-my-privacy": {
   "readme_sha": "ddccf448e9650cf9cabf58e88b87e88e730c4bf6",
@@ -127810,6 +127841,44 @@
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "Drutek/spektral-claude-plugin": {
+  "readme_sha": "2dbb95c73fc0237186aaaca0ebbdaea77fa86050",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "design",
+   "design-systems"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "design": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "design system"
+    },
+    "design-systems": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "design system"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
+ },
  "koustubh25/homelab-recommender": {
   "readme_sha": "7c1976678a846d4e98ce8c0ea903189a9f836708",
   "taxonomy_version": "093d4aa269c9",
@@ -128225,99 +128294,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "hungovercoders/sysspec": {
-  "readme_sha": "20d7d6af164f997db335825b18b52d4dc75b0970",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "typescript"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "typescript": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "tacticaldoll/fornax": {
-  "readme_sha": "17b027a58e62cfe73e32944c73430aac9653ad82",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "orchestration",
-   "code-review",
-   "automated-review",
-   "refactoring"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "multi agent"
-    },
-    "orchestration": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "multi agent"
-    },
-    "code-review": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "refactor"
-    },
-    "automated-review": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "code review"
-    },
-    "refactoring": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "refactor"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "mozilla/firefox-devtools-mcp": {
   "readme_sha": "d02364b6494a091ce979b96a75e486d6ee68a7e9",
   "taxonomy_version": "093d4aa269c9",
@@ -128622,6 +128598,65 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "Rul1an/assay": {
+  "readme_sha": "973c7abe04525cc74cae907425f63009e14d35b2",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "rust"
+  ],
+  "areas": [
+   "backend",
+   "security",
+   "devops",
+   "ci-cd"
+  ],
+  "evidence": {
+   "technologies": {
+    "rust": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "backend": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "backend"
+    },
+    "security": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "owasp"
+    },
+    "devops": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "ci-cd": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
+ },
  "avantsoftware/sheepdog": {
   "readme_sha": "c66a9547c6a591277939ce76f87db2767442bcf5",
   "taxonomy_version": "093d4aa269c9",
@@ -128789,36 +128824,6 @@
   },
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
- },
- "Heapy/kortex": {
-  "readme_sha": "5eb3e1aaddf1820cead07312d64c4211f2c6287b",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "java"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "java": {
-     "rule_score": 6,
-     "fields": {
-      "topic": 3,
-      "language": 1,
-      "description": 2
-     },
-     "match": "kotlin"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-04T16:29:51Z"
  },
  "bibryam/universal-skill-finder": {
   "readme_sha": "c2898b2cd4bf5109c08b705758d1120d18db7003",
@@ -129334,6 +129339,91 @@
    "areas": {
     "general-purpose": {
      "method": "fallback"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "guillempuche/ai-agent-a11y-accessibility-reviewer": {
+  "readme_sha": "904c7d4568d9ebedf2b2d807dcd9bfbbb0c7b054",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "frontend",
+   "ui-components",
+   "accessibility",
+   "security",
+   "compliance",
+   "code-review",
+   "automated-review"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "frontend": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "ui components"
+    },
+    "ui-components": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "ui components"
+    },
+    "accessibility": {
+     "rule_score": 8,
+     "fields": {
+      "name": 3,
+      "description": 3,
+      "readme": 2
+     },
+     "match": "a11y"
+    },
+    "security": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "compliance",
+     "implied_by": "compliance"
+    },
+    "compliance": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "compliance"
+    },
+    "code-review": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "review code"
+    },
+    "automated-review": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "review code"
     }
    }
   },
@@ -130206,30 +130296,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "chrisdavidson/first-principles-skill": {
-  "readme_sha": "8c65e78adfb0760d959184445275847435d1db73",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-03T22:03:15Z"
- },
  "achatt89/keel": {
   "readme_sha": "f7ddf5cf01ad8cab5c34f41bb6c81c8aed125c5f",
   "taxonomy_version": "093d4aa269c9",
@@ -130632,6 +130698,99 @@
    "areas": {
     "general-purpose": {
      "method": "fallback"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "hungovercoders/sysspec": {
+  "readme_sha": "20d7d6af164f997db335825b18b52d4dc75b0970",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "typescript"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "typescript": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "tacticaldoll/fornax": {
+  "readme_sha": "17b027a58e62cfe73e32944c73430aac9653ad82",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "orchestration",
+   "code-review",
+   "automated-review",
+   "refactoring"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "multi agent"
+    },
+    "orchestration": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "multi agent"
+    },
+    "code-review": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "refactor"
+    },
+    "automated-review": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "code review"
+    },
+    "refactoring": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "refactor"
     }
    }
   },
@@ -131118,54 +131277,6 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-04T14:01:26Z"
- },
- "kinojms/stack": {
-  "readme_sha": "af056936fb4f49b3b648665f9b3f796bb53c31fa",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-04T14:01:26Z"
- },
- "diskuv/dk-ai": {
-  "readme_sha": "a9f752a22cf3019c67539b99ccf8a4eed73bdfec",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
   "classified_at": "2026-10-04T14:01:26Z"
  },
  "SrDmitrov/ddhq-ai-marketplace": {
@@ -133874,6 +133985,44 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "brunoborges/jvm-pulse": {
+  "readme_sha": "f6a32195f3ed5ccadfda0581a72f55d50b987882",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "javascript",
+   "java"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "javascript": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    },
+    "java": {
+     "rule_score": 8,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 2
+     },
+     "match": "jvm"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "oxy-hq/airlayer": {
   "readme_sha": "8f992e15708792d885aff176cac57dcbe1cbc046",
   "taxonomy_version": "093d4aa269c9",
@@ -133980,44 +134129,6 @@
       "readme": 1
      },
      "match": "woocommerce"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "brunoborges/jvm-pulse": {
-  "readme_sha": "f6a32195f3ed5ccadfda0581a72f55d50b987882",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "javascript",
-   "java"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "javascript": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    },
-    "java": {
-     "rule_score": 8,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 2
-     },
-     "match": "jvm"
     }
    },
    "areas": {
@@ -134933,86 +135044,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "crenshawdev/cadence": {
-  "readme_sha": "972c8af168e5b04cb08be872625d9556eabe986f",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "javascript"
-  ],
-  "areas": [
-   "ai-agents",
-   "memory-context",
-   "ai-workflows",
-   "spec-driven",
-   "git",
-   "devops",
-   "ci-cd"
-  ],
-  "evidence": {
-   "technologies": {
-    "javascript": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "memory-context": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "ai-workflows": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "spec-driven": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "git": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "devops": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "ci-cd": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "Manavarya09/bullpen": {
   "readme_sha": "ae0fbc43188a8b9cf4aa638c832190a1879a7dec",
   "taxonomy_version": "093d4aa269c9",
@@ -135122,6 +135153,74 @@
   "method": "rules",
   "classified_at": "2026-10-03T22:03:15Z"
  },
+ "peterbamuhigire/chwezi-sdlc-documentation": {
+  "readme_sha": "1100a7ca00e67452af6b472acb96588dcd14275c",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "python"
+  ],
+  "areas": [
+   "ai-workflows",
+   "docs-writing",
+   "documentation",
+   "testing",
+   "tdd"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "ai-workflows": {
+     "rule_score": 7,
+     "fields": {
+      "name": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "sdlc"
+    },
+    "docs-writing": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "release notes"
+    },
+    "documentation": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "release notes"
+    },
+    "testing": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "tdd": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "LupusDei/adjutant": {
   "readme_sha": "b4b3b87c6bc1304ecb2987fc5bb29c5acbccba76",
   "taxonomy_version": "093d4aa269c9",
@@ -135209,6 +135308,49 @@
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "elliotbonneville/claude-cothought": {
+  "readme_sha": "460aa78051db8e3770fd88bf0845f3ff801b8537",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "typescript"
+  ],
+  "areas": [
+   "productivity",
+   "knowledge-management"
+  ],
+  "evidence": {
+   "technologies": {
+    "typescript": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "productivity": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "zettelkasten",
+     "implied_by": "knowledge-management"
+    },
+    "knowledge-management": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "zettelkasten"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "TheMattBerman/frontrun": {
   "readme_sha": "f5750aca4de4d019834b5dd90bbe877246c02b99",
   "taxonomy_version": "093d4aa269c9",
@@ -135236,52 +135378,6 @@
   },
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
- },
- "peturgeorgievv-factory/postfast-mcp": {
-  "readme_sha": "8d7ea6539016ebcd8367416b8141e039b1ccd62d",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "typescript"
-  ],
-  "areas": [
-   "marketing",
-   "social-media"
-  ],
-  "evidence": {
-   "technologies": {
-    "typescript": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "marketing": {
-     "rule_score": 8,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "items": 2,
-      "readme": 1
-     },
-     "match": "social media"
-    },
-    "social-media": {
-     "rule_score": 10,
-     "fields": {
-      "topic": 3,
-      "description": 3,
-      "items": 2,
-      "readme": 2
-     },
-     "match": "social media"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-04T16:29:51Z"
  },
  "The-Church-of-Code/church-of-code": {
   "readme_sha": "5209f440dc323ca5257b31be4db8a6db9609f629",
@@ -135605,6 +135701,30 @@
   "method": "rules",
   "classified_at": "2026-10-04T16:29:51Z"
  },
+ "Moksa1123/mosaic-headless": {
+  "readme_sha": "7d5cea1df71e5904b3f616d9b80978556f3bcb9c",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-05T05:44:12Z"
+ },
  "SDS-Mode/ketchup": {
   "readme_sha": "faee090852544e764408372d6d04571905c31844",
   "taxonomy_version": "093d4aa269c9",
@@ -135650,30 +135770,6 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "tramy-dev/tramy": {
-  "readme_sha": "8b87830da31e69917aa3af1b0b6408ef584d51c5",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "zaeem571/hyperframes": {
@@ -135874,6 +135970,45 @@
   },
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "TheMizeGuy/apple-ui-craft-public": {
+  "readme_sha": "65720855c6c33b6ac79d92f5449e4e171b4b75f9",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "frontend",
+   "accessibility"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "frontend": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "accessibility",
+     "implied_by": "accessibility"
+    },
+    "accessibility": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "accessibility"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "ioncache/ioncache-ai-tools": {
   "readme_sha": "e38252639a268a952df5f87f808e96d54c3f9b4b",
@@ -136602,91 +136737,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "guillempuche/ai-agent-a11y-accessibility-reviewer": {
-  "readme_sha": "904c7d4568d9ebedf2b2d807dcd9bfbbb0c7b054",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "frontend",
-   "ui-components",
-   "accessibility",
-   "security",
-   "compliance",
-   "code-review",
-   "automated-review"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "frontend": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "ui components"
-    },
-    "ui-components": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "ui components"
-    },
-    "accessibility": {
-     "rule_score": 8,
-     "fields": {
-      "name": 3,
-      "description": 3,
-      "readme": 2
-     },
-     "match": "a11y"
-    },
-    "security": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "compliance",
-     "implied_by": "compliance"
-    },
-    "compliance": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "compliance"
-    },
-    "code-review": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "review code"
-    },
-    "automated-review": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "review code"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "andreasasprou/oracle-skill": {
   "readme_sha": "d129097c81606fb749b7a3d1f553ebb8fdd398f3",
   "taxonomy_version": "093d4aa269c9",
@@ -136998,6 +137048,30 @@
   },
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "stonekey908/process-over-prompts": {
+  "readme_sha": "6540b063d08c2ff235432040e75d6324c30dff6c",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "zhuangqh/dotfiles": {
   "readme_sha": "a43ec552d7761a2a73b4edd0b33fd8fc53f23a42",
@@ -137685,27 +137759,6 @@
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "soapboxbuild/moodys-rms-mcp": {
-  "readme_sha": "0d1395d19b7d42bbb36b61793e8a5256f2296867",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "typescript"
-  ],
-  "areas": [],
-  "evidence": {
-   "technologies": {
-    "typescript": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-04T16:29:51Z"
- },
  "dvcrn/memcli": {
   "readme_sha": "9c1a5f396951b88285f7d57288026778e2dd8de4",
   "taxonomy_version": "093d4aa269c9",
@@ -137962,60 +138015,6 @@
   "method": "rules",
   "classified_at": "2026-10-04T14:01:26Z"
  },
- "a-lottes/aSPARK": {
-  "readme_sha": "c30aba1706051314de719b1f50d24bcaa0f9d2df",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "ai-workflows",
-   "code-review",
-   "automated-review"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "ai-workflows": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "code-review": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "code review"
-    },
-    "automated-review": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "code review"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "iblai/vibe": {
   "readme_sha": "d98cb9edb4c987ef961ad8db62da07e5c4f150fe",
   "taxonomy_version": "093d4aa269c9",
@@ -138175,158 +138174,6 @@
   "method": "rules",
   "classified_at": "2026-10-03T22:03:15Z"
  },
- "peterbamuhigire/chwezi-sdlc-documentation": {
-  "readme_sha": "1100a7ca00e67452af6b472acb96588dcd14275c",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "python"
-  ],
-  "areas": [
-   "ai-workflows",
-   "docs-writing",
-   "documentation",
-   "testing",
-   "tdd"
-  ],
-  "evidence": {
-   "technologies": {
-    "python": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "ai-workflows": {
-     "rule_score": 7,
-     "fields": {
-      "name": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "sdlc"
-    },
-    "docs-writing": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "release notes"
-    },
-    "documentation": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "release notes"
-    },
-    "testing": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "tdd": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "creatop-gtm/apollo-operator": {
-  "readme_sha": "4dd70eb32795448f808d3a6e1c1037fae8f85f03",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "apis",
-   "graphql"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "apis": {
-     "rule_score": 7,
-     "fields": {
-      "name": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "apollo",
-     "implied_by": "graphql"
-    },
-    "graphql": {
-     "rule_score": 7,
-     "fields": {
-      "name": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "apollo"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T22:03:15Z"
- },
- "elliotbonneville/claude-cothought": {
-  "readme_sha": "460aa78051db8e3770fd88bf0845f3ff801b8537",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "typescript"
-  ],
-  "areas": [
-   "productivity",
-   "knowledge-management"
-  ],
-  "evidence": {
-   "technologies": {
-    "typescript": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "productivity": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "zettelkasten",
-     "implied_by": "knowledge-management"
-    },
-    "knowledge-management": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "zettelkasten"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "tipoLi5890/akcli": {
   "readme_sha": "4fdb4bf7cb68527c41fa7878e46c3e5b7cee0737",
   "taxonomy_version": "093d4aa269c9",
@@ -138364,71 +138211,6 @@
   },
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
- },
- "kkunkunya/ai-frontend-design-kit": {
-  "readme_sha": "8284b439b2a18e80e1219acf3509955098015210",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "frontend",
-   "ai-agents",
-   "prompt-engineering",
-   "design",
-   "design-systems"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "frontend": {
-     "rule_score": 10,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "frontend design"
-    },
-    "ai-agents": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "subagent"
-    },
-    "prompt-engineering": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "prompts"
-    },
-    "design": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "design-systems": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T22:03:15Z"
  },
  "leewayworks/guochuang-gps": {
   "readme_sha": "00fcaccbb61b59c5091462994c6e690cfc353654",
@@ -138629,6 +138411,35 @@
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "Psykepro/ralph-loop-fork": {
+  "readme_sha": "3a1ec33f7ab45b7a1c0a9c12e42fb89b919b40b3",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-workflows"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-workflows": {
+     "rule_score": 5,
+     "fields": {
+      "name": 3,
+      "readme": 2
+     },
+     "match": "ralph loop"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
+ },
  "crouton-labs/capture": {
   "readme_sha": "2cdadc91fac803bcf3fae6e27d681b0f5b6e82ea",
   "taxonomy_version": "093d4aa269c9",
@@ -138656,6 +138467,50 @@
   },
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "leidarljos/vissue": {
+  "readme_sha": "1ae0f2e3140e7ddfdc4088c0f82384b036519cd1",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "rust"
+  ],
+  "areas": [
+   "productivity",
+   "project-management"
+  ],
+  "evidence": {
+   "technologies": {
+    "rust": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "productivity": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "backlog"
+    },
+    "project-management": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "issue tracking"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "FearWhale/cs2-hammer-skills": {
   "readme_sha": "0decedeff0799a545c835abc91670187a0e786bb",
@@ -138814,6 +138669,30 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "tramy-dev/tramy": {
+  "readme_sha": "8b87830da31e69917aa3af1b0b6408ef584d51c5",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "briansunter/arcfetch": {
   "readme_sha": "76b3d1731b3d9b529cfa6783c8236412fdafc22a",
   "taxonomy_version": "093d4aa269c9",
@@ -138889,6 +138768,84 @@
   },
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "ScaleDockHQ/better-supabase": {
+  "readme_sha": "2b4588fa9cf942c05af6d4c5f552982c8fbaad12",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "typescript",
+   "databases",
+   "supabase"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "typescript": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    },
+    "databases": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "readme": 1
+     },
+     "match": "supabase",
+     "implied_by": "supabase"
+    },
+    "supabase": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "readme": 1
+     },
+     "match": "supabase"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
+ },
+ "luckmanqasim/sota-anchor": {
+  "readme_sha": "ce208b07d41318cc9606040c758ba1178bfa0513",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "python"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "fallguyconsulting/plumbline": {
   "readme_sha": "16c7b1b4ded9d7841f3394f58d6f3d4d2b363b1a",
@@ -139090,6 +139047,30 @@
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "thisguymartin/psf-monitor": {
+  "readme_sha": "15ec997b2dc0a97a377590bd10fd4a832ff9e915",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-05T05:44:12Z"
+ },
  "kawaz/claude-bash-safety": {
   "readme_sha": "5dc8c207c1963adfb42fbf5f84e1307ea0fba9fa",
   "taxonomy_version": "093d4aa269c9",
@@ -139284,15 +139265,6 @@
    }
   },
   "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "mirelo-ai/mirelo-claude-plugin": {
-  "readme_sha": "a3f600a33c6807a544fec8fc035ababf2a6cb301",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [],
-  "areas": [],
-  "evidence": {},
-  "method": "none",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "northseadev/northsea-plugin": {
@@ -140089,6 +140061,30 @@
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "gigabuddy/agent-plugins": {
+  "readme_sha": "6803e7a0e843f6bc004d515f97c896a1c25bb222",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-05T05:44:12Z"
+ },
  "pdev-jay/jay-flow": {
   "readme_sha": "323a32f8f5f2a9d0bc56456b016b601dae4c1b95",
   "taxonomy_version": "093d4aa269c9",
@@ -140384,6 +140380,49 @@
   },
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "leonlenk/swarm-chasing": {
+  "readme_sha": "3090e13de2040beb1ae3a14b88b0cf215dd4c60b",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "python"
+  ],
+  "areas": [
+   "ai-agents",
+   "orchestration"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 5,
+     "fields": {
+      "name": 3,
+      "readme": 2
+     },
+     "match": "swarm",
+     "implied_by": "orchestration"
+    },
+    "orchestration": {
+     "rule_score": 5,
+     "fields": {
+      "name": 3,
+      "readme": 2
+     },
+     "match": "swarm"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "harshagrawal13/kingbob-claude-plugins": {
   "readme_sha": "701eb893ddc4ca0082de79433e808c9af25f404c",
@@ -140820,34 +140859,6 @@
    }
   },
   "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "FanFantom9452/FanKeel": {
-  "readme_sha": "4ab34884fab7f05480571b2bdcb3fa242b298374",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "javascript"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "javascript": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "DenisSergeevitch/repo-task-proof-loop": {
@@ -144081,34 +144092,6 @@
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "majiayu000/claude-skill-registry": {
-  "readme_sha": "9a47204087eb08428591abf3fd3213aa32d62fb7",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
  "cas-bigdatalab/piflow": {
   "readme_sha": "2daabeb026953b63452d1ad81e7ab91fd208139e",
   "taxonomy_version": "093d4aa269c9",
@@ -144517,6 +144500,48 @@
   "method": "rules",
   "classified_at": "2026-10-04T16:29:51Z"
  },
+ "infinition/LaRuche": {
+  "readme_sha": "a589b2668a7c02dc5f48f72b7ba8b3b03f99e0c8",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "rust"
+  ],
+  "areas": [
+   "ai-agents",
+   "orchestration"
+  ],
+  "evidence": {
+   "technologies": {
+    "rust": {
+     "rule_score": 8,
+     "fields": {
+      "topic": 3,
+      "language": 3,
+      "description": 2
+     },
+     "match": "rust"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "orchestration": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "PranavNagrecha/AwesomeSalesforceSkills": {
   "readme_sha": "0c312407e913805a0a2a378eee6c08716f84f149",
   "taxonomy_version": "093d4aa269c9",
@@ -144595,6 +144620,36 @@
   },
   "method": "rules",
   "classified_at": "2026-10-03T22:03:15Z"
+ },
+ "AratKruglik/claude-sdlc": {
+  "readme_sha": "67cdc35e6a2da967a450d22d34c4c5f5c02d8ebc",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-workflows"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-workflows": {
+     "rule_score": 7,
+     "fields": {
+      "name": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "sdlc"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
  },
  "lingxling/awesome-skills-cn": {
   "readme_sha": "37df7ab75886ed3b18bfbc12f6e296bcabb725eb",
@@ -144730,6 +144785,74 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "makifbaysal/tasktrooper": {
+  "readme_sha": "651ba0e42db70701a9e61594465fad1d897b4109",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "go"
+  ],
+  "areas": [
+   "ai-agents",
+   "orchestration",
+   "ai-workflows",
+   "productivity",
+   "project-management"
+  ],
+  "evidence": {
+   "technologies": {
+    "go": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "orchestration": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "ai-workflows": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "plan, implement, test"
+    },
+    "productivity": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "kanban"
+    },
+    "project-management": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "kanban"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "devndesigner6/tinyplace": {
   "readme_sha": "a337b4e216476f62d75e6a492fdde22418e80551",
   "taxonomy_version": "093d4aa269c9",
@@ -144842,6 +144965,57 @@
    }
   },
   "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "chimeranext/flutter-boilerplate-monorepo-template": {
+  "readme_sha": "9bc2db9220f8db3fce0acaa83ac4920c10033840",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "python",
+   "flutter"
+  ],
+  "areas": [
+   "apis",
+   "graphql"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    },
+    "flutter": {
+     "rule_score": 6,
+     "fields": {
+      "name": 3,
+      "description": 3
+     },
+     "match": "flutter"
+    }
+   },
+   "areas": {
+    "apis": {
+     "rule_score": 4,
+     "fields": {
+      "description": 3,
+      "readme": 1
+     },
+     "match": "graphql"
+    },
+    "graphql": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "graphql"
+    }
+   }
+  },
+  "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "adrianco/retort": {
@@ -145699,6 +145873,65 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "openamer/openamer": {
+  "readme_sha": "21e606d47b79fcb048081691cd5bab62212434fe",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "python"
+  ],
+  "areas": [
+   "ai-agents",
+   "orchestration",
+   "data",
+   "machine-learning"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "language": 1
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "orchestration": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "swarm"
+    },
+    "data": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "machine-learning": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "mlops"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
+ },
  "rosendolu/cursor-skills": {
   "readme_sha": "01a555f4543622fec07562b8581315d12d307aa9",
   "taxonomy_version": "093d4aa269c9",
@@ -145849,6 +146082,30 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "luokai0/ai-agent-skills-by-luo-kai": {
+  "readme_sha": "9a015555a3f5e2b4e6840bcb1c375f6b50a0bfbd",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "vincentagwu/deutsches-recht-slim": {
   "readme_sha": "81a30645ffb9f7a4c46570d71f84cd6d4776dd12",
   "taxonomy_version": "093d4aa269c9",
@@ -145932,30 +146189,6 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "luokai0/ai-agent-skills-by-luo-kai": {
-  "readme_sha": "9a015555a3f5e2b4e6840bcb1c375f6b50a0bfbd",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "bsoc-bitbyte/BattleGround-Mobile-Jabalpur": {
@@ -146631,156 +146864,14 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "infinition/LaRuche": {
-  "readme_sha": "a589b2668a7c02dc5f48f72b7ba8b3b03f99e0c8",
+ "lzwei196/KISS-Knowledge-Infrastructure-for-Scientific-Simulation": {
+  "readme_sha": "dccbafd6d6f90238b094db7563301dfa0c4ba349",
   "taxonomy_version": "093d4aa269c9",
   "technologies": [
-   "rust"
+   "python"
   ],
   "areas": [
-   "ai-agents",
-   "orchestration"
-  ],
-  "evidence": {
-   "technologies": {
-    "rust": {
-     "rule_score": 8,
-     "fields": {
-      "topic": 3,
-      "language": 3,
-      "description": 2
-     },
-     "match": "rust"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "orchestration": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "AratKruglik/claude-sdlc": {
-  "readme_sha": "67cdc35e6a2da967a450d22d34c4c5f5c02d8ebc",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-workflows"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-workflows": {
-     "rule_score": 7,
-     "fields": {
-      "name": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "sdlc"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "makifbaysal/tasktrooper": {
-  "readme_sha": "651ba0e42db70701a9e61594465fad1d897b4109",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "go"
-  ],
-  "areas": [
-   "ai-agents",
-   "orchestration",
-   "ai-workflows",
-   "productivity",
-   "project-management"
-  ],
-  "evidence": {
-   "technologies": {
-    "go": {
-     "rule_score": 6,
-     "fields": {
-      "topic": 3,
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "orchestration": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "ai-workflows": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "plan, implement, test"
-    },
-    "productivity": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "kanban"
-    },
-    "project-management": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "kanban"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "chimeranext/flutter-boilerplate-monorepo-template": {
-  "readme_sha": "9bc2db9220f8db3fce0acaa83ac4920c10033840",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "python",
-   "flutter"
-  ],
-  "areas": [
-   "apis",
-   "graphql"
+   "research"
   ],
   "evidence": {
    "technologies": {
@@ -146790,37 +146881,110 @@
       "language": 3
      },
      "match": null
-    },
-    "flutter": {
-     "rule_score": 6,
-     "fields": {
-      "name": 3,
-      "description": 3
-     },
-     "match": "flutter"
     }
    },
    "areas": {
-    "apis": {
+    "research": {
      "rule_score": 4,
      "fields": {
-      "description": 3,
+      "name": 3,
       "readme": 1
      },
-     "match": "graphql"
-    },
-    "graphql": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "graphql"
+     "match": "scientific"
     }
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
+  "classified_at": "2026-10-05T05:44:12Z"
+ },
+ "Proto-UI/Proto-UI": {
+  "readme_sha": "5cc82b6ace409abb43b79def5e7016abb35abfcb",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "typescript",
+   "css",
+   "tailwind"
+  ],
+  "areas": [
+   "frontend",
+   "ui-components"
+  ],
+  "evidence": {
+   "technologies": {
+    "typescript": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    },
+    "css": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "shadcn",
+     "implied_by": "tailwind"
+    },
+    "tailwind": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "shadcn"
+    }
+   },
+   "areas": {
+    "frontend": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "tech": 1
+     },
+     "match": null
+    },
+    "ui-components": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "shadcn"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
+ },
+ "macintog/codex-spine": {
+  "readme_sha": "af4603b8c08aeae2b6f09c702e87a7bbb212d141",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "python"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "msbaek/msbaek-claude-plugins": {
   "readme_sha": "22dd460735abdfa9e63aa35a51fd729c56871500",
@@ -147779,6 +147943,48 @@
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "lam-bui-tech/AI-Agent-for-Sales": {
+  "readme_sha": "d337f8fefce21632f80f0b4c592f7d24023152a0",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "python"
+  ],
+  "areas": [
+   "business",
+   "sales-crm"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    }
+   },
+   "areas": {
+    "business": {
+     "rule_score": 5,
+     "fields": {
+      "name": 3,
+      "readme": 2
+     },
+     "match": "sales"
+    },
+    "sales-crm": {
+     "rule_score": 5,
+     "fields": {
+      "name": 3,
+      "readme": 2
+     },
+     "match": "sales"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
+ },
  "nvdigitalsolutions/mcp-ai-wpoos": {
   "readme_sha": "8196d03918127c8a9981e3b53b6f6775acdb8cdc",
   "taxonomy_version": "093d4aa269c9",
@@ -148521,30 +148727,6 @@
   },
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
- },
- "lovits/skills-manager-backup": {
-  "readme_sha": "",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-04T16:29:51Z"
  },
  "epci971/claude-epci": {
   "readme_sha": "6ac8a60d51d4c03096c26b48ec8cb92ca23fa6b9",
@@ -150917,6 +151099,43 @@
   "method": "rules",
   "classified_at": "2026-10-03T14:45:24Z"
  },
+ "developerz-ai/open-mmorpg": {
+  "readme_sha": "4cd4ff7b4ca5599d063c731fd1a2e8e8b582dc26",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "typescript",
+   "rust"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "typescript": {
+     "rule_score": 3,
+     "fields": {
+      "language": 3
+     },
+     "match": null
+    },
+    "rust": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "description": 2
+     },
+     "match": "rust"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
  "ils15/pantheon-legacy": {
   "readme_sha": "65336105d22d0c860e156d6187869934032f77f4",
   "taxonomy_version": "093d4aa269c9",
@@ -151315,43 +151534,6 @@
       "topic": 3
      },
      "match": null
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "developerz-ai/open-mmorpg": {
-  "readme_sha": "4cd4ff7b4ca5599d063c731fd1a2e8e8b582dc26",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "typescript",
-   "rust"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "typescript": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    },
-    "rust": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "description": 2
-     },
-     "match": "rust"
     }
    },
    "areas": {
@@ -155275,34 +155457,6 @@
   "method": "fallback",
   "classified_at": "2026-10-03T14:45:24Z"
  },
- "radusoltan/deschide_news_app": {
-  "readme_sha": "dfc94e1b416f87051e923e618379fccb23814061",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "php"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "php": {
-     "rule_score": 3,
-     "fields": {
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-04T16:29:51Z"
- },
  "kinncj/sample-MAPLE": {
   "readme_sha": "",
   "taxonomy_version": "093d4aa269c9",
@@ -155596,6 +155750,15 @@
    }
   },
   "method": "fallback",
+  "classified_at": "2026-10-03T14:45:24Z"
+ },
+ "sawanori/yamaimo_site": {
+  "readme_sha": "",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [],
+  "areas": [],
+  "evidence": {},
+  "method": "none",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "kumaran-is/claude-code-onboarding": {
@@ -156013,30 +156176,6 @@
   },
   "method": "rules",
   "classified_at": "2026-10-03T22:03:15Z"
- },
- "dxiiren/project-skeleton": {
-  "readme_sha": "681acbd200c57e930e65aa0f4c87962535611740",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-04T16:29:51Z"
  },
  "sagerstack/agentic-workflows": {
   "readme_sha": "9cf3943f3c887e1c2847ef9453d1db78904b9cf9",
@@ -156636,6 +156775,47 @@
   "method": "fallback",
   "classified_at": "2026-10-03T22:03:15Z"
  },
+ "JeffGoji/Jeffgoji.com-React-Site": {
+  "readme_sha": "7ba371da9da205a1b4d8cc022886eb55a9c743ba",
+  "taxonomy_version": "093d4aa269c9",
+  "technologies": [
+   "javascript",
+   "react"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "javascript": {
+     "rule_score": 6,
+     "fields": {
+      "name": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "react",
+     "implied_by": "react"
+    },
+    "react": {
+     "rule_score": 6,
+     "fields": {
+      "name": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "react"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-05T05:44:12Z"
+ },
  "mugheessubtain/Hackathon-2-Phase-03": {
   "readme_sha": "0dba83c2c8726b2a01d53efbdcd26cca6969cca4",
   "taxonomy_version": "093d4aa269c9",
@@ -156904,15 +157084,6 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-03T14:45:24Z"
- },
- "sawanori/yamaimo_site": {
-  "readme_sha": "",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [],
-  "areas": [],
-  "evidence": {},
-  "method": "none",
   "classified_at": "2026-10-03T14:45:24Z"
  },
  "gyalamanch001a/pur-new": {
@@ -159499,7 +159670,9 @@
    "python",
    "typescript"
   ],
-  "areas": [],
+  "areas": [
+   "general-purpose"
+  ],
   "evidence": {
    "technologies": {
     "python": {
@@ -159517,10 +159690,15 @@
      },
      "match": "typescript"
     }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-04T16:29:51Z"
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "truss44/mcp-crypto-price": {
   "readme_sha": "4e9809f3aff362a6ebe1f890ef8ecf8360446483",
@@ -176883,10 +177061,6 @@
     "general-purpose": {
      "method": "fallback"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -182348,10 +182522,6 @@
     "general-purpose": {
      "method": "fallback"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -185854,56 +186024,6 @@
    "areas": {
     "general-purpose": {
      "method": "fallback"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-03T22:03:15Z"
- },
- "Rul1an/assay": {
-  "readme_sha": "973c7abe04525cc74cae907425f63009e14d35b2",
-  "taxonomy_version": "093d4aa269c9",
-  "technologies": [
-   "rust"
-  ],
-  "areas": [
-   "security",
-   "devops",
-   "ci-cd"
-  ],
-  "evidence": {
-   "technologies": {
-    "rust": {
-     "rule_score": 6,
-     "fields": {
-      "topic": 3,
-      "language": 3
-     },
-     "match": null
-    }
-   },
-   "areas": {
-    "security": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "owasp"
-    },
-    "devops": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "ci-cd": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
     }
    }
   },
@@ -198222,10 +198342,6 @@
     "general-purpose": {
      "method": "fallback"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -199736,7 +199852,9 @@
   "technologies": [
    "go"
   ],
-  "areas": [],
+  "areas": [
+   "general-purpose"
+  ],
   "evidence": {
    "technologies": {
     "go": {
@@ -199747,10 +199865,15 @@
      },
      "match": null
     }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-04T16:29:51Z"
+  "classified_at": "2026-10-05T05:44:12Z"
  },
  "buildkite/buildkite-mcp-server": {
   "readme_sha": "46b950f78cd9bbee4b6018feec3c6a6816226d89",
@@ -206425,10 +206548,6 @@
     "general-purpose": {
      "method": "fallback"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "fallback",
@@ -206501,10 +206620,6 @@
     "general-purpose": {
      "method": "fallback"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "fallback",
@@ -250180,10 +250295,6 @@
     "general-purpose": {
      "method": "fallback"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",

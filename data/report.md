@@ -1,19 +1,19 @@
-# Catalog report 2026-10-04
-Mode: **token**; run time 2115s
-Repos (deduped): 6208; flat entries before dedup: 7801
+# Catalog report 2026-10-05
+Mode: **token**; run time 137s
+Repos (deduped): 6210; flat entries before dedup: 7844
 
 ## Tier x type BEFORE dedup (flat entries)
-- watch/mcp-server: 2582
+- watch/mcp-server: 2593
 - listed/plugin: 2283
-- verified/mcp-server: 585
-- watch/plugin: 476
-- watch/skill: 467
-- watch/marketplace: 330
+- verified/mcp-server: 573
+- watch/plugin: 519
+- watch/skill: 472
+- watch/marketplace: 329
 - official/plugin: 276
-- watch/agent: 242
-- verified/skill: 176
+- watch/agent: 240
+- verified/skill: 174
 - verified/collection: 163
-- verified/plugin: 102
+- verified/plugin: 103
 - anthropic/plugin: 57
 - verified/agent: 29
 - verified/marketplace: 12
@@ -23,45 +23,45 @@ Repos (deduped): 6208; flat entries before dedup: 7801
 - watch/collection: 1
 
 ## Tier AFTER dedup (repos)
-- watch: 3221
+- watch: 3236
 - listed: 1950
-- verified: 733
+- verified: 720
 - official: 241
 - anthropic: 63
 
 ## Type AFTER dedup (items)
-- plugin: 3194
-- mcp-server: 3147
-- skill: 643
-- marketplace: 324
-- agent: 272
+- plugin: 3238
+- mcp-server: 3146
+- skill: 646
+- marketplace: 323
+- agent: 270
 - collection: 168
 
 ## Primary type AFTER dedup (repos)
-- plugin: 2745
-- mcp-server: 2260
-- skill: 573
-- agent: 256
-- marketplace: 239
+- plugin: 2746
+- mcp-server: 2259
+- skill: 576
+- agent: 254
+- marketplace: 240
 - collection: 135
 
 ## Repos by discovery source family
-- mcp-registry: 2432
+- mcp-registry: 2431
 - anthropic: 2252
 - code: 1077
-- topic: 539
+- topic: 538
 - curated: 197
 - marketplace-expansion: 50
 
 ## Flags (all tiers)
-- star-anomaly: 1
+- star-anomaly: 4
 
 ## star-anomaly by tier
-- watch: 1
+- watch: 4
 
 ## Metadata gaps
-- repos without metadata: 239
-- reasons: {'unfetched': 171, 'repo not found': 55, 'no repo (non-github link)': 13}
+- repos without metadata: 409
+- reasons: {'unfetched': 342, 'repo not found': 54, 'no repo (non-github link)': 13}
 
 ## MCP-only repos excluded: 10
 - VikashLoomba/copilot-mcp *504* ['copilot', 'copilot-chat', 'mcp-server', 'modelcontextprotocol', 'vscode-extension'] - A VSCode extension that lets you find and install Agent Skills and MCP Apps to u
@@ -78,12 +78,12 @@ Repos (deduped): 6208; flat entries before dedup: 7801
 ## Degradation
 - registry complete: True (393 pages, 39249 entries)
 - MCP servers merged from the previous catalog (not re-fetched): 0
-- GraphQL 403s: 1 (secondary rate limit: 1); retries: 2; queries that gave up: 0
+- GraphQL 403s: 0 (secondary rate limit: 0); retries: 0; queries that gave up: 0
 - HTTP retries (5xx/network): 0
 - repos with stale metadata reused from the previous catalog (meta_stale): 0
 
 ## MCP Registry
-- {"pages": 393, "fetched": 39249, "kept": 38775, "dropped": 474, "bad": 0, "complete": true, "excluded_remote_only": 10467, "excluded_low_signal": 25141, "fallback_merged": 0, "records": 2432, "attached_existing": 180, "new_repo": 2252, "remote_only": 0, "tiers": {"official": 24, "listed": 109, "verified": 356, "watch": 1943}}
+- {"pages": 393, "fetched": 39249, "kept": 38775, "dropped": 474, "bad": 0, "complete": true, "excluded_remote_only": 10467, "excluded_low_signal": 25142, "fallback_merged": 0, "records": 2431, "attached_existing": 180, "new_repo": 2251, "remote_only": 0, "tiers": {"official": 24, "listed": 109, "verified": 345, "watch": 1953}}
 
 ## Top 20 by trend_7d
 - n/a (no snapshot >=7 days old yet)
@@ -91,7 +91,7 @@ Repos (deduped): 6208; flat entries before dedup: 7801
 ## Code search vs topic search
 - repos found by code search: 1077
 - also in topic search: 9
-- code-only: 1032; tiers: {'watch': 1000, 'verified': 32}
+- code-only: 1036; tiers: {'watch': 1005, 'verified': 31}
 
 ## Top 30 by stars: anthropic
 - anthropics/skills [marketplace,collection] *179598*  items=2 - Anthropic example skills
@@ -199,7 +199,6 @@ Repos (deduped): 6208; flat entries before dedup: 7801
 - D4Vinci/Scrapling [mcp-server] *85622*  items=1 - Web scraping with stealth HTTP, real browsers, and Cloudflare bypass. CSS select
 - netdata/netdata [mcp-server] *80790*  items=1 - Real-time infrastructure monitoring with metrics, logs, alerts, and ML-based ano
 - shareAI-lab/learn-claude-code [collection] *77989*  items=1 - A really interesting analysis of how coding agents like Claude Code are designed
-- ruvnet/ruflo [mcp-server] *73838*  items=1 - AI orchestration with hive-mind swarms, neural networks, and 87 MCP tools for en
 - shanraisshan/claude-code-best-practice [skill] *67072*  items=1 - from vibe coding to agentic engineering - practice makes claude perfect
 - upstash/context7 [mcp-server] *62668*  items=1 - Up-to-date code docs for any prompt
 - ayghri/i-have-adhd [plugin,skill] *53440*  items=2 - A skill to stop your coding agent from burying the answer. ADHD-friendly output.
@@ -220,8 +219,10 @@ Repos (deduped): 6208; flat entries before dedup: 7801
 - feder-cr/invisible_playwright_mcp [plugin,mcp-server] *31773*  items=3 - Playwright MCP server undetected by anti-bots and captchas: AI agent browses the
 - nanocoai/nanoclaw [skill] *30875*  items=1 - A lightweight alternative to OpenClaw that runs in containers for security. Conn
 - yamadashy/repomix [mcp-server] *28684*  items=1 - Pack local or remote codebases into AI-friendly files that LLMs and coding agent
+- OthmanAdi/planning-with-files [skill] *27277*  items=1 - Persistent file-based planning for AI coding agents and long-running tasks. Cras
 
 ## Top 30 by stars: watch
+- tt-a1i/archify [skill] *77610* ['star-anomaly'] items=1 - Turn any idea, plan, or codebase into a beautiful interactive diagram. An agent 
 - thedaviddias/Front-End-Checklist [mcp-server] *74355*  items=1 - Review frontend code and live pages against 386 quality-gated web development ru
 - code-yeongyu/oh-my-openagent [skill] *69790*  items=1 - OmO: Just type "mass ulw" keyword with your prompt. Now you are the master of gr
 - tldraw/tldraw [mcp-server] *50741*  items=1 - Draw and visually collaborate with your agents on tldraw's canvas.
@@ -235,12 +236,12 @@ Repos (deduped): 6208; flat entries before dedup: 7801
 - NevaMind-AI/memU [skill] *14493*  items=1 - Personal memory across agents
 - Orchestra-Research/AI-Research-SKILLs [skill] *13238*  items=1 - Comprehensive open-source library of AI research and engineering skills for any 
 - elie222/inbox-zero [mcp-server] *12407*  items=1 - Search Gmail and Outlook, save drafts, manage email rules, and view email stats.
+- Vincentwei1021/video-shotcraft [skill] *10300* ['star-anomaly'] items=1 - AI video skill for Claude Code & Codex — cinematic product videos with Remotion:
 - anbeime/skill [skill] *7528*  items=1 - 收录最全、更新最快的技能Skills商店：精选原创技能包（涵盖文档处理、内容创作、编程开发、机器学习、自动化工作流），全部打包好可直接安装使用！同时自动抓取Gi
 - modelcontextprotocol/registry [mcp-server] *7314*  items=7 - Check how to contact a business website, and whether that contact path actually 
 - deanpeters/Product-Manager-Skills [skill] *7157*  items=1 - Product Management skills framework built on battle-tested methods for Claude Co
 - BuilderIO/agent-native [mcp-server] *7057*  items=13 - Agent-Native Amplitude/Mixpanel - connect data sources, prompt for charts
 - airweave-ai/airweave [mcp-server] *6560*  items=1 - MCP server for searching Airweave collections with natural language queries.
-- nirholas/fresh-start [mcp-server] *6231*  items=1 - Explore the Claude Code CLI source — browse tools, commands, search code, and mo
 - Klavis-AI/klavis [mcp-server] *5808*  items=1 - MCP server for progressive tool usage at any scale (see https://klavis.ai)
 - KnockOutEZ/wigolo [mcp-server] *5445*  items=1 - Local-first web intelligence MCP server for AI coding agents
 - tolgee/tolgee-platform [mcp-server] *4119*  items=1 - Your app's translations in Tolgee: search keys, create translations, trigger mac
@@ -248,39 +249,37 @@ Repos (deduped): 6208; flat entries before dedup: 7801
 - parcadei/Continuous-Claude-v3 [skill,agent] *3939*  items=2 - Context management for Claude Code. Hooks maintain state via ledgers and handoff
 - geekjourneyx/md2wechat-skill [skill] *3687*  items=1 - 面向 AI Agent 的微信公众号创作与发布 CLI：Markdown 排版、AI 配图、预览与草稿创建；支持由浏览器 Agent 保存知乎、CSDN、头条未
 - Ryze-AI-Adgent/open-seo-mcp-skills [skill] *3642*  items=1 - Free SEO MCP server + open-source SEO and GEO skills for Claude: keyword researc
-- zenbu-labs/terminal-browser [plugin,skill] *3632*  items=2 - A browser inside your terminal
 - agenticnotetaking/arscontexta [plugin] *3492*  items=1 - Claude Code plugin that generates individualized knowledge systems from conversa
 - jangviktor-web/nihaixia [skill] *3426*  items=1 - 倪海厦视角的中医Agent Skill，基于倪海厦教学资料开发，蒸馏倪师伤寒论、金匮要略、黄帝内经、神农本草经、针灸篇等，人纪/医案/经方思维，六经辨证，八纲辨
 - browserbase/mcp-server-browserbase [mcp-server] *3411*  items=2 - Provides cloud browser automation capabilities using Stagehand and Browserbase, 
 
-## Random sample of 20 watch repos (of 3221)
-- PSU3D0/agent-spreadsheet [mcp-server] *58*  items=2 - Agent-safe Excel workbook analysis, editing, recalc, and verification tools. reasons=['fails: stars>=200 (58)', 'no corroborating signal'] src=['mcp-registry']
-- dshakes/distil [mcp-server] *18*  items=1 - Reversibly compress tool outputs to recoverable handles; expand to exact origina reasons=['fails: stars>=200 (18)', 'fails: license (NOASSERTION)', 'no corroborating signal'] src=['mcp-registry']
-- decoded-cipher/nodrix [mcp-server] *42*  items=1 - Read live and historical IoT telemetry and actuate ESP32/Arduino hardware from a reasons=['fails: stars>=200 (42)', 'no corroborating signal'] src=['mcp-registry']
-- SeanFDZ/agentbridge [mcp-server] *26*  items=1 - Control Classic Mac OS (System 7-9) from AI agents via shared folder protocol. reasons=['fails: stars>=200 (26)', 'fails: pushed<=90d (167)', 'no corroborating signal'] src=['mcp-registry']
-- PSPDFKit/nutrient-document-engine-mcp-server [mcp-server] *62*  items=1 - MCP server for self-hosted Nutrient Document Engine: extract, edit, redact, and  reasons=['fails: stars>=200 (62)'] src=['mcp-registry']
-- ariffazil/arifOS [mcp-server] *52*  items=3 - Constitutional AI Governance with 13 enforced floors (F1-F13) and tri-witness co reasons=['fails: stars>=200 (52)', 'no corroborating signal'] src=['mcp-registry']
-- halflifezyf2680/MPM-Coding [mcp-server] *17*  items=1 - Tool-first MCP: AST nav, impact/flow, task chains, memo/recall. reasons=['fails: stars>=200 (17)', 'no corroborating signal'] src=['mcp-registry']
-- patinaproject/skills [plugin] *1*  items=1 - Agentic engineering skills from the Patina Project team reasons=['fails: stars>=200 (1)'] src=['code']
-- leewayworks/guochuang-gps [plugin] *106*  items=1 - GPS (Guochuang Preparation Skills) — A multi-agent AI toolkit for competition pl reasons=['fails: stars>=200 (106)', 'fails: age>=90d (53)', 'no corroborating signal'] src=['code']
-- asklokesh/loki-mode [mcp-server] *1082*  items=1 - Autonomous spec-to-product coding-agent CLI with an MCP server exposing 39 tools reasons=['fails: license (NOASSERTION)'] src=['mcp-registry']
-- The-OpenROAD-Project/OpenROAD-MCP [mcp-server] *23*  items=2 - The OpenROAD MCP server - interactive EDA sessions via Model Context Protocol reasons=['fails: stars>=200 (23)'] src=['mcp-registry']
-- leonardosepulvedat/mcp-n8n [mcp-server] *21*  items=1 - Operate and build n8n: 61 tools, 560-node catalog, validation, autofix, snapshot reasons=['fails: stars>=200 (21)', 'no corroborating signal'] src=['mcp-registry']
-- jonradoff/lastsaas [mcp-server] *173*  items=1 - Read-only admin MCP server for LastSaaS — dashboards, users, tenants, billing, l reasons=['fails: stars>=200 (173)', 'fails: pushed<=90d (212)'] src=['mcp-registry']
-- crouton-labs/capture [plugin] *2*  items=1 - Browser automation and UI validation via CDP — session-based screenshots, HAR, a reasons=['fails: stars>=200 (2)'] src=['code']
+## Random sample of 20 watch repos (of 3236)
+- OtaKit/otakit [mcp-server] *100*  items=1 - Inspect, upload, release, monitor, and revert OtaKit Capacitor OTA updates. reasons=['fails: stars>=200 (100)'] src=['mcp-registry']
+- douglac/contaazul-mcp [mcp-server] *12*  items=1 - Conta Azul ERP MCP — sales, customers, finance and NF-e via OAuth 2.0. Read + wr reasons=['fails: stars>=200 (12)', 'fails: pushed<=90d (103)', 'no corroborating signal'] src=['mcp-registry']
+- zoharbabin/google-researcher-mcp [mcp-server] *36*  items=1 - MCP server providing Google Search, web scraping, and multi-source research tool reasons=['stale/archived', 'fails: stars>=200 (36)', 'fails: pushed<=90d (116)', 'fails: not archived', 'no corroborating signal'] src=['mcp-registry']
+- SamuelMoraesF/mcp-nfse-nacional [mcp-server] *17*  items=1 - MCP Server para consulta de NFSe no portal nacional (nfse.gov.br) reasons=['fails: stars>=200 (17)', 'fails: pushed<=90d (234)', 'fails: license (None)', 'no corroborating signal'] src=['mcp-registry']
+- OpenCageData/opencage-geocoding-mcp [mcp-server] *19*  items=1 - MCP server for OpenCage geocoding API reasons=['fails: stars>=200 (19)'] src=['mcp-registry']
+- apireno/DOMShell [mcp-server] *54*  items=1 - Drive Chrome with filesystem commands (ls, cd, grep, click, type). One MCP tool, reasons=['fails: stars>=200 (54)', 'no corroborating signal'] src=['mcp-registry']
+- graphpilot-oss/graphpilot [mcp-server] *16*  items=1 - Structural memory for coding agents: callers, callees, blast radius and symbols  reasons=['fails: stars>=200 (16)'] src=['mcp-registry']
+- kawaz/claude-bash-safety [plugin] *0*  items=1 - Claude Code plugin: lightweight Bash command safety hooks (Markdown-style backti reasons=['fails: stars>=200 (0)', 'fails: pushed<=90d (116)', 'no corroborating signal'] src=['code']
+- Sililex/ck3-claude-skill [plugin] *6*  items=1 - CK3 has an extensive modding community, and they deserve claude code! reasons=['fails: stars>=200 (6)', 'fails: pushed<=90d (210)', 'fails: license (None)', 'no corroborating signal'] src=['code']
+- aryaminus/controlkeel [mcp-server] *11*  items=1 - Governed MCP workflows with policy validation, findings tracking, and review gat reasons=['fails: stars>=200 (11)', 'fails: license (NOASSERTION)', 'no corroborating signal'] src=['mcp-registry']
+- Swap-API/swap-api [mcp-server] *None*  items=1 - MCP server for SwapAPI - get executable token swap calldata for EVM chains reasons=['no metadata'] src=['mcp-registry']
+- lacausecrypto/mcp-sports-hub [mcp-server] *37*  items=1 - 41 sports API providers, 396 tools: scores, stats, odds, esports, chess, motorsp reasons=['fails: stars>=200 (37)', 'no corroborating signal'] src=['mcp-registry']
+- jmedure/talkback-mcp [mcp-server] *25*  items=1 - Chat with your Ableton session in real-time. reasons=['fails: stars>=200 (25)', 'fails: pushed<=90d (194)', 'fails: license (NOASSERTION)', 'no corroborating signal'] src=['mcp-registry']
+- GuillemRoca/agent-skills-android [plugin] *2*  items=1 - Production-grade engineering skills for AI coding agents tailored to Android reasons=['fails: stars>=200 (2)', 'no corroborating signal'] src=['code']
 - NYCU-Chung/claude-line-channel [marketplace] *46*  items=1 - LINE Messaging API channel plugin for Claude Code reasons=['fails: stars>=200 (46)', 'fails: pushed<=90d (181)', 'fails: license (None)', 'no corroborating signal'] src=['code']
-- NikolaNddTesla/ssh-mcp-server [mcp-server] *11*  items=1 - SSH server management with zero-token SFTP file transfer and SOCKS proxy support reasons=['fails: stars>=200 (11)', 'fails: pushed<=90d (130)', 'fails: license (NOASSERTION)', 'no corroborating signal'] src=['mcp-registry']
-- louisburroughs/durion [agent] *1*  items=1 -  reasons=['fails: stars>=200 (1)', 'fails: license (None)', 'no corroborating signal'] src=['code']
-- komal-SkyNET/claude-skill-homeassistant [plugin] *963*  items=1 - Claude Code skill to supercharge and manage all Home Assistant workflows reasons=['fails: pushed<=90d (91)'] src=['code']
+- Nagarjuna2997/ios-agent-skill [mcp-server] *37*  items=1 - Swift reviews, local Apple references, app scaffolding and iOS simulator workflo reasons=['fails: stars>=200 (37)', 'no corroborating signal'] src=['mcp-registry']
+- robit-man/transcribe-cli [agent] *0*  items=1 - CLI tool for transcribing audio and video files with speaker diarization using O reasons=['fails: stars>=200 (0)', 'fails: pushed<=90d (160)', 'fails: license (None)', 'no corroborating signal'] src=['code']
+- komal-SkyNET/claude-skill-homeassistant [plugin] *963*  items=1 - Claude Code skill to supercharge and manage all Home Assistant workflows reasons=['fails: pushed<=90d (92)'] src=['code']
 - rohittcodes/claude-plugin-suite [marketplace] *29*  items=1 -  reasons=['fails: stars>=200 (29)', 'fails: pushed<=90d (355)', 'no corroborating signal'] src=['code']
-- conaman/unreal-mcp-ue4 [mcp-server] *25*  items=1 - UE4.27 MCP server for controlling Unreal Editor sessions over Python Remote Exec reasons=['fails: stars>=200 (25)', 'fails: pushed<=90d (131)', 'no corroborating signal'] src=['mcp-registry']
+- codegraph-ai/CodeGraph [mcp-server] *109*  items=1 - Semantic code graph: 42 tools, 38 languages. Callers, impact, AI context, memory reasons=['fails: stars>=200 (109)'] src=['mcp-registry']
 
 ## Errors
 - marketplace obra/claude-session-driver: no plugins list
-- graphql: HTTP 403 secondary rate limit, waiting 60s (retry 1/4)
 
 ## Rate limit
-- REST calls this run (uncached): {"core": 0, "search": 0}; last seen: {}
-- GraphQL: 453 calls, cost 451, remaining 4779/5000, stopped early: False
+- REST calls this run (uncached): {"core": 4, "search": 19}; last seen: {"core": {"remaining": "4996", "limit": "5000"}, "search": {"remaining": "8", "limit": "10"}}
+- GraphQL: 1 calls, cost 1, remaining 4999/5000, stopped early: False
 - REST stopped early: False
-- repos lacking metadata: 3412; enriched this run: 23293
+- repos lacking metadata: 3411; enriched this run: 26605
