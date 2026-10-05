@@ -129,8 +129,8 @@ def load_taxonomy():
     return tax, version, nodes
 
 
-def norm(t):  # '-'/'_' read as spaces, camelCase split, whitespace collapsed
-    t = re.sub(r"(?<=[a-z])(?=[A-Z][a-z])", " ", t or "")
+def norm(t, camel=True):  # '-'/'_' read as spaces, camelCase split, whitespace collapsed
+    t = re.sub(r"(?<=[a-z])(?=[A-Z][a-z])", " ", t or "") if camel else (t or "")
     return re.sub(r"\s+", " ", re.sub(r"[-_]+", " ", t)).strip()
 
 
@@ -139,18 +139,39 @@ def _alias_rx(als):
     return re.compile(r"(?<![\w])(?:" + "|".join(re.escape(a) for a in long_) + r")(?![\w])", re.I) if long_ else None
 
 
+# Technology nodes tag what a tool is FOR, not what it is written in: phrases that only describe how the tool itself
+# is built are blanked before matching ("written in Go", "a Python MCP server", "Rust-based", "built with TypeScript")
+# (a library, SDK, framework or wrapper "in X" is used from X, so those stay evidence)
+_ARTIFACT = (r"(?:mcp server|mcp|server|cli|command line tool|tool|app|application|binary|daemon|implementation|port|rewrite|"
+             r"plugin|extension|service|bot|agent|engine|runtime|backend|desktop app|web app|dashboard|proxy|gateway)")
+
+
+def _build_rx(n):
+    names = sorted({norm(x).lower() for x in [n["label"], *n.get("aliases", [])] if len(x.strip()) >= 2}, key=len, reverse=True)
+    if not names: return None
+    L = "(?:" + "|".join(re.escape(x) for x in names) + ")"
+    return [r"\b(?:written|built|implemented|coded|developed|made|created|powered)\s+(?:entirely\s+|purely\s+|natively\s+)?(?:in|with|using|on|by)\s+(?:pure\s+|modern\s+|plain\s+)?" + L + r"(?![\w])",
+            r"(?<![\w])" + L + r"[\s-]+(?:based|powered|native)\b",
+            r"\b(?:a|an|the|our|this|lightweight|fast|simple|minimal|small|tiny|single|standalone|native|pure|zero[\s-]dependency)\s+(?:\w+\s+){0,2}?" + L + r"\s+(?:\w+\s+)?" + _ARTIFACT + r"\b",
+            r"(?<![\w])(?:in|for)\s+pure\s+" + L + r"(?![\w])",
+            r"(?<![\w])" + L + r"\s+(?:mcp server|mcp|server|cli|binary|daemon|desktop app|web app|app|implementation|port|rewrite|bot|backend|proxy|gateway)\b"]
+
+
 def compile_taxonomy(nodes, tax):
     rules = {**DEFAULT_RULES, **(tax.get("_rules") or {})}
     out = {}
     for dim, lst in nodes.items():
         for nid, parent, label, n, _ in lst:
             als = list(n.get("aliases", []))
+            build = dim == "technologies"
+            excl = list(n.get("exclude", [])) + ((_build_rx({**n, "label": label}) or []) if build and not n.get("fallback") else [])
             out[(dim, nid)] = {
                 "parent": parent,
                 "rx": _alias_rx(als),
                 "ctx": _alias_rx(n.get("contextual", [])),
                 "pats": [re.compile(p) for p in n.get("patterns", [])],
-                "excl": re.compile("|".join(f"(?:{e})" for e in n["exclude"]), re.I) if n.get("exclude") else None,
+                "excl": re.compile("|".join(f"(?:{e})" for e in excl), re.I) if excl else None,
+                "build": build,  # technology node: repo language and topics only corroborate a purpose signal
                 # topic evidence: explicit topics and multi-word aliases (a single-word alias
                 # such as "youtube" as a topic names a platform the tool touches, not its subject)
                 "topics": {norm(a).lower() for a in als if " " in norm(a)} | {norm(t).lower() for t in n.get("topics", [])},
@@ -177,20 +198,22 @@ _NC = {}
 def _norm_cached(text):
     if text not in _NC:
         if len(_NC) > 5000: _NC.clear()
-        _NC[text] = norm(text)
+        _NC[text] = (norm(text), norm(text, camel=False))
     return _NC[text]
 
 
 def _count(c, text, use_ctx):
-    """Mentions of a node in one text (exclusions blanked first)."""
+    """Mentions of a node in one text (exclusions blanked first). Aliases are matched with and without the camelCase
+    split and the larger count wins: the split reads identifiers ("reactNative"), the unsplit text keeps words
+    such as "TypeScript" and "JavaScript" whole."""
     if not text: return 0, None, 0
     if c["excl"]:  # blank exclusions in the raw text and again after normalization (names use '-' for spaces)
-        text = c["excl"].sub(" ", text); t = c["excl"].sub(" ", norm(text))
-    else: t = _norm_cached(text)
+        text = c["excl"].sub(" ", text); ts = [c["excl"].sub(" ", norm(text)), c["excl"].sub(" ", norm(text, camel=False))]
+    else: ts = list(_norm_cached(text))
     hits = []
     for p in c["pats"]: hits += [m.group(0) for m in p.finditer(text)]
-    if c["rx"]: hits += [m.group(0) for m in c["rx"].finditer(t)]
-    if use_ctx and c["ctx"]: hits += [m.group(0) for m in c["ctx"].finditer(t)]
+    if c["rx"]: hits += max(([m.group(0) for m in c["rx"].finditer(t)] for t in ts), key=len)
+    if use_ctx and c["ctx"]: hits += max(([m.group(0) for m in c["ctx"].finditer(t)] for t in ts), key=len)
     return len(hits), (hits[0].lower() if hits else None), len({h.lower() for h in hits})
 
 
@@ -246,6 +269,10 @@ def score_dim(dim, F, compiled, rules, techs=()):
                 if n >= c["readme_min"]: ev["readme"] = W["readme_tech"] if dim == "technologies" else W["readme"]
                 elif n: ev["readme"] = W["readme_single"]
             if c["from_tech"] and any(t in techs for t in c["from_tech"]): ev["tech"] = W.get("tech", 1)
+            # purpose gate: the repo's primary language and its topics often say what it is built with; a technology
+            # node also needs the name, description, items or README to say the tool is for that technology
+            if c["build"] and not ({"name", "description", "items", "readme"} & set(ev)):
+                ev = {}
             # focus gate: topics, items or a few README mentions are not enough unless the repo's own name or
             # description names the node or the README keeps returning to it
             if c["focus"] and not ({"name", "description"} & set(ev)) and nr < c["focus"]:
