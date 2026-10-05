@@ -1,9 +1,9 @@
 # Security scan report
 
-Generated 2026-10-05T05:47:06Z by security.py (rules d2241ba97128). Static pattern scan; content is never executed.
+Generated 2026-10-05T23:07:31Z by security.py (rules d2241ba97128). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 4418 (repos visited this run: 306, 83s)
-- API calls this run: 306 (6 not-modified); raw files fetched 2334, from cache 97, failed 0
+- Entries with scanned components: 1788 (repos visited this run: 657, 241s)
+- API calls this run: 657 (57 not-modified); raw files fetched 10925, from cache 3571, failed 0
 
 ## Entries by level
 
@@ -11,40 +11,40 @@ Generated 2026-10-05T05:47:06Z by security.py (rules d2241ba97128). Static patte
 |---|---|
 | high | 1 |
 | review | 193 |
-| ok | 4224 |
+| ok | 1594 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 1 | 24 | 641 |
-| perm-skip-permissions | 0 | 66 | 154 |
-| cred-ssh-cloud-keys | 0 | 11 | 167 |
-| inject-conceal-from-user | 0 | 1 | 172 |
-| inject-ignore-instructions | 0 | 5 | 159 |
-| perm-hook-auto-approve | 0 | 100 | 54 |
-| destructive-rm-root-home | 0 | 2 | 128 |
-| cred-token-dump | 0 | 53 | 51 |
-| rce-powershell-iex | 0 | 0 | 83 |
-| persist-launchd-systemd | 0 | 35 | 39 |
-| persist-cron | 0 | 16 | 43 |
-| persist-shell-rc | 0 | 0 | 56 |
-| destructive-force-push-main | 0 | 1 | 48 |
-| perm-default-bypass | 0 | 26 | 18 |
-| exfil-webhook-host | 0 | 0 | 40 |
+| rce-pipe-shell | 1 | 24 | 376 |
+| perm-skip-permissions | 0 | 67 | 106 |
+| perm-hook-auto-approve | 0 | 100 | 23 |
+| cred-ssh-cloud-keys | 0 | 11 | 107 |
+| inject-ignore-instructions | 0 | 5 | 96 |
+| inject-conceal-from-user | 0 | 1 | 92 |
+| cred-token-dump | 0 | 53 | 31 |
+| destructive-rm-root-home | 0 | 2 | 77 |
+| persist-launchd-systemd | 0 | 35 | 28 |
+| rce-powershell-iex | 0 | 0 | 47 |
+| persist-cron | 0 | 16 | 25 |
+| perm-default-bypass | 0 | 26 | 14 |
 | perm-allow-all | 0 | 23 | 10 |
-| cred-browser-store | 0 | 3 | 28 |
-| exfil-reverse-shell | 0 | 4 | 18 |
-| destructive-disk | 0 | 1 | 18 |
-| exfil-secrets-upload | 0 | 0 | 19 |
-| destructive-chmod-777 | 0 | 0 | 16 |
-| obfusc-decode-exec | 0 | 5 | 6 |
-| rce-eval-download | 0 | 0 | 9 |
-| inject-html-comment | 0 | 1 | 4 |
+| exfil-webhook-host | 0 | 0 | 27 |
+| persist-shell-rc | 0 | 0 | 26 |
+| destructive-force-push-main | 0 | 1 | 22 |
+| exfil-reverse-shell | 0 | 4 | 12 |
+| cred-browser-store | 0 | 3 | 11 |
+| destructive-disk | 0 | 1 | 12 |
+| exfil-secrets-upload | 0 | 0 | 13 |
+| destructive-chmod-777 | 0 | 0 | 10 |
+| obfusc-decode-exec | 0 | 5 | 4 |
+| rce-eval-download | 0 | 0 | 6 |
+| inject-html-comment | 0 | 1 | 3 |
 | inject-bidi-override | 0 | 3 | 0 |
-| persist-claude-settings-write | 0 | 0 | 3 |
 | obfusc-blob | 0 | 0 | 2 |
 | inject-zero-width | 0 | 2 | 0 |
+| persist-claude-settings-write | 0 | 0 | 1 |
 
 ## High findings
 
