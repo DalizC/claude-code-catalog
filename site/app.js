@@ -24,6 +24,7 @@
     moon: '<path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/>',
     ext: '<path d="M14 5h5v5M19 5l-8 8M17 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h4"/>',
     flag: '<path d="M5 21V4.5M5 4.5h11l-2 4 2 4H5"/>',
+    warn: '<path d="M10.3 4.6 3.2 17a2 2 0 0 0 1.7 3h14.2a2 2 0 0 0 1.7-3L13.7 4.6a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4M12 17h.01"/>',
     archive: '<rect x="4" y="5" width="16" height="4" rx="1"/><path d="M5.5 9v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9M10 13h4"/>',
     trend: '<path d="M4 17.5 9.5 12l3.5 3 7-7.5"/><path d="M15 7.5h5v5"/>',
     info: '<circle cx="12" cy="12" r="8"/><path d="M12 11v5M12 8h.01"/>',
@@ -369,7 +370,7 @@
     { id: "t30", label: "30-day trend", get: r => r.t30, trend: true },
     { id: "pushed", label: "Last updated", get: r => r.p || null, col: "upd" },
     { id: "added", label: "Recently added", get: r => r.fs || null },
-    { id: "name", label: "Name", get: r => r.nl, col: "name" },
+    { id: "name", label: "Name", get: r => r.nl, col: "name", asc: true },
     { id: "author", label: "Author", get: r => r.ownl || null, col: "au" },
     { id: "tier", label: "Tier", get: r => 4 - TORD[r.tr], col: "tier" },
     { id: "type", label: "Type", get: r => r.t || null, col: "type" },
@@ -508,6 +509,23 @@
       return h("button", { type: "button", class: cls, "data-tip": "flag", "data-act": "tip", "data-flag": f, "aria-label": flagLabel(f) + ". " + tip }, ic(F.icon || "flag"), h("span", null, F.short || flagLabel(f)));
     });
   }
+  // full description of one flag, shared by the warning popover and the details panel
+  function flagFull(r, f) {
+    const F = FLAGS[f] || {};
+    return f === "unmaintained" && r.p ? "Last push " + sdate(r.p) + " (" + ageText(r.pd) + " before this catalog was built). Bugs and breaking changes in Claude Code may go unfixed." : F.tip || "Flagged by the catalog's checks.";
+  }
+  function flagList(r) {
+    return h("ul", { class: "flagx" }, r.flg.map(f => {
+      const F = FLAGS[f] || {};
+      return h("li", null, h("span", { class: "flag" + (F.hi ? " hi" : F.cls ? " " + F.cls : "") }, ic(F.icon || "flag"), F.short || flagLabel(f)), h("span", null, flagFull(r, f)));
+    }));
+  }
+  // table: one warning icon per flagged repo; its popover lists every issue in full
+  function warnBtn(r) {
+    if (!r.pills.length) return null;
+    const sev = r.pills.includes("security-high") ? " hi" : r.pills.every(f => FLAGS[f] && FLAGS[f].cls) ? " mute" : "";
+    return h("button", { type: "button", class: "warnb" + sev, "data-tip": "warn", "data-act": "tip", "aria-label": plural(r.flg.length, "issue") + ": " + r.flg.map(flagLabel).join(", ") + ". Show details." }, ic("warn"));
+  }
   function favTitle(r) { return r.fv === 1 ? "Favorite, saved in the repo file. Click to remove." : r.fv === 2 ? "Favorite, local only (not exported yet). Click to remove." : "Add to favorites"; }
   function paintFav(b, r) {
     b.setAttribute("aria-pressed", String(r.fv > 0));
@@ -613,6 +631,7 @@
         const words = full.split(" ");
         let txt = "";
         for (let i = 0; i < words.length; i++) { const nx = (txt ? txt + " " : "") + words[i]; if (tw(nx, FONT_TAG) > room) break; txt = nx; }
+        if (!txt) { let n = words[0].length - 1; while (n >= 3 && tw(words[0].slice(0, n), FONT_TAG) > room) n--; if (n >= 3) txt = words[0].slice(0, n); } // first word too long: cut mid-word, keep at least 3 letters
         if (txt) { c.dataset.full = full; c.textContent = txt.replace(/[\s&,]+$/, "") + "…"; c.classList.add("cut"); keep[0] = true; }
       }
       const rest = items.filter((c, i) => !keep[i]);
@@ -862,11 +881,7 @@
     const lines = reasonLines(r);
     const list = reasonList(r, lines.length >= 4);
     sec.append(list || h("p", { class: "nd small" }, TIER[r.tr].desc));
-    if (r.flg.length) sec.append(h("ul", { class: "flagx" }, r.flg.map(f => {
-      const F = FLAGS[f] || {};
-      const tip = f === "unmaintained" && r.p ? "Last push " + sdate(r.p) + " (" + ageText(r.pd) + " before this catalog was built). Bugs and breaking changes in Claude Code may go unfixed." : F.tip || "Flagged by the catalog's checks.";
-      return h("li", null, h("span", { class: "flag" + (F.hi ? " hi" : F.cls ? " " + F.cls : "") }, ic(F.icon || "flag"), F.short || flagLabel(f)), h("span", null, tip));
-    })));
+    if (r.flg.length) sec.append(flagList(r));
     const s = r.sec;
     if (s && s.lv !== "ok") {
       const n = isNum(s.n) ? s.n : (s.f || []).length, fs = Array.isArray(s.f) ? s.f : [];
@@ -928,7 +943,7 @@
     tr.append(
       td("fav", favBtn(r)),
       td("exp", expandBtn(r, open, "d-" + r.i)),
-      td("name", h("div", { class: "nmcell" }, nameLink(r), r.own ? h("span", { class: "ow" }, r.own) : null, flagPills(r))),
+      td("name", h("div", { class: "nmcell" }, nameLink(r), warnBtn(r), r.own ? h("span", { class: "ow" }, r.own) : null)),
       td("au", h("span", { class: "au" }, r.own)),
       td("tier", tierBadge(r)),
       td("type", typeTag(r, true)),
@@ -1349,7 +1364,7 @@
       const on = b.dataset.sort === S.sort, th = b.closest("th"), lab = b.firstChild.textContent;
       if (on) { b.setAttribute("data-on", S.dir > 0 ? "asc" : "desc"); th.setAttribute("aria-sort", S.dir > 0 ? "ascending" : "descending"); }
       else { b.removeAttribute("data-on"); th.removeAttribute("aria-sort"); }
-      b.setAttribute("aria-label", "Sort by " + lab + (on ? (S.dir > 0 ? ", sorted ascending; click for descending" : ", sorted descending; click for ascending") : ", descending first"));
+      b.setAttribute("aria-label", "Sort by " + lab + (on ? (S.dir > 0 ? ", sorted ascending; click for descending" : ", sorted descending; click for ascending") : SORT[b.dataset.sort].asc ? ", ascending first" : ", descending first"));
     });
   }
   function syncCount() {
@@ -1508,6 +1523,12 @@
     if (kind === "tier") {
       pop.replaceChildren(h("div", { class: "ph" }, h("span", { class: "tier tier-" + r.tr }, TIER[r.tr].label), h("b", null, TIER[r.tr].long)),
         reasonList(r) || h("p", { class: "nd" }, TIER[r.tr].desc), rankLine());
+    } else if (kind === "warn") {
+      const nsec = r.sec && r.flg.some(f => f.startsWith("security-")) ? (isNum(r.sec.n) ? r.sec.n : (r.sec.f || []).length) : 0;
+      pop.replaceChildren(h("div", { class: "ph" }, ic("warn"), h("b", null, plural(r.flg.length, "issue"))), flagList(r),
+        nsec ? h("p", { class: "nd" }, plural(nsec, "security finding") + ". Open the details for the findings.") : null,
+        r.sus ? h("p", { class: "nd" }, "Flagged repos are ranked last in Trending.") : null,
+        h("p", { class: "nd" }, "Uncheck a flag under Flags in the sidebar to hide every repo carrying it."));
     } else if (kind === "flag") {
       const f = anchor.dataset.flag, F = FLAGS[f] || {};
       const tip = f === "unmaintained" && r.p ? "Last push " + sdate(r.p) + ": no push for " + ageText(r.pd) + "." : F.tip || "Flagged by the catalog's checks.";
@@ -1519,7 +1540,7 @@
       pop.replaceChildren(h("p", { class: "pd" }, ...(r.d ? hl(r.d, wordsOf(S.q)) : ["No description provided."])),
         h("div", { class: "pm" }, r.disp + " · " + plural(r.nit, "item") + (r.url ? " · opens GitHub" : "")));
     }
-    pop.style.width = kind === "tier" ? "360px" : "";
+    pop.style.width = kind === "tier" || kind === "warn" ? "360px" : "";
     const b = anchor.getBoundingClientRect();
     pop.style.left = "0px"; pop.style.top = "0px";
     pop.classList.add("on");
@@ -1588,7 +1609,7 @@
       case "sort": {
         const id = a.dataset.sort;
         const fresh = a.dataset.fresh || S.sort !== id;
-        setSort(id, fresh ? -1 : -S.dir);
+        setSort(id, fresh ? (SORT[id].asc ? 1 : -1) : -S.dir);
         const b = document.querySelector('th [data-sort="' + id + '"]'); if (b && a.closest("th")) b.focus();
         return;
       }

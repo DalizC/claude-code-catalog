@@ -305,6 +305,13 @@ button.tier:hover{box-shadow:inset 0 0 0 1px currentColor}
 .type .ni{color:var(--ink-3)}
 .flag{display:inline-flex;align-items:center;gap:4px;height:20px;padding:0 6px;border-radius:5px;background:var(--warn-bg);color:var(--warn);font-size:11px;font-weight:600;white-space:nowrap;border:0;font-family:inherit;cursor:default;flex:none;line-height:1}
 button.flag{cursor:pointer}
+.warnb{display:inline-grid;place-items:center;width:22px;height:22px;flex:none;border:0;border-radius:5px;padding:0;background:transparent;color:var(--warn);cursor:pointer}
+.warnb:hover{background:var(--warn-bg)}
+.warnb svg.i{width:15px;height:15px}
+.warnb.hi{color:var(--bad)}.warnb.hi:hover{background:var(--bad-bg)}
+.warnb.mute{color:var(--ink-3)}.warnb.mute:hover{background:var(--t-watch-bg)}
+.pop .ph svg.i{width:15px;height:15px;color:var(--warn)}
+.pop .flagx{margin-top:0}
 .flag svg.i{width:12px;height:12px}
 .flag.hi{background:var(--bad-bg);color:var(--bad)}
 .flag.arch,.flag.stale{background:var(--t-watch-bg);color:var(--ink-2)}
@@ -343,8 +350,9 @@ img.ti{display:block;width:16px;height:16px;opacity:.72;pointer-events:none}
 
 /* ---------- TABLE (CSS grid + subgrid; flexible Name / Areas / Technologies) ---------- */
 .tablewrap{min-width:0}
+.c-au{display:none!important} /* author shown in gray next to the name */
 table.grid{
-  --cols:44px 36px minmax(140px,1.2fr) 96px 92px 128px minmax(150px,1.3fr) minmax(96px,.9fr) 58px 52px 56px 80px 120px;
+  --cols:44px 36px minmax(200px,2.2fr) 92px 128px minmax(120px,1.3fr) minmax(96px,.8fr) 58px 52px 56px 80px 120px;
   display:grid;grid-template-columns:var(--cols);width:100%;border-collapse:separate;border-spacing:0}
 table.grid>thead,table.grid>tbody,table.grid tr{display:grid;grid-column:1/-1;grid-template-columns:subgrid}
 table.grid>thead{position:sticky;top:var(--top-h);z-index:4;background:var(--side);border-bottom:1px solid var(--line-2)}
@@ -379,7 +387,7 @@ td.c-trend{padding:0 4px 0 6px}
 .nmcell{display:flex;align-items:center;gap:7px;min-width:0;width:100%}
 .nm{font-weight:600;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;flex:0 1 auto;font-size:var(--fs-head);border-radius:3px}
 .nm:hover{text-decoration:underline;text-underline-offset:2px}
-.nmcell .ow{display:none;color:var(--ink-3);font-size:var(--fs-small);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:0 1000 auto;min-width:24px}
+.nmcell .ow{display:block;color:var(--ink-3);font-size:var(--fs-small);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:0 1000 auto;min-width:24px}
 .au{color:var(--ink-2);font-size:var(--fs-small);overflow:hidden;text-overflow:ellipsis}
 .upd{font-size:var(--fs-small);color:var(--ink-2)}
 .upd.old{color:var(--warn)}
@@ -570,25 +578,21 @@ body[data-view="cards"] .top{background:color-mix(in oklch,var(--side) 94%,trans
 
 /* responsive columns (main width): lower-priority columns collapse; their data stays in the details panel */
 @container main (max-width:1149px){
-  table.grid{--cols:44px 36px minmax(130px,1.25fr) 92px 52px minmax(140px,1.25fr) minmax(90px,.9fr) 58px 60px 80px 120px}
-  .c-au,.c-t30{display:none!important}
+  table.grid{--cols:44px 36px minmax(180px,3fr) 92px 52px minmax(100px,1.1fr) minmax(96px,.7fr) 58px 60px 80px 120px}
+  .c-t30{display:none!important}
   .c-trend{grid-column:span 1}
   .trend .t30{display:none}
   td.c-type .tt,td.c-type .ni{display:none}
-  .nmcell .ow{display:block}
-  .nmcell:has(.flag) .ow{display:none}
   .dp .nar{display:inline}
 }
 @container main (max-width:899px){
-  table.grid{--cols:40px 34px minmax(120px,1fr) 88px 44px minmax(130px,1.3fr) minmax(80px,.8fr) 54px 58px 76px}
+  table.grid{--cols:40px 34px minmax(150px,3fr) 88px 44px minmax(96px,1.1fr) minmax(90px,.7fr) 54px 58px 76px}
   .c-lic{display:none!important}
   table.grid td{padding:0 6px}
   table.grid th{padding:0 6px}
   tr.more>td{padding-left:16px}
   tr.sep>td{padding-left:16px!important}
   .dp,.dp.nohist{grid-template-columns:minmax(0,1fr)}
-  .nmcell .flag span{display:none}
-  .nmcell .flag{padding:0 4px}
   .presets,.assist,.chips,.resbar{padding-left:12px;padding-right:12px}
   .top{padding:0 12px;gap:8px}
   .seg button span,.count .of{display:none}

@@ -86,6 +86,8 @@ Built and committed locally (commit "feat: v4 UI ..."), **not pushed yet**. Push
 
 Done: column-header sorting (dropdown removed), Author/License columns, tech icons (Simple Icons, vendored in `site/icons/`), inverted flag facet (checked = included) + new Unmaintained flag (>180 days without push), license facet (commercial OK / copyleft / none / other), unified detail panel (history chart + trust/security/install), clickable area chips and tech icons, type scale, skill `--license` / `--exclude-flag`.
 
+Also done: Name column fits full names — the Author column is gone at every width (author shown in gray next to the name), Name gets priority below 1150px main width (area labels get shortened more there; first label is cut mid-word if even one word doesn't fit). Name sorts A→Z on first click (other columns stay desc-first). Flag pills in the table name cell replaced by one warning icon whose popover lists every issue in full (cards keep the pills).
+
 Pending before pushing:
-1. **Name column still truncates** ("andrej-karpathy-sk…", "Understand-Anythi…") while Areas has free space. The user's requirement: Name, Areas and Technologies share the free width so the full name shows. Rebalance the grid fractions / let Name take priority. Verify at 1440, 1280 and 1024.
-2. Review open decisions with the user: Name sorts Z→A on first click (desc-first on every column); a 7th flag row "Star anomaly" (1 repo) appears.
+1. User OK on screenshots (site/_screens/v4-final-*.png).
+2. Open decision: a 7th flag row "Star anomaly" appears (shown only when some repo carries it).
