@@ -115,6 +115,7 @@
   const TLABEL = { plugin: "Plugin", skill: "Skill", agent: "Agent", marketplace: "Marketplace", "mcp-server": "MCP server", collection: "Collection" };
   const METHOD = { r: "keyword rules", e: "embeddings", er: "embeddings + rules", f: "fallback (no specific match)" };
   const SOURCE = { listed: "Community marketplace", official: "Official marketplace", curated: "Curated list", search: "GitHub search", "marketplace-expansion": "Another marketplace", "mcp-registry": "MCP Registry" };
+  const SCAN_SCOPE = "Not security-scanned. The nightly scan covers repos that are active (pushed in the last 6 months) and in use (50+ stars or +10 stars in 7 days), plus Anthropic and official-marketplace repos. Read the files before installing.";
   const FLAGS = {
     "star-farming": { label: "Unusual star burst", short: "Star burst", icon: "flag", sus: true, tip: "One day brought an outsized share of recent stars with no code activity around it. Can be a viral launch or bought stars: don't rely on the star count alone." },
     "star-spike": { label: "Star spike", short: "Star spike", icon: "flag", sus: true, tip: "A sudden jump in stars over the last few days." },
@@ -123,6 +124,7 @@
     "security-high": { label: "Security high", short: "High risk", icon: "shield", sus: true, hi: true, tip: "The static scan found high-risk patterns (e.g. remote code execution, credential access)." },
     archived: { label: "Archived", short: "Archived", icon: "archive", cls: "arch", tip: "The repository is archived: read-only, no further changes." },
     unmaintained: { label: "Unmaintained", short: "Unmaintained", icon: "clock", cls: "stale", tip: "No push in more than 6 months (180 days before the catalog was built)." },
+    unscanned: { label: "Not security-scanned", short: "Not scanned", icon: "shield", cls: "stale", tip: SCAN_SCOPE },
   };
   const FLAGORDER = Object.keys(FLAGS);
   const SUSFLAGS = FLAGORDER.filter(f => FLAGS[f].sus);
@@ -512,6 +514,7 @@
   // full description of one flag, shared by the warning popover and the details panel
   function flagFull(r, f) {
     const F = FLAGS[f] || {};
+    if (f === "unscanned" && r.sec && r.sec.at) return "Changed since its last security scan on " + sdate(r.sec.at) + " (last push " + sdate(r.p) + "). It is rescanned on the next nightly run if it is still in the scan scope; until then that result may be out of date.";
     return f === "unmaintained" && r.p ? "Last push " + sdate(r.p) + " (" + ageText(r.pd) + " before this catalog was built). Bugs and breaking changes in Claude Code may go unfixed." : F.tip || "Flagged by the catalog's checks.";
   }
   function flagList(r) {
@@ -892,7 +895,7 @@
           f.x ? h("code", null, String(f.x)) : null))),
         n > fs.length ? h("span", { class: "nd small" }, "+ " + plural(n - fs.length, "more finding")) : null));
     } else if (s) sec.append(h("p", { class: "secok" }, ic("shieldok"), "Security scan found nothing to review", s.at ? h("span", { class: "nd" }, "· " + sdate(s.at)) : null));
-    else sec.append(h("p", { class: "secok none" }, ic("shield"), "Not security-scanned yet"));
+    else sec.append(h("p", { class: "secok none" }, ic("shield"), SCAN_SCOPE));
     return sec;
   }
   function aboutBlock(r) {
@@ -1508,6 +1511,7 @@
 
   // popover for description (name), tier reasons (tier badge) and flags
   let pop = null, popT = 0, popFor = null, pinned = false;
+  const setPop = (...kids) => pop.replaceChildren(...kids.filter(k => k != null)); // native replaceChildren would print "null"
   function showPop(anchor) {
     if (!anchor.isConnected) return;
     pinned = false;
@@ -1521,23 +1525,23 @@
     }
     const kind = anchor.dataset.tip;
     if (kind === "tier") {
-      pop.replaceChildren(h("div", { class: "ph" }, h("span", { class: "tier tier-" + r.tr }, TIER[r.tr].label), h("b", null, TIER[r.tr].long)),
+      setPop(h("div", { class: "ph" }, h("span", { class: "tier tier-" + r.tr }, TIER[r.tr].label), h("b", null, TIER[r.tr].long)),
         reasonList(r) || h("p", { class: "nd" }, TIER[r.tr].desc), rankLine());
     } else if (kind === "warn") {
       const nsec = r.sec && r.flg.some(f => f.startsWith("security-")) ? (isNum(r.sec.n) ? r.sec.n : (r.sec.f || []).length) : 0;
-      pop.replaceChildren(h("div", { class: "ph" }, ic("warn"), h("b", null, plural(r.flg.length, "issue"))), flagList(r),
+      setPop(h("div", { class: "ph" }, ic("warn"), h("b", null, plural(r.flg.length, "issue"))), flagList(r),
         nsec ? h("p", { class: "nd" }, plural(nsec, "security finding") + ". Open the details for the findings.") : null,
         r.sus ? h("p", { class: "nd" }, "Flagged repos are ranked last in Trending.") : null,
         h("p", { class: "nd" }, "Uncheck a flag under Flags in the sidebar to hide every repo carrying it."));
     } else if (kind === "flag") {
       const f = anchor.dataset.flag, F = FLAGS[f] || {};
-      const tip = f === "unmaintained" && r.p ? "Last push " + sdate(r.p) + ": no push for " + ageText(r.pd) + "." : F.tip || "Flagged by the catalog's checks.";
+      const tip = f === "unscanned" ? flagFull(r, f) : f === "unmaintained" && r.p ? "Last push " + sdate(r.p) + ": no push for " + ageText(r.pd) + "." : F.tip || "Flagged by the catalog's checks.";
       const extra = f.startsWith("security-") && r.sec ? h("p", { class: "nd" }, plural(isNum(r.sec.n) ? r.sec.n : (r.sec.f || []).length, "finding") + ". Open the details for the findings.") : null;
-      pop.replaceChildren(h("div", { class: "ph" }, h("b", null, flagLabel(f))), h("p", { class: "pd" }, tip), extra,
+      setPop(h("div", { class: "ph" }, h("b", null, flagLabel(f))), h("p", { class: "pd" }, tip), extra,
         isSus(f) ? h("p", { class: "nd" }, "Flagged repos are ranked last in Trending.") : null,
         h("p", { class: "nd" }, "Uncheck it under Flags in the sidebar to hide every repo carrying it."));
     } else {
-      pop.replaceChildren(h("p", { class: "pd" }, ...(r.d ? hl(r.d, wordsOf(S.q)) : ["No description provided."])),
+      setPop(h("p", { class: "pd" }, ...(r.d ? hl(r.d, wordsOf(S.q)) : ["No description provided."])),
         h("div", { class: "pm" }, r.disp + " · " + plural(r.nit, "item") + (r.url ? " · opens GitHub" : "")));
     }
     pop.style.width = kind === "tier" || kind === "warn" ? "360px" : "";

@@ -372,37 +372,68 @@ def installable_kind(tree):
     if any(e.get("type") == "tree" and not e["name"].startswith(".") and "SKILL.md" in kids(e["name"]) for e in ents.values()): return "skill-dirs"
     return None
 
+def _focus(r):
+    it = BROAD[r][0]
+    return bool(SKILL_FOCUS.search(f"{it.get('name') or ''} {it.get('description') or ''}".replace("-", " ")))
+
+def light_kind(n):
+    """installable_kind() from three cheap path lookups; None when only a two-level listing can still tell (SKILL.md subfolders)."""
+    cp = {e["name"] for e in ((n.get("p") or {}).get("entries") or [])}
+    if "marketplace.json" in cp: return "marketplace"
+    if "plugin.json" in cp: return "plugin"
+    if (n.get("s") or {}).get("__typename") == "Blob": return "skill"
+    if any(e.get("type") == "tree" for e in ((n.get("k") or {}).get("entries") or [])): return "skill-dirs"
+    return None
+
+def _verify_pass(repos, fields, size, judge, cache, vc, label):
+    """GraphQL lookups in batches; judge(node) -> verdict, or "deep" to leave the repo for the next pass. Returns the "deep" repos."""
+    deep = []
+    for k in range(0, len(repos), size):
+        chunk = repos[k:k + size]
+        if k: time.sleep(GQL_PACE)
+        if k and k % (size * 10) == 0:
+            vc.write_text(json.dumps(cache), encoding="utf-8"); print(f"broad verify ({label}): {k}/{len(repos)}", flush=True)
+        d = gql("query{" + " ".join(f'r{j}:repository(owner:{json.dumps(r.split("/")[0])},name:{json.dumps(r.split("/")[1])}){{{fields}}}'
+                                    for j, r in enumerate(chunk)) + "}")
+        if not d or not d.get("data"):
+            ERRORS.append(f"broad verify {label} chunk {k // size + 1}: no data {str((d or {}).get('errors'))[:200]}"); continue
+        for j, r in enumerate(chunk):
+            n = d["data"].get(f"r{j}")
+            if n is None: continue
+            v = judge(n)
+            if v == "deep": deep.append(r)
+            else: cache[r] = {"t": time.time(), "v": VERIFY_V, "kind": v}
+    return deep
+
 def verify_broad():
     known = {(e["repo"] or "").lower() for e in ENTRIES.values()}
     cands = [r for r in BROAD if r.lower() not in known]
     vc = CACHE / "verify.json"
     try: cache = json.loads(vc.read_text(encoding="utf-8")) if vc.exists() and not REFRESH else {}
     except Exception: cache = {}
-    fresh = lambda r: r in cache and cache[r].get("v") == VERIFY_V and (OFFLINE or time.time() - cache[r]["t"] < VERIFY_TTL_D * 86400)
+    # re-checks are spread over the TTL (per-repo offset) so they don't all expire on the same night
+    ttl = lambda r: VERIFY_TTL_D * 86400 * (0.5 + int(hashlib.sha1(r.encode()).hexdigest()[:4], 16) / 0xFFFF)
+    fresh = lambda r: r in cache and cache[r].get("v") == VERIFY_V and (OFFLINE or time.time() - cache[r]["t"] < ttl(r))
     todo = [r for r in cands if not fresh(r)]
     if todo and TOKEN and not OFFLINE:
-        F = 'object(expression:"HEAD:"){...on Tree{entries{name type object{...on Tree{entries{name type}}}}}}'
-        B = 5  # two-level tree listings are heavy: 25 repos per query time out (HTTP 502) and 10 still do now and then
-        for k in range(0, len(todo), B):
-            chunk = todo[k:k + B]
-            if k: time.sleep(GQL_PACE)
-            if k and k % (B * 20) == 0:
-                vc.write_text(json.dumps(cache), encoding="utf-8"); print(f"broad verify: {k}/{len(todo)}", flush=True)
-            d = gql("query{" + " ".join(f'r{j}:repository(owner:{json.dumps(r.split("/")[0])},name:{json.dumps(r.split("/")[1])}){{{F}}}'
-                                        for j, r in enumerate(chunk)) + "}")
-            if not d or not d.get("data"):
-                ERRORS.append(f"broad verify chunk {k // B + 1}: no data {str((d or {}).get('errors'))[:200]}"); continue
-            for j, r in enumerate(chunk):
-                n = d["data"].get(f"r{j}")
-                if n is not None: cache[r] = {"t": time.time(), "v": VERIFY_V, "kind": installable_kind(n.get("object"))}
-        CACHE.mkdir(exist_ok=True); vc.write_text(json.dumps(cache), encoding="utf-8")
+        CACHE.mkdir(exist_ok=True)
+        # pass 1: three path lookups per repo, cheap enough for 40 repos per query
+        light = ('p:object(expression:"HEAD:.claude-plugin"){...on Tree{entries{name}}} s:object(expression:"HEAD:SKILL.md"){__typename} '
+                 'k:object(expression:"HEAD:skills"){...on Tree{entries{type}}}')
+        deep = _verify_pass(todo, light, 40, lambda n: light_kind(n) or "deep", cache, vc, "paths")
+        # pass 2: a two-level root listing (heavy: 5 per query) only where SKILL.md subfolders would be accepted
+        for r in [r for r in deep if not _focus(r)]: cache[r] = {"t": time.time(), "v": VERIFY_V, "kind": None}
+        dl = [r for r in deep if _focus(r)]
+        full = 'k:object(expression:"HEAD:"){...on Tree{entries{name type object{...on Tree{entries{name type}}}}}}'
+        _verify_pass(dl, full, 5, lambda n: installable_kind(n.get("k")), cache, vc, "subfolders")
+        vc.write_text(json.dumps(cache), encoding="utf-8")
     added = Counter()
     for r in cands:
         kind = (cache.get(r) or {}).get("kind")
         if not kind: continue
         it, q = BROAD[r]
         if kind == "skill-dirs":
-            if not SKILL_FOCUS.search(f"{it.get('name') or ''} {it.get('description') or ''}".replace("-", " ")): continue
+            if not _focus(r): continue
             kind = "skill"
         set_meta(r, it)
         hint = {"marketplace": f"/plugin marketplace add {r}", "plugin": f"/plugin marketplace add {r}", "skill": f"copy skills from {r}"}[kind]

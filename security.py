@@ -27,6 +27,7 @@ RULES_PATH = ROOT / "security_rules.json"
 OUT_PATH = DATA / "security.json"; STATE_PATH = DATA / "security-state.json"
 REPORT_PATH = DATA / "security-report.md"; CATALOG_PATH = DATA / "catalog.json"
 
+SCAN_LIVE_DAYS, SCAN_MIN_STARS, SCAN_MIN_T7 = 180, 50, 10  # scan scope, see in_scope(); build_site.py shows the rest as not scanned
 MAX_FILES = 40
 MAX_BYTES = 300_000
 MAX_FILE_BYTES = 100_000
@@ -607,6 +608,21 @@ def scan_repo(repo, entries, online):
 
 
 # ---------------------------------------------------------------- outputs
+def parse_ts(ts):
+    try: return datetime.fromisoformat(ts.replace("Z", "+00:00")) if ts else None
+    except Exception: return None
+
+
+def in_scope(entries, ref):
+    """Scanned repos: alive (not archived, pushed within SCAN_LIVE_DAYS) and in use (>= SCAN_MIN_STARS stars or
+    >= SCAN_MIN_T7 new stars in 7 days), plus every Anthropic or official-marketplace repo that is alive."""
+    if any(e.get("archived") for e in entries): return False
+    p = max((parse_ts(e.get("pushed_at")) for e in entries if e.get("pushed_at")), default=None)
+    if not p or (ref - p).days > SCAN_LIVE_DAYS: return False
+    if any(e.get("tier") in ("anthropic", "official") for e in entries): return True
+    return any((e.get("stars") or 0) >= SCAN_MIN_STARS or (e.get("trend_7d") or 0) >= SCAN_MIN_T7 for e in entries)
+
+
 def load_json(p, default):
     try: return json.loads(p.read_text(encoding="utf-8"))
     except Exception: return default
@@ -669,21 +685,36 @@ def main():
     def prio(repo):
         es = repos[repo]
         return (min(TIER_RANK.get(e.get("tier"), 9) for e in es), -max(e.get("stars") or 0 for e in es), repo)
-    order = sorted(repos, key=prio)
+    ref = parse_ts(cat.get("generated_at")) or datetime.now(timezone.utc)
+    scope = {r for r in repos if in_scope(repos[r], ref)}
+    order = sorted(scope, key=prio)
     sec = load_json(OUT_PATH, {})
     state = load_json(STATE_PATH, {"cursor": None, "repos": {}})
     state.setdefault("repos", {})
+    # out of scope: an "ok" verdict can't be kept current, so it is dropped (the site shows "not scanned");
+    # review/high findings stay visible with their scan date
+    for r in set(repos) - scope:
+        for e in repos[r]:
+            if (sec.get(e["id"]) or {}).get("level") == "ok": sec.pop(e["id"])
 
     if ONLY:
         todo = [ONLY] if ONLY in repos else sys.exit(f"{ONLY} not in catalog")
     elif OFFLINE:
         todo = order
     else:
+        # pushed since the last visit first (a change is rescanned the next night), then never scanned, then rotation
+        def changed(r):
+            p = max((parse_ts(e.get("pushed_at")) for e in repos[r] if e.get("pushed_at")), default=None)
+            v = parse_ts(state["repos"][r].get("visited_at"))
+            return bool(p and v and p > v)
+        seen = [r for r in order if r in state["repos"]]
+        hot = [r for r in seen if changed(r)]
         new = [r for r in order if r not in state["repos"]]
-        old = [r for r in order if r in state["repos"]]
+        old = [r for r in seen if r not in set(hot)]
         cur = state.get("cursor")
         k = old.index(cur) + 1 if cur in old else 0
-        todo = new + old[k:] + old[:k]
+        todo = hot + new + old[k:] + old[:k]
+        print(f"security scope: {len(scope)}/{len(repos)} repos; changed since last visit {len(hot)}, never scanned {len(new)}")
 
     full_calls = 0; visited = 0; pos = 0
     pool = ThreadPoolExecutor(REPO_WORKERS)

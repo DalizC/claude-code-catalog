@@ -44,6 +44,15 @@ def parse_dt(s):
         return None
 
 
+def unscanned(r):
+    """No current security scan: never scanned (outside the scan scope, see security.py in_scope) or pushed after its last scan."""
+    v = r.get("security") if isinstance(r.get("security"), dict) else None
+    if not v or v.get("level") not in ("ok", "review", "high"):
+        return True
+    p, s = parse_dt(r.get("pushed_at")), parse_dt(v.get("scanned_at"))
+    return bool(p and s and p > s)
+
+
 def unmaintained(r, ref):
     d = parse_dt(r.get("pushed_at")) if r.get("pushed_at") else None
     return bool(ref and d and (ref - d).days > UNMAINTAINED_DAYS)
@@ -159,7 +168,8 @@ def slim(r, cls, ref=None):
         "a": 1 if r.get("archived") else 0,
         "tr": r.get("tier") or "watch",
         "tx": [cut(x, 100 if mcp else 160) for x in (r.get("tier_reasons") or [])][:MCP_TX if mcp else 6],
-        "fl": ids(r.get("flags")) + (["unmaintained"] if unmaintained(r, ref) and "unmaintained" not in ids(r.get("flags")) else []),
+        "fl": ids(r.get("flags")) + (["unmaintained"] if unmaintained(r, ref) and "unmaintained" not in ids(r.get("flags")) else [])
+              + (["unscanned"] if key and unscanned(r) else []),
         "lg": license_group(r.get("license")),
         "src": sorted({s.split(":")[0] if s.startswith("search:") else s
                        for s in (r.get("sources") or []) if isinstance(s, str)}),

@@ -58,17 +58,18 @@ jobs:
           FASTEMBED_CACHE_PATH: ${{ runner.temp }}/fastembed_cache
         run: python classify.py
 
+      # Security runs before star history so it gets the API budget first; history uses what is left
+      - name: Security scan
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.CATALOG_TOKEN || secrets.GITHUB_TOKEN }}
+        run: python security.py --budget 600
+
       - name: Star history
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.CATALOG_TOKEN || secrets.GITHUB_TOKEN }}
         run: python history.py --budget 3500
-
-      - name: Security scan
-        continue-on-error: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.CATALOG_TOKEN || secrets.GITHUB_TOKEN }}
-        run: python security.py --budget 300
 
       - name: Build site
         run: python build_site.py
