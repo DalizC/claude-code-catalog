@@ -3,6 +3,7 @@
 
   search.py "<need>" [--type skill|plugin|agent|mcp-server] [--tier-min watch|verified|...] [--limit 15] [--json]
             [--tech <id|label>]... [--area <id|label>]...
+            [--license commercial|copyleft|none|other] [--exclude-flag <flag>]...
   search.py --tech react --area testing        (facets alone, no text query, ranked by quality)
   search.py --trending [--limit 20]
   search.py --new --days 14
@@ -11,6 +12,10 @@
   search.py --favorites ["<need>"]   (only favorites from favorites.json; favorites also get a small ranking boost and a star)
   search.py --fav-add <id-or-repo> [--note "..."]   /   --fav-remove <id-or-repo>   (edit the LOCAL favorites.json; commit and push yourself)
   search.py "browser automation" --type mcp-server   (standalone MCP servers from the official MCP Registry)
+  search.py "pdf export" --license commercial   (only permissive licenses: MIT, Apache-2.0, BSD, ISC...)
+  search.py "memory" --exclude-flag unmaintained --exclude-flag security-review
+  Flags: star-farming, star-spike, star-anomaly, security-review, security-high, archived,
+  unmaintained (no push for more than 180 days before the catalog's generated_at).
 """
 import argparse
 import json
@@ -42,6 +47,25 @@ TIER_RANK = {"watch": 0, "verified": 1, "listed": 2, "official": 3, "anthropic":
 TIER_WEIGHT = {"watch": 0.0, "verified": 0.15, "listed": 0.3, "official": 0.45, "anthropic": 0.6}
 TIER_LABEL = {"anthropic": "Anthropic", "official": "Official marketplace · 3rd-party",
               "listed": "Community marketplace · 3rd-party", "verified": "Verified", "watch": "Watch"}
+
+# License groups (same mapping as build_site.py): SPDX id -> commercial | copyleft | none | other
+PERMISSIVE = re.compile(r"^(MIT|MIT-0|Apache-2\.0|BSD-[23]-Clause|ISC|0BSD|Unlicense|Zlib|CC0-1\.0|WTFPL|UPL-1\.0|PostgreSQL|Artistic-2\.0|BSL-1\.0|CC-BY-4\.0|Python-2\.0)$")
+COPYLEFT = re.compile(r"^(A?GPL|LGPL|MPL|EPL|EUPL|CC-BY-SA|OSL|CDDL)")
+LICENSE_GROUPS = ("commercial", "copyleft", "none", "other")
+UNMAINTAINED_DAYS = 180
+FLAG_CHOICES = ("star-farming", "star-spike", "star-anomaly", "security-review", "security-high", "archived", "unmaintained")
+REF_TIME = None  # catalog generated_at (set in main); falls back to now
+
+
+def license_group(lic):
+    if not lic:
+        return "none"
+    if PERMISSIVE.match(lic):
+        return "commercial"
+    if COPYLEFT.match(lic):
+        return "copyleft"
+    return "other"
+
 
 STOP = set("""a an the of for to and or in on with by from is are be do does how i me my we you it this that
 de la el los las un una unos unas y o en con por para que se al del lo su sus mi mis entre sobre como
@@ -125,6 +149,27 @@ def parse_dt(s):
 def days_since(s):
     d = parse_dt(s)
     return (now() - d).days if d else None
+
+
+def push_age(r):
+    """Days between the last push and the catalog's generated_at (or now)."""
+    d = parse_dt(r.get("pushed_at"))
+    return ((REF_TIME or now()) - d).days if d else None
+
+
+def all_flags(r):
+    """Catalog flags plus derived ones: security-review/high, archived, unmaintained."""
+    out = list(r.get("flags") or [])
+    sec = r.get("security")
+    lvl = sec.get("level") if isinstance(sec, dict) else sec
+    if lvl in ("review", "high"):
+        out.append("security-" + lvl)
+    if r.get("archived"):
+        out.append("archived")
+    age = push_age(r)
+    if age is not None and age > UNMAINTAINED_DAYS:
+        out.append("unmaintained")
+    return out
 
 
 # ---------------------------------------------------------------- loading
@@ -315,6 +360,9 @@ def quality(repo):
         q += 0.25 * math.exp(-age / 120.0)
         if age > 365:
             q -= 0.4
+    pa = push_age(repo)
+    if pa is not None and pa > UNMAINTAINED_DAYS:
+        q -= 0.3  # unmaintained
     flags = repo.get("flags") or []
     if "star-anomaly" in flags: q -= 0.8
     if "star-farming" in flags: q -= 0.8
@@ -368,16 +416,10 @@ def short(s, n):
 
 
 def print_repo(i, r, groups=None, detail=False):
-    flags = ",".join(r.get("flags") or []) or "-"
-    sec = r.get("security")
-    lvl = sec.get("level") if isinstance(sec, dict) else sec
-    if lvl in ("review", "high"):
-        flags = f"security:{lvl}" if flags == "-" else f"security:{lvl}," + flags
-    if r.get("archived"):
-        flags = "archived," + flags if flags != "-" else "archived"
+    flags = ",".join(f.replace("security-", "security:") for f in all_flags(r)) or "-"
     star = "\u2b50 " if r.get("id") in FAV_IDS else ""
     print(f"{i}. {star}{r['id'] if r.get('container') or not r.get('repo') else r['repo']} [{TIER_LABEL.get(r.get('tier'), r.get('tier'))}] {r.get('type')} | {r.get('stars') if r.get('stars') is not None else '?'} stars | trend {fmt_trend(r)} "
-          f"| pushed {fmt_push(r)} | {r.get('license') or 'no-license'} | flags: {flags}")
+          f"| pushed {fmt_push(r)} | {r.get('license') or 'no-license'} ({license_group(r.get('license'))}) | flags: {flags}")
     print(f"   {short(r.get('description'), 160)}")
     print(f"   {r.get('url')}")
     items = r.get("items") or []
@@ -388,6 +430,11 @@ def print_repo(i, r, groups=None, detail=False):
             print(f"       install: {it['install_hint']}")
     if not detail and len(items) > len(shown):
         print(f"   (+{len(items) - len(shown)} more items; --info {r['repo']})")
+
+
+def mark(r):
+    """Record copy with the derived flags and license group, for --json output."""
+    return {**r, "_flags": all_flags(r), "_license_group": license_group(r.get("license"))}
 
 
 def header(meta, path, n=None):
@@ -402,6 +449,9 @@ def main():
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--tech", action="append", default=[], metavar="ID", help="technology id or label (repeatable, any of; includes child technologies)")
     ap.add_argument("--area", action="append", default=[], metavar="ID", help="area id or label (repeatable, any of; includes child areas)")
+    ap.add_argument("--license", choices=LICENSE_GROUPS, help="license group: commercial (permissive), copyleft, none, other")
+    ap.add_argument("--exclude-flag", action="append", default=[], choices=FLAG_CHOICES, metavar="FLAG",
+                    help="drop repos carrying this flag (repeatable): " + ", ".join(FLAG_CHOICES))
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--trending", action="store_true")
     ap.add_argument("--new", action="store_true")
@@ -416,6 +466,8 @@ def main():
         sys.stdout.reconfigure(encoding="utf-8")
 
     repos, meta, path = load_catalog()
+    global REF_TIME
+    REF_TIME = parse_dt(meta.get("generated_at"))
     if a.fav_add or a.fav_remove:
         if a.fav_add and a.fav_remove:
             ap.error("use only one of --fav-add / --fav-remove")
@@ -444,6 +496,10 @@ def main():
             return False
         if a.favorites and r.get("id") not in FAV_IDS:
             return False
+        if a.license and license_group(r.get("license")) != a.license:
+            return False
+        if a.exclude_flag and set(a.exclude_flag) & set(all_flags(r)):
+            return False
         if TIER_RANK.get(r.get("tier"), 0) < TIER_RANK[a.tier_min or ("watch" if a.favorites else "verified")]:  # watch is excluded unless --tier-min watch (or --favorites)
             return False
         return True
@@ -457,7 +513,7 @@ def main():
             sys.exit(f"not found in catalog: {a.info}")
         r = m[0]
         if a.json:
-            print(json.dumps(r, indent=1, ensure_ascii=False)); return
+            print(json.dumps(mark(r), indent=1, ensure_ascii=False)); return
         header(meta, path)
         print_repo(1, r, detail=True)
         print(f"   tier_reasons: {'; '.join(r.get('tier_reasons') or []) or '-'}")
@@ -479,7 +535,7 @@ def main():
             res.sort(key=lambda r: -(r.get("stars") or 0))
         res = res[:limit]
         if a.json:
-            print(json.dumps(res, indent=1, ensure_ascii=False)); return
+            print(json.dumps([mark(r) for r in res], indent=1, ensure_ascii=False)); return
         header(meta, path, len(res))
         if note: print("note:", note)
         for i, r in enumerate(res, 1): print_repo(i, r, [])
@@ -495,15 +551,15 @@ def main():
         res.sort(key=lambda r: (-TIER_RANK.get(r.get("tier"), 0), -(r.get("stars") or 0)))
         res = res[:limit]
         if a.json:
-            print(json.dumps(res, indent=1, ensure_ascii=False)); return
+            print(json.dumps([mark(r) for r in res], indent=1, ensure_ascii=False)); return
         header(meta, path, len(res))
         print(f"new in the last {a.days} days (by first_seen/created_at)")
         for i, r in enumerate(res, 1): print_repo(i, r, [])
         return
 
-    facets_only = not a.query.strip() and bool(a.tech or a.area or a.favorites)
+    facets_only = not a.query.strip() and bool(a.tech or a.area or a.favorites or a.license)
     if not a.query.strip() and not facets_only:
-        ap.error("query required (or --tech/--area / --favorites / --trending / --new / --info)")
+        ap.error("query required (or --tech/--area/--license / --favorites / --trending / --new / --info)")
     groups = [] if facets_only else query_groups(a.query)
     if not groups and not facets_only:
         sys.exit("query has no searchable terms")
@@ -515,7 +571,7 @@ def main():
     scored.sort(key=lambda x: -x[0])
     res = [r for _, r in scored[: a.limit or 15]]
     if a.json:
-        print(json.dumps([{**r, "_score": round(s, 3)} for s, r in scored[: a.limit or 15]], indent=1, ensure_ascii=False))
+        print(json.dumps([{**mark(r), "_score": round(s, 3)} for s, r in scored[: a.limit or 15]], indent=1, ensure_ascii=False))
         return
     header(meta, path, len(res))
     if not res: print("no favorites yet; add one with --fav-add <id-or-repo>" if a.favorites and not FAV_IDS else "no matches; try other keywords (English works best)")

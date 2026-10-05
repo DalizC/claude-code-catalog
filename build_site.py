@@ -9,7 +9,8 @@ history.py) with fetch(), so it only appears when the site is served over http:
     python -m http.server -d site      ->  http://localhost:8000
 Opened over file:// the page still works, just without star history.
 """
-import json, pathlib
+import json, pathlib, re
+from datetime import datetime, timezone
 
 ROOT = pathlib.Path(__file__).resolve().parent
 SRC = ROOT / "data" / "catalog.json"
@@ -22,6 +23,30 @@ SEC_FINDINGS, SEC_EXCERPT = 12, 160
 # Standalone MCP servers (type mcp-server only) are ~85% of the records, so they are slimmed: shorter descriptions and hints,
 # at most 3 tier reasons, and the single item drops its name/type when they equal the record's (the page falls back to them).
 MCP_DESC, MCP_HINT, MCP_TX = 140, 240, 3
+# License group per record ("lg"): ok = permissive (commercial use OK), copyleft, none, other.
+# Same mapping as plugins/cc-catalog/scripts/search.py.
+PERMISSIVE = re.compile(r"^(MIT|MIT-0|Apache-2\.0|BSD-[23]-Clause|ISC|0BSD|Unlicense|Zlib|CC0-1\.0|WTFPL|UPL-1\.0|PostgreSQL|Artistic-2\.0|BSL-1\.0|CC-BY-4\.0|Python-2\.0)$")
+COPYLEFT = re.compile(r"^(A?GPL|LGPL|MPL|EPL|EUPL|CC-BY-SA|OSL|CDDL)")
+UNMAINTAINED_DAYS = 180  # "unmaintained" flag: last push older than this, relative to the catalog's generated_at
+
+
+def license_group(lic):
+    if not isinstance(lic, str) or not lic:
+        return "none"
+    return "ok" if PERMISSIVE.match(lic) else "copyleft" if COPYLEFT.match(lic) else "other"
+
+
+def parse_dt(s):
+    try:
+        d = datetime.fromisoformat(str(s).replace("Z", "+00:00"))
+        return d if d.tzinfo else d.replace(tzinfo=timezone.utc)
+    except (TypeError, ValueError):
+        return None
+
+
+def unmaintained(r, ref):
+    d = parse_dt(r.get("pushed_at")) if r.get("pushed_at") else None
+    return bool(ref and d and (ref - d).days > UNMAINTAINED_DAYS)
 
 
 def cut(s, n):
@@ -100,7 +125,7 @@ def tree(nodes):
     return out
 
 
-def slim(r, cls):
+def slim(r, cls, ref=None):
     mcp = r.get("types") == ["mcp-server"]
     desc = cut(r.get("description"), MCP_DESC if mcp else DESC)
     items = []
@@ -134,7 +159,8 @@ def slim(r, cls):
         "a": 1 if r.get("archived") else 0,
         "tr": r.get("tier") or "watch",
         "tx": [cut(x, 100 if mcp else 160) for x in (r.get("tier_reasons") or [])][:MCP_TX if mcp else 6],
-        "fl": ids(r.get("flags")),
+        "fl": ids(r.get("flags")) + (["unmaintained"] if unmaintained(r, ref) and "unmaintained" not in ids(r.get("flags")) else []),
+        "lg": license_group(r.get("license")),
         "src": sorted({s.split(":")[0] if s.startswith("search:") else s
                        for s in (r.get("sources") or []) if isinstance(s, str)}),
         "t7": num(r.get("trend_7d")),
@@ -188,7 +214,7 @@ def main():
                      "technologies": tree(tax.get("technologies")), "areas": tree(tax.get("areas"))},
         "favorites": favorites(load(FAV, {})),
         "history_shards": 16,
-        "repos": [slim(r, cls) for r in repos],
+        "repos": [slim(r, cls, parse_dt(meta.get("generated_at"))) for r in repos],
     }
     data["strings"] = {"tx": intern(data["repos"], "tx"), "src": intern(data["repos"], "src")}
     js = "window.CATALOG = " + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + ";\n"

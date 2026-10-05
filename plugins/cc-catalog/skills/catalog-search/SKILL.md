@@ -17,15 +17,17 @@ Need: $ARGUMENTS (if empty, use the task the user is about to start).
    `--type mcp-server` lists standalone MCP servers from the official MCP Registry; their install hint is a `claude mcp add ...` command, and a trailing `# requires: VAR` note names env vars or headers you must supply. Results exclude the `watch` tier by default; add `--tier-min watch` to include unvetted tools.
    When the user names a stack or an area, add `--tech` and/or `--area` (ids or labels, case-insensitive, repeatable; repeated values of one facet are alternatives, different facets combine with AND; child tags are included). Technologies: `react`, `python`, `typescript`, `nextjs`, `aws`, `postgresql`. Areas: `testing`, `frontend`, `frontend-discovery`, `security`, `devops`, `docs-writing`, `git`, `code-review`. An unknown value prints the valid ids. Facets alone, without text, rank by catalog quality.
    Example: "testing for React, verified or better" is `search.py "testing" --tech react --area testing --tier-min verified`.
+   License: `--license commercial|copyleft|none|other` keeps one license group (`commercial` = permissive such as MIT, Apache-2.0, BSD, ISC; `copyleft` = GPL, AGPL, LGPL, MPL; `none` = no license; `other` = custom or unrecognized). When the user mentions a commercial, client or proprietary project, add `--license commercial`.
+   Flags: `--exclude-flag <flag>` (optional, repeatable) drops repos carrying `star-farming`, `star-spike`, `star-anomaly`, `security-review`, `security-high`, `archived` or `unmaintained`.
    Favorites: when the user asks for their favorites, run `search.py --favorites` (optionally with a need as text, plus `--tech`/`--area`/`--type`; the Watch tier is included). Favorites are marked with a star in every result and rank slightly higher in normal searches. When the user says "agrega X a favoritos" / "add X to favorites", run `search.py --fav-add <id-or-repo> [--note "..."]`; for "quita X de favoritos" / "remove X from favorites", run `search.py --fav-remove <id-or-repo>`. X is an id, `owner/repo` or a former repo name; if it is not found or is ambiguous, show the error and the candidate ids. These flags edit only the local `favorites.json` in the repo checkout. Never commit or push; tell the user the file changed and that they must commit and push it.
 2. Note `generated_at` in the output. If the catalog is older than 7 days, say so.
 3. Tiers, highest to lowest: `anthropic` (made by Anthropic), `official` (Official marketplace, third-party code), `listed` (Community marketplace, third-party code), `verified`, `watch`. `--tier-min` takes any of these. Only `anthropic` means Anthropic wrote it; `official` and `listed` mean Anthropic lists the tool, not that it authored or audited it.
-4. For the top candidates read `tier`, tier reasons (`--info owner/repo`) and flags. Treat `star-farming`, `star-anomaly`, `star-spike`, `security:review`, `security:high`, archived and stale (>365 days) as weak evidence; the ranking already penalizes them.
+4. For the top candidates read `tier`, tier reasons (`--info owner/repo`), license group and flags. Treat `star-farming`, `star-anomaly`, `star-spike`, `security:review`, `security:high`, `archived` and `unmaintained` (no push for more than 180 days) as weak evidence; the ranking already penalizes them.
 5. Optionally WebFetch the top candidate's README to confirm it fits.
 6. Present 3 to 5 alternatives in a table:
 
-   | Tool | What it does | Tier | Stars | Trend | Last push | Flags | Install |
-   |---|---|---|---|---|---|---|---|
+   | Tool | What it does | Tier | Stars | Trend | Last push | License | Flags | Install |
+   |---|---|---|---|---|---|---|---|---|
 
 7. End with a recommendation: **use X**, **adapt X**, or **build custom**, with the reason in one or two sentences.
 

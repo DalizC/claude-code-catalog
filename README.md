@@ -39,6 +39,16 @@ Order, highest first (display label in parentheses):
 A third-party repo in both the official and community marketplaces gets `official`. `search.py --tier-min` accepts `watch|verified|listed|official|anthropic`.
 
 Flags (warnings only, never change tier): `star-anomaly` (>50 stars/day average and age<180d), `star-spike` (7-day gain > max(500, 20% of stars)).
+`build_site.py` adds `unmaintained` to a record's flags when `pushed_at` is more than 180 days before the catalog's `generated_at` (records without `pushed_at` are not flagged), and a license group `lg` per record from the SPDX id: `ok` (permissive: commercial use OK), `copyleft` (GPL/AGPL/LGPL/MPL/EPL/EUPL/CC-BY-SA...), `none` (no license) or `other` (custom / NOASSERTION). `search.py` uses the same mapping: `--license commercial|copyleft|none|other`, `--exclude-flag <flag>` (repeatable), and an `unmaintained` ranking penalty.
+
+## Site
+- Table columns: favorite, details, Name, Author, Tier, Type, Areas, Technologies, Stars, 7d, 30d, Updated, License. Name, Areas and Technologies share the free width; the rest are fixed. Narrower windows drop Author and 30d, then License (both stay in the details panel).
+- Sorting: click a column header (Name, Author, Tier, Type, Stars, Updated, License); the first click sorts descending, the second ascending. Trend presets sort by the 7-day trend, shown above the results. Cards view has its own sort control. Sort is kept in the URL (`#sort=...&dir=asc`).
+- Flags facet: every flag is checked (included) by default; unchecking one hides every repo carrying it (`#hide=unmaintained,...`). "Trending & trusted" hides the suspicious flags (star burst/spike/anomaly, security review/high).
+- License facet: the four license groups (`#lic=ok`).
+- Area chips and technology icons in rows, cards and the details panel filter by that facet; activating an active one removes the filter.
+- The chevron and the 7d/30d trend button open the same details panel: star history chart on the left; trust summary, flags, security findings, install commands, description and tags on the right.
+- Technology icons are Simple Icons SVGs vendored in `site/icons/` (no runtime CDN); technologies without an icon show a neutral glyph and the name.
 
 ## Run locally
 ```

@@ -1,6 +1,7 @@
-/* cc-catalog v3: table + cards views over window.CATALOG (built by build_site.py).
+/* cc-catalog v4: table + cards views over window.CATALOG (built by build_site.py).
    All data is rendered with DOM APIs / textContent. Only constant icon markup is parsed.
-   Star history is lazy-loaded from history/NN.json (needs http; file:// degrades gracefully). */
+   Star history is lazy-loaded from history/NN.json (needs http; file:// degrades gracefully).
+   Technology glyphs are vendored Simple Icons SVGs in icons/ (no runtime CDN). */
 (function () {
   "use strict";
 
@@ -25,11 +26,16 @@
     flag: '<path d="M5 21V4.5M5 4.5h11l-2 4 2 4H5"/>',
     archive: '<rect x="4" y="5" width="16" height="4" rx="1"/><path d="M5.5 9v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9M10 13h4"/>',
     trend: '<path d="M4 17.5 9.5 12l3.5 3 7-7.5"/><path d="M15 7.5h5v5"/>',
-    chart: '<path d="M4 4v16h16"/><path d="m7.5 14.5 3.5-4 3 2.5 5-6"/>',
     info: '<circle cx="12" cy="12" r="8"/><path d="M12 11v5M12 8h.01"/>',
     clock: '<circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 2"/>',
     shield: '<path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.4 7 9 4.1-1.6 7-4.8 7-9V6z"/><path d="M12 8.5v4M12 15.5h.01"/>',
+    shieldok: '<path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.4 7 9 4.1-1.6 7-4.8 7-9V6z"/><path d="m9 12 2.2 2.2L15.5 10"/>',
     plus: '<path d="M12 5v14M5 12h14"/>',
+    share: '<path d="M7 7h10v10"/><path d="M17 7 7 17"/>',
+    minus: '<path d="M6 12h12"/>',
+    q: '<circle cx="12" cy="12" r="8"/><path d="M9.8 9.7a2.3 2.3 0 0 1 4.4.9c0 1.6-2.2 2-2.2 3.4M12 17h.01"/>',
+    box: '<path d="M12 3.5 4.5 7.5v9L12 20.5l7.5-4v-9z"/><path d="M4.5 7.5 12 11.5l7.5-4M12 11.5v9"/>',
+    sort: '<path d="M8 5v14M4.5 15.5 8 19l3.5-3.5M16 19V5M12.5 8.5 16 5l3.5 3.5"/>',
     plugin: '<path d="M9 4v4M15 4v4M7 8h10v4a5 5 0 0 1-10 0zM12 17v3"/>',
     skill: '<path d="M13 3 5 13.5h6L10 21l8-10.5h-6z"/>',
     agent: '<rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9.5 13h.01M14.5 13h.01"/>',
@@ -78,11 +84,7 @@
   const REF = (() => { const t = Date.parse(C.generated_at || ""); return isNaN(t) ? Date.now() : t; })();
   const REFDAY = Math.floor(REF / DAY);
   const dayOf = d => { const t = Date.parse(d + "T00:00:00Z"); return isNaN(t) ? null : Math.floor(t / DAY); };
-  function rel(d) {
-    const day = d && dayOf(d);
-    if (day == null) return "—";
-    return relDays(Math.max(0, REFDAY - day));
-  }
+  const ago = d => { const day = d && dayOf(d); return day == null ? null : Math.max(0, REFDAY - day); };
   function relDays(days) {
     if (days < 1) return "today";
     if (days < 2) return "yesterday";
@@ -90,12 +92,11 @@
     if (days < 365) return Math.round(days / 30.4) + "mo ago";
     return (days / 365).toFixed(1).replace(/\.0$/, "") + "y ago";
   }
+  const rel = d => { const a = ago(d); return a == null ? "—" : relDays(a); };
   const ageText = days => days < 60 ? days + " days" : days < 365 ? Math.round(days / 30.4) + " months" : (days / 365).toFixed(1).replace(/\.0$/, "") + " years";
-  const stale = d => { const day = d && dayOf(d); return day != null && REFDAY - day > 90; };
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const fdate = t => { const d = new Date(t); return MONTHS[d.getUTCMonth()] + " " + d.getUTCDate() + ", " + d.getUTCFullYear(); };
   const sdate = s => { const t = Date.parse(s + "T00:00:00Z"); return isNaN(t) ? s : fdate(t); };
-  const licLabel = l => !l ? "No license" : l === "NOASSERTION" ? "Other license" : l;
   const nf = n => n.toLocaleString("en-US");
   const plural = (n, one, many) => nf(n) + " " + (n === 1 ? one : (many || one + "s"));
 
@@ -110,20 +111,40 @@
   const TIER = Object.fromEntries(TIERS.map(t => [t.id, t]));
   const TORD = Object.fromEntries(TIERS.map((t, i) => [t.id, i]));
   const TYPES = ["plugin", "skill", "agent", "marketplace", "mcp-server", "collection"];
-  const TLABEL = { "mcp-server": "MCP server" };
+  const TLABEL = { plugin: "Plugin", skill: "Skill", agent: "Agent", marketplace: "Marketplace", "mcp-server": "MCP server", collection: "Collection" };
   const METHOD = { r: "keyword rules", e: "embeddings", er: "embeddings + rules", f: "fallback (no specific match)" };
   const SOURCE = { listed: "Community marketplace", official: "Official marketplace", curated: "Curated list", search: "GitHub search", "marketplace-expansion": "Another marketplace", "mcp-registry": "MCP Registry" };
   const FLAGS = {
-    "star-anomaly": { label: "Star anomaly", short: "Anomaly", tip: "Gained stars unusually fast for its age. Popularity may be inflated.", sus: true },
-    "star-spike": { label: "Star spike", short: "Spike", tip: "A sudden jump in stars over the last few days.", sus: true },
-    "star-farming": { label: "Unusual star burst", short: "Burst", tip: "One day brought an outsized share of recent stars with no code activity around it. Can be a viral launch or bought stars: don't rely on the star count alone.", sus: true },
-    "security-review": { label: "Security: review", short: "Review", tip: "The static scan found patterns worth reviewing before you install.", sec: true },
-    "security-high": { label: "Security risk", short: "Risk", tip: "The static scan found high-risk patterns (e.g. remote code execution, credential access).", sec: true, hi: true },
-    archived: { label: "Archived", tip: "The repository is archived and no longer maintained." },
+    "star-farming": { label: "Unusual star burst", short: "Star burst", icon: "flag", sus: true, tip: "One day brought an outsized share of recent stars with no code activity around it. Can be a viral launch or bought stars: don't rely on the star count alone." },
+    "star-spike": { label: "Star spike", short: "Star spike", icon: "flag", sus: true, tip: "A sudden jump in stars over the last few days." },
+    "star-anomaly": { label: "Star anomaly", short: "Anomaly", icon: "flag", sus: true, tip: "Gained stars unusually fast for its age. Popularity may be inflated." },
+    "security-review": { label: "Security review", short: "Review", icon: "shield", sus: true, tip: "The static scan found patterns worth reviewing before you install." },
+    "security-high": { label: "Security high", short: "High risk", icon: "shield", sus: true, hi: true, tip: "The static scan found high-risk patterns (e.g. remote code execution, credential access)." },
+    archived: { label: "Archived", short: "Archived", icon: "archive", cls: "arch", tip: "The repository is archived: read-only, no further changes." },
+    unmaintained: { label: "Unmaintained", short: "Unmaintained", icon: "clock", cls: "stale", tip: "No push in more than 6 months (180 days before the catalog was built)." },
   };
+  const FLAGORDER = Object.keys(FLAGS);
+  const SUSFLAGS = FLAGORDER.filter(f => FLAGS[f].sus);
   const flagLabel = f => FLAGS[f] ? FLAGS[f].label : f.replace(/[-_]+/g, " ").replace(/^./, c => c.toUpperCase());
-  const isSus = f => (FLAGS[f] && FLAGS[f].sus) || /^star-/.test(f);
-  const isWarn = f => isSus(f) || /^security-(review|high)$/.test(f); // ranked last in Trending, hidden by "hide flagged"
+  const isSus = f => (FLAGS[f] && FLAGS[f].sus) || /^star-/.test(f); // ranked last in Trending
+  const LIC = {
+    ok: { label: "Commercial use OK", help: "Permissive (MIT, Apache-2.0, BSD, ISC…). Use, modify and sell; keep the copyright notice." },
+    copyleft: { label: "Copyleft", help: "Commercial use allowed with obligations: derived work must stay open under the same license (GPL, AGPL, LGPL, MPL)." },
+    none: { label: "No license", help: "All rights reserved by default. You can read it, but not legally reuse or redistribute it." },
+    other: { label: "Other / unknown", help: "Custom or unrecognized license text. Read the repo's LICENSE before reusing." },
+  };
+  const LICORDER = ["ok", "copyleft", "none", "other"];
+  const LICRANK = { ok: 3, copyleft: 2, other: 1, none: 0 };
+  // taxonomy technology id -> vendored Simple Icons slug (icons/<slug>.svg). Missing = neutral glyph + text label.
+  const SLUG = {
+    python: "python", django: "django", fastapi: "fastapi", javascript: "javascript", react: "react", nextjs: "nextdotjs",
+    "react-native": "react", angular: "angular", vue: "vuedotjs", threejs: "threedotjs", typescript: "typescript", html: "html5",
+    css: "css", tailwind: "tailwindcss", go: "go", rust: "rust", java: "openjdk", "spring-boot": "springboot", swift: "swift",
+    csharp: "dotnet", php: "php", laravel: "laravel", wordpress: "wordpress", ruby: "ruby", flutter: "flutter", shell: "gnubash",
+    postgresql: "postgresql", sqlite: "sqlite", mysql: "mysql", supabase: "supabase", aws: "amazonwebservices", gcp: "googlecloud",
+    azure: "microsoftazure", cloudflare: "cloudflare", vercel: "vercel", docker: "docker", kubernetes: "kubernetes",
+    terraform: "terraform", playwright: "playwright",
+  };
 
   // ---------------------------------------------------------------- data prep
   const STR = C.strings || {};
@@ -158,6 +179,12 @@
     });
     return out;
   }
+  // display order: most specific first (children before parents, a parent implied by a child is dropped)
+  function specific(g, list) {
+    const set = new Set(list);
+    const kids = list.filter(t => PARENT[g][t]), rest = list.filter(t => !PARENT[g][t] && !(KIDS[g][t] || []).some(k => set.has(k)));
+    return [...kids, ...rest];
+  }
 
   R.forEach((r, i) => {
     r.i = i;
@@ -178,15 +205,21 @@
     r.t30 = isNum(r.t30) ? r.t30 : null;
     r.s = isNum(r.s) ? r.s : null;
     r.tr = TIER[r.tr] ? r.tr : "watch";
+    r.lg = LIC[r.lg] ? r.lg : !r.l ? "none" : "other";
     r.url = safeUrl(r.u || (r.r ? "https://github.com/" + r.r : ""));
     r.own = r.r.includes("/") ? r.r.split("/")[0] : r.url ? new URL(r.url).hostname.replace(/^www\./, "") : "";
+    r.ownl = r.own.toLowerCase();
     r.disp = r.r ? (r.k !== r.r ? r.k : r.r) : (r.url || r.k).replace(/^https?:\/\/(www\.)?/, "");
+    r.pd = ago(r.p);
     const sec = r.sec && typeof r.sec === "object" && /^(ok|review|high)$/.test(r.sec.lv) ? r.sec : null;
     r.sec = sec;
+    // r.flg: every flag the Flags facet knows (catalog flags + security level + archived; "unmaintained" comes from build_site.py)
     r.flg = r.fl.slice();
     if (sec && sec.lv !== "ok") r.flg.push("security-" + sec.lv);
-    if (r.a) r.flg.push("archived");
-    r.sus = r.flg.some(isWarn);
+    if (r.a && !r.flg.includes("archived")) r.flg.push("archived");
+    r.flg.sort((a, b) => ((FLAGORDER.indexOf(a) + 99) % 99) - ((FLAGORDER.indexOf(b) + 99) % 99));
+    r.pills = r.flg.filter(f => !(f === "unmaintained" && r.flg.includes("archived")));
+    r.sus = r.flg.some(isSus);
     r.flg.forEach(f => flagSet.add(f));
     const fd = r.fs && dayOf(r.fs);
     r.age = fd == null ? Infinity : REFDAY - fd;
@@ -200,6 +233,9 @@
       const tags = g === "tech" ? r.tg : r.ar;
       tags.forEach(t => { if (!(t in LABEL[g])) { LABEL[g][t] = t; TREES[g].push({ id: t, label: t, kids: [] }); } });
     }
+    r.showArea = specific("area", r.spArea);
+    r.showTech = specific("tech", r.spTech);
+    r.showTech.sort((a, b) => (SLUG[b] ? 1 : 0) - (SLUG[a] ? 1 : 0)); // icons first, then labelled glyphs
     r.lfTech = leaves("tech", r.tg); r.lfArea = leaves("area", r.ar);
     const hit = (g, lf) => [...new Set(lf.flatMap(t => {
       if (t.endsWith(OTHER)) { const p = t.slice(0, -OTHER.length); otherCount[g][p] = (otherCount[g][p] || 0) + 1; return [t, p]; }
@@ -308,31 +344,36 @@
     rd.readAsText(file);
   }
 
+  // ---------------------------------------------------------------- facet groups
   const ADDED = [{ id: "1", label: "Since yesterday", days: 1 }, { id: "7", label: "Last 7 days", days: 7 }, { id: "30", label: "Last 30 days", days: 30 }];
-  const FLAGORDER = ["star-farming", "star-spike", "star-anomaly", "security-high", "security-review", "archived"];
+  // The Flags group is inverted: S.sel.flag holds the flags that are HIDDEN (unchecked); empty = every flag included.
   const GROUPS = [
     { key: "fav", label: "Favorites", nodes: [{ id: "1", label: "Starred only", icon: "star", kids: [] }], tags: r => r.fv ? ["1"] : [], hits: r => r.fv ? ["1"] : [] },
     { key: "tier", label: "Tier", nodes: TIERS.map(t => ({ id: t.id, label: t.label, dot: t.id, desc: t.desc, kids: [] })), tags: r => [r.tr], hits: r => [r.tr] },
+    { key: "flag", label: "Flags", chip: "Hiding", inverted: true, nodes: FLAGORDER.filter(f => f !== "star-anomaly" || flagSet.has(f)).map(f => ({ id: f, label: FLAGS[f].label, icon: FLAGS[f].icon, kids: [] })), tags: r => r.flg, hits: r => r.flg },
+    { key: "lic", label: "License", nodes: LICORDER.map(k => ({ id: k, label: LIC[k].label, desc: LIC[k].help, two: true, ok: k === "ok", kids: [] })), tags: r => [r.lg], hits: r => [r.lg] },
     { key: "added", label: "New in", radio: true, nodes: ADDED.map(a => ({ ...a, kids: [] })) },
-    { key: "type", label: "Type", nodes: TYPES.map(t => ({ id: t, label: TLABEL[t] || t[0].toUpperCase() + t.slice(1), icon: t, kids: [] })), tags: r => [r.t], hits: r => [r.t] },
+    { key: "type", label: "Type", nodes: TYPES.map(t => ({ id: t, label: TLABEL[t], icon: t, kids: [] })), tags: r => [r.t], hits: r => [r.t] },
     { key: "tech", label: "Technologies", tree: true, top: 8, nodes: TREES.tech, tags: r => r.lfTech, hits: r => r.hitTech },
     { key: "area", label: "Areas", tree: true, top: 8, nodes: TREES.area, tags: r => r.lfArea, hits: r => r.hitArea },
-    { key: "flag", label: "Flags", nodes: [...flagSet].sort((a, b) => ((FLAGORDER.indexOf(a) + 99) % 99) - ((FLAGORDER.indexOf(b) + 99) % 99) || a.localeCompare(b)).map(f => ({ id: f, label: flagLabel(f), icon: f === "archived" ? "archive" : FLAGS[f] && FLAGS[f].sec ? "shield" : "flag", kids: [] })), tags: r => r.flg, hits: r => r.flg },
   ];
   const GROUP = Object.fromEntries(GROUPS.map(g => [g.key, g]));
   const ALLIDS = Object.fromEntries(GROUPS.map(g => [g.key, new Set(g.nodes.flatMap(n => [n.id, ...n.kids.map(k => k.id)]))]));
   const NODE = Object.fromEntries(GROUPS.map(g => [g.key, Object.fromEntries(g.nodes.flatMap(n => [[n.id, n], ...n.kids.map(k => [k.id, k])]))]));
+  const HASHKEY = { flag: "hide" }; // URL parameter names that differ from the group key
 
+  // sorts: "col" = the table header that shows it; the rest are applied by presets / the cards sort control
   const SORTS = [
-    { id: "stars", label: "Stars", get: r => r.s, dir: -1 },
-    { id: "t7", label: "Trending · 7d", get: r => r.t7, dir: -1, trend: true },
-    { id: "t30", label: "Trending · 30d", get: r => r.t30, dir: -1, trend: true },
-    { id: "pushed", label: "Last activity", get: r => r.p || null, dir: -1 },
-    { id: "added", label: "Recently added", get: r => r.fs || null, dir: -1 },
-    { id: "name", label: "Name", get: r => r.nl, dir: 1 },
-    { id: "tier", label: "Tier", get: r => TORD[r.tr], dir: 1 },
-    { id: "type", label: "Type", get: r => r.t || null, dir: 1 },
-    { id: "items", label: "Items", get: r => r.nit, dir: -1 },
+    { id: "stars", label: "Stars", get: r => r.s, col: "stars" },
+    { id: "t7", label: "7-day trend", get: r => r.t7, trend: true },
+    { id: "t30", label: "30-day trend", get: r => r.t30, trend: true },
+    { id: "pushed", label: "Last updated", get: r => r.p || null, col: "upd" },
+    { id: "added", label: "Recently added", get: r => r.fs || null },
+    { id: "name", label: "Name", get: r => r.nl, col: "name" },
+    { id: "author", label: "Author", get: r => r.ownl || null, col: "au" },
+    { id: "tier", label: "Tier", get: r => 4 - TORD[r.tr], col: "tier" },
+    { id: "type", label: "Type", get: r => r.t || null, col: "type" },
+    { id: "license", label: "License", get: r => LICRANK[r.lg] + "|" + String(r.l || "").toLowerCase(), col: "lic" },
   ];
   const SORT = Object.fromEntries(SORTS.map(s => [s.id, s]));
 
@@ -340,11 +381,10 @@
   const newSel = () => Object.fromEntries(GROUPS.filter(g => !g.radio).map(g => [g.key, new Set()]));
   const S = {
     view: "table", q: "", sort: "stars", dir: -1, added: 0, flagged: "demote", anyStack: false, watch: false, // watch: show the Watch tier when no tier is selected (default: hidden)
-   
     sel: newSel(),
-    flip: new Set(), open: new Set(), openCard: null,
+    open: new Set(), openCard: null,
   };
-  let LIST = [], COUNTS = null, HIDDEN_SUS = 0, SUS_IN = 0, shown = 0;
+  let LIST = [], COUNTS = null, SUS_IN = 0, shown = 0;
   const PERF = window.__ccPerf = { updates: [] };
 
   // ---------------------------------------------------------------- filtering
@@ -352,6 +392,7 @@
   function passes(g, r, st) {
     if (g.radio) return !st.added || r.age < st.added;
     const sel = st.sel[g.key];
+    if (g.inverted) { if (!sel.size) return true; const t = r.flg; for (let i = 0; i < t.length; i++) if (sel.has(t[i])) return false; return true; }
     if (!sel.size) return g.key === "tier" && !st.watch ? (r.tr !== "watch" || (st.sel.fav.size > 0 && r.fv > 0)) : true; // a favorite stays visible in the Watch tier when the Favorites filter is on
     const t = g.tags(r);
     for (let i = 0; i < t.length; i++) if (sel.has(t[i])) return true;
@@ -363,20 +404,7 @@
     const hs = g.hits(r);
     for (let i = 0; i < hs.length; i++) c[hs[i]] = (c[hs[i]] || 0) + 1;
   }
-  function compute() {
-    const words = wordsOf(S.q), hide = S.flagged === "hide";
-    const res = [], cnt = {};
-    let hidden = 0;
-    GROUPS.forEach(g => (cnt[g.key] = Object.create(null)));
-    outer: for (let i = 0; i < R.length; i++) {
-      const r = R[i];
-      for (let w = 0; w < words.length; w++) if (!r.hay.includes(words[w])) continue outer;
-      let fails = 0, fg = null;
-      for (let k = 0; k < GROUPS.length; k++) if (!passes(GROUPS[k], r, S)) { fails++; fg = GROUPS[k]; if (fails > 1) break; }
-      if (hide && r.sus) { if (fails === 0) hidden++; continue; }
-      if (fails === 0) { res.push(r); for (let k = 0; k < GROUPS.length; k++) addCounts(cnt, GROUPS[k], r); }
-      else if (fails === 1) addCounts(cnt, fg, r);
-    }
+  function sortList(res) {
     const s = SORT[S.sort], dir = S.dir, demote = s.trend && S.flagged === "demote";
     res.sort((a, b) => {
       if (demote && a.sus !== b.sus) return a.sus ? 1 : -1;
@@ -385,15 +413,28 @@
       else { const c = (x < y ? -1 : x > y ? 1 : 0) * dir; if (c) return c; }
       return ((b.s ?? -1) - (a.s ?? -1)) || a.i - b.i;
     });
-    return { res, cnt, hidden };
+  }
+  function compute() {
+    const words = wordsOf(S.q);
+    const res = [], cnt = {};
+    GROUPS.forEach(g => (cnt[g.key] = Object.create(null)));
+    outer: for (let i = 0; i < R.length; i++) {
+      const r = R[i];
+      for (let w = 0; w < words.length; w++) if (!r.hay.includes(words[w])) continue outer;
+      let fails = 0, fg = null;
+      for (let k = 0; k < GROUPS.length; k++) if (!passes(GROUPS[k], r, S)) { fails++; fg = GROUPS[k]; if (fails > 1) break; }
+      if (fails === 0) { res.push(r); for (let k = 0; k < GROUPS.length; k++) addCounts(cnt, GROUPS[k], r); }
+      else if (fails === 1) addCounts(cnt, fg, r);
+    }
+    sortList(res);
+    return { res, cnt };
   }
   // count matches for an arbitrary state (zero-result recovery, search suggestions)
   function countFor(st) {
-    const words = wordsOf(st.q), hide = st.flagged === "hide";
+    const words = wordsOf(st.q);
     let n = 0;
     outer: for (let i = 0; i < R.length; i++) {
       const r = R[i];
-      if (hide && r.sus) continue;
       for (let w = 0; w < words.length; w++) if (!r.hay.includes(words[w])) continue outer;
       for (let k = 0; k < GROUPS.length; k++) if (!passes(GROUPS[k], r, st)) continue outer;
       n++;
@@ -412,16 +453,16 @@
       let m;
       if ((m = /^authored by anthropic/i.exec(s))) ok("Published by Anthropic");
       else if ((m = /listed in anthropic (official|community) marketplace/i.exec(s))) ok("Listed in Anthropic's " + m[1].toLowerCase() + " marketplace");
-      else if ((m = /^stars>=(\d+)\s*\((-?\d+)\)/.exec(s))) fail ? no("Only " + nf(+m[2]) + " stars (needs " + nf(+m[1]) + "+)") : ok(fmt(+m[2]) + " stars");
+      else if ((m = /^stars>=(\d+)\s*\((-?\d+)\)/.exec(s))) fail ? no("Only " + nf(+m[2]) + " stars (needs " + nf(+m[1]) + "+)") : ok("Over " + nf(+m[1]) + " stars");
       else if ((m = /^age>=(\d+)d\s*\((-?\d+)\)/.exec(s))) fail ? no("Repo is only " + ageText(Math.max(0, +m[2])) + " old (needs " + m[1] + "+ days)") : ok("Repo is " + ageText(+m[2]) + " old");
       else if ((m = /^pushed<=(\d+)d\s*\((-?\d+)\)/.exec(s))) {
         const d = Math.max(0, +m[2]);
-        fail ? no("Last updated " + relDays(d) + " (needs an update within " + m[1] + " days)") : ok(d < 1 ? "Updated today" : "Updated " + relDays(d));
+        fail ? no("No update in " + ageText(d) + " (needs one within " + m[1] + " days)") : ok("Updated in the last " + m[1] + " days");
       }
       else if ((m = /^license\s*\((.*)\)/.exec(s))) {
         const l = m[1];
         if (fail) no(l === "None" || !l ? "No license" : l === "NOASSERTION" ? "License not recognized" : "License " + l + " not accepted");
-        else ok(l + " license");
+        else ok("Has an open-source license");
       }
       else if (/^not archived/.test(s)) fail ? no("Archived") : ok("Not archived");
       else if (/^no star-anomaly/.test(s)) fail ? no("Suspicious star growth") : ok("No suspicious star growth");
@@ -435,18 +476,18 @@
           else if (p) ok(p);
         });
       }
-      else if (/^registry namespace verified/i.test(s)) no("Listed in the official MCP Registry (namespace verified), but no public source code to judge");
-      else if (/^no corroborating signal/.test(s)) no("Not in a curated list, and no independent signal (forks, multiple sources, organization)");
+      else if (/^registry namespace verified/i.test(s)) no("In the official MCP Registry, but no public source code to judge");
+      else if (/^no corroborating signal/.test(s)) no("No independent signal yet (curated list, forks, several sources or an organization owner)");
       else if (/^curated but stale\/archived/.test(s)) no("In a curated list, but stale or archived");
       else if (/^stale\/archived/.test(s)) no("Stale or archived");
       else (fail ? no : ok)(s);
     }
     return out;
   }
-  function reasonList(r, cls) {
+  function reasonList(r, two) {
     const lines = reasonLines(r);
     if (!lines.length) return null;
-    return h("ul", { class: "reasons" + (cls ? " " + cls : "") }, lines.map(([good, t]) => h("li", { class: good ? "ok" : "no" }, ic(good ? "check" : "x"), h("span", null, h("span", { class: "sr" }, good ? "Pass: " : "Fail: "), t))));
+    return h("ul", { class: "reasons" + (two ? " two" : "") }, lines.map(([good, t]) => h("li", { class: (good ? "ok" : "no") + (two && t.length > 34 ? " wide" : "") }, ic(good ? "check" : "x"), h("span", null, h("span", { class: "sr" }, good ? "Pass: " : "Fail: "), t))));
   }
   const rankLine = () => h("p", { class: "rank" }, "Tiers rank: ", TIERS.map((t, i) => [i ? h("span", { class: "gt", "aria-hidden": "true" }, " › ") : null, h("span", { class: "tn tc-" + t.id }, t.label)]), h("span", { class: "sr" }, ", highest trust first"));
 
@@ -455,15 +496,16 @@
     return h("button", { type: "button", class: "tier tier-" + r.tr, "data-tip": "tier", "data-act": "tip", "aria-label": "Tier: " + TIER[r.tr].label + ". Show why." }, TIER[r.tr].label);
   }
   function typeTag(r, withItems) {
-    return h("span", { class: "type", title: (r.t || "unknown type") + (withItems ? " · " + plural(r.nit, "item") : "") }, ic(TYPES.includes(r.t) ? r.t : "collection"), h("span", { class: "tt" }, TLABEL[r.t] || r.t || "—"),
-      withItems ? h("span", { class: "ni", "aria-label": plural(r.nit, "item") }, "· " + r.nit) : null);
+    return h("span", { class: "type", "data-tt": (TLABEL[r.t] || r.t || "Unknown type") + (r.nit > 1 ? " · " + plural(r.nit, "item") : "") },
+      ic(TYPES.includes(r.t) ? r.t : "collection"), h("span", { class: "tt" }, TLABEL[r.t] || r.t || "—"),
+      withItems && r.nit > 1 ? h("span", { class: "ni", "aria-label": plural(r.nit, "item") }, "· " + r.nit) : null);
   }
   function flagPills(r) {
-    return r.flg.map(f => {
+    return r.pills.map(f => {
       const F = FLAGS[f] || {};
-      const cls = "flag" + (F.hi ? " hi" : f === "archived" ? " arch" : "");
-      const b = h("button", { type: "button", class: cls, "data-tip": "flag", "data-act": "tip", "data-flag": f, "aria-label": flagLabel(f) + ". " + (F.tip || "") }, ic(f === "archived" ? "archive" : F.sec ? "shield" : "flag"), h("span", { class: "fl-l" }, flagLabel(f)), h("span", { class: "fl-s", "aria-hidden": "true" }, F.short || flagLabel(f)));
-      return b;
+      const cls = "flag" + (F.hi ? " hi" : F.cls ? " " + F.cls : "");
+      const tip = f === "unmaintained" && r.pd != null ? "No push for " + ageText(r.pd) + "." : F.tip || "";
+      return h("button", { type: "button", class: cls, "data-tip": "flag", "data-act": "tip", "data-flag": f, "aria-label": flagLabel(f) + ". " + tip }, ic(F.icon || "flag"), h("span", null, F.short || flagLabel(f)));
     });
   }
   function favTitle(r) { return r.fv === 1 ? "Favorite, saved in the repo file. Click to remove." : r.fv === 2 ? "Favorite, local only (not exported yet). Click to remove." : "Add to favorites"; }
@@ -483,57 +525,126 @@
       ? h("a", { class: "nm", href: r.url, target: "_blank", rel: "noopener noreferrer", "data-tip": "desc" }, r.n)
       : h("span", { class: "nm", tabindex: "0", "data-tip": "desc" }, r.n);
   }
-  // summary tags: most specific first (children before parents, a parent implied by a child is dropped),
-  // general-purpose fallbacks as a single muted pill at the end
-  function summaryTags(r) {
-    const spec = (g, list) => {
-      const set = new Set(list);
-      const kids = list.filter(t => PARENT[g][t]), rest = list.filter(t => !PARENT[g][t] && !(KIDS[g][t] || []).some(k => set.has(k)));
-      return [...kids, ...rest].map(t => [g, t]);
-    };
-    const out = [...spec("area", r.spArea), ...spec("tech", r.spTech)];
-    const parentsDropped = [...r.spArea.filter(t => (KIDS.area[t] || []).some(k => r.spArea.includes(k))).map(t => ["area", t]), ...r.spTech.filter(t => (KIDS.tech[t] || []).some(k => r.spTech.includes(k))).map(t => ["tech", t])];
-    return { out, parentsDropped, fb: out.length ? (r.fbTech.length ? "Any stack" : null) : (r.fbTech.length || r.fbArea.length ? "General purpose" : null) };
+  // facet shortcuts: area chips and technology glyphs filter by that facet; a second click removes it
+  const facetIds = (g, id) => { const n = NODE[g][id]; return n ? leafIds(n) : [id]; };
+  const facetOn = (g, id) => { const sel = S.sel[g], ids = facetIds(g, id); return ids.length > 0 && ids.every(x => sel.has(x)); };
+  const techLabel = t => (LABEL.tech[t] || t).replace(/\s*\(stack-agnostic\)/, "");
+  function facetBtn(g, id, cls, label, ...kids) {
+    const on = facetOn(g, id), what = g === "tech" ? "technology" : "area";
+    const tt = (on ? "Remove filter: " : "Filter by ") + label;
+    const b = h("button", { type: "button", class: cls + (on ? " on" : ""), "data-act": "facet", "data-g": g, "data-fid": id, "data-tt": tt, "data-label": label, "aria-pressed": String(on), "aria-label": (on ? "Remove " + what + " filter " : "Filter by " + what + " ") + label }, ...kids);
+    return b;
   }
-  function tagsEl(r) {
+  function techGlyph(t) {
+    return SLUG[t] ? h("img", { class: "ti", src: "icons/" + SLUG[t] + ".svg", alt: "", width: "16", height: "16", decoding: "async", draggable: "false" }) : ic("box");
+  }
+  function techBtn(t) {
+    const label = techLabel(t);
+    return SLUG[t] ? facetBtn("tech", t, "tbtn", label, techGlyph(t))
+      : facetBtn("tech", t, "tfb", label, ic("box"), h("span", { class: "tl" }, label));
+  }
+  function areaBtn(a) { return facetBtn("area", a, "tag", LABEL.area[a], LABEL.area[a]); }
+  const plusEl = () => h("button", { type: "button", class: "tmore", hidden: true, "data-act": "openfrom" });
+  function areasEl(r) {
     const box = h("div", { class: "tags", "data-fit": "" });
-    if (!r.tg.length && !r.ar.length) { box.append(h("span", { class: "tag none", title: "Not classified yet" }, "—")); return box; }
-    const { out, fb } = summaryTags(r);
-    out.forEach(([g, t]) => box.append(h("span", { class: "tag " + g, title: (g === "tech" ? "Technology: " : "Area: ") + LABEL[g][t] }, LABEL[g][t])));
-    if (fb) box.append(h("span", { class: "tag fb", title: r.anyStack ? "No specific technology: works with any stack" : "General purpose (no specific area)" }, fb));
-    box.append(h("span", { class: "tag plus", hidden: true }));
+    if (!r.showArea.length) {
+      box.append(h("span", { class: "dash", tabindex: r.ar.length ? "0" : null, "data-tt": r.ar.length ? "General purpose: no specific area" : "Not classified yet", "aria-label": r.ar.length ? "General purpose" : "Not classified" }, "—"));
+      return box;
+    }
+    r.showArea.forEach(a => box.append(areaBtn(a)));
+    box.append(plusEl());
     return box;
   }
-  // fit-based "+N": hide chips that do not fit instead of clipping them mid-word
+  function techsEl(r) {
+    const box = h("div", { class: "techs", "data-fit": "" });
+    if (!r.showTech.length) {
+      box.append(h("span", { class: "dash", tabindex: r.tg.length ? "0" : null, "data-tt": r.anyStack ? "Any stack: no specific technology, works with any stack" : "Not classified yet", "aria-label": r.anyStack ? "Any stack" : "Not classified" }, "—"));
+      return box;
+    }
+    r.showTech.forEach(t => box.append(techBtn(t)));
+    box.append(plusEl());
+    return box;
+  }
+  // fit-based "+N": hide whole chips that do not fit (no mid-word clipping). Widths come from canvas text
+  // metrics, so the only layout read is each box's width.
+  const measureCtx = document.createElement("canvas").getContext("2d");
+  const textW = Object.create(null);
+  function tw(text, font) {
+    const key = font + "|" + text;
+    let w = textW[key];
+    if (w == null) { measureCtx.font = font; w = textW[key] = measureCtx.measureText(text).width; }
+    return w;
+  }
+  let FONT_TAG = "", FONT_TFB = "";
+  function fonts() {
+    if (FONT_TAG) return;
+    const ff = getComputedStyle(document.body).fontFamily;
+    FONT_TAG = "11.5px " + ff; FONT_TFB = "11px " + ff;
+  }
+  function itemWidth(el) {
+    if (el.classList.contains("tbtn")) return 24;
+    if (el.classList.contains("tfb")) return Math.ceil(tw(el.textContent, FONT_TFB)) + 28;
+    return Math.ceil(tw(el.dataset.full || el.textContent, FONT_TAG)) + 16;
+  }
   function fitTags(scope) {
-    const boxes = [...scope.querySelectorAll(".tags[data-fit]")].filter(b => b.offsetParent !== null);
-    boxes.forEach(b => { for (const k of b.children) { k.hidden = k.classList.contains("plus"); k.style.maxWidth = ""; } });
-    const reads = boxes.map(b => ({ b, w: b.clientWidth, ws: [...b.children].map(k => k.classList.contains("plus") ? 0 : k.offsetWidth) }));
-    const GAP = 4, PLUS = 30;
-    reads.forEach(({ b, w, ws }) => {
-      const kids = [...b.children], plus = kids[kids.length - 1], chips = kids.slice(0, -1);
-      if (!chips.length || !plus.classList.contains("plus")) return;
-      let total = ws.slice(0, -1).reduce((a, x) => a + x, 0) + GAP * (chips.length - 1);
+    fonts();
+    const boxes = [...scope.querySelectorAll("[data-fit]")];
+    const reads = boxes.map(b => ({ b, w: b.clientWidth })).filter(x => x.w > 0);
+    const GAP = 4;
+    reads.forEach(({ b, w }) => {
+      const kids = [...b.children], plus = kids[kids.length - 1];
+      if (!plus || !plus.classList.contains("tmore")) return;
+      const items = kids.slice(0, -1);
+      items.forEach(c => {
+        c.hidden = false;
+        if (c.dataset.full) { c.textContent = c.dataset.full; delete c.dataset.full; c.classList.remove("cut"); }
+      });
+      plus.hidden = true;
+      const ws = items.map(itemWidth);
+      const total = ws.reduce((a, x) => a + x, 0) + GAP * (items.length - 1);
       if (total <= w) return;
-      let used = 0, k = 0;
-      for (; k < chips.length; k++) { const nx = used + (k ? GAP : 0) + ws[k]; if (nx + GAP + PLUS > w) break; used = nx; }
-      if (k === 0) { k = 1; chips[0].style.maxWidth = Math.max(40, w - GAP - PLUS) + "px"; }
-      const rest = chips.slice(k);
+      // greedy, in display order: keep every item that fits whole (room is reserved for the "+N" button)
+      const reserve = items.length === 1 ? 0 : GAP + 8 + Math.ceil(tw("+" + items.length, FONT_TAG));
+      let used = 0;
+      const keep = items.map((c, i) => { const nx = used + (used ? GAP : 0) + ws[i]; if (nx + reserve <= w) { used = nx; return true; } return false; });
+      if (!keep.some(Boolean) && items[0].classList.contains("tag")) {
+        // last resort: the first area label alone is too wide, so shorten it at a word boundary (full label in the tooltip)
+        const c = items[0], full = c.textContent, room = w - reserve - 16 - tw("…", FONT_TAG);
+        const words = full.split(" ");
+        let txt = "";
+        for (let i = 0; i < words.length; i++) { const nx = (txt ? txt + " " : "") + words[i]; if (tw(nx, FONT_TAG) > room) break; txt = nx; }
+        if (txt) { c.dataset.full = full; c.textContent = txt.replace(/[\s&,]+$/, "") + "…"; c.classList.add("cut"); keep[0] = true; }
+      }
+      const rest = items.filter((c, i) => !keep[i]);
+      if (!rest.length) return;
       rest.forEach(c => (c.hidden = true));
       plus.hidden = false;
       plus.textContent = "+" + rest.length;
-      const names = rest.map(c => c.textContent);
-      plus.title = names.join(", ");
-      plus.setAttribute("aria-label", rest.length + " more: " + names.join(", "));
+      const names = rest.map(c => c.dataset.label || c.dataset.full || c.textContent);
+      plus.dataset.tt = names.join(", ") + " · open details";
+      plus.setAttribute("aria-label", rest.length + " more: " + names.join(", ") + ". Open details");
     });
   }
   function trendBtn(r, both) {
-    const label = "Star trend " + (r.t7 == null ? "not available" : signed(r.t7) + " in 7 days") + (r.t30 == null ? "" : ", " + signed(r.t30) + " in 30 days") + ". " + (S.flip.has(r.k) ? "Hide" : "Show") + " star history for " + r.n;
-    const tv = h("span", { class: "tv" }, h("span", { class: "t7 " + trendCls(r.t7) }, signed(r.t7)), both ? h("span", { class: "t30 " + trendCls(r.t30) }, signed(r.t30)) : h("span", { class: "nd u" }, "7d"));
-    return h("button", { class: "trend", type: "button", "data-act": "hist", "aria-pressed": String(S.flip.has(r.k)), "aria-label": label, title: S.flip.has(r.k) ? "Back to details" : "Show star history" }, tv, ic("chart"));
+    const open = isOpen(r);
+    const label = "Stars " + (r.t7 == null ? "trend not available" : signed(r.t7) + " in 7 days") + (r.t30 == null ? "" : ", " + signed(r.t30) + " in 30 days") + ". " + (open ? "Hide" : "Show") + " star history and details for " + r.n;
+    return h("button", { class: "trend", type: "button", "data-act": "expand", "data-from": "trend", "aria-expanded": String(open), "aria-label": label },
+      h("span", { class: "v t7 " + trendCls(r.t7) }, signed(r.t7)), both ? h("span", { class: "v t30 " + trendCls(r.t30) }, signed(r.t30)) : null);
   }
   function expandBtn(r, open, ctrl) {
-    return h("button", { class: "exp", type: "button", "data-act": "expand", "aria-expanded": String(open), "aria-controls": open ? ctrl : null, "aria-label": "Details and install for " + r.n }, ic("chev"));
+    return h("button", { class: "exp", type: "button", "data-act": "expand", "aria-expanded": String(open), "aria-controls": open ? ctrl : null, "aria-label": "Details for " + r.n }, ic("chev"));
+  }
+  function licEl(r) {
+    const g = r.lg;
+    const text = g === "none" ? "None" : r.l === "NOASSERTION" ? "Custom" : r.l;
+    const cls = { ok: "ok", copyleft: "cl", none: "none", other: "oth" }[g];
+    const mark = g === "ok" ? ic("check") : g === "copyleft" ? ic("share") : g === "none" ? ic("minus") : ic("q");
+    const tip = g === "ok" ? r.l + " · Commercial use OK" : g === "copyleft" ? r.l + " · Copyleft: commercial use with obligations" : g === "none" ? "No license: not legally reusable" : (r.l === "NOASSERTION" ? "Unrecognized license" : r.l) + ": read the LICENSE file before reusing";
+    return h("span", { class: "lic " + cls, tabindex: "0", "data-tt": tip, "aria-label": "License: " + tip }, h("span", { class: "lm", "aria-hidden": "true" }, mark), h("span", { class: "lt" }, text));
+  }
+  function updEl(r) {
+    const pd = r.pd;
+    return h("span", { class: "upd" + (pd != null && pd > 180 ? " dead" : pd != null && pd > 90 ? " old" : ""), "data-tt": r.p ? "Last push " + sdate(r.p) : "Last push unknown" }, pd == null ? "—" : relDays(pd));
   }
   function hl(text, words) {
     // highlight matched search words (DOM nodes only, no HTML parsing)
@@ -577,92 +688,71 @@
     return loadShard(shardOf(repo)).then(s => s.status !== "ok" ? s
       : { status: "ok", pts: Object.prototype.hasOwnProperty.call(s.data, repo) ? cleanSeries(s.data[repo]) : null });
   }
-  function histEl(r) {
-    const hr = h("span", { class: "hr", "aria-live": "polite" });
-    const stats = h("div", { class: "hstats" },
-      h("b", null, ic("star"), " " + fmt(r.s)),
-      h("span", { class: trendCls(r.t7) }, signed(r.t7) + " · 7d"),
-      h("span", { class: trendCls(r.t30) }, signed(r.t30) + " · 30d"), hr);
-    const chart = h("div", { class: "chart" }, h("div", { class: "skel", role: "status", "aria-label": "Loading star history" }));
-    (r.r ? loadSeries(r.r) : Promise.resolve({ status: "ok", pts: null })).then(res => {
-      if (res.status === "ok" && res.pts) { chart._pts = res.pts; chart._r = r; chart._hr = hr; chart.textContent = ""; RO.observe(chart); drawChart(chart); return; }
-      const compact = !!chart.closest(".card");
-      const msg = res.status === "file"
-        ? [h("b", null, "History needs a local server"), compact ? null : h("span", null, "Run ", h("code", null, "python -m http.server -d site"), " and open localhost:8000.")]
-        : res.status === "error"
-          ? [h("b", null, "History could not be loaded"), compact ? null : h("span", null, "The history file failed to download. Try again later.")]
-          : [h("b", null, "History not available yet"), compact ? null : h("span", null, "Star history is backfilled gradually by the daily build.")];
-      chart.replaceChildren(h("div", { class: "hstate" }, ic("clock"), h("div", null, ...msg)));
-    });
-    return h("div", { class: "hist" }, stats, chart);
+  function niceStep(range, n) {
+    const raw = range / n, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p;
+    return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p;
   }
   const RO = new ResizeObserver(entries => entries.forEach(e => { if (e.target.isConnected) drawChart(e.target); else RO.unobserve(e.target); }));
   function drawChart(el) {
     const pts = el._pts, r = el._r;
-    const w = Math.floor(el.clientWidth), H = Math.floor(el.clientHeight);
-    if (!pts || w < 40 || H < 30) return;
-    if (el._w === w && el._h === H) return;
-    el._w = w; el._h = H;
-    const compact = w < 260;
-    const RP = compact ? 34 : 44, T = 7, B = 16, cw = w - RP, ch = H - T - B;
+    if (!pts) return;
+    const W = Math.floor(el.clientWidth), H = Math.floor(el.clientHeight);
+    if (W < 80 || H < 80 || (el._w === W && el._h === H)) return;
+    el._w = W; el._h = H;
+    let lo = Infinity, hi = -Infinity; pts.forEach(p => { lo = Math.min(lo, p.v); hi = Math.max(hi, p.v); });
+    const step = niceStep(Math.max(1, hi - lo), 4);
+    const y0 = Math.floor(lo / step) * step, y1 = Math.max(y0 + step, Math.ceil(hi / step) * step);
+    const ticks = []; for (let v = y0; v <= y1 + 1e-9; v += step) ticks.push(v);
+    const LP = 6 + Math.max(...ticks.map(v => fmt(v).length)) * 6.6, T = 8, B = 22, cw = W - LP, ch = H - T - B;
     const t0 = pts[0].t, t1 = pts[pts.length - 1].t;
-    let lo = Infinity, hi = -Infinity;
-    pts.forEach(p => { if (p.v < lo) lo = p.v; if (p.v > hi) hi = p.v; });
-    if (hi === lo) hi = lo + 1;
-    const X = t => t1 === t0 ? cw : ((t - t0) / (t1 - t0)) * cw;
-    const Y = v => T + ch - ((v - lo) / (hi - lo)) * ch;
-    const line = pts.map((p, i) => (i ? "L" : "M") + X(p.t).toFixed(1) + " " + Y(p.v).toFixed(1)).join("");
-    const svg = sv("svg", { width: w, height: H, role: "img", "aria-label": "Star history for " + r.n + ": " + fmt(lo) + " to " + fmt(hi) + " stars, " + fdate(t0) + " to " + fdate(t1) });
-    const mid = Math.round((lo + hi) / 2);
-    svg.append(
-      sv("line", { class: "grid", x1: 0, x2: cw, y1: T + 0.5, y2: T + 0.5 }),
-      sv("line", { class: "grid dash", x1: 0, x2: cw, y1: Math.round(T + ch / 2) + 0.5, y2: Math.round(T + ch / 2) + 0.5 }),
-      sv("line", { class: "grid", x1: 0, x2: cw, y1: T + ch + 0.5, y2: T + ch + 0.5 }),
-      sv("path", { class: "a", d: line + "L" + X(t1).toFixed(1) + " " + (T + ch) + "L" + X(t0).toFixed(1) + " " + (T + ch) + "Z" }),
-      sv("path", { class: "l", d: line }),
-      sv("circle", { cx: X(t1).toFixed(1), cy: Y(pts[pts.length - 1].v).toFixed(1), r: 3 }));
+    const X = t => LP + (t1 === t0 ? cw : ((t - t0) / (t1 - t0)) * cw);
+    const Y = v => T + ch - ((v - y0) / (y1 - y0)) * ch;
+    const svg = sv("svg", { width: W, height: H, role: "img", "aria-label": "Star history for " + r.n + ": " + fmt(pts[0].v) + " to " + fmt(pts[pts.length - 1].v) + " stars, " + fdate(t0) + " to " + fdate(t1) });
     const txt = (x, y, s, anchor) => { const t = sv("text", { x, y }); if (anchor) t.setAttribute("text-anchor", anchor); t.textContent = s; return t; };
-    svg.append(txt(cw + 6, T + 4, fmt(hi)), txt(cw + 6, Math.round(T + ch / 2) + 4, fmt(mid)), txt(cw + 6, T + ch + 3, fmt(lo)),
-      txt(0, H - 2, compact ? MONTHS[new Date(t0).getUTCMonth()] + " '" + String(new Date(t0).getUTCFullYear()).slice(2) : fdate(t0)),
-      txt(cw, H - 2, compact ? "now" : fdate(t1), "end"));
-    const cross = sv("line", { class: "cross", x1: 0, x2: 0, y1: T, y2: T + ch, visibility: "hidden" });
-    const dot = sv("circle", { class: "hov", r: 3.5, cx: 0, cy: 0, visibility: "hidden" });
-    const hit = sv("rect", { x: 0, y: 0, width: cw, height: H, fill: "transparent" });
+    const b0 = Math.max(t0, t1 - 30 * DAY); // last-30-days band
+    if (t1 - t0 > 45 * DAY) svg.append(sv("rect", { class: "band", x: X(b0), y: T, width: X(t1) - X(b0), height: ch }));
+    ticks.forEach((v, i) => { const y = Math.round(Y(v)) + 0.5; svg.append(sv("line", { class: "grid" + (i === 0 ? " base" : ""), x1: LP, x2: W, y1: y, y2: y }), txt(LP - 8, y + 4, fmt(v), "end")); });
+    const d = new Date(t0); d.setUTCDate(1); d.setUTCMonth(d.getUTCMonth() + 1);
+    const months = []; for (let t = d.getTime(); t <= t1;) { months.push(t); const n = new Date(t); n.setUTCMonth(n.getUTCMonth() + 1); t = n.getTime(); }
+    const every = Math.max(1, Math.ceil(months.length / Math.max(2, Math.floor(cw / 70))));
+    if (!months.length) { svg.append(txt(LP, H - 5, fdate(t0)), txt(W, H - 5, fdate(t1), "end")); }
+    months.forEach((t, i) => {
+      if (i % every) return;
+      const x = Math.round(X(t)) + 0.5, dt = new Date(t);
+      svg.append(sv("line", { class: "tick", x1: x, x2: x, y1: T + ch, y2: T + ch + 4 }));
+      svg.append(txt(x, H - 5, MONTHS[dt.getUTCMonth()] + (dt.getUTCMonth() === 0 || i === 0 ? " '" + String(dt.getUTCFullYear()).slice(2) : ""), "middle"));
+    });
+    const line = pts.map((p, i) => (i ? "L" : "M") + X(p.t).toFixed(1) + " " + Y(p.v).toFixed(1)).join("");
+    svg.append(sv("path", { class: "a", d: line + "L" + X(t1).toFixed(1) + " " + (T + ch) + "L" + X(t0).toFixed(1) + " " + (T + ch) + "Z" }), sv("path", { class: "l", d: line }),
+      sv("circle", { class: "end", cx: X(t1).toFixed(1), cy: Y(pts[pts.length - 1].v).toFixed(1), r: 3.5 }));
+    const cross = sv("line", { class: "cross", y1: T, y2: T + ch, visibility: "hidden" });
+    const dot = sv("circle", { class: "hov", r: 4, visibility: "hidden" });
+    const hit = sv("rect", { x: LP, y: 0, width: cw, height: H, fill: "transparent" });
     svg.append(cross, dot, hit);
-    const hr = el._hr;
-    hit.addEventListener("pointermove", e => {
-      const x = e.clientX - svg.getBoundingClientRect().left, t = t0 + (x / cw) * (t1 - t0);
-      let best = pts[0];
-      for (const p of pts) if (Math.abs(p.t - t) < Math.abs(best.t - t)) best = p;
-      const px = Math.round(X(best.t)) + 0.5;
+    const ro = el._ro;
+    const idle = () => { const last = pts[pts.length - 1]; ro.replaceChildren(h("b", null, nf(last.v) + " stars"), h("span", null, "now · hover or use ← → for any day")); };
+    const show = (p, k) => {
+      const px = Math.round(X(p.t)) + 0.5;
       cross.setAttribute("x1", px); cross.setAttribute("x2", px); cross.setAttribute("visibility", "visible");
-      dot.setAttribute("cx", X(best.t)); dot.setAttribute("cy", Y(best.v)); dot.setAttribute("visibility", "visible");
-      if (hr) hr.replaceChildren(h("b", null, nf(best.v)), " · " + fdate(best.t));
+      dot.setAttribute("cx", X(p.t)); dot.setAttribute("cy", Y(p.v)); dot.setAttribute("visibility", "visible");
+      const prev = pts[Math.max(0, k - 1)], dlt = p.v - prev.v;
+      ro.replaceChildren(h("b", null, nf(p.v) + " stars"), h("span", null, fdate(p.t)), dlt ? h("span", { class: trendCls(dlt) }, signed(dlt) + " vs previous point") : null);
+    };
+    hit.addEventListener("pointermove", e => {
+      const t = t0 + ((e.clientX - svg.getBoundingClientRect().left - LP) / cw) * (t1 - t0);
+      let k = 0; for (let i = 1; i < pts.length; i++) if (Math.abs(pts[i].t - t) < Math.abs(pts[k].t - t)) k = i;
+      el._k = k; show(pts[k], k);
     });
-    hit.addEventListener("pointerleave", () => { cross.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); if (hr) hr.textContent = rangeText(pts); });
-    if (hr) hr.textContent = rangeText(pts);
+    hit.addEventListener("pointerleave", () => { cross.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); idle(); });
+    el.onkeydown = e => {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      e.preventDefault();
+      el._k = Math.max(0, Math.min(pts.length - 1, (el._k ?? pts.length - 1) + (e.key === "ArrowLeft" ? -1 : 1)));
+      show(pts[el._k], el._k);
+    };
+    el.onblur = () => { cross.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); idle(); };
+    idle();
     el.replaceChildren(svg);
-  }
-  const rangeText = pts => pts.length + " daily points";
-  // 90-day sparkline for the trust strip
-  function sparkEl(r) {
-    const box = h("div", { class: "spark" });
-    if (!r.r || location.protocol === "file:") return null;
-    loadSeries(r.r).then(res => {
-      if (!box.isConnected && !box.parentNode) return;
-      if (res.status !== "ok" || !res.pts) { box.replaceChildren(h("span", { class: "nd" }, "No star history yet")); return; }
-      const cut = res.pts[res.pts.length - 1].t - 90 * DAY, pts = res.pts.filter(p => p.t >= cut);
-      if (pts.length < 2) { box.replaceChildren(h("span", { class: "nd" }, "Not enough history yet")); return; }
-      const W = 120, H = 28;
-      let lo = Infinity, hi = -Infinity; pts.forEach(p => { lo = Math.min(lo, p.v); hi = Math.max(hi, p.v); }); if (hi === lo) hi = lo + 1;
-      const t0 = pts[0].t, t1 = pts[pts.length - 1].t;
-      const X = t => ((t - t0) / Math.max(1, t1 - t0)) * W, Y = v => 2 + (H - 4) - ((v - lo) / (hi - lo)) * (H - 4);
-      const d = pts.map((p, i) => (i ? "L" : "M") + X(p.t).toFixed(1) + " " + Y(p.v).toFixed(1)).join("");
-      const svg = sv("svg", { width: W, height: H, viewBox: "0 0 " + W + " " + H, role: "img", "aria-label": "Stars over the last 90 days: " + fmt(pts[0].v) + " to " + fmt(pts[pts.length - 1].v) });
-      svg.append(sv("path", { class: "a", d: d + "L" + W + " " + H + "L0 " + H + "Z" }), sv("path", { class: "l", d }));
-      box.replaceChildren(svg, h("span", { class: "nd" }, "90 days"));
-    });
-    return box;
   }
 
   // ---------------------------------------------------------------- install
@@ -689,144 +779,205 @@
     if (src || mkt) return { rank: 3, label: "via " + (mkt || src) + " marketplace" };
     return null;
   }
-  function stepsBox(r, it, steps) {
-    const cmds = steps.filter(s => s.kind === "cmd");
-    const box = h("div", { class: "steps" });
-    if (cmds.length) {
-      const pre = h("ol", { class: "cmds" + (cmds.length > 1 ? " multi" : "") }, cmds.map(s => h("li", null, h("code", null, s.text))));
-      const all = cmds.map(s => s.text).join("\n");
-      const b = h("button", { class: "copy", type: "button", "data-act": "copy", "aria-label": (cmds.length > 1 ? "Copy all " + cmds.length + " install steps for " : "Copy install command for ") + (it.n || r.n) },
-        ic("copy"), h("span", { class: "cl" }, cmds.length > 1 ? "Copy all " + cmds.length + " steps" : "Copy"));
-      b.dataset.copy = all;
-      box.append(h("div", { class: "cmdbox" }, pre, b));
-    }
+  function stepsEl(r, it, steps) {
+    const out = [];
     steps.forEach(s => {
-      if (s.kind === "hint") box.append(h("div", { class: "hintx" }, s.text));
-      if (s.kind === "link") { const url = s.url || r.url; if (url) box.append(h("a", { class: "readme", href: url, target: "_blank", rel: "noopener noreferrer" }, ic("ext"), "See the README for install steps")); }
+      if (s.kind === "cmd") {
+        const b = h("button", { class: "copy", type: "button", "data-act": "copy", "aria-label": "Copy install command for " + (it.n || r.n) + ": " + s.text }, ic("copy"), h("span", { class: "cl" }, "Copy"));
+        b.dataset.copy = s.text;
+        out.push(h("div", { class: "cmdbox" }, h("code", null, s.text), b));
+      }
+      if (s.kind === "hint") out.push(h("div", { class: "hintx" }, s.text));
+      if (s.kind === "link") { const url = s.url || r.url; if (url) out.push(h("a", { class: "readme", href: url, target: "_blank", rel: "noopener noreferrer" }, ic("ext"), "See the README for install steps")); }
     });
-    if (!steps.length) box.append(h("div", { class: "hintx" }, "No install hint"));
-    return box;
+    if (!steps.length) out.push(h("div", { class: "hintx" }, "No install hint"));
+    return out;
   }
-  function itemEl(r, it, showVia) {
+  function itemEl(r, it, showHead, showVia) {
     const steps = installSteps(it.i), via = viaOf(steps, r);
     return h("li", null,
-      h("div", { class: "in" }, h("b", null, it.n || r.n), h("span", { class: "it" }, it.t || (r.t === "mcp-server" ? "mcp-server" : "")), showVia && via ? h("span", { class: "via" + (via.rank === 0 ? " rec" : "") }, via.label + (via.rank === 0 ? " · recommended" : "")) : null),
-      it.d ? h("div", { class: "id" }, it.d) : null,
-      stepsBox(r, it, steps));
+      showHead ? h("div", { class: "in" }, h("b", null, it.n || r.n), h("span", null, TLABEL[it.t] || it.t || ""), showVia && via ? h("span", { class: "via" + (via.rank === 0 ? " rec" : "") }, via.label + (via.rank === 0 ? " · recommended" : "")) : null) : null,
+      it.d && showHead ? h("div", { class: "id" }, it.d) : null,
+      stepsEl(r, it, steps));
   }
   function installEl(r) {
     // group same-named items (one plugin listed by several marketplaces): best path first, alternates folded
     const groups = new Map();
     r.it.forEach(it => { const k = (it.n || r.n).toLowerCase(); if (!groups.has(k)) groups.set(k, []); groups.get(k).push(it); });
-    const ul = h("ul", { class: "items" });
-    groups.forEach(list => {
-      if (list.length === 1) { ul.append(itemEl(r, list[0], !!viaOf(installSteps(list[0].i), r) && r.it.length > 1)); return; }
+    const head = r.it.length > 1 || r.it.some(it => it.n && it.n !== r.n);
+    const lis = [...groups.values()].map(list => {
+      if (list.length === 1) return itemEl(r, list[0], head, r.it.length > 1);
       const ranked = list.map(it => ({ it, v: viaOf(installSteps(it.i), r) })).sort((a, b) => (a.v ? a.v.rank : 9) - (b.v ? b.v.rank : 9));
-      const li = itemEl(r, ranked[0].it, true);
-      const alt = h("details", { class: "alt" }, h("summary", null, "Other ways to install (" + (ranked.length - 1) + ")"),
-        h("ul", { class: "items" }, ranked.slice(1).map(x => itemEl(r, x.it, true))));
-      li.append(alt);
-      ul.append(li);
+      const li = itemEl(r, ranked[0].it, true, true);
+      li.append(h("details", { class: "alt" }, h("summary", null, "Other ways to install (" + (ranked.length - 1) + ")"),
+        h("ul", { class: "items" }, ranked.slice(1).map(x => itemEl(r, x.it, true, true)))));
+      return li;
     });
-    if (r.nit > r.it.length) ul.append(h("li", { class: "morei" }, "+ " + (r.nit - r.it.length) + " more items in the repository"));
+    const ul = h("ul", { class: "items" }, lis.slice(0, 2));
+    if (lis.length > 2) ul.append(h("li", { class: "morei" }, h("details", { class: "alt" }, h("summary", null, "Show " + plural(lis.length - 2, "more item")), h("ul", { class: "items" }, lis.slice(2)))));
+    if (r.nit > r.it.length) ul.append(h("li", { class: "morei" }, "+ " + plural(r.nit - r.it.length, "more item") + " in the repository"));
     return ul;
   }
 
-  // ---------------------------------------------------------------- detail (expanded row / card panel)
-  function securityEl(r) {
-    const sec = r.sec;
-    if (!sec) return null;
-    if (sec.lv === "ok") return null;
-    const n = isNum(sec.n) ? sec.n : (sec.f || []).length;
-    const list = h("ul", { class: "findings" }, (Array.isArray(sec.f) ? sec.f : []).map(f => h("li", null,
-      h("div", { class: "fh" }, h("span", { class: "sev sev-" + (/^(high|critical)$/i.test(f.s) ? "hi" : "md") }, String(f.s || "note")), h("b", null, String(f.r || "finding")),
-        f.p ? h("span", { class: "loc" }, String(f.p) + (isNum(f.l) ? ":" + f.l : "")) : null),
-      f.x ? h("code", { class: "ex" }, String(f.x)) : null)));
-    const more = n > (sec.f || []).length ? h("p", { class: "nd" }, "+ " + plural(n - sec.f.length, "more finding", "more findings")) : null;
-    return h("section", { class: "secbox " + (sec.lv === "high" ? "hi" : "md"), "aria-label": "Security scan findings" },
-      h("div", { class: "sh" }, ic("shield"), h("b", null, sec.lv === "high" ? "High-risk patterns found" : "Patterns worth reviewing"),
-        h("span", { class: "nd" }, plural(n, "finding") + (sec.at ? " · scanned " + sdate(sec.at) : "") + " · static scan, not executed")),
-      list, more);
+  // ---------------------------------------------------------------- unified detail panel (chevron and trend open the same panel)
+  function chartBlock(r, dp) {
+    const sec = h("section", { class: "dp-chart", "aria-label": "Star history" });
+    const head = h("div", { class: "ch-head" }, h("h3", null, "Star history"));
+    const rng = h("span", { class: "rng" });
+    head.append(rng);
+    if (r.t7 != null || r.t30 != null) head.append(h("div", { class: "deltas" },
+      h("span", { class: "delta" }, h("span", { class: trendCls(r.t7) }, signed(r.t7)), h("i", null, "7 days")),
+      h("span", { class: "delta", "data-tt": "The shaded band on the chart is the last 30 days", tabindex: "0" }, h("span", { class: "sw", "aria-hidden": "true" }), h("span", { class: trendCls(r.t30) }, signed(r.t30)), h("i", null, "30 days"))));
+    const readout = h("div", { class: "readout", "aria-live": "polite" });
+    const chart = h("div", { class: "chart" }, h("div", { class: "skel", role: "status", "aria-label": "Loading star history" }));
+    sec.append(head, readout, chart);
+    (r.r ? loadSeries(r.r) : Promise.resolve({ status: "ok", pts: null })).then(res => {
+      if (res.status === "ok" && res.pts) {
+        const pts = res.pts;
+        rng.textContent = fdate(pts[0].t) + " – " + fdate(pts[pts.length - 1].t) + " · " + plural(pts.length, "point");
+        chart._pts = pts; chart._r = r; chart._ro = readout; chart.tabIndex = 0;
+        chart.setAttribute("aria-label", "Star history chart. Use the left and right arrow keys to read each day.");
+        chart.textContent = "";
+        RO.observe(chart); drawChart(chart);
+        return;
+      }
+      readout.remove();
+      const msg = res.status === "file"
+        ? [h("b", null, "History needs a local server"), h("span", null, "Run ", h("code", null, "python -m http.server -d site"), " and open localhost:8000.")]
+        : res.status === "error"
+          ? [h("b", null, "History could not be loaded"), h("span", null, "The history file failed to download. Try again later.")]
+          : [h("b", null, "No star history yet"), h("span", null, "History is backfilled gradually by the daily build.")];
+      chart.replaceChildren(h("div", { class: "hstate" }, ic("clock"), h("div", null, ...msg)));
+      // no history: a slim note instead of an empty chart; trust moves under it so neither column runs empty
+      if (dp && !dp.classList.contains("nohist")) {
+        dp.classList.add("nohist");
+        const trust = dp.querySelector(".dp-trust");
+        if (trust) sec.after(trust);
+      }
+    });
+    return sec;
+  }
+  function trustBlock(r) {
+    const sec = h("section", { class: "dp-sec dp-trust", "aria-label": "Trust summary" }, h("h3", null, "Why it's " + TIER[r.tr].label, h("span", { class: "sub" }, TIER[r.tr].long)));
+    const lines = reasonLines(r);
+    const list = reasonList(r, lines.length >= 4);
+    sec.append(list || h("p", { class: "nd small" }, TIER[r.tr].desc));
+    if (r.flg.length) sec.append(h("ul", { class: "flagx" }, r.flg.map(f => {
+      const F = FLAGS[f] || {};
+      const tip = f === "unmaintained" && r.p ? "Last push " + sdate(r.p) + " (" + ageText(r.pd) + " before this catalog was built). Bugs and breaking changes in Claude Code may go unfixed." : F.tip || "Flagged by the catalog's checks.";
+      return h("li", null, h("span", { class: "flag" + (F.hi ? " hi" : F.cls ? " " + F.cls : "") }, ic(F.icon || "flag"), F.short || flagLabel(f)), h("span", null, tip));
+    })));
+    const s = r.sec;
+    if (s && s.lv !== "ok") {
+      const n = isNum(s.n) ? s.n : (s.f || []).length, fs = Array.isArray(s.f) ? s.f : [];
+      sec.append(h("div", { class: "findings" + (s.lv === "high" ? " hi" : ""), role: "group", "aria-label": "Security findings" },
+        h("div", { class: "fsum" }, ic("shield"), h("b", null, s.lv === "high" ? "High-risk patterns found" : "Patterns worth reviewing"), h("span", { class: "nd" }, plural(n, "finding") + (s.at ? " · static scan " + sdate(s.at) : "") + " · not executed")),
+        h("ul", null, fs.map(f => h("li", null,
+          h("div", { class: "fh" }, h("span", { class: "sev " + (/^(high|critical)$/i.test(f.s) ? "hi" : f.s === "info" ? "info" : "") }, String(f.s || "note")), h("b", null, String(f.r || "finding")), f.p ? h("span", { class: "loc" }, String(f.p) + (isNum(f.l) ? ":" + f.l : "")) : null),
+          f.x ? h("code", null, String(f.x)) : null))),
+        n > fs.length ? h("span", { class: "nd small" }, "+ " + plural(n - fs.length, "more finding")) : null));
+    } else if (s) sec.append(h("p", { class: "secok" }, ic("shieldok"), "Security scan found nothing to review", s.at ? h("span", { class: "nd" }, "· " + sdate(s.at)) : null));
+    else sec.append(h("p", { class: "secok none" }, ic("shield"), "Not security-scanned yet"));
+    return sec;
+  }
+  function aboutBlock(r) {
+    const words = wordsOf(S.q);
+    const src = [...new Set(r.src.map(s => SOURCE[s] || s))];
+    const tags = h("div", { class: "dtags" });
+    if (r.showArea.length) tags.append(h("div", { class: "trow" }, h("span", { class: "tk" }, "Areas"), h("div", { class: "tv" }, r.showArea.map(areaBtn))));
+    const techList = r.showTech.map(t => facetBtn("tech", t, "tfb wide", techLabel(t), SLUG[t] ? techGlyph(t) : ic("box"), h("span", { class: "tl" }, techLabel(t))));
+    if (techList.length || r.fbTech.length) tags.append(h("div", { class: "trow" }, h("span", { class: "tk" }, "Technologies"),
+      h("div", { class: "tv" }, techList, r.fbTech.length ? h("span", { class: "anys", "data-tt": "Classified as general purpose: no specific technology needed", tabindex: "0" }, techList.length ? "Also works with any stack" : "Any stack") : null)));
+    if (!r.tg.length && !r.ar.length) tags.append(h("p", { class: "nd small" }, "Not classified yet"));
+    return h("section", { class: "dp-sec", "aria-label": "About" }, h("h3", null, "About"),
+      h("p", { class: "about" }, ...(r.d ? hl(r.d, words) : ["No description provided."])),
+      tags,
+      h("p", { class: "prov" },
+        h("span", { class: "nar" }, "By " + (r.own || "unknown")),
+        h("span", { class: "nar" }, "License: " + (r.lg === "none" ? "none" : r.l === "NOASSERTION" ? "custom / unrecognized" : r.l) + " · " + LIC[r.lg].label),
+        r.f ? h("span", null, plural(r.f, "fork")) : null,
+        r.fs ? h("span", null, "In catalog since " + sdate(r.fs)) : null,
+        src.length ? h("span", null, "Found via " + src.join(", ")) : null,
+        r.cm || r.tg.length ? h("span", null, "Tagged by " + (METHOD[r.cm] || "auto") + (TAX.placeholder ? " (provisional taxonomy)" : "")) : null,
+        r.al.length ? h("span", null, "Also known as " + r.al.join(", ")) : null,
+        r.url ? h("a", { href: r.url, target: "_blank", rel: "noopener noreferrer" }, r.url.replace(/^https?:\/\/(www\.)?/, "")) : null));
   }
   function detailEl(r) {
-    const words = wordsOf(S.q);
-    const verdict = h("div", { class: "verdict" }, h("span", { class: "tier tier-" + r.tr }, TIER[r.tr].label), h("b", null, TIER[r.tr].long));
-    const facts = h("div", { class: "facts" },
-      h("span", null, ic("star"), h("b", null, nf(r.s || 0)), " stars"),
-      r.f ? h("span", null, h("b", null, nf(r.f)), " forks") : null,
-      h("span", { class: stale(r.p) ? "old" : null }, "Updated " + rel(r.p)),
-      h("span", null, licLabel(r.l)),
-      h("span", null, h("span", { class: trendCls(r.t7) }, signed(r.t7)), " 7d · ", h("span", { class: trendCls(r.t30) }, signed(r.t30)), " 30d"),
-      r.sec && r.sec.lv === "ok" ? h("span", { class: "up" }, ic("shield"), "Security scan: no findings") : null);
-    const flagsRow = r.flg.length ? h("div", { class: "flagrow" }, r.flg.map(f => h("span", { class: "flag" + (FLAGS[f] && FLAGS[f].hi ? " hi" : f === "archived" ? " arch" : "") }, ic(f === "archived" ? "archive" : FLAGS[f] && FLAGS[f].sec ? "shield" : "flag"), h("span", null, flagLabel(f) + (FLAGS[f] ? ": " + FLAGS[f].tip : ""))))) : null;
-    const trust = h("section", { class: "trust", "aria-label": "Trust summary" },
-      h("div", { class: "tl" }, verdict, reasonList(r, "inline"), flagsRow),
-      h("div", { class: "tr" }, facts, sparkEl(r)));
-    const tagPills = (g, list, fb) => [...list.map(t => h("span", { class: "tag " + g }, LABEL[g][t])), ...fb.map(t => h("span", { class: "tag fb" }, g === "tech" ? "Any stack" : "General purpose"))];
-    const tags = h("div", { class: "dtags" },
-      h("div", null, h("h4", null, "Technologies"), r.tg.length ? tagPills("tech", r.spTech, r.fbTech) : h("span", { class: "nd" }, "Not classified")),
-      h("div", null, h("h4", null, "Areas"), r.ar.length ? tagPills("area", r.spArea, r.fbArea) : h("span", { class: "nd" }, "Not classified")));
-    const src = r.src.map(s => SOURCE[s] || s);
-    const foot = h("p", { class: "prov" },
-      src.length ? h("span", null, "Found via " + [...new Set(src)].join(", ")) : null,
-      r.cm || r.tg.length ? h("span", null, "Tagged by " + (METHOD[r.cm] || "auto") + (TAX.placeholder ? " (provisional taxonomy)" : "")) : null,
-      r.fs ? h("span", null, "First seen " + sdate(r.fs)) : null,
-      r.al.length ? h("span", null, "Also known as " + r.al.join(", ")) : null,
-      r.url ? h("a", { href: r.url, target: "_blank", rel: "noopener noreferrer" }, r.url.replace(/^https?:\/\/(www\.)?/, "")) : null);
-    return h("div", { class: "detail" },
-      trust,
-      securityEl(r),
-      h("div", { class: "dbody" },
-        h("div", { class: "dmain" }, h("p", { class: "dd" }, ...(r.d ? hl(r.d, words) : ["No description provided."])), h("h4", null, "Install · " + plural(r.nit, "item")), installEl(r)),
-        h("div", { class: "dside" }, tags)),
-      foot);
+    const dp = h("div", { class: "dp" });
+    const install = h("section", { class: "dp-sec", "aria-label": "Install" }, h("h3", null, "Install", r.nit > 1 ? h("span", { class: "sub" }, plural(r.nit, "item")) : null), installEl(r));
+    dp.append(h("div", { class: "dp-left" }, chartBlock(r, dp)), h("div", { class: "dp-side" }, trustBlock(r), install, aboutBlock(r)));
+    return dp;
   }
 
   // ---------------------------------------------------------------- table
   const tbody = $("tbody"), cardsEl = $("cardview");
+  const COLS = [
+    { k: "fav", sr: "Favorite" }, { k: "exp", sr: "Details" },
+    { k: "name", label: "Name", sort: "name" }, { k: "au", label: "Author", sort: "author" },
+    { k: "tier", label: "Tier", sort: "tier" }, { k: "type", label: "Type", sort: "type" },
+    { k: "area", label: "Areas" }, { k: "tech", label: "Technologies" },
+    { k: "stars", label: "Stars", sort: "stars", r: true }, { k: "t7", label: "7d", r: true, tt: "Star change in the last 7 days. Click a value to open the history." },
+    { k: "t30", label: "30d", r: true, tt: "Star change in the last 30 days" },
+    { k: "upd", label: "Updated", sort: "pushed" }, { k: "lic", label: "License", sort: "license" },
+  ];
+  const isOpen = r => S.view === "table" ? S.open.has(r.k) : S.openCard === r.k;
   function rowEl(r) {
-    const flipped = S.flip.has(r.k), open = S.open.has(r.k);
-    const tr = h("tr", { class: "r" + (r.sus ? " sus" : ""), "data-id": r.k, "data-view": flipped ? "hist" : "norm", "data-open": String(open) });
+    const open = S.open.has(r.k);
+    const td = (k, ...kids) => h("td", { class: "c-" + k, role: "cell" }, ...kids);
+    const tr = h("tr", { class: "r" + (r.sus ? " sus" : ""), role: "row", "data-id": r.k, "data-open": String(open) });
     tr.append(
-      h("td", { class: "ec" }, h("div", { class: "ecs" }, favBtn(r), expandBtn(r, open, "d-" + r.i))),
-      h("td", { class: "nmc" }, h("div", { class: "nmcell" + (r.flg.length ? " hasflag" : "") }, nameLink(r), r.own ? h("span", { class: "ow" }, r.own) : null, flagPills(r))),
-      h("td", { class: "tic" }, tierBadge(r)));
-    if (flipped) tr.append(h("td", { class: "histcell", colspan: "3" }, histEl(r)));
-    else tr.append(
-      h("td", { class: "tyc" }, h("div", { class: "typec" }, typeTag(r, true))),
-      h("td", { class: "tgc" }, tagsEl(r)),
-      h("td", { class: "num" }, fmt(r.s)));
-    const old = stale(r.p);
-    tr.append(
-      h("td", { class: "trc" }, trendBtn(r, true)),
-      h("td", { class: "ac" }, h("div", { class: "act" },
-        h("span", { class: old ? "old" : null, title: r.p ? "Last push " + r.p + " · " + licLabel(r.l) : "Last push unknown" }, rel(r.p)),
-        h("span", { class: "lic", title: !r.l ? "No license detected" : r.l === "NOASSERTION" ? "Unrecognized / custom license (NOASSERTION)" : r.l }, licLabel(r.l)))));
+      td("fav", favBtn(r)),
+      td("exp", expandBtn(r, open, "d-" + r.i)),
+      td("name", h("div", { class: "nmcell" }, nameLink(r), r.own ? h("span", { class: "ow" }, r.own) : null, flagPills(r))),
+      td("au", h("span", { class: "au" }, r.own)),
+      td("tier", tierBadge(r)),
+      td("type", typeTag(r, true)),
+      td("area", areasEl(r)),
+      td("tech", techsEl(r)),
+      h("td", { class: "c-stars num", role: "cell" }, fmt(r.s)),
+      h("td", { class: "c-t7 c-trend", role: "cell" }, trendBtn(r, true)),
+      td("upd", updEl(r)),
+      td("lic", licEl(r)));
     return tr;
   }
-  const moreRow = r => h("tr", { class: "more", id: "d-" + r.i, "data-for": r.k }, h("td", { colspan: "8" }, detailEl(r)));
+  const moreRow = r => h("tr", { class: "more", role: "row", id: "d-" + r.i, "data-for": r.k }, h("td", { role: "cell" }, detailEl(r)));
+  function buildHead() {
+    const row = $("thead");
+    row.setAttribute("role", "row");
+    COLS.forEach(c => {
+      const th = h("th", { scope: "col", role: "columnheader", class: "c-" + c.k + (c.r ? " r" : ""), "data-col": c.k });
+      if (c.sr) th.append(h("span", { class: "sr" }, c.sr));
+      else if (c.sort) th.append(h("button", { type: "button", class: "sortb", "data-act": "sort", "data-sort": c.sort }, h("span", null, c.label), ic("chev", "ar")));
+      else th.append(h("span", { class: "hl", "data-tt": c.tt || null, tabindex: c.tt ? "0" : null }, c.label));
+      row.append(th);
+    });
+    document.querySelector("table.grid").setAttribute("role", "table");
+    document.querySelectorAll("table.grid thead, table.grid tbody").forEach(x => x.setAttribute("role", "rowgroup"));
+  }
 
   // ---------------------------------------------------------------- cards
   function cardEl(r) {
-    const flipped = S.flip.has(r.k), open = S.openCard === r.k;
-    const swap = h("div", { class: "swap" });
-    if (flipped) swap.append(histEl(r));
-    else swap.append(h("p", { class: "d" + (r.d ? "" : " nodesc") }, r.d || "No description provided."), tagsEl(r));
-    const old = stale(r.p);
-    return h("article", { class: "card" + (r.sus ? " sus" : ""), role: "listitem", "data-id": r.k, "data-view": flipped ? "hist" : "norm", "data-open": String(open), "aria-label": r.n },
+    const open = S.openCard === r.k;
+    const tagsBox = h("div", { class: "ctags", "data-fit": "" });
+    r.showArea.forEach(a => tagsBox.append(areaBtn(a)));
+    r.showTech.forEach(t => tagsBox.append(techBtn(t)));
+    if (tagsBox.children.length) tagsBox.append(plusEl());
+    else tagsBox.append(h("span", { class: "dash" }, r.anyStack ? "General purpose · any stack" : "Not classified yet"));
+    return h("article", { class: "card" + (r.sus ? " sus" : ""), role: "listitem", "data-id": r.k, "data-open": String(open), "aria-label": r.n },
       h("div", { class: "ch" }, h("div", { class: "who" }, nameLink(r), h("span", { class: "ow" }, r.own)), favBtn(r), tierBadge(r)),
-      r.flg.length ? h("div", { class: "cflags" }, flagPills(r)) : null,
-      swap,
+      r.pills.length ? h("div", { class: "cflags" }, flagPills(r)) : null,
+      h("p", { class: "d" + (r.d ? "" : " nodesc") }, r.d || "No description provided."),
+      tagsBox,
       h("div", { class: "meta" }, typeTag(r, r.nit > 1),
         h("span", { class: "s", "aria-label": nf(r.s || 0) + " stars" }, ic("star"), fmt(r.s)),
-        h("span", { class: "pu" + (old ? " old" : ""), title: r.p ? "Last push " + r.p : "Last push unknown" }, rel(r.p)),
+        updEl(r), licEl(r),
         h("span", { class: "grow" }), trendBtn(r, false), expandBtn(r, open, "panel")));
   }
   function closePanel() {
     const p = $("panel"); if (!p) return;
     const c = cardsEl.querySelector('.card[data-id="' + CSS.escape(p.dataset.for) + '"]');
     p.remove();
-    if (c) { c.dataset.open = "false"; const b = c.querySelector("[data-act=expand]"); b.setAttribute("aria-expanded", "false"); b.removeAttribute("aria-controls"); }
+    if (c) { c.dataset.open = "false"; c.querySelectorAll("[data-act=expand]").forEach(b => b.setAttribute("aria-expanded", "false")); c.querySelector(".exp").removeAttribute("aria-controls"); }
   }
   function placePanel() {
     closePanel();
@@ -835,7 +986,8 @@
     if (!c) return;
     const r = BY.get(id);
     c.dataset.open = "true";
-    const b = c.querySelector("[data-act=expand]"); b.setAttribute("aria-expanded", "true"); b.setAttribute("aria-controls", "panel");
+    c.querySelectorAll("[data-act=expand]").forEach(b => b.setAttribute("aria-expanded", "true"));
+    c.querySelector(".exp").setAttribute("aria-controls", "panel");
     let last = c;
     for (let n = c.nextElementSibling; n && n.classList.contains("card") && n.offsetTop === c.offsetTop; n = n.nextElementSibling) last = n;
     const p = h("section", { class: "panel", id: "panel", "data-id": r.k, "aria-label": "Details for " + r.n },
@@ -844,6 +996,7 @@
       detailEl(r));
     p.dataset.for = r.k;
     last.after(p);
+    fitTags(p);
   }
 
   // ---------------------------------------------------------------- zero results: relax one constraint at a time
@@ -854,9 +1007,8 @@
     const words = S.q.split(/\s+/).filter(Boolean);
     words.forEach((w, i) => add("Remove “" + w + "” from search", st => { st.q = words.filter((_, j) => j !== i).join(" "); }));
     if (words.length > 1) add("Clear the search", st => { st.q = ""; });
-    GROUPS.forEach(g => chipsFor(g).forEach(([, id, l]) => add("Remove " + g.label + ": " + l, st => unselect(st, g, id))));
+    GROUPS.forEach(g => chipsFor(g).forEach(([, id, l]) => add(g.inverted ? "Show repos flagged " + l : "Remove " + g.label + ": " + l, st => unselect(st, g, id))));
     if (S.sel.tech.size && !S.anyStack) add("Include stack-agnostic tools", st => { st.anyStack = true; });
-    if (S.flagged === "hide") add("Include flagged repos", st => { st.flagged = "demote"; });
     if (!S.sel.tier.size && !S.watch) add("Include Watch tier", st => { st.watch = true; });
     if (S.sel.tier.size > 1) add("Search all tiers", st => { st.sel.tier.clear(); st.watch = true; });
     const seen = new Set();
@@ -882,12 +1034,13 @@
   // ---------------------------------------------------------------- results rendering
   const CHUNK = 60, NEXT = 120;
   function renderResults() {
-    hidePop(true); // E9: never leave a popover pointing at a row that is about to disappear
+    hidePop(true); // never leave a popover pointing at a row that is about to disappear
+    hideTip();
     shown = 0;
     tbody.textContent = "";
     cardsEl.textContent = "";
     if (!LIST.length) {
-      if (S.view === "table") tbody.append(h("tr", { class: "emptyrow" }, h("td", { colspan: "8" }, emptyEl())));
+      if (S.view === "table") tbody.append(h("tr", { class: "emptyrow", role: "row" }, h("td", { role: "cell" }, emptyEl())));
       else cardsEl.append(h("div", { style: "grid-column:1/-1" }, emptyEl()));
     }
     more();
@@ -918,7 +1071,7 @@
     // a lightweight scope object for fitTags covering only newly appended nodes
     return { querySelectorAll: sel => { const out = []; for (let n = mark.nextElementSibling; n; n = n.nextElementSibling) out.push(...n.querySelectorAll(sel)); return out; } };
   }
-  const sepRow = () => h("tr", { class: "sep" }, h("td", { colspan: "8" }, ic("flag"), "Flagged repos (suspicious stars or security findings), ranked last"));
+  const sepRow = () => h("tr", { class: "sep", role: "row" }, h("td", { role: "cell" }, ic("flag"), "Flagged repos (suspicious stars or security findings), ranked last"));
   new IntersectionObserver(es => { if (es.some(e => e.isIntersecting) && shown < LIST.length) more(); }, { rootMargin: "0px 0px 1200px 0px" }).observe($("sentinel"));
   let lastW = 0;
   new ResizeObserver(es => { const w = Math.round(es[0].contentRect.width); if (w !== lastW) { lastW = w; fitTags($("results")); } }).observe($("results"));
@@ -929,13 +1082,16 @@
   const showAll = {};
   function nodeLi(g, n) {
     const hasKids = n.kids.length > 0, id = "f-" + g.key + "-" + n.id.replace(/[^\w-]/g, "_");
-    const input = g.radio ? h("input", { type: "radio", name: "f-" + g.key, value: n.id, id }) : h("input", { type: "checkbox", id });
+    const input = g.radio ? h("input", { type: "radio", name: "f-" + g.key, value: n.id, id }) : h("input", { type: "checkbox", id, "aria-describedby": n.desc && n.two ? id + "-d" : null });
     input.dataset.g = g.key; input.dataset.id = n.id;
     const c = h("span", { class: "c" });
-    const row = h("div", { class: "frow" + (n.desc ? " hasdesc" : "") + (n.other ? " other" : "") },
+    const glyph = n.ok ? h("span", { class: "okmark", "aria-hidden": "true" }, ic("check")) : n.dot ? h("span", { class: "dot d-" + n.dot }) : n.icon ? h("span", { class: "gl" }, ic(n.icon)) : null;
+    const body = n.two
+      ? h("span", { class: "lt" }, h("span", { class: "ln" }, glyph, h("span", { class: "lbl" }, n.label), c), h("small", { id: id + "-d" }, n.desc))
+      : [glyph, h("span", { class: "lbl" }, n.label, n.desc ? h("small", null, n.desc) : null), c];
+    const row = h("div", { class: "frow" + (n.desc ? " hasdesc" : "") + (n.two ? " two" : "") + (n.ok ? " lic-ok" : "") + (n.other ? " other" : "") },
       g.tree ? (hasKids ? h("button", { class: "tw", type: "button", "data-act": "fold", "aria-expanded": "false", "aria-controls": id + "-k", "aria-label": "Show " + n.label + " subcategories" }, ic("chev")) : h("span", { class: "tw ph" })) : null,
-      h("label", { for: id }, input, n.dot ? h("span", { class: "dot d-" + n.dot }) : n.icon ? ic(n.icon) : null,
-        h("span", { class: "lbl" }, n.label, n.desc ? h("small", null, n.desc) : null), c));
+      h("label", { for: id }, input, body));
     const li = h("li", null, row);
     sideRows.set(g.key + ":" + n.id, { row, input, c, li });
     if (hasKids) li.append(h("ul", { id: id + "-k", hidden: true }, n.kids.map(k => nodeLi(g, k))));
@@ -944,33 +1100,32 @@
   function buildSide() {
     const side = $("side");
     const gen = Date.parse(C.generated_at || "");
-    side.append(h("div", { class: "brand" }, h("span", { class: "logo", "aria-hidden": "true" }, "cc"), "Extensions catalog",
-      h("small", null, nf(R.length) + " repos", isNaN(gen) ? null : h("i", { title: "Catalog generated " + C.generated_at }, "updated " + MONTHS[new Date(gen).getUTCMonth()] + " " + new Date(gen).getUTCDate()))));
+    side.append(h("div", { class: "brand" }, h("span", { class: "logo", "aria-hidden": "true" }, "cc"),
+      h("div", { class: "bt" }, h("h1", null, "Extensions catalog"), h("p", null, nf(R.length) + " repos" + (isNaN(gen) ? "" : " · updated " + fdate(gen))))));
     GROUPS.forEach(g => {
       if (!g.nodes.length) return;
-      const bodyId = "fg-" + g.key, n = h("span", { class: "n" });
+      const bodyId = "fg-" + g.key, n = h("span", { class: "n" + (g.inverted ? " ex" : "") });
       groupHeads[g.key] = n;
       const body = h("div", { class: "fbody", id: bodyId });
-      if (g.key === "tier") body.append(h("p", { class: "fnote rk" }, "Ranked by trust, highest first"));
-      if (g.key === "fav") body.append(h("p", { class: "fnote" }, "Star any row or card. Stored in this browser."));
-      if (g.key === "tech") body.append(h("p", { class: "fnote prov" }, ic("info"), h("span", null, (TAX.placeholder ? "Provisional taxonomy. " : "") + "Tags are auto-classified. A repo can carry several tags, so counts overlap.")));
+      if (g.key === "tier") body.append(h("p", { class: "fhelp" }, "Ranked by trust, highest first."));
+      if (g.key === "fav") body.append(h("p", { class: "fhelp" }, "Star any row or card. Stored in this browser."));
+      if (g.key === "flag") body.append(h("p", { class: "fhelp" }, "Checked flags are ", h("b", null, "included"), ". Uncheck one to hide every repo carrying it."));
+      if (g.key === "lic") body.append(h("p", { class: "fhelp" }, "Grouped from each repo's SPDX license id."));
+      if (g.key === "tech") body.append(h("p", { class: "fhelp prov" }, ic("info"), h("span", null, (TAX.placeholder ? "Provisional taxonomy. " : "") + "Tags are auto-classified. A repo can carry several tags, so counts overlap.")));
       const ul = h("ul", { class: "facets", role: g.radio ? "radiogroup" : null, "aria-label": g.label });
       if (g.radio) ul.append(nodeLi(g, { id: "", label: "Any time", kids: [] }));
       g.nodes.forEach(nd => ul.append(nodeLi(g, nd)));
       body.append(ul);
-      if (g.top && g.nodes.length > g.top) {
-        const b = h("button", { class: "showall", type: "button", "data-act": "showall", "data-g": g.key, "aria-expanded": "false" }, "Show all " + g.nodes.length);
-        body.append(b);
-      }
+      if (g.top && g.nodes.length > g.top) body.append(h("button", { class: "showall", type: "button", "data-act": "showall", "data-g": g.key, "aria-expanded": "false" }, "Show all " + g.nodes.length));
       if (g.key === "fav") body.append(h("div", { class: "favtools" },
         h("p", { class: "favstat", id: "favstat", "aria-live": "polite" }),
         h("div", { class: "favbtns" },
           h("button", { type: "button", class: "btn", "data-act": "favexport" }, ic("copy"), "Export favorites"),
           h("button", { type: "button", class: "btn", "data-act": "favimport" }, ic("plus"), "Import"),
           h("input", { type: "file", id: "favfile", accept: "application/json,.json", hidden: true, "aria-label": "Import favorites.json" })),
-        h("p", { class: "fnote" }, "Export downloads favorites.json. Put it in the repo root, then commit it.")));
-      side.append(h("section", { class: "fgroup", "aria-label": g.label + " filter" },
-        h("button", { class: "fhead", type: "button", "data-act": "fold", "aria-expanded": "true", "aria-controls": bodyId }, ic("chev", "chev"), h("span", null, g.label), n), body));
+        h("p", { class: "fhelp" }, "Export downloads favorites.json. Put it in the repo root, then commit it.")));
+      side.append(h("section", { class: "fgroup fg-" + g.key, "aria-labelledby": "fh-" + g.key },
+        h("h2", { class: "fh", id: "fh-" + g.key }, h("button", { class: "fhead", type: "button", "data-act": "fold", "aria-expanded": "true", "aria-controls": bodyId }, ic("chev", "chev"), h("span", { class: "ft" }, g.label), n)), body));
     });
     if (location.protocol === "file:") side.append(h("p", { class: "side-foot" }, "Opened from a file, so star history is off. Run ", h("code", null, "python -m http.server -d site"), " to enable it."));
     side.addEventListener("change", onFacet);
@@ -999,9 +1154,10 @@
     const g = GROUP[inp.dataset.g], id = inp.dataset.id;
     if (g.radio) { S.added = +id || 0; return update(); }
     const sel = S.sel[g.key], node = NODE[g.key][id];
+    if (g.inverted) { inp.checked ? sel.delete(id) : sel.add(id); return update(); }
     if (node && node.kids.length) {
       leafIds(node).forEach(k => inp.checked ? sel.add(k) : sel.delete(k));
-      if (inp.checked) setFold(g, node, true); // E13: selecting a parent reveals its children
+      if (inp.checked) setFold(g, node, true); // selecting a parent reveals its children
     } else inp.checked ? sel.add(id) : sel.delete(id);
     update();
   }
@@ -1019,6 +1175,7 @@
         const x = sideRows.get(g.key + ":" + nd.id); if (!x) return;
         const v = c[nd.id] || 0;
         x.c.textContent = nf(v);
+        if (g.inverted) { const off = sel.has(nd.id); x.input.checked = !off; x.row.classList.toggle("off", off); x.row.classList.toggle("zero", !v); return; }
         if (nd.kids.length) {
           const ids = leafIds(nd), k = ids.filter(z => sel.has(z)).length;
           x.input.checked = k === ids.length;
@@ -1027,7 +1184,7 @@
         } else { x.input.checked = sel.has(nd.id); x.row.classList.toggle("zero", !v && !sel.has(nd.id)); }
       }));
       const nsel = chipsFor(g).length;
-      if (groupHeads[g.key]) groupHeads[g.key].textContent = nsel ? nsel + " selected" : "";
+      if (groupHeads[g.key]) groupHeads[g.key].textContent = nsel ? nsel + (g.inverted ? " hidden" : " selected") : "";
     });
     syncTopN();
     syncFavTools();
@@ -1060,17 +1217,17 @@
     const el = $("chips"); el.textContent = "";
     const chips = GROUPS.flatMap(chipsFor);
     if (S.anyStack && S.sel.tech.size) chips.push([{ key: "anystack", label: "Also" }, "1", "stack-agnostic tools"]);
-    if (S.flagged === "hide") chips.push([{ key: "flagged", label: "Hidden" }, "1", "flagged repos"]);
     if (!chips.length) return;
     chips.forEach(([g, id, l]) => {
-      const b = h("button", { class: "chip", type: "button", "data-act": "unchip", "aria-label": "Remove filter " + g.label + ": " + l }, h("span", { class: "k" }, g.label + ":"), " " + l, ic("x"));
+      const name = g.chip || g.label;
+      const b = h("button", { class: "chip" + (g.inverted ? " ex" : ""), type: "button", "data-act": "unchip", "aria-label": (g.inverted ? "Stop hiding " : "Remove filter " + name + ": ") + l }, h("span", { class: "k" }, name + ":"), " " + l, ic("x"));
       b.dataset.g = g.key; b.dataset.id = id;
       el.append(b);
     });
     el.append(h("button", { class: "clear", type: "button", "data-act": "clearall" }, "Clear all"));
   }
 
-  // ---------------------------------------------------------------- assist bar: search suggestions, any-stack toggle, flagged notice
+  // ---------------------------------------------------------------- assist bar: search suggestions, any-stack toggle, notices
   const TAXIDX = [];
   for (const g of ["area", "tech"]) TREES[g].forEach(n => [n, ...n.kids].forEach(nd => {
     if (nd.id === FALLBACK_ID || nd.other) return;
@@ -1099,7 +1256,7 @@
     return ok.filter(s => !s.parent || !parents.has(s.g + s.parent)).sort((a, b) => b.n - a.n).slice(0, 4);
   }
   let SUGG = [];
-  function syncAssist(hidden) {
+  function syncAssist() {
     const el = $("assist"); el.textContent = "";
     SUGG = suggestions();
     if (SUGG.length) {
@@ -1118,32 +1275,45 @@
       if (!S.watch && wn) el.append(h("div", { class: "arow note" }, ic("info"), h("span", null, "Watch tier hidden (" + nf(wn) + " unvetted " + (wn === 1 ? "result" : "results") + ")."), h("button", { type: "button", class: "lnk", "data-act": "watch", "data-v": "1" }, "Show")));
       else if (S.watch) el.append(h("div", { class: "arow note" }, ic("info"), h("span", null, "Showing the Watch tier (unvetted: review before installing)."), h("button", { type: "button", class: "lnk", "data-act": "watch", "data-v": "0" }, "Hide")));
     }
-    const trending = SORT[S.sort].trend;
-    if (S.flagged === "hide" && hidden) {
-      el.append(h("div", { class: "arow note" }, ic("flag"), h("span", null, plural(hidden, "flagged repo") + " hidden (suspicious stars or security findings)."), h("button", { type: "button", class: "lnk", "data-act": "flagged", "data-v": "demote" }, "Show them")));
-    } else if (trending && SUS_IN) {
+    if (SORT[S.sort].trend && SUS_IN) {
       el.append(h("div", { class: "arow note" }, ic("flag"),
         h("span", null, S.flagged === "demote" ? plural(SUS_IN, "flagged repo") + " (suspicious stars or security findings) ranked last." : "Flagged repos are ranked by their raw trend."),
-        S.flagged === "demote" ? h("button", { type: "button", class: "lnk", "data-act": "flagged", "data-v": "hide" }, "Hide them") : null,
+        h("button", { type: "button", class: "lnk", "data-act": "hidesus" }, "Hide them"),
         h("button", { type: "button", class: "lnk", "data-act": "flagged", "data-v": S.flagged === "demote" ? "show" : "demote" }, S.flagged === "demote" ? "Rank normally" : "Rank them last")));
     }
+  }
+  // results bar: sort indicator for sorts without a column header (table), sort control (cards)
+  function syncResbar() {
+    const el = $("resbar"); el.textContent = "";
+    const s = SORT[S.sort];
+    if (S.view === "cards") {
+      const sel = h("select", { id: "csort", "aria-label": "Sort cards by" }, SORTS.map(x => h("option", { value: x.id }, x.label)));
+      sel.value = S.sort;
+      el.append(h("div", { class: "csort" }, h("label", { class: "t", for: "csort" }, "Sort"), sel,
+        h("button", { type: "button", class: "btn icon dirb", "data-act": "dir", "aria-label": S.dir < 0 ? "Sorted descending. Switch to ascending" : "Sorted ascending. Switch to descending", "data-tt": S.dir < 0 ? "Descending" : "Ascending", "data-dir": S.dir < 0 ? "desc" : "asc" }, ic("sort"))));
+      sel.addEventListener("change", () => setSort(sel.value, -1));
+    } else if (!s.col) {
+      el.append(h("p", { class: "sortnote" }, ic("trend"), h("span", null, "Sorted by " + s.label + (S.dir > 0 ? " (ascending)" : "")), h("button", { type: "button", class: "lnk", "data-act": "sort", "data-sort": "stars", "data-fresh": "1" }, "Sort by stars")));
+    }
+    el.hidden = !el.firstChild;
   }
 
   // ---------------------------------------------------------------- presets
   const PRESETS = [
     { id: "top", label: "Most starred", apply: () => ({ sort: "stars" }) },
-    { id: "trusted", label: "Trending & trusted", apply: () => ({ sort: "t7", tier: ["anthropic", "official", "listed", "verified"], flagged: "hide" }) },
+    { id: "trusted", label: "Trending & trusted", apply: () => ({ sort: "t7", tier: ["anthropic", "official", "listed", "verified"], hide: SUSFLAGS }) },
     { id: "trending", label: "Trending this week", apply: () => ({ sort: "t7" }) },
     { id: "new", label: "New this week", apply: () => ({ sort: "stars", added: 7 }) },
     { id: "updated", label: "Recently updated", apply: () => ({ sort: "pushed" }) },
     { id: "fav", label: "Favorites", icon: "star", apply: () => ({ sort: "stars", fav: true }) },
   ];
+  const sameSet = (set, list) => set.size === list.length && list.every(x => set.has(x));
   function presetOf() {
-    const otherSel = Object.entries(S.sel).filter(([k, v]) => k !== "tier" && k !== "fav" && v.size).length;
-    if (S.q || otherSel || S.anyStack || (S.watch && !S.sel.tier.size) || S.dir !== SORT[S.sort].dir) return null;
+    const otherSel = Object.entries(S.sel).filter(([k, v]) => k !== "tier" && k !== "fav" && k !== "flag" && v.size).length;
+    if (S.q || otherSel || S.anyStack || (S.watch && !S.sel.tier.size) || S.dir !== -1 || S.flagged !== "demote") return null;
     return PRESETS.find(p => {
-      const x = p.apply(), tiers = x.tier || [];
-      return x.sort === S.sort && (x.added || 0) === S.added && (x.flagged || "demote") === S.flagged && (x.fav ? 1 : 0) === S.sel.fav.size && tiers.length === S.sel.tier.size && tiers.every(t => S.sel.tier.has(t));
+      const x = p.apply();
+      return x.sort === S.sort && (x.added || 0) === S.added && sameSet(S.sel.flag, (x.hide || []).filter(f => ALLIDS.flag.has(f))) && (x.fav ? 1 : 0) === S.sel.fav.size && sameSet(S.sel.tier, x.tier || []);
     }) || null;
   }
   function applyPreset(id) {
@@ -1151,9 +1321,10 @@
     const x = p.apply();
     S.sel = newSel(); S.q = ""; $("q").value = ""; S.anyStack = false; S.watch = false;
     (x.tier || []).forEach(t => S.sel.tier.add(t));
+    (x.hide || []).forEach(f => ALLIDS.flag.has(f) && S.sel.flag.add(f));
     if (x.fav) S.sel.fav.add("1");
-    S.added = x.added || 0; S.flagged = x.flagged || "demote";
-    S.sort = x.sort; S.dir = SORT[x.sort].dir;
+    S.added = x.added || 0; S.flagged = "demote";
+    S.sort = x.sort; S.dir = -1;
     update();
   }
   function buildPresets() {
@@ -1167,38 +1338,26 @@
 
   // ---------------------------------------------------------------- top bar / headers
   function buildTop() {
-    const sel = $("sort");
-    SORTS.forEach(s => sel.append(h("option", { value: s.id }, s.label)));
-    sel.addEventListener("change", () => setSort(sel.value));
     const q = $("q");
     let raf = 0;
     q.addEventListener("input", () => { S.q = q.value.trim(); cancelAnimationFrame(raf); raf = requestAnimationFrame(() => update()); });
     q.addEventListener("keydown", e => { if (e.key === "Escape" && q.value) { e.stopPropagation(); q.value = ""; S.q = ""; update(); } });
-    const th = (col, label, sorts) => {
-      const cell = document.querySelector('th[data-col="' + col + '"]');
-      const mk = (id, text, cls) => h("button", { type: "button", class: cls || null, "data-act": "sort", "data-sort": id }, text, ic("chev", "ar"));
-      if (sorts.length === 1) cell.append(mk(sorts[0], label));
-      else cell.append(h("span", { class: "pair" }, h("span", { class: "plbl" }, label), ...sorts.map(([id, t]) => mk(id, t, "s-" + id))));
-    };
-    th("name", "Name", ["name"]); th("tier", "Tier", ["tier"]); th("type", "Type", ["type"]);
-    th("stars", "Stars", ["stars"]); th("trend", "Trend", [["t7", "7d"], ["t30", "30d"]]); th("pushed", "Updated", ["pushed"]);
+    buildHead();
   }
   function syncHeaders() {
     document.querySelectorAll("th [data-sort]").forEach(b => {
-      const on = b.dataset.sort === S.sort;
-      on ? b.setAttribute("data-on", S.dir > 0 ? "asc" : "desc") : b.removeAttribute("data-on");
-      const th = b.closest("th");
-      if (on) th.setAttribute("aria-sort", S.dir > 0 ? "ascending" : "descending");
-      else if (![...th.querySelectorAll("[data-sort]")].some(x => x.dataset.sort === S.sort)) th.removeAttribute("aria-sort");
+      const on = b.dataset.sort === S.sort, th = b.closest("th"), lab = b.firstChild.textContent;
+      if (on) { b.setAttribute("data-on", S.dir > 0 ? "asc" : "desc"); th.setAttribute("aria-sort", S.dir > 0 ? "ascending" : "descending"); }
+      else { b.removeAttribute("data-on"); th.removeAttribute("aria-sort"); }
+      b.setAttribute("aria-label", "Sort by " + lab + (on ? (S.dir > 0 ? ", sorted ascending; click for descending" : ", sorted descending; click for ascending") : ", descending first"));
     });
-    $("sort").value = S.sort;
   }
   function syncCount() {
     $("count").replaceChildren(h("b", null, nf(LIST.length)), h("span", { class: "of" }, " of " + nf(R.length)));
   }
   function setSort(id, dir) {
     if (!SORT[id]) return;
-    S.sort = id; S.dir = dir || SORT[id].dir;
+    S.sort = id; S.dir = dir || -1;
     update();
   }
   function setView(v, fromHash) {
@@ -1207,10 +1366,10 @@
     $("tableview").hidden = S.view !== "table";
     cardsEl.hidden = S.view !== "cards";
     document.querySelectorAll("[data-act=view]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === S.view)));
-    if (!fromHash) { renderResults(); writeHash(); }
+    if (!fromHash) { syncResbar(); renderResults(); writeHash(); }
   }
   function setTheme(t) {
-    if (t) { document.documentElement.dataset.theme = t; try { localStorage.setItem("cc-theme", t); } catch (e) {} }
+    if (t) { document.documentElement.dataset.theme = t; try { localStorage.setItem("cc-theme", t); } catch (e) { /* storage blocked */ } }
     const dark = isDark();
     $("theme").replaceChildren(ic(dark ? "sun" : "moon"));
     $("theme").setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
@@ -1222,12 +1381,12 @@
     const p = new URLSearchParams();
     if (S.view !== "table") p.set("view", S.view);
     if (S.q) p.set("q", S.q);
-    if (S.sort !== "stars" || S.dir !== -1) { p.set("sort", S.sort); if (S.dir !== SORT[S.sort].dir) p.set("dir", S.dir > 0 ? "asc" : "desc"); }
+    if (S.sort !== "stars" || S.dir !== -1) { p.set("sort", S.sort); if (S.dir !== -1) p.set("dir", "asc"); }
     for (const k in S.sel) if (S.sel[k].size) {
       const sel = S.sel[k], ids = [], done = new Set();
       GROUP[k].nodes.forEach(n => { if (n.kids.length) { const l = leafIds(n); if (l.every(x => sel.has(x))) { ids.push(n.id); l.forEach(x => done.add(x)); } } });
       sel.forEach(x => { if (!done.has(x)) ids.push(x); });
-      p.set(k, ids.join(","));
+      p.set(HASHKEY[k] || k, ids.join(","));
     }
     if (S.added) p.set("added", String(S.added));
     if (S.flagged !== "demote") p.set("flagged", S.flagged);
@@ -1242,17 +1401,19 @@
     S.q = (p.get("q") || "").slice(0, 200);
     const so = p.get("sort");
     S.sort = SORT[so] ? so : "stars";
-    S.dir = p.get("dir") === "asc" ? 1 : p.get("dir") === "desc" ? -1 : SORT[S.sort].dir;
+    S.dir = p.get("dir") === "asc" ? 1 : -1;
     for (const k in S.sel) {
       S.sel[k].clear();
-      (p.get(k) || "").split(",").forEach(id => {
+      (p.get(HASHKEY[k] || k) || "").split(",").forEach(id => {
         if (!ALLIDS[k].has(id)) return;
         const n = NODE[k][id];
         if (n && n.kids.length) leafIds(n).forEach(x => S.sel[k].add(x)); else S.sel[k].add(id); // old hashes stored parents
       });
     }
     const a = +p.get("added"); S.added = ADDED.some(x => x.days === a) ? a : 0;
-    const f = p.get("flagged"); S.flagged = f === "hide" || f === "show" ? f : "demote";
+    const f = p.get("flagged");
+    S.flagged = f === "show" ? "show" : "demote";
+    if (f === "hide") SUSFLAGS.forEach(x => ALLIDS.flag.has(x) && S.sel.flag.add(x)); // v3 "hide flagged" links
     S.anyStack = p.get("anystack") === "1";
     S.watch = p.get("watch") === "1" && !S.sel.tier.size; // an explicit tier selection in the URL overrides the default
     $("q").value = S.q;
@@ -1262,11 +1423,11 @@
   // ---------------------------------------------------------------- update
   function update() {
     const t0 = performance.now();
-    const { res, cnt, hidden } = compute();
-    LIST = res; COUNTS = cnt; HIDDEN_SUS = hidden;
+    const { res, cnt } = compute();
+    LIST = res; COUNTS = cnt;
     SUS_IN = 0; for (const r of res) if (r.sus) SUS_IN++;
     const t1 = performance.now();
-    syncSide(cnt); syncChips(); syncCount(); syncHeaders(); syncAssist(hidden); syncPresets();
+    syncSide(cnt); syncChips(); syncCount(); syncHeaders(); syncAssist(); syncResbar(); syncPresets();
     if (S.view === "cards" && S.openCard && !res.some(r => r.k === S.openCard)) S.openCard = null;
     renderResults();
     writeHash();
@@ -1287,40 +1448,46 @@
     let ok = false;
     try { await navigator.clipboard.writeText(text); ok = true; } catch (e) {
       const ta = h("textarea", { style: "position:fixed;opacity:0;top:0;left:0", "aria-hidden": "true" }); ta.value = text;
-      document.body.append(ta); ta.select(); try { ok = document.execCommand("copy"); } catch (e2) {} ta.remove();
+      document.body.append(ta); ta.select(); try { ok = document.execCommand("copy"); } catch (e2) { /* blocked */ } ta.remove();
     }
     const lab = btn.querySelector(".cl"), old = lab ? lab.textContent : "";
     btn.classList.add("ok"); if (lab) lab.textContent = "Copied";
     setTimeout(() => { btn.classList.remove("ok"); if (lab) lab.textContent = old; }, 1400);
-    const n = text.split("\n").length;
-    toast(ok ? (n > 1 ? "Copied " + n + " steps" : "Copied: " + (text.length > 60 ? text.slice(0, 59) + "…" : text)) : "Copy blocked by the browser; select the command manually.", ok);
+    toast(ok ? "Copied: " + (text.length > 60 ? text.slice(0, 59) + "…" : text) : "Copy blocked by the browser; select the command manually.", ok);
   }
-  function toggleHist(id) {
-    hidePop(true);
-    S.flip.has(id) ? S.flip.delete(id) : S.flip.add(id);
+  function toggleOpen(id, from) {
     const r = BY.get(id);
-    const old = (S.view === "table" ? tbody : cardsEl).querySelector('[data-id="' + CSS.escape(id) + '"]:not(.panel)');
-    if (!old) return;
-    const fresh = S.view === "table" ? rowEl(r) : cardEl(r);
-    old.replaceWith(fresh);
-    fitTags(fresh);
-    fresh.querySelector("[data-act=hist]").focus();
-  }
-  function toggleOpen(id) {
-    const r = BY.get(id);
+    hidePop(true); hideTip();
     if (S.view === "table") {
       const tr = tbody.querySelector('tr.r[data-id="' + CSS.escape(id) + '"]');
+      if (!tr) return;
       const open = !S.open.has(id);
       open ? S.open.add(id) : S.open.delete(id);
-      tr.dataset.open = String(open);
-      const b = tr.querySelector("[data-act=expand]");
-      b.setAttribute("aria-expanded", String(open));
-      open ? b.setAttribute("aria-controls", "d-" + r.i) : b.removeAttribute("aria-controls");
-      const nx = tr.nextElementSibling;
-      if (open) tr.after(moreRow(r)); else if (nx && nx.classList.contains("more")) nx.remove();
+      const fresh = rowEl(r);
+      tr.replaceWith(fresh);
+      fitTags(fresh);
+      const nx = fresh.nextElementSibling;
+      if (open) fresh.after(moreRow(r)); else if (nx && nx.classList.contains("more")) nx.remove();
+      if (open) fitTags(fresh.nextElementSibling);
+      const f = fresh.querySelector(from === "trend" ? ".trend" : ".exp");
+      if (f) f.focus({ preventScroll: true });
     } else {
       S.openCard = S.openCard === id ? null : id;
       if (S.openCard) placePanel(); else closePanel();
+    }
+  }
+  function toggleFacet(g, id, anchor) {
+    const sel = S.sel[g], ids = facetIds(g, id), on = facetOn(g, id);
+    ids.forEach(x => on ? sel.delete(x) : sel.add(x));
+    if (!on && NODE[g][id] && PARENT[g][id]) setFold(GROUP[g], NODE[g][PARENT[g][id]], true);
+    const host = anchor.closest("[data-id]"), hostId = host && (host.dataset.for || host.dataset.id);
+    update();
+    toast((on ? "Removed filter: " : "Filtering by ") + (g === "tech" ? techLabel(id) : LABEL.area[id]), true);
+    // keep keyboard focus on the same control when its row is still listed
+    if (hostId) {
+      const scope = S.view === "table" ? tbody : cardsEl;
+      const b = scope.querySelector('[data-id="' + CSS.escape(hostId) + '"] [data-act=facet][data-g="' + g + '"][data-fid="' + CSS.escape(id) + '"]');
+      if (b && !b.hidden) b.focus({ preventScroll: true }); else $("results").focus({ preventScroll: true });
     }
   }
 
@@ -1330,6 +1497,7 @@
     if (!anchor.isConnected) return;
     pinned = false;
     const host = anchor.closest("[data-id]"); const r = host && BY.get(host.dataset.id); if (!r) return;
+    hideTip();
     if (!pop) {
       pop = h("div", { class: "pop", role: "tooltip", id: "pop" });
       pop.addEventListener("mouseenter", () => clearTimeout(popT));
@@ -1342,9 +1510,11 @@
         reasonList(r) || h("p", { class: "nd" }, TIER[r.tr].desc), rankLine());
     } else if (kind === "flag") {
       const f = anchor.dataset.flag, F = FLAGS[f] || {};
-      const extra = f.startsWith("security-") && r.sec ? h("p", { class: "nd" }, plural(isNum(r.sec.n) ? r.sec.n : (r.sec.f || []).length, "finding") + ". Expand the row for details.") : null;
-      pop.replaceChildren(h("div", { class: "ph" }, h("b", null, flagLabel(f))), h("p", { class: "pd" }, F.tip || "Flagged by the catalog's checks."), extra,
-        isWarn(f) ? h("p", { class: "nd" }, "Flagged repos are ranked last in Trending.") : null);
+      const tip = f === "unmaintained" && r.p ? "Last push " + sdate(r.p) + ": no push for " + ageText(r.pd) + "." : F.tip || "Flagged by the catalog's checks.";
+      const extra = f.startsWith("security-") && r.sec ? h("p", { class: "nd" }, plural(isNum(r.sec.n) ? r.sec.n : (r.sec.f || []).length, "finding") + ". Open the details for the findings.") : null;
+      pop.replaceChildren(h("div", { class: "ph" }, h("b", null, flagLabel(f))), h("p", { class: "pd" }, tip), extra,
+        isSus(f) ? h("p", { class: "nd" }, "Flagged repos are ranked last in Trending.") : null,
+        h("p", { class: "nd" }, "Uncheck it under Flags in the sidebar to hide every repo carrying it."));
     } else {
       pop.replaceChildren(h("p", { class: "pd" }, ...(r.d ? hl(r.d, wordsOf(S.q)) : ["No description provided."])),
         h("div", { class: "pm" }, r.disp + " · " + plural(r.nit, "item") + (r.url ? " · opens GitHub" : "")));
@@ -1367,6 +1537,28 @@
     now === true ? go() : (popT = setTimeout(go, 100));
   }
 
+  // tooltip: one shared element for every [data-tt] (hover + keyboard focus)
+  const tip = $("tipbox");
+  let tipFor = null, tipRaf = 0;
+  function placeTip() {
+    const el = tipFor; if (!el) return;
+    const b = el.getBoundingClientRect(), w = tip.offsetWidth, hh = tip.offsetHeight;
+    const x = Math.max(8, Math.min(innerWidth - w - 8, b.left + b.width / 2 - w / 2));
+    let y = b.top - hh - 8; if (y < 104) y = b.bottom + 8;
+    tip.style.left = x + "px"; tip.style.top = y + "px";
+  }
+  function showTip(el) {
+    const text = el.dataset.tt; if (!text || !el.isConnected) return;
+    if (tipFor && tipFor !== el) tipFor.removeAttribute("aria-describedby");
+    tipFor = el; tip.textContent = text; tip.hidden = false; placeTip();
+    if (!el.hasAttribute("aria-label")) el.setAttribute("aria-describedby", "tipbox");
+    cancelAnimationFrame(tipRaf); tipRaf = requestAnimationFrame(() => tip.classList.add("on"));
+  }
+  function hideTip() {
+    if (tipFor) tipFor.removeAttribute("aria-describedby");
+    tipFor = null; cancelAnimationFrame(tipRaf); tip.classList.remove("on"); tip.hidden = true;
+  }
+
   function onClick(e) {
     if (pinned && !e.target.closest(".pop") && !e.target.closest("[data-act=tip]")) hidePop(true);
     const a = e.target.closest("[data-act]"); if (!a) return;
@@ -1384,10 +1576,23 @@
       case "favexport": return favDownload();
       case "favimport": return $("favfile").click();
       case "tip": { if (pinned && popFor === a) hidePop(true); else { clearTimeout(popT); showPop(a); pinned = true; } return; }
-      case "hist": return host && toggleHist(host.dataset.id);
-      case "expand": return host && toggleOpen(host.dataset.id);
-      case "close": { const id = S.openCard; S.openCard = null; closePanel(); const b = cardsEl.querySelector('.card[data-id="' + CSS.escape(id) + '"] [data-act=expand]'); if (b) b.focus(); return; }
-      case "sort": { const id = a.dataset.sort; return setSort(id, S.sort === id ? -S.dir : SORT[id].dir); }
+      case "expand": return host && toggleOpen(host.dataset.id, a.dataset.from);
+      case "openfrom": { // "+N" overflow: the full list is in the details panel
+        if (!host) return;
+        const r = BY.get(host.dataset.for || host.dataset.id); if (!r) return;
+        if (!isOpen(r)) toggleOpen(r.k);
+        return;
+      }
+      case "facet": return toggleFacet(a.dataset.g, a.dataset.fid, a);
+      case "close": { const id = S.openCard; S.openCard = null; closePanel(); const b = cardsEl.querySelector('.card[data-id="' + CSS.escape(id) + '"] .exp'); if (b) b.focus(); return; }
+      case "sort": {
+        const id = a.dataset.sort;
+        const fresh = a.dataset.fresh || S.sort !== id;
+        setSort(id, fresh ? -1 : -S.dir);
+        const b = document.querySelector('th [data-sort="' + id + '"]'); if (b && a.closest("th")) b.focus();
+        return;
+      }
+      case "dir": { setSort(S.sort, -S.dir); const b = $("resbar").querySelector("[data-act=dir]"); if (b) b.focus(); return; }
       case "view": return setView(a.dataset.v);
       case "theme": return setTheme(isDark() ? "light" : "dark");
       case "drawer": { const s = $("side"), o = !s.classList.contains("open"); s.classList.toggle("open", o); a.setAttribute("aria-expanded", String(o)); if (o) { const f = s.querySelector("input,button"); if (f) f.focus(); } return; }
@@ -1404,6 +1609,7 @@
       case "anystack": { S.anyStack = a.checked; update(); const t = $("anystack"); if (t) t.focus(); return; }
       case "watch": { S.watch = a.dataset.v === "1"; update(); const n = $("assist").querySelector("[data-act=watch]") || $("q"); n.focus(); return; }
       case "flagged": { S.flagged = a.dataset.v; update(); const n = $("assist").querySelector("[data-act=flagged]") || $("q"); n.focus(); return; }
+      case "hidesus": { SUSFLAGS.forEach(f => ALLIDS.flag.has(f) && S.sel.flag.add(f)); update(); $("q").focus(); return; }
       case "relax": {
         const o = RELAX[+a.dataset.i]; if (!o) return;
         const st = cloneState(); o.mutate(st);
@@ -1413,7 +1619,6 @@
       case "unchip": {
         const k = a.dataset.g;
         if (k === "anystack") S.anyStack = false;
-        else if (k === "flagged") S.flagged = "demote";
         else unselect(S, GROUP[k], a.dataset.id);
         update();
         const next = $("chips").querySelector(".chip"); (next || $("q")).focus();
@@ -1428,28 +1633,37 @@
 
   function init() {
     buildSide(); buildTop(); buildPresets(); setTheme();
-    readHash(); // D9: view, query, filters and sort all come from the hash before the first render
+    readHash(); // view, query, filters and sort all come from the hash before the first render
     document.addEventListener("click", onClick);
     document.addEventListener("keydown", e => {
       const tag = document.activeElement && document.activeElement.tagName;
       if (e.key === "/" && !e.ctrlKey && !e.metaKey && !e.altKey && !/INPUT|SELECT|TEXTAREA/.test(tag)) { e.preventDefault(); $("q").focus(); $("q").select(); return; }
       if (e.key === "Escape") {
+        if (tipFor) { hideTip(); return; }
         if (pop && pop.classList.contains("on")) return hidePop(true);
         const s = $("side"); if (s.classList.contains("open")) { s.classList.remove("open"); document.querySelector("[data-act=drawer]").focus(); return; }
-        if (S.view === "cards" && S.openCard) { const id = S.openCard; S.openCard = null; closePanel(); const b = cardsEl.querySelector('.card[data-id="' + CSS.escape(id) + '"] [data-act=expand]'); if (b) b.focus(); }
+        if (S.view === "cards" && S.openCard) { const id = S.openCard; S.openCard = null; closePanel(); const b = cardsEl.querySelector('.card[data-id="' + CSS.escape(id) + '"] .exp'); if (b) b.focus(); }
       }
     });
     document.addEventListener("mouseover", e => {
       const a = e.target.closest("[data-tip]");
       if (a && !a.closest(".pop")) { clearTimeout(popT); popT = setTimeout(() => { if (a.isConnected && a.matches(":hover")) showPop(a); }, a.dataset.tip === "desc" ? 350 : 150); }
+      const t = e.target.closest("[data-tt]");
+      if (t && t !== tipFor) showTip(t); else if (!t && tipFor && tipFor !== document.activeElement) hideTip();
     });
     document.addEventListener("mouseout", e => { const a = e.target.closest("[data-tip]"); if (a && !a.contains(e.relatedTarget)) hidePop(); });
-    document.addEventListener("focusin", e => { const a = e.target.closest("[data-tip]"); if (a && !a.closest(".pop") && a.matches(":focus-visible")) { clearTimeout(popT); showPop(a); } });
-    document.addEventListener("focusout", e => { if (e.target.closest("[data-tip]")) hidePop(); });
-    addEventListener("scroll", () => { if (pop && pop.classList.contains("on")) hidePop(true); }, { passive: true });
+    document.addEventListener("focusin", e => {
+      const a = e.target.closest("[data-tip]"); if (a && !a.closest(".pop") && a.matches(":focus-visible")) { clearTimeout(popT); showPop(a); }
+      const t = e.target.closest("[data-tt]"); if (t) showTip(t); else if (tipFor) hideTip();
+    });
+    document.addEventListener("focusout", e => {
+      if (e.target.closest("[data-tip]")) hidePop();
+      if (tipFor && e.target === tipFor && !tipFor.matches(":hover")) hideTip();
+    });
+    addEventListener("scroll", () => { if (pop && pop.classList.contains("on")) hidePop(true); if (tipFor) { tipFor === document.activeElement ? placeTip() : hideTip(); } }, { passive: true, capture: true });
     addEventListener("hashchange", () => { readHash(); update(); });
     matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => setTheme());
-    let rt; addEventListener("resize", () => { hidePop(true); clearTimeout(rt); rt = setTimeout(() => { if (S.view === "cards" && S.openCard) placePanel(); }, 150); });
+    let rt; addEventListener("resize", () => { hidePop(true); hideTip(); clearTimeout(rt); rt = setTimeout(() => { if (S.view === "cards" && S.openCard) placePanel(); }, 150); });
     update();
     PERF.init = +performance.now().toFixed(1);
   }

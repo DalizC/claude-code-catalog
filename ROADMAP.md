@@ -79,3 +79,13 @@ Improvements:
 | E15 | Clipping in cards view | L | S |
 
 Suggested order: E2, E9 → E3, E4, E1 → E6, E7 → E5, E8, E10 → rest.
+
+## v4 — in progress (2026-10-05)
+
+Built and committed locally (commit "feat: v4 UI ..."), **not pushed yet**. Pushing deploys the site in ~1 min via `deploy-site.yml`.
+
+Done: column-header sorting (dropdown removed), Author/License columns, tech icons (Simple Icons, vendored in `site/icons/`), inverted flag facet (checked = included) + new Unmaintained flag (>180 days without push), license facet (commercial OK / copyleft / none / other), unified detail panel (history chart + trust/security/install), clickable area chips and tech icons, type scale, skill `--license` / `--exclude-flag`.
+
+Pending before pushing:
+1. **Name column still truncates** ("andrej-karpathy-sk…", "Understand-Anythi…") while Areas has free space. The user's requirement: Name, Areas and Technologies share the free width so the full name shows. Rebalance the grid fractions / let Name take priority. Verify at 1440, 1280 and 1024.
+2. Review open decisions with the user: Name sorts Z→A on first click (desc-first on every column); a 7th flag row "Star anomaly" (1 repo) appears.
