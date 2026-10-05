@@ -332,6 +332,84 @@ def expand_marketplaces():
         if n is not None: ok += 1
     print(f"marketplace expansion: {ok}/{len(cands)} had a marketplace.json")
 
+# ---------- 3a broad discovery (star-sorted topic combinations, verified by repo contents) ----------
+# Code search can't sort, so a popular repo can fall outside its first pages; these star-sorted repository searches
+# catch them. They also return apps that only mention Claude, so a candidate enters only when its tree holds something
+# installable: .claude-plugin/marketplace.json or plugin.json, a root SKILL.md, a skills/ folder, or root folders with
+# a SKILL.md. A project's own .claude/ config (skills or commands for working on that repo) does not count. A skills/
+# folder or SKILL.md subfolders only count when the repo's name or description is about skills, Claude or plugins:
+# apps that also ship a skill for themselves are not listed on the app's stars.
+BROAD_QUERIES = ["topic:claude-code topic:skills", "topic:claude-code topic:skill", "topic:agent-skills", "topic:skill-md",
+                 "topic:claude-code topic:plugin", "topic:claude-code-plugins", "topic:claude-plugin", "topic:claude-code topic:subagents",
+                 "topic:claude-code topic:agents", "topic:claude-code-agents", "topic:claude-code topic:mcp", "topic:claude topic:skills",
+                 "topic:anthropic-skills"]
+BROAD_MIN_STARS = 20
+BROAD = {}  # repo -> (search item, query)
+VERIFY_TTL_D = 7; VERIFY_V = 2  # bump when installable_kind changes so cached verdicts are redone
+SKILL_FOCUS = re.compile(r"\b(?:skills?|claude|subagents?|plugins?|marketplace)\b", re.I)
+
+def src_broad_search():
+    for q in BROAD_QUERIES:
+        for page in (1, 2):
+            d = jget(f"https://api.github.com/search/repositories?q={quote(f'{q} stars:>={BROAD_MIN_STARS}')}&sort=stars&order=desc"
+                     f"&per_page=100&page={page}", api=True, search=True)
+            if not d: break
+            for it in d.get("items", []): BROAD.setdefault(it["full_name"], (it, q))
+            if len(d.get("items", [])) < 100: break
+    print(f"broad search: {len(BROAD)} candidate repos")
+
+def installable_kind(tree):
+    """'marketplace' | 'plugin' | 'skill' | 'skill-dirs' (skills/ or root folders with a SKILL.md) | None
+    from a two-level listing of the repo root."""
+    ents = {e["name"]: e for e in (tree or {}).get("entries") or []}
+    kids = lambda n: {x["name"] for x in (((ents.get(n) or {}).get("object") or {}).get("entries") or [])}
+    cp = kids(".claude-plugin")
+    if "marketplace.json" in cp: return "marketplace"
+    if "plugin.json" in cp: return "plugin"
+    if (ents.get("SKILL.md") or {}).get("type") == "blob": return "skill"
+    sk = ents.get("skills")
+    if sk and sk.get("type") == "tree" and any(x.get("type") == "tree" for x in ((sk.get("object") or {}).get("entries") or [])): return "skill-dirs"
+    if any(e.get("type") == "tree" and not e["name"].startswith(".") and "SKILL.md" in kids(e["name"]) for e in ents.values()): return "skill-dirs"
+    return None
+
+def verify_broad():
+    known = {(e["repo"] or "").lower() for e in ENTRIES.values()}
+    cands = [r for r in BROAD if r.lower() not in known]
+    vc = CACHE / "verify.json"
+    try: cache = json.loads(vc.read_text(encoding="utf-8")) if vc.exists() and not REFRESH else {}
+    except Exception: cache = {}
+    fresh = lambda r: r in cache and cache[r].get("v") == VERIFY_V and (OFFLINE or time.time() - cache[r]["t"] < VERIFY_TTL_D * 86400)
+    todo = [r for r in cands if not fresh(r)]
+    if todo and TOKEN and not OFFLINE:
+        F = 'object(expression:"HEAD:"){...on Tree{entries{name type object{...on Tree{entries{name type}}}}}}'
+        B = 5  # two-level tree listings are heavy: 25 repos per query time out (HTTP 502) and 10 still do now and then
+        for k in range(0, len(todo), B):
+            chunk = todo[k:k + B]
+            if k: time.sleep(GQL_PACE)
+            if k and k % (B * 20) == 0:
+                vc.write_text(json.dumps(cache), encoding="utf-8"); print(f"broad verify: {k}/{len(todo)}", flush=True)
+            d = gql("query{" + " ".join(f'r{j}:repository(owner:{json.dumps(r.split("/")[0])},name:{json.dumps(r.split("/")[1])}){{{F}}}'
+                                        for j, r in enumerate(chunk)) + "}")
+            if not d or not d.get("data"):
+                ERRORS.append(f"broad verify chunk {k // B + 1}: no data {str((d or {}).get('errors'))[:200]}"); continue
+            for j, r in enumerate(chunk):
+                n = d["data"].get(f"r{j}")
+                if n is not None: cache[r] = {"t": time.time(), "v": VERIFY_V, "kind": installable_kind(n.get("object"))}
+        CACHE.mkdir(exist_ok=True); vc.write_text(json.dumps(cache), encoding="utf-8")
+    added = Counter()
+    for r in cands:
+        kind = (cache.get(r) or {}).get("kind")
+        if not kind: continue
+        it, q = BROAD[r]
+        if kind == "skill-dirs":
+            if not SKILL_FOCUS.search(f"{it.get('name') or ''} {it.get('description') or ''}".replace("-", " ")): continue
+            kind = "skill"
+        set_meta(r, it)
+        hint = {"marketplace": f"/plugin marketplace add {r}", "plugin": f"/plugin marketplace add {r}", "skill": f"copy skills from {r}"}[kind]
+        add(f"repo:{r}:{kind}", it["name"], kind, it.get("description"), r, it["html_url"], "search:broad", hint)
+        added[kind] += 1
+    print(f"broad verify: {len(cands)} new candidates, {len(todo)} checked now, added {dict(added)}")
+
 # ---------- 3b official MCP Registry (standalone MCP servers) ----------
 # https://registry.modelcontextprotocol.io/v0/servers, public, no auth. `version=latest` makes the registry return only each
 # server's latest version; isLatest and status are still checked because the schema drifts between versions.
@@ -677,7 +755,7 @@ def days(ts):
 
 def family(src):
     if src in ("official", "listed"): return "anthropic"
-    if src.startswith("search:topic"): return "topic"
+    if src.startswith("search:topic") or src == "search:broad": return "topic"
     if src.startswith("search:code"): return "code"
     return src  # curated, marketplace-expansion
 
@@ -844,7 +922,7 @@ def mcp_counts(out):
 def main():
     t0 = time.time()
     print("mode:", "TOKEN" if TOKEN else "NO-TOKEN")
-    src_official(); src_curated(); src_repo_search(); src_code_search(); expand_marketplaces(); src_mcp_registry()
+    src_official(); src_curated(); src_repo_search(); src_code_search(); src_broad_search(); verify_broad(); expand_marketplaces(); src_mcp_registry()
     nmiss, ndone = enrich()
     filter_mcp()
     finalize_hints()

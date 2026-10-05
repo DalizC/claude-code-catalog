@@ -80,6 +80,13 @@ Improvements:
 
 Suggested order: E2, E9 → E3, E4, E1 → E6, E7 → E5, E8, E10 → rest.
 
+## v5 — classification honesty + discovery (2026-10-05, local commits, ships with the next nightly run)
+
+- Technologies mean "for", not "built with": repo language and GitHub topics only corroborate; built-with phrases are blanked. Technology coverage drops 60% -> 16% (the rest are stack-agnostic, shown as general purpose); camelCase alias bug fixed (TypeScript/JavaScript/WordPress in prose).
+- Areas: 6 new top-level areas + 7 new sub-areas, embeddings for every non-watch repo. Area coverage (non-watch) 61% -> 73%. The embedding pass adds only ~50 repos: its calibrated thresholds are strict (CALIB_Z areas 2.3) — candidate for tuning.
+- Discovery: star-sorted topic-combination searches + content verification (catalog.py `src_broad_search`/`verify_broad`). Local test: +703 repos (154 with >=1000 stars), e.g. Leonxlnx/taste-skill (93k). Apps that only ship a skills/ folder for themselves (dify) need a skills/Claude signal in name/description. First run verifies ~1150 repos (~20 min), then cached 7 days.
+- Still not covered: generic skill/plugin collections (mixed content, honest general-purpose), non-English repos, awesome-lists without installable content.
+
 ## v4 — in progress (2026-10-05)
 
 Built and committed locally (commit "feat: v4 UI ..."), **not pushed yet**. Pushing deploys the site in ~1 min via `deploy-site.yml`.
