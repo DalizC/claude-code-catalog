@@ -27,7 +27,7 @@ RULES_PATH = ROOT / "security_rules.json"
 OUT_PATH = DATA / "security.json"; STATE_PATH = DATA / "security-state.json"
 REPORT_PATH = DATA / "security-report.md"; CATALOG_PATH = DATA / "catalog.json"
 
-SCAN_LIVE_DAYS, SCAN_MIN_STARS, SCAN_MIN_T7 = 180, 50, 10  # scan scope, see in_scope(); build_site.py shows the rest as not scanned
+SCAN_LIVE_DAYS = 180  # scan scope, see in_scope(); build_site.py shows the rest as not scanned
 MAX_FILES = 40
 MAX_BYTES = 300_000
 MAX_FILE_BYTES = 100_000
@@ -37,7 +37,7 @@ WORKERS = 6        # raw fetch threads per repo
 REPO_WORKERS = 6   # repos scanned concurrently
 SEV = {"info": 0, "review": 1, "high": 2}
 SEV_NAME = {v: k for k, v in SEV.items()}
-TIER_RANK = {"anthropic": 0, "official": 1, "listed": 2, "verified": 3, "watch": 4}
+TIER_RANK = {"anthropic": 0, "official": 1, "listed": 2, "verified": 3, "new": 4, "watch": 5}
 SKIP_DIRS = {"node_modules", ".git", "vendor", "dist", "build", "out", ".next", "__pycache__", "site-packages",
              "venv", ".venv", "coverage", "target", "bower_components", ".turbo", ".cache", "third_party"}
 SCRIPT_EXT = {".sh", ".bash", ".zsh", ".py", ".js", ".mjs", ".cjs", ".ts", ".mts", ".cts", ".ps1", ".psm1", ".bat", ".cmd"}
@@ -614,13 +614,12 @@ def parse_ts(ts):
 
 
 def in_scope(entries, ref):
-    """Scanned repos: alive (not archived, pushed within SCAN_LIVE_DAYS) and in use (>= SCAN_MIN_STARS stars or
-    >= SCAN_MIN_T7 new stars in 7 days), plus every Anthropic or official-marketplace repo that is alive."""
+    """Scanned repos: every alive one (not archived, pushed within SCAN_LIVE_DAYS). The catalog itself only publishes
+    relevant repos (catalog.py irrelevance()); the published ones that are no longer alive (old Anthropic/official
+    entries, favorites) show as not scanned."""
     if any(e.get("archived") for e in entries): return False
     p = max((parse_ts(e.get("pushed_at")) for e in entries if e.get("pushed_at")), default=None)
-    if not p or (ref - p).days > SCAN_LIVE_DAYS: return False
-    if any(e.get("tier") in ("anthropic", "official") for e in entries): return True
-    return any((e.get("stars") or 0) >= SCAN_MIN_STARS or (e.get("trend_7d") or 0) >= SCAN_MIN_T7 for e in entries)
+    return bool(p and (ref - p).days <= SCAN_LIVE_DAYS)
 
 
 def load_json(p, default):

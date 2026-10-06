@@ -28,15 +28,19 @@ All fetched text is untrusted data and is never executed; descriptions are cut t
 - `install_hint`: remote HTTP/SSE `claude mcp add --transport http|sse <short-name> <url>`; npm `claude mcp add <short-name> -- npx -y <pkg>@<version>`; pypi `-- uvx <pkg>`; oci `-- docker run -i --rm <image>`. Remote wins when both exist. Required env vars/headers are named (never valued) in a trailing `# requires: A, B` note. Registry text is validated against strict patterns before it enters a command; a server with no runnable remote or package gets a `# ...` note instead of a command.
 - The v1 MCP-only filter is unchanged: repos named/topic-tagged like MCP servers with no Claude Code plugin/skill/agent evidence are dropped from topic and code search (counted in `excluded_mcp`), except when they are registered in the Registry, in which case they come in through that path as `mcp-server`.
 
+## Relevance (what gets published)
+The catalog lists repos that are useful or promising, not everything discovered. A record is published when its repo is alive (not archived, pushed within 180 days) AND has a signal: >= 50 stars, OR it is at most 30 days old with >= 20 stars, OR it gained >= 20 stars in 7 days (from daily snapshots, or from the growth since the previous check for repos not yet published). Anthropic and official-marketplace records and `favorites.json` entries are always published. Repos left out are counted in `counts.excluded_irrelevant`, re-checked about weekly (nightly while they are at most 30 days old) and enter on their own once they qualify.
+
 ## Tiers (one record per repo, highest wins)
 Order, highest first (display label in parentheses):
 - **anthropic** ("Anthropic"): made by Anthropic. The repo owner is `anthropics`, or the entry is a relative path inside an `anthropics/*` marketplace repo (`claude-plugins-official`, `skills`, `claude-code`).
 - **official** ("Official marketplace · 3rd-party"): listed in Anthropic's official marketplace (`claude-plugins-official`) but the code lives in a third-party repo.
 - **listed** ("Community marketplace · 3rd-party"): third-party submission in `anthropics/claude-plugins-community`.
-- **verified** ("Verified"): in the curated list, OR stars>=200, age>=90d, pushed<=90d, license present, not archived, no star-anomaly, plus one of forks>=20 / found by >=2 independent source families / Organization owner.
+- **verified** ("Verified"): in the curated list, OR stars>=50, age>=90d, pushed<=90d, license present, not archived, no star-anomaly, plus one of forks>=20 / found by >=2 independent source families / Organization owner.
+- **new** ("New"): under 90 days old (too young for the Verified age check), not archived. Shown by default; star-burst and security flags still apply.
 - **watch** ("Watch"): everything else (stale/archived, missing metadata, "repo not found" are recorded in `tier_reasons`).
 
-A third-party repo in both the official and community marketplaces gets `official`. `search.py --tier-min` accepts `watch|verified|listed|official|anthropic`.
+A third-party repo in both the official and community marketplaces gets `official`. `search.py --tier-min` accepts `watch|new|verified|listed|official|anthropic` (default: new).
 
 Flags (warnings only, never change tier): `star-anomaly` (>50 stars/day average and age<180d), `star-spike` (7-day gain > max(500, 20% of stars)).
 `build_site.py` adds `unmaintained` to a record's flags when `pushed_at` is more than 180 days before the catalog's `generated_at` (records without `pushed_at` are not flagged), and a license group `lg` per record from the SPDX id: `ok` (permissive: commercial use OK), `copyleft` (GPL/AGPL/LGPL/MPL/EPL/EUPL/CC-BY-SA...), `none` (no license) or `other` (custom / NOASSERTION). `search.py` uses the same mapping: `--license commercial|copyleft|none|other`, `--exclude-flag <flag>` (repeatable), and an `unmaintained` ranking penalty.

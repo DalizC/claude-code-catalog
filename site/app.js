@@ -107,6 +107,7 @@
     { id: "official", label: "Official", long: "In Anthropic's official marketplace", desc: "Official marketplace" },
     { id: "listed", label: "Community", long: "In Anthropic's community marketplace", desc: "Community marketplace" },
     { id: "verified", label: "Verified", long: "Passed our quality checks", desc: "Passed quality checks" },
+    { id: "new", label: "New", long: "New, with early traction", desc: "Under 90 days, gaining stars" },
     { id: "watch", label: "Watch", long: "Not vetted yet", desc: "Unvetted, review first" },
   ];
   const TIER = Object.fromEntries(TIERS.map(t => [t.id, t]));
@@ -115,7 +116,7 @@
   const TLABEL = { plugin: "Plugin", skill: "Skill", agent: "Agent", marketplace: "Marketplace", "mcp-server": "MCP server", collection: "Collection" };
   const METHOD = { r: "keyword rules", e: "embeddings", er: "embeddings + rules", f: "fallback (no specific match)" };
   const SOURCE = { listed: "Community marketplace", official: "Official marketplace", curated: "Curated list", search: "GitHub search", "marketplace-expansion": "Another marketplace", "mcp-registry": "MCP Registry" };
-  const SCAN_SCOPE = "Not security-scanned. The nightly scan covers repos that are active (pushed in the last 6 months) and in use (50+ stars or +10 stars in 7 days), plus Anthropic and official-marketplace repos. Read the files before installing.";
+  const SCAN_SCOPE = "Not security-scanned. The nightly scan covers every listed repo that is active (pushed in the last 6 months, not archived); new ones are scanned first. Read the files before installing.";
   const FLAGS = {
     "star-farming": { label: "Unusual star burst", short: "Star burst", icon: "flag", sus: true, tip: "One day brought an outsized share of recent stars with no code activity around it. Can be a viral launch or bought stars: don't rely on the star count alone." },
     "star-spike": { label: "Star spike", short: "Star spike", icon: "flag", sus: true, tip: "A sudden jump in stars over the last few days." },
@@ -374,7 +375,7 @@
     { id: "added", label: "Recently added", get: r => r.fs || null },
     { id: "name", label: "Name", get: r => r.nl, col: "name", asc: true },
     { id: "author", label: "Author", get: r => r.ownl || null, col: "au" },
-    { id: "tier", label: "Tier", get: r => 4 - TORD[r.tr], col: "tier" },
+    { id: "tier", label: "Tier", get: r => TIERS.length - 1 - TORD[r.tr], col: "tier" },
     { id: "type", label: "Type", get: r => r.t || null, col: "type" },
     { id: "license", label: "License", get: r => LICRANK[r.lg] + "|" + String(r.l || "").toLowerCase(), col: "lic" },
   ];

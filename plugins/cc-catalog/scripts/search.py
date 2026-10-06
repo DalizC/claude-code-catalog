@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Search the Claude Code extensions catalog (data/catalog.json). Stdlib only.
 
-  search.py "<need>" [--type skill|plugin|agent|mcp-server] [--tier-min watch|verified|...] [--limit 15] [--json]
+  search.py "<need>" [--type skill|plugin|agent|mcp-server] [--tier-min watch|new|verified|...] [--limit 15] [--json]
             [--tech <id|label>]... [--area <id|label>]...
             [--license commercial|copyleft|none|other] [--exclude-flag <flag>]...
   search.py --tech react --area testing        (facets alone, no text query, ranked by quality)
@@ -43,10 +43,10 @@ ROOT = Path(__file__).resolve().parent.parent.parent.parent
 FAV_LOCAL = ROOT / "favorites.json"
 FAV_BOOST = 1.25  # multiplier on the relevance score of a favorite
 FAV_IDS = set()  # record ids of the favorites (filled in main)
-TIER_RANK = {"watch": 0, "verified": 1, "listed": 2, "official": 3, "anthropic": 4}
-TIER_WEIGHT = {"watch": 0.0, "verified": 0.15, "listed": 0.3, "official": 0.45, "anthropic": 0.6}
+TIER_RANK = {"watch": 0, "new": 1, "verified": 2, "listed": 3, "official": 4, "anthropic": 5}
+TIER_WEIGHT = {"watch": 0.0, "new": 0.08, "verified": 0.15, "listed": 0.3, "official": 0.45, "anthropic": 0.6}
 TIER_LABEL = {"anthropic": "Anthropic", "official": "Official marketplace · 3rd-party",
-              "listed": "Community marketplace · 3rd-party", "verified": "Verified", "watch": "Watch"}
+              "listed": "Community marketplace · 3rd-party", "verified": "Verified", "new": "New (under 90 days, early traction)", "watch": "Watch"}
 
 # License groups (same mapping as build_site.py): SPDX id -> commercial | copyleft | none | other
 PERMISSIVE = re.compile(r"^(MIT|MIT-0|Apache-2\.0|BSD-[23]-Clause|ISC|0BSD|Unlicense|Zlib|CC0-1\.0|WTFPL|UPL-1\.0|PostgreSQL|Artistic-2\.0|BSL-1\.0|CC-BY-4\.0|Python-2\.0)$")
@@ -508,7 +508,7 @@ def main():
             return False
         if a.exclude_flag and set(a.exclude_flag) & set(all_flags(r)):
             return False
-        if TIER_RANK.get(r.get("tier"), 0) < TIER_RANK[a.tier_min or ("watch" if a.favorites else "verified")]:  # watch is excluded unless --tier-min watch (or --favorites)
+        if TIER_RANK.get(r.get("tier"), 0) < TIER_RANK[a.tier_min or ("watch" if a.favorites else "new")]:  # watch is excluded unless --tier-min watch (or --favorites)
             return False
         return True
 
@@ -539,7 +539,7 @@ def main():
         else:
             note = "no trend data in catalog yet; showing recently pushed, non-flagged repos by tier and stars"
             res = [r for r in pool if not r.get("archived") and not (r.get("flags") or [])
-                   and (days_since(r.get("pushed_at")) or 9999) <= 30 and TIER_RANK.get(r.get("tier"), 0) >= TIER_RANK["verified"]]
+                   and (days_since(r.get("pushed_at")) or 9999) <= 30 and TIER_RANK.get(r.get("tier"), 0) >= TIER_RANK["new"]]
             res.sort(key=lambda r: -(r.get("stars") or 0))
         res = res[:limit]
         if a.json:

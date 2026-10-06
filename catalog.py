@@ -695,9 +695,12 @@ def enrich():
     try: gmeta = json.loads(gc.read_text(encoding="utf-8")) if gc.exists() and not REFRESH else {}
     except Exception: gmeta = {}
     others = {e["repo"] for e in ENTRIES.values() if e["repo"] and (e["sources"] != ["mcp-registry"] or e.get("prev"))}  # prev: published
+    try: left_out = set(json.loads((CACHE / "irrelevant.json").read_text(encoding="utf-8")))
+    except Exception: left_out = set()
     def ttl(r):
         m = gmeta[r].get("m") or {}
-        if r not in others and (m.get("not_found") or (m.get("stars") or 0) < MCP_MIN_STARS):
+        young = (days(m.get("created_at")) if m.get("created_at") else None) is not None and days(m["created_at"]) <= YOUNG_DAYS
+        if (r not in others and (m.get("not_found") or (m.get("stars") or 0) < MCP_MIN_STARS)) or (r in left_out and not young):
             return LOW_SIGNAL_TTL_D * 86400 * (0.5 + int(hashlib.sha1(r.encode()).hexdigest()[:4], 16) / 0xFFFF)  # spread over the week
         return CACHE_TTL_H * 3600
     fresh = {r for r in repos if r in gmeta and time.time() - gmeta[r]["t"] < ttl(r)}
@@ -723,7 +726,11 @@ def enrich():
         for j, r in enumerate(chunk):
             n = d["data"].get(f"r{j}")
             if n:
-                set_meta_gql(r, n); done += 1; gmeta[r] = {"t": time.time(), "m": META[r]}
+                old = gmeta.get(r) or {}
+                set_meta_gql(r, n); done += 1
+                if (old.get("m") or {}).get("stars") is not None:  # previous check: growth for repos without snapshots
+                    META[r]["prev_stars"], META[r]["prev_at"] = old["m"]["stars"], old["t"]
+                gmeta[r] = {"t": time.time(), "m": META[r]}
                 can = n.get("nameWithOwner")  # renamed/transferred repo: the canonical name shares this metadata
                 if can and can != r and META.get(can, {}).get("stars") is None: META[can] = META[r]
             else: META[r] = {"stars": None, "not_found": True}; gmeta[r] = {"t": time.time(), "m": META[r]}
@@ -921,9 +928,12 @@ def tier(hint, curated, repo, sources, origin="", item_level=False):
     if stale: reasons.append("stale/archived")
     if st is None:
         reasons.append("no metadata"); return "watch", reasons, flags
+    if age is not None and age < NEW_DAYS and not stale:
+        return "new", [f"created {age} days ago: too young for Verified (needs {NEW_DAYS} days of history)", f"stars {st}",
+                       f"pushed {push} days ago" if push is not None else "push date unknown"], flags
     dl = m.get("license_declared") or {}
     lic = m.get("license") or (dl.get("id") if dl.get("id") != "unclear" else None); fams = {family(x) for x in sources}
-    checks = [(st >= 200, f"stars>=200 ({st})"), (age is not None and age >= 90, f"age>=90d ({age})"),
+    checks = [(st >= MIN_STARS, f"stars>={MIN_STARS} ({st})"), (age is not None and age >= 90, f"age>=90d ({age})"),
               (push is not None and push <= 90, f"pushed<=90d ({push})"), (bool(lic) and lic != "NOASSERTION", f"license ({lic}{', declared' if lic and not m.get('license') else ''})"),
               (not m.get("archived"), "not archived"), ("star-anomaly" not in flags, "no star-anomaly")]
     forks = m.get("forks") or 0
@@ -970,6 +980,32 @@ def trend(snaps, repo, stars, n):
     return stars - old[-1][repo]
 
 EXCLUDED_MCP = []
+# Relevance: the catalog lists repos that are useful or promising, not everything discovered. A repo is published when
+# it is alive (not archived, pushed within ACTIVE_DAYS) AND has a signal: >= MIN_STARS stars, OR it is young
+# (<= YOUNG_DAYS old) with >= YOUNG_STARS stars, OR it gained >= TREND_STARS stars in 7 days. Anthropic and
+# official-marketplace repos and favorites.json entries are always published. Excluded repos are re-checked weekly
+# (young ones nightly) and enter on their own once they qualify.
+ACTIVE_DAYS, MIN_STARS, YOUNG_DAYS, YOUNG_STARS, TREND_STARS = 180, 50, 30, 20, 20
+NEW_DAYS = 90  # repos younger than this can't be Verified yet (age check); relevant ones get the "new" tier instead of watch
+EXCLUDED_IRRELEVANT = {}  # repo -> reason
+
+def favorite_ids():
+    try: v = json.loads((ROOT / "favorites.json").read_text(encoding="utf-8"))
+    except Exception: return set()
+    return {f.get("id") for f in (v.get("favorites") or []) if isinstance(f, dict) and f.get("id")}
+
+def irrelevance(m, t, t7, ids, favs):
+    """None when the record is published, else the reason it is left out."""
+    if t in ("anthropic", "official") or favs & set(ids): return None
+    if m.get("archived"): return "archived"
+    push = days(m.get("pushed_at"))
+    if push is None or push > ACTIVE_DAYS: return f"no push in {ACTIVE_DAYS} days"
+    st = m.get("stars") or 0; age = days(m.get("created_at"))
+    if t7 is None and m.get("prev_stars") is not None and m.get("prev_at"):  # left out until now: growth since the last check
+        span = (time.time() - m["prev_at"]) / 86400
+        if span >= 1: t7 = (st - m["prev_stars"]) * 7 / span
+    if st >= MIN_STARS or (age is not None and age <= YOUNG_DAYS and st >= YOUNG_STARS) or (t7 or 0) >= TREND_STARS: return None
+    return "below the star bar"
 
 def build():
     prev = {}
@@ -980,6 +1016,7 @@ def build():
             prev = {e["id"]: e for e in (pj["repos"] if isinstance(pj, dict) else pj)}
         except Exception: pass
     snaps = load_snapshots()
+    favs = favorite_ids()
     nodes = {}  # GraphQL node id -> canonical nameWithOwner (renamed/transferred repos share one node id)
     for r, m in META.items():
         if m.get("node_id") and m.get("canonical"): nodes.setdefault(m["node_id"], m["canonical"])
@@ -1031,6 +1068,10 @@ def build():
         pct = None
         if t7 is not None and st is not None and st - t7 > 0: pct = round(100 * t7 / (st - t7), 2)
         if t7 is not None and st is not None and t7 > max(500, 0.2 * st): fl = fl + ["star-spike"]
+        why = irrelevance(META.get(repo, {}) if repo else {}, t, t7, [rid, repo] + aliases, favs)  # item-level: its container's metadata
+        if why:
+            if repo: EXCLUDED_IRRELEVANT.setdefault(repo, why)
+            continue
         out.append({"id": rid, "repo": repo, "name": (es[0]["name"] if item_level else repo.split("/")[-1] if repo else es[0]["name"]), "description": desc,
                     "type": types[0], "types": types, "items": items, "sources": sources,
                     "url": es[0]["url"] if item_level else f"https://github.com/{repo}" if repo else es[0]["url"],
@@ -1075,14 +1116,16 @@ def main():
     counts = {"repos": len(out), "items": sum(len(e["items"]) for e in out),
               "tiers": dict(Counter(e["tier"] for e in out)), "types": dict(Counter(e["type"] for e in out)),
               "item_types": dict(Counter(i["type"] for e in out for i in e["items"])),
-              "flags": dict(Counter(f for e in out for f in e["flags"])), "excluded_mcp": len(EXCLUDED_MCP), "mcp": mcp_counts(out), "degradation": degradation(out),
+              "flags": dict(Counter(f for e in out for f in e["flags"])), "excluded_mcp": len(EXCLUDED_MCP), "excluded_irrelevant": dict(Counter(EXCLUDED_IRRELEVANT.values())), "mcp": mcp_counts(out), "degradation": degradation(out),
               "without_metadata": sum(1 for e in out if e["stars"] is None)}
     doc = {"generated_at": NOW.strftime("%Y-%m-%dT%H:%M:%SZ"), "schema": 1, "counts": counts, "repos": out}
     (DATA / "catalog.json").write_text(json.dumps(doc, indent=1), encoding="utf-8")
     (DATA / "snapshots" / f"{TODAY}.json").write_text(
         json.dumps({e["repo"]: e["stars"] for e in out if e["repo"] and e["stars"] is not None}, indent=1), encoding="utf-8")
     report(out, flat, nmiss, ndone, time.time() - t0)
-    print("repos:", len(out), "flat entries:", len(ENTRIES), "excluded mcp:", len(EXCLUDED_MCP), f"{time.time()-t0:.0f}s")
+    CACHE.mkdir(exist_ok=True); (CACHE / "irrelevant.json").write_text(json.dumps(sorted(EXCLUDED_IRRELEVANT)), encoding="utf-8")
+    print("repos:", len(out), "flat entries:", len(ENTRIES), "excluded mcp:", len(EXCLUDED_MCP),
+          "left out (relevance):", dict(Counter(EXCLUDED_IRRELEVANT.values())), f"{time.time()-t0:.0f}s")
 
 def tab(counter):
     return "\n".join(f"- {k}: {v}" for k, v in sorted(counter.items(), key=lambda x: -x[1]))
