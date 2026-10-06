@@ -1,6 +1,6 @@
 {
- "version": 1,
- "description": "Static security rules for cc-catalog security.py. Patterns are Python regexes matched per line (case-insensitive unless case_sensitive). Severity: info < review < high. Kinds: script, hooks (hook configs), settings (.claude/settings*.json), manifest (plugin.json/.mcp.json), md_instr (SKILL.md/agents/commands), md_doc (other markdown). prefilter: lowercase substrings, at least one must occur in the file before the rule's regexes run.",
+ "version": 2,
+ "description": "Static security rules for cc-catalog security.py. Patterns are Python regexes matched per line (case-insensitive unless case_sensitive). Severity: info < review < high. Kinds: server (MCP server source files and setup.py, scanned for mcp-server entries), script, hooks (hook configs), settings (.claude/settings*.json), manifest (plugin.json/.mcp.json), md_instr (SKILL.md/agents/commands), md_doc (other markdown). prefilter: lowercase substrings, at least one must occur in the file before the rule's regexes run.",
  "context": {
   "test_path": "(?:^|/)(?:tests?|__tests__|spec|specs|fixtures?|examples?|samples?|demos?|testdata|test-data|datasets?|corpus|cve-replay|mocks?|evals?|benchmarks?)(?:/|$)|\\.(?:test|spec)\\.[a-z]+$|(?:^|/)test_[^/]+$",
   "doc_words": "\\b(?:never|don'?t|do not|avoid|dangerous|destructive|malicious|attack(?:er|s)?|detect(?:s|ed|ion)?|flag(?:s|ged)?|block(?:s|ed|ing)?|den(?:y|ies|ied)|forbid(?:den)?|prohibit(?:ed)?|warn(?:ing)?|risk(?:y|s)?|unsafe|vulnerab\\w*|exploit\\w*|red.flag|anti-?pattern|insecure|prevent\\w*|refuse|reject\\w*|suspicious|threat\\w*|injection|watch for|look for|such as|e\\.g\\.|example|bad:|wrong:|instead of|scan\\w*|audit\\w*|checks? for|catch(?:es)?|guard\\w*|exfiltrat\\w*|backdoor|poison\\w*|jailbreak\\w*|sanitiz\\w*|harden\\w*)\\b|\\u7981\\u6b62|\\u5371\\u967a|\\u7d76\\u5bfe|\\u4e0d\\u53ef|\\uae08\\uc9c0|\\uc704\\ud5d8|\\ucc28\\ub2e8|\\u5371\\u9669|\\u963b\\u6b62|\\u274c|\\U0001F6AB|\\u26a0",
@@ -42,7 +42,8 @@
    "severity_by_kind": {
     "script": "review",
     "md_instr": "info",
-    "md_doc": "info"
+    "md_doc": "info",
+    "server": "review"
    },
    "scope": [
     "script",
@@ -50,7 +51,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "escalate": {
     "pattern": "\\bhttp://(?!localhost|127\\.|0\\.0\\.0\\.0)|https?://\\d{1,3}(?:\\.\\d{1,3}){3}|\\bsudo\\b|bit\\.ly/|tinyurl\\.com|is\\.gd/|gist\\.githubusercontent\\.com|pastebin\\.com|workers\\.dev|ngrok|trycloudflare\\.com",
@@ -88,7 +90,8 @@
    "severity_by_kind": {
     "script": "review",
     "md_instr": "info",
-    "md_doc": "info"
+    "md_doc": "info",
+    "server": "review"
    },
    "scope": [
     "script",
@@ -96,7 +99,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "escalate": {
     "pattern": "\\bhttp://(?!localhost|127\\.|0\\.0\\.0\\.0)|https?://\\d{1,3}(?:\\.\\d{1,3}){3}|\\bsudo\\b|bit\\.ly/|tinyurl\\.com|is\\.gd/|gist\\.githubusercontent\\.com|pastebin\\.com|workers\\.dev|ngrok|trycloudflare\\.com",
@@ -129,7 +133,8 @@
    "severity_by_kind": {
     "script": "review",
     "md_instr": "info",
-    "md_doc": "info"
+    "md_doc": "info",
+    "server": "review"
    },
    "scope": [
     "script",
@@ -137,7 +142,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "escalate": {
     "pattern": "\\bhttp://(?!localhost|127\\.|0\\.0\\.0\\.0)|https?://\\d{1,3}(?:\\.\\d{1,3}){3}|\\bsudo\\b|bit\\.ly/|tinyurl\\.com|is\\.gd/|gist\\.githubusercontent\\.com|pastebin\\.com|workers\\.dev|ngrok|trycloudflare\\.com",
@@ -178,7 +184,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "\\brm\\s+(?:-[a-zA-Z]+\\s+)*-[a-zA-Z]*[rR][a-zA-Z]*\\s+(?:-[a-zA-Z-]+\\s+)*[\\\"']?(?:/|/\\*|~|~/|~/\\*|\\$(?-i:HOME)/?|\\$\\{(?-i:HOME)\\}/?|\\$(?-i:HOME)/\\*|\\$\\{(?-i:HOME)\\}/\\*)[\\\"']?(?=\\s*(?:$|[;&|)`]|#))",
@@ -213,7 +220,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "\\bdd\\s+[^\\n]*\\bof=/dev/(?:sd[a-z]|nvme\\d|disk\\d|hd[a-z]|xvd[a-z]|mmcblk\\d|rdisk\\d)",
@@ -226,7 +234,8 @@
     "mkfs",
     "format",
     ":()"
-   ]
+   ],
+   "severity_by_kind": {}
   },
   {
    "id": "destructive-chmod-777",
@@ -239,7 +248,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "\\bchmod\\s+(?:-\\w+\\s+)*-[a-zA-Z]*R[a-zA-Z]*\\s+(?:-\\w+\\s+)*(?:0?777|a\\+rwx|ugo\\+rwx)\\b"
@@ -251,7 +261,8 @@
    },
    "prefilter": [
     "chmod"
-   ]
+   ],
+   "severity_by_kind": {}
   },
   {
    "id": "destructive-force-push-main",
@@ -264,7 +275,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "\\bgit\\s+push\\b[^\\n]*(?:--force(?!-with-lease)\\b|\\s-f\\b)[^\\n]*\\b(?:main|master)\\b",
@@ -273,7 +285,8 @@
    ],
    "prefilter": [
     "push"
-   ]
+   ],
+   "severity_by_kind": {}
   },
   {
    "id": "exfil-secrets-upload",
@@ -289,7 +302,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "\\b(?:curl|wget)\\b[^\\n]*(?:-d|--data(?:-binary|-raw|-urlencode)?|-F|--form|-T|--upload-file|--post-data|--post-file)[=\\s][^\\n]*(?:\\$\\(\\s*(?:env|printenv|set)\\s*\\)|`(?:env|printenv)`|~/\\.ssh/|\\$HOME/\\.ssh/|~/\\.aws/|\\$HOME/\\.aws/|\\bid_(?:rsa|ed25519|ecdsa|dsa)\\b(?!\\.pub)|\\.aws/credentials|/etc/shadow|\\.netrc|\\.git-credentials)",
@@ -327,7 +341,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "\\b(?:ba)?sh\\s+-i\\s+>&\\s*/dev/tcp/",
@@ -357,7 +372,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "(?:webhook\\.site|requestbin\\.(?:com|net)|\\.m\\.pipedream\\.net|pipedream\\.net|\\.oast\\.(?:fun|me|pro|live|site|online)|interact\\.sh|burpcollaborator\\.net|canarytokens\\.com|ngrok(?:-free)?\\.(?:io|app|dev)|pastebin\\.com/api|transfer\\.sh|0x0\\.st|hastebin\\.com|termbin\\.com|requestcatcher\\.com|beeceptor\\.com|hookbin\\.com)"
@@ -392,7 +408,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "discord(?:app)?\\.com/api/webhooks/\\d{15,}/[\\w-]{30,}",
@@ -404,7 +421,8 @@
     "discord",
     "hooks.slack",
     "api.telegram"
-   ]
+   ],
+   "severity_by_kind": {}
   },
   {
    "id": "cred-ssh-cloud-keys",
@@ -412,7 +430,8 @@
    "description": "Reads SSH private keys, cloud or package-registry credential files.",
    "severity": "review",
    "severity_by_kind": {
-    "md_doc": "info"
+    "md_doc": "info",
+    "server": "info"
    },
    "scope": [
     "script",
@@ -420,7 +439,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "(?:~|\\$HOME|\\$\\{HOME\\}|homedir\\(\\)[^\\n]{0,20}|expanduser\\([\\\"']~)/\\.ssh/(?:id_\\w+|identity)\\b(?!\\.pub)",
@@ -467,7 +487,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "\\bsecurity\\s+(?:find-generic-password|find-internet-password|dump-keychain)\\b[^\\n]*(?:\\s-[wg]\\b|dump)",
@@ -496,7 +517,8 @@
     "hooks",
     "settings",
     "manifest",
-    "md_instr"
+    "md_instr",
+    "server"
    ],
    "patterns": [
     "(?:Google[/\\\\\\\\ ]Chrome|Chromium|BraveSoftware|Microsoft[/\\\\\\\\ ]Edge|Mozilla[/\\\\\\\\ ]Firefox|\\.mozilla/firefox)[^\\n]*(?:Cookies|cookies\\.sqlite|Login Data|logins\\.json|key4\\.db|Local State)\\b",
@@ -511,7 +533,8 @@
     "firefox",
     "mozilla",
     "cookie"
-   ]
+   ],
+   "severity_by_kind": {}
   },
   {
    "id": "cred-home-dotenv",
@@ -527,7 +550,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "(?:cat|source|\\.|open\\(|readFile\\w*\\(|load_dotenv\\()\\s*[\\\"']?(?:~|\\$HOME|\\$\\{HOME\\})/\\.env\\b"
@@ -542,7 +566,8 @@
    "description": "Installs a cron job.",
    "severity": "review",
    "severity_by_kind": {
-    "md_doc": "info"
+    "md_doc": "info",
+    "server": "info"
    },
    "scope": [
     "script",
@@ -550,7 +575,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "\\|\\s*crontab\\s+-\\s*(?:$|[;&)])",
@@ -582,7 +608,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "\\blaunchctl\\s+(?:load|bootstrap|submit)\\b",
@@ -619,7 +646,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "(?:>>|tee\\s+-a)\\s*[\\\"']?(?:~|\\$HOME|\\$\\{HOME\\})/\\.(?:bashrc|zshrc|bash_profile|profile|zprofile|zshenv|bash_login)\\b",
@@ -646,14 +674,16 @@
     "script",
     "hooks",
     "settings",
-    "manifest"
+    "manifest",
+    "server"
    ],
    "patterns": [
     "(?:>|tee|writeFile\\w*|write_text|json\\.dump|open\\([^)]*[\\\"']w)[^\\n]*(?:~|\\$HOME|homedir\\(\\)|home\\(\\))[^\\n]*\\.claude/settings(?:\\.local)?\\.json"
    ],
    "prefilter": [
     ".claude/settings"
-   ]
+   ],
+   "severity_by_kind": {}
   },
   {
    "id": "perm-skip-permissions",
@@ -669,7 +699,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "--dangerously-skip-permissions\\b",
@@ -691,7 +722,8 @@
     "hooks",
     "manifest",
     "md_instr",
-    "script"
+    "script",
+    "server"
    ],
    "patterns": [
     "[\\\"']?defaultMode[\\\"']?\\s*[:=]\\s*[\\\"']?bypassPermissions",
@@ -699,7 +731,8 @@
    ],
    "prefilter": [
     "bypasspermissions"
-   ]
+   ],
+   "severity_by_kind": {}
   },
   {
    "id": "perm-allow-all",
@@ -751,9 +784,11 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
-   "context": false
+   "context": false,
+   "severity_by_kind": {}
   },
   {
    "id": "inject-zero-width",
@@ -767,10 +802,12 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "context": false,
-   "min_count": 3
+   "min_count": 3,
+   "severity_by_kind": {}
   },
   {
    "id": "inject-bidi-override",
@@ -779,7 +816,8 @@
    "description": "Bidirectional override/isolate controls (Trojan Source style).",
    "severity": "review",
    "severity_by_kind": {
-    "script": "high"
+    "script": "high",
+    "server": "high"
    },
    "scope": [
     "script",
@@ -787,7 +825,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "context": false
   },
@@ -825,7 +864,8 @@
     "md_instr",
     "md_doc",
     "script",
-    "manifest"
+    "manifest",
+    "server"
    ],
    "patterns": [
     "\\b(?:ignore|disregard|forget)\\s+(?:all\\s+|any\\s+)?(?:of\\s+)?(?:the\\s+|your\\s+)?(?:previous|prior|above|earlier|preceding|system)\\s+(?:instructions?|prompts?|rules|directives|messages)\\b"
@@ -834,7 +874,8 @@
     "ignore",
     "disregard",
     "forget"
-   ]
+   ],
+   "severity_by_kind": {}
   },
   {
    "id": "inject-conceal-from-user",
@@ -881,7 +922,8 @@
     "settings",
     "manifest",
     "md_instr",
-    "md_doc"
+    "md_doc",
+    "server"
    ],
    "patterns": [
     "\\beval\\s*\\(\\s*(?:atob|Buffer\\.from|unescape|decodeURIComponent|String\\.fromCharCode)\\s*\\(",
@@ -909,7 +951,8 @@
    "scope": [
     "script",
     "hooks",
-    "manifest"
+    "manifest",
+    "server"
    ],
    "case_sensitive": true,
    "mixed_case_digits": true,
@@ -923,6 +966,75 @@
     "integrity=|sha(?:256|384|512)-",
     "\\.(?:png|jpe?g|gif|woff2?|ttf|svg|ico|wasm)\\b",
     "-----BEGIN [A-Z ]*(?:CERTIFICATE|PUBLIC KEY)"
+   ],
+   "severity_by_kind": {
+    "server": "info"
+   }
+  },
+  {
+   "id": "mcp-tool-poisoning",
+   "category": "prompt-injection",
+   "description": "An MCP tool description tells the model to read local secrets or config before using the tool (tool poisoning).",
+   "severity": "high",
+   "scope": [
+    "server"
+   ],
+   "context": false,
+   "prefilter": [
+    "this tool",
+    "before using",
+    "before calling"
+   ],
+   "patterns": [
+    "\\b(?:before|prior to)\\s+(?:using|calling|invoking)\\s+this\\s+tool\\b[^\\n]{0,160}?\\b(?:read|cat|open|load|send|include|pass|attach|upload)\\b[^\\n]{0,120}?(?:~/|\\$HOME|\\.ssh\\b|id_rsa|id_ed25519|\\.env\\b|mcp\\.json|credentials|\\.aws/|\\.netrc|api[_ ]?keys?)"
+   ]
+  },
+  {
+   "id": "mcp-tool-conceal",
+   "category": "prompt-injection",
+   "description": "An MCP tool description asks the model to hide something from the user.",
+   "severity": "review",
+   "scope": [
+    "server"
+   ],
+   "context": false,
+   "prefilter": [
+    "user"
+   ],
+   "patterns": [
+    "\\b(?:do not|don't|never)\\s+(?:tell|inform|notify|mention|reveal|disclose|show)\\s+(?:this\\s+|it\\s+|anything\\s+)?(?:to\\s+)?(?:the\\s+)?user\\b(?!\\s+to\\b|\\s*[`'\\\"]\\s*\\+?\\s*$)"
+   ]
+  },
+  {
+   "id": "install-script-download",
+   "category": "remote-code-execution",
+   "description": "A package install hook (preinstall/install/postinstall) downloads or runs remote code when the package is installed.",
+   "severity": "review",
+   "scope": [
+    "manifest"
+   ],
+   "context": false,
+   "prefilter": [
+    "install"
+   ],
+   "patterns": [
+    "\"(?:pre|post)?install\"\\s*:\\s*\"[^\"\\n]*(?:\\bcurl\\b|\\bwget\\b|https?://|\\bnode\\s+-e\\b|\\biwr\\b|Invoke-WebRequest|\\bbash\\s+-c\\b|\\bsh\\s+-c\\b|\\bpython3?\\s+-c\\b)"
+   ]
+  },
+  {
+   "id": "install-script",
+   "category": "remote-code-execution",
+   "description": "The package runs a script when it is installed (preinstall/install/postinstall); usually a build step, worth knowing.",
+   "severity": "info",
+   "scope": [
+    "manifest"
+   ],
+   "context": false,
+   "prefilter": [
+    "install"
+   ],
+   "patterns": [
+    "\"(?:preinstall|install|postinstall)\"\\s*:\\s*\""
    ]
   }
  ]

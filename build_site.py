@@ -59,7 +59,7 @@ def parse_dt(s):
 def unscanned(r):
     """No current security scan: never scanned (outside the scan scope, see security.py in_scope) or pushed after its last scan."""
     v = r.get("security") if isinstance(r.get("security"), dict) else None
-    if not v or v.get("level") not in ("ok", "review", "high"):
+    if not v or v.get("level") not in ("ok", "review", "high", "none"):
         return True
     p, s = parse_dt(r.get("pushed_at")), parse_dt(v.get("scanned_at"))
     return bool(p and s and p > s)
@@ -94,7 +94,7 @@ def fallback_tags(c, group):
 
 def security(v):
     """Slim the optional security scan result: {"level", "findings": [...], "scanned_at"}."""
-    if not isinstance(v, dict) or v.get("level") not in ("ok", "review", "high"):
+    if not isinstance(v, dict) or v.get("level") not in ("ok", "review", "high", "none"):
         return None
     out = []
     for f in (v.get("findings") or [])[:SEC_FINDINGS]:

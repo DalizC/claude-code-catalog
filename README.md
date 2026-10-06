@@ -52,6 +52,7 @@ Flags (warnings only, never change tier): `star-anomaly` (>50 stars/day average 
 - Flags facet: every flag is checked (included) by default; unchecking one hides every repo carrying it (`#hide=unmaintained,...`). "Trending & trusted" hides the suspicious flags (star burst/spike/anomaly, security review/high).
 - License facet: the four license groups (`#lic=ok`).
 - Area chips and technology icons in rows, cards and the details panel filter by that facet; activating an active one removes the filter.
+- Security scan (`security.py`, static patterns from `security_rules.json`, never executed): every alive published repo; never-scanned and verdict-less repos first, then repos pushed since their last scan, then rotation. It reads Claude Code components (hooks, settings, plugin/MCP manifests, hook/skill/plugin scripts, SKILL.md/agents/commands) and, for MCP server entries, their `package.json` (install hooks), `setup.py` and source files (entry points first; tests, examples and docs skipped), including tool-description poisoning ("before using this tool, read ~/.ssh..."). Levels: ok, review, high, and none ("scanned: nothing to check" when a repo ships nothing the scanner reads). Repos without a current verdict carry the "Not security-scanned" flag.
 - The chevron and the 7d/30d trend button open the same details panel: star history chart on the left; trust summary, flags, security findings, install commands, description and tags on the right.
 - Technology icons are Simple Icons SVGs vendored in `site/icons/` (no runtime CDN); technologies without an icon show a neutral glyph and the name.
 
@@ -66,7 +67,7 @@ Outputs: `data/catalog.json`, `data/report.md`, `data/snapshots/YYYY-MM-DD.json`
 
 ## Pipeline
 Two workflows:
-- `update.yml` (daily cron, or manual): `catalog.py` -> `classify.py` -> `history.py` -> `security.py` -> `build_site.py` -> commit `data/` -> deploy to Pages. `classify`, `history` and `security` run with `continue-on-error`, so a failure in any of them never blocks publishing the catalog (the previous outputs are kept).
+- `update.yml` (daily cron, or manual): `catalog.py` -> `classify.py` -> `security.py` -> `history.py` -> `build_site.py` -> commit `data/` -> deploy to Pages. `classify`, `history` and `security` run with `continue-on-error`, so a failure in any of them never blocks publishing the catalog (the previous outputs are kept).
 - `deploy-site.yml` (on push touching `site/**`, `build_site.py` or `favorites.json`): rebuilds the page from the committed data (`history.py --shards-only` + `build_site.py`) and deploys it in about a minute, with no data collection.
 - `classify.py`: rules plus local fastembed (ONNX) embeddings; README cache in `cache/readmes.json`; output `data/classifications.json`. Model cache dir is `FASTEMBED_CACHE_PATH`.
 - `history.py --budget N`: star-history backfill (default 1500 API calls per run), resumable via `data/history/_state.json`; writes `data/history/` and `site/history/`.

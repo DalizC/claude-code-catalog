@@ -14,7 +14,7 @@
   search.py "browser automation" --type mcp-server   (standalone MCP servers from the official MCP Registry)
   search.py "pdf export" --license commercial   (only permissive licenses: MIT, Apache-2.0, BSD, ISC...)
   search.py "memory" --exclude-flag unmaintained --exclude-flag security-review
-  Flags: star-farming, star-spike, star-anomaly, security-review, security-high, archived,
+  Flags: star-farming, star-spike, star-anomaly, security-review, security-high, archived, paid-api, api-key,
   unmaintained (no push for more than 180 days before the catalog's generated_at).
 """
 import argparse
@@ -53,7 +53,8 @@ PERMISSIVE = re.compile(r"^(MIT|MIT-0|Apache-2\.0|BSD-[23]-Clause|ISC|0BSD|Unlic
 COPYLEFT = re.compile(r"^(A?GPL|LGPL|MPL|EPL|EUPL|CC-BY-SA|OSL|CDDL)")
 LICENSE_GROUPS = ("commercial", "copyleft", "none", "other")
 UNMAINTAINED_DAYS = 180
-FLAG_CHOICES = ("star-farming", "star-spike", "star-anomaly", "security-review", "security-high", "archived", "unmaintained")
+FLAG_CHOICES = ("star-farming", "star-spike", "star-anomaly", "security-review", "security-high", "archived", "unmaintained",
+                "paid-api", "api-key")
 REF_TIME = None  # catalog generated_at (set in main); falls back to now
 
 

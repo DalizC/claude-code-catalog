@@ -42,6 +42,11 @@ SKIP_DIRS = {"node_modules", ".git", "vendor", "dist", "build", "out", ".next", 
              "venv", ".venv", "coverage", "target", "bower_components", ".turbo", ".cache", "third_party"}
 SCRIPT_EXT = {".sh", ".bash", ".zsh", ".py", ".js", ".mjs", ".cjs", ".ts", ".mts", ".cts", ".ps1", ".psm1", ".bat", ".cmd"}
 CODE_DIRS = {"hooks", "scripts", "bin", "skills", "commands", "agents", "tools", "lib", "hook", "script"}
+# MCP server source (kind "server"): scanned for mcp-server entries, entry points first; tests, examples and docs are skipped
+SERVER_EXT = {".ts", ".mts", ".cts", ".js", ".mjs", ".cjs", ".py", ".go", ".rs"}
+SERVER_SKIP = re.compile(r"(?:^|/)(?:tests?|__tests__|spec|specs|e2e|fixtures?|examples?|samples?|demos?|docs?|benchmarks?|mocks?|"
+                         r"site|website|public|static|assets|\.github|types|typings)(?:/|$)|\.(?:test|spec|d)\.[a-z]+$|(?:^|/)test_[^/]+$", re.I)
+SERVER_ENTRY = re.compile(r"(?:^|/)(?:index|main|server|cli|app|mcp|__main__|__init__|tools?|handlers?)\.[a-z]+$", re.I)
 NOW = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
@@ -182,8 +187,9 @@ def kind_of(path):
     return None
 
 
-def select_files(blobs, subpath, exclude):
-    """Pick the Claude Code component files of one entry (subpath '' = whole repo)."""
+def select_files(blobs, subpath, exclude, mcp=False):
+    """Pick the Claude Code component files of one entry (subpath '' = whole repo); for an MCP server entry also its
+    package.json / setup.py and source files (kind "server")."""
     pre = (subpath.rstrip("/") + "/") if subpath else ""
     cand = [(p, s, z) for p, s, z in blobs if p.startswith(pre) and not any(p.startswith(x + "/") for x in exclude)]
     skill_dirs = {p.rsplit("/", 1)[0] for p, _, _ in cand if p.lower().endswith("/skill.md")}
@@ -204,6 +210,17 @@ def select_files(blobs, subpath, exclude):
             if not (in_skill or in_plugin or in_claude): continue
         if kind == "md_doc" and not any(p.startswith(d + "/") for d in skill_dirs) and "/skills/" not in "/" + p.lower(): continue
         out.append({"path": p, "sha": s, "size": z, "kind": kind, "prio": prio})
+    if mcp:
+        have = {f["path"] for f in out}
+        for p, s, z in cand:
+            if p in have or z > MAX_FILE_BYTES: continue
+            low = p.lower(); name = low.rsplit("/", 1)[-1]; rel = low[len(pre):]
+            ext = "." + name.rsplit(".", 1)[-1] if "." in name else ""
+            if name == "package.json" and rel.count("/") <= 1: out.append({"path": p, "sha": s, "size": z, "kind": "manifest", "prio": 1})
+            elif name == "setup.py" and rel.count("/") <= 1: out.append({"path": p, "sha": s, "size": z, "kind": "server", "prio": 2})
+            elif ext in SERVER_EXT and not SERVER_SKIP.search(rel) and not name.endswith((".min.js", ".bundle.js")):
+                depth = rel.count("/")
+                out.append({"path": p, "sha": s, "size": z, "kind": "server", "prio": (3 if SERVER_ENTRY.search(rel) and depth <= 3 else 5) + min(depth, 4)})
     return out
 
 
@@ -553,8 +570,10 @@ REF_RE = re.compile(r"[\w./${}-]*?([\w.-]+\.(?:sh|bash|zsh|py|js|mjs|cjs|ts|ps1)
 
 def scan_entry(repo, e, tree, exclude, entries_desc):
     sub = entry_subpath(e)
-    files = select_files(tree["blobs"], sub, exclude)
-    if not files: return None
+    mcp = e.get("type") == "mcp-server" or "mcp-server" in (e.get("types") or [])
+    files = select_files(tree["blobs"], sub, exclude, mcp)
+    if not files:  # visited, but it ships nothing this scanner reads (e.g. it only points to other repos or a remote server)
+        return {"level": "none", "findings": [], "tree_sha": tree["sha"], "scanned_at": NOW, "files": 0}
     configs = [f for f in files if f["kind"] in ("hooks", "settings", "manifest")][:10]
     texts = fetch_blobs(repo, configs)
     referenced = set()
@@ -712,8 +731,11 @@ def main():
         old = [r for r in seen if r not in set(hot)]
         cur = state.get("cursor")
         k = old.index(cur) + 1 if cur in old else 0
-        todo = new + hot + old[k:] + old[:k]
-        print(f"security scope: {len(scope)}/{len(repos)} repos; changed since last visit {len(hot)}, never scanned {len(new)}")
+        bare = [r for r in old if not any(e["id"] in sec for e in repos[r])]  # visited, no verdict (rules or kinds changed since)
+        old = [r for r in old if r not in set(bare)]
+        k = old.index(cur) + 1 if cur in old else 0
+        todo = new + bare + hot + old[k:] + old[:k]
+        print(f"security scope: {len(scope)}/{len(repos)} repos; never scanned {len(new)}, without a verdict {len(bare)}, changed since last visit {len(hot)}")
 
     full_calls = 0; visited = 0; pos = 0
     pool = ThreadPoolExecutor(REPO_WORKERS)

@@ -221,11 +221,11 @@
     r.ownl = r.own.toLowerCase();
     r.disp = r.r ? (r.k !== r.r ? r.k : r.r) : (r.url || r.k).replace(/^https?:\/\/(www\.)?/, "");
     r.pd = ago(r.p);
-    const sec = r.sec && typeof r.sec === "object" && /^(ok|review|high)$/.test(r.sec.lv) ? r.sec : null;
+    const sec = r.sec && typeof r.sec === "object" && /^(ok|review|high|none)$/.test(r.sec.lv) ? r.sec : null;
     r.sec = sec;
     // r.flg: every flag the Flags facet knows (catalog flags + security level + archived; "unmaintained" comes from build_site.py)
     r.flg = r.fl.slice();
-    if (sec && sec.lv !== "ok") r.flg.push("security-" + sec.lv);
+    if (sec && (sec.lv === "review" || sec.lv === "high")) r.flg.push("security-" + sec.lv);
     if (r.a && !r.flg.includes("archived")) r.flg.push("archived");
     r.flg.sort((a, b) => ((FLAGORDER.indexOf(a) + 99) % 99) - ((FLAGORDER.indexOf(b) + 99) % 99));
     r.pills = r.flg.filter(f => !(f === "unmaintained" && r.flg.includes("archived")));
@@ -904,7 +904,7 @@
     sec.append(list || h("p", { class: "nd small" }, TIER[r.tr].desc));
     if (r.flg.length) sec.append(flagList(r));
     const s = r.sec;
-    if (s && s.lv !== "ok") {
+    if (s && (s.lv === "review" || s.lv === "high")) {
       const n = isNum(s.n) ? s.n : (s.f || []).length, fs = Array.isArray(s.f) ? s.f : [];
       sec.append(h("div", { class: "findings" + (s.lv === "high" ? " hi" : ""), role: "group", "aria-label": "Security findings" },
         h("div", { class: "fsum" }, ic("shield"), h("b", null, s.lv === "high" ? "High-risk patterns found" : "Patterns worth reviewing"), h("span", { class: "nd" }, plural(n, "finding") + (s.at ? " · static scan " + sdate(s.at) : "") + " · not executed")),
@@ -912,7 +912,8 @@
           h("div", { class: "fh" }, h("span", { class: "sev " + (/^(high|critical)$/i.test(f.s) ? "hi" : f.s === "info" ? "info" : "") }, String(f.s || "note")), h("b", null, String(f.r || "finding")), f.p ? h("span", { class: "loc" }, String(f.p) + (isNum(f.l) ? ":" + f.l : "")) : null),
           f.x ? h("code", null, String(f.x)) : null))),
         n > fs.length ? h("span", { class: "nd small" }, "+ " + plural(n - fs.length, "more finding")) : null));
-    } else if (s) sec.append(h("p", { class: "secok" }, ic("shieldok"), "Security scan found nothing to review", s.at ? h("span", { class: "nd" }, "· " + sdate(s.at)) : null));
+    } else if (s && s.lv === "none") sec.append(h("p", { class: "secok none" }, ic("shield"), "Scanned: nothing to check. The repo ships no hooks, scripts, skills, settings or server code this scanner reads (it may only point to other repos or a hosted server)", s.at ? h("span", { class: "nd" }, "· " + sdate(s.at)) : null));
+    else if (s) sec.append(h("p", { class: "secok" }, ic("shieldok"), "Security scan found nothing to review", s.at ? h("span", { class: "nd" }, "· " + sdate(s.at)) : null));
     else sec.append(h("p", { class: "secok none" }, ic("shield"), SCAN_SCOPE));
     return sec;
   }
