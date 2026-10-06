@@ -323,6 +323,14 @@ def run_rules(r, rd, compiled, rules, nodes):
     return {"technologies": tech, "areas": area, "partial": {"technologies": pt, "areas": pa}}
 
 
+def input_sha(r, rd, eligible):
+    """Hash of everything run_rules / the embedding pass / the fallback read for one entry."""
+    items = [[i.get("name"), i.get("description")] for i in (r.get("items") or [])[:40] if isinstance(i, dict)]
+    key = [r.get("id"), r.get("repo"), r.get("name"), r.get("description"), items, r.get("topics"), bool(r.get("archived")), eligible,
+           rd.get("sha"), rd.get("topics"), rd.get("lang"), len(rd.get("text") or "")]
+    return hashlib.sha1(json.dumps(key, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
+
+
 # ---------- embeddings ----------
 class Embedder:
     def __init__(self, nodes):
@@ -418,12 +426,15 @@ def main():
         write_calibration(E.calibrate([E.repo_text(r, {} if r["id"] != r["repo"] else readmes.get(r["repo"], {})) for r in elig]))
         print(f"calibrated embed_min on {len(elig)} repos -> taxonomy.json"); return
     FALLBACK = {dim: next((nid for nid, p, _, n, _ in nodes[dim] if p is None and n.get("fallback")), None) for dim in nodes}
-    prev = jload(OUT, {}); work = {}; todo = []; reused = 0
+    prev = jload(OUT, {}); work = {}; todo = []; reused = 0; kept = {}
     for r in repos:
         rd = readmes.get(r["repo"], {}); sha = rd.get("sha", "")
-        rules = run_rules(r, rd, compiled, rule_cfg, nodes)
         old = prev.get(r["id"]) or {}
         eligible = r.get("tier") in EMBED_TIERS and (r.get("stars") or 0) >= EMBED_MIN_STARS
+        isha = input_sha(r, rd, eligible)
+        if old.get("input_sha") == isha and old.get("taxonomy_version") == version:  # same inputs, same taxonomy: same result
+            kept[r["id"]] = old; continue
+        rules = run_rules(r, rd, compiled, rule_cfg, nodes)
         emb = None
         if eligible and (not rules["technologies"] or not rules["areas"]):
             oe = (old.get("evidence") or {}).get("embedding")
@@ -431,7 +442,7 @@ def main():
                 emb = oe; reused += 1
             else: todo.append(r["id"])
         has_text = bool((r.get("description") or "").strip() or (r["id"] == r["repo"] and rd.get("text", "").strip()))
-        work[r["id"]] = {"sha": sha, "rules": rules, "emb": emb, "fb_ok": has_text and not r.get("archived")}
+        work[r["id"]] = {"sha": sha, "isha": isha, "rules": rules, "emb": emb, "fb_ok": has_text and not r.get("archived")}
     t_emb = 0.0; n_emb = 0
     if todo and not a.no_embed:
         t0 = time.time(); E = Embedder(nodes); byid = {r["id"]: r for r in repos}
@@ -456,11 +467,13 @@ def main():
         pc = prev.get(rid) or {}
         same = (pc.get("readme_sha") == o["sha"] and pc.get("taxonomy_version") == version
                 and pc.get("technologies") == tags["technologies"] and pc.get("areas") == tags["areas"])
-        final[rid] = {"readme_sha": o["sha"], "taxonomy_version": version, "technologies": tags["technologies"], "areas": tags["areas"],
+        final[rid] = {"readme_sha": o["sha"], "input_sha": o["isha"], "taxonomy_version": version, "technologies": tags["technologies"], "areas": tags["areas"],
                       "evidence": ev, "method": "+".join(sorted(methods)) if methods else ("fallback" if fb else "none"),
                       "classified_at": pc["classified_at"] if same and pc.get("classified_at") else now()}
+    final = {r["id"]: kept.get(r["id"]) or final[r["id"]] for r in repos}  # catalog order
     DATA.mkdir(exist_ok=True); OUT.write_text(json.dumps(final, indent=1, ensure_ascii=False), encoding="utf-8")
-    print(f"wrote {len(final)} classifications; embedded {n_emb}, reused {reused}, embed total {t_emb:.1f}s")
+    print(f"wrote {len(final)} classifications; {len(kept)} unchanged inputs reused, {len(work)} classified; "
+          f"embedded {n_emb}, reused {reused}, embed total {t_emb:.1f}s")
     if a.report: write_report(repos, final, nodes, version, tax)
 
 

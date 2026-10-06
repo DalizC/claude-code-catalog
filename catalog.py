@@ -71,8 +71,8 @@ def http_get(url, api=False, search=False):
     bucket = "search" if search else "core"
     if api and STATE.get("stop_" + bucket):
         return 0, ""
-    if search:  # 10 req/min limit
-        wait = 6.5 - (time.time() - STATE["search_last"])
+    if search:  # GitHub limits: code search 10 req/min, other search endpoints 30 req/min (authenticated)
+        wait = (6.5 if "/search/code" in url or not TOKEN else 2.1) - (time.time() - STATE["search_last"])
         if wait > 0: time.sleep(wait)
         STATE["search_last"] = time.time()
     h = {"User-Agent": "cc-catalog-poc", "Accept": "application/vnd.github+json" if api else "*/*"}
@@ -577,9 +577,15 @@ def merge_prev_mcp():
     MCP_STATS["fallback_merged"] = n
     print(f"mcp registry INCOMPLETE: {n} servers of the previous catalog merged in")
 
+MCP_MIN_STARS = 10
+# Registry-only repos below the inclusion bar (~25k of ~27k enriched repos) are re-checked about weekly instead of nightly:
+# they are not published, so only the moment one crosses MCP_MIN_STARS can be up to a week late. Everything in the
+# catalog keeps the nightly refresh (stars, pushes and trends depend on it).
+LOW_SIGNAL_TTL_D = 7
+
 def filter_mcp():
     """Inclusion rule, applied after enrichment (it needs stars): a registry server is kept only when its GitHub repo is
-    already in the catalog for another reason (attached), OR the repo reaches tier >= verified, OR has >= 10 stars."""
+    already in the catalog for another reason (attached), OR the repo reaches tier >= verified, OR has >= MCP_MIN_STARS stars."""
     nodes = {m["node_id"]: m["canonical"] for m in META.values() if m.get("node_id") and m.get("canonical")}
     canon = lambda r: nodes.get((META.get(r) or {}).get("node_id"), (META.get(r) or {}).get("canonical") or r)
     others = {}
@@ -591,7 +597,7 @@ def filter_mcp():
         if e["type"] != "mcp-server" or e["sources"] != ["mcp-registry"] or e.get("prev"): continue  # prev: already passed the rule once
         r = canon(e["repo"])
         if r in attached: continue
-        if tier(None, False, e["repo"], ["mcp-registry"])[0] != "watch" or ((META.get(e["repo"]) or {}).get("stars") or 0) >= 10: continue
+        if tier(None, False, e["repo"], ["mcp-registry"])[0] != "watch" or ((META.get(e["repo"]) or {}).get("stars") or 0) >= MCP_MIN_STARS: continue
         drop.append(k)
     for k in drop: del ENTRIES[k]
     MCP_STATS["excluded_low_signal"] = len(drop)
@@ -688,7 +694,13 @@ def enrich():
     gc = CACHE / "gql_meta.json"
     try: gmeta = json.loads(gc.read_text(encoding="utf-8")) if gc.exists() and not REFRESH else {}
     except Exception: gmeta = {}
-    fresh = {r for r in repos if r in gmeta and time.time() - gmeta[r]["t"] < CACHE_TTL_H * 3600}
+    others = {e["repo"] for e in ENTRIES.values() if e["repo"] and (e["sources"] != ["mcp-registry"] or e.get("prev"))}  # prev: published
+    def ttl(r):
+        m = gmeta[r].get("m") or {}
+        if r not in others and (m.get("not_found") or (m.get("stars") or 0) < MCP_MIN_STARS):
+            return LOW_SIGNAL_TTL_D * 86400 * (0.5 + int(hashlib.sha1(r.encode()).hexdigest()[:4], 16) / 0xFFFF)  # spread over the week
+        return CACHE_TTL_H * 3600
+    fresh = {r for r in repos if r in gmeta and time.time() - gmeta[r]["t"] < ttl(r)}
     for r in fresh: META[r] = gmeta[r]["m"]; done += 1
     todo = [r for r in repos if r not in fresh]
     print(f"graphql: {len(fresh)} repos from cache, {len(todo)} to fetch")

@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PYTHONUNBUFFERED: "1"   # log lines carry their real timestamps (phase timings)
     steps:
       - uses: actions/checkout@v4
 
