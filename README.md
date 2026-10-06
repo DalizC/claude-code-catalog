@@ -36,7 +36,7 @@ Order, highest first (display label in parentheses):
 - **anthropic** ("Anthropic"): made by Anthropic. The repo owner is `anthropics`, or the entry is a relative path inside an `anthropics/*` marketplace repo (`claude-plugins-official`, `skills`, `claude-code`).
 - **official** ("Official marketplace · 3rd-party"): listed in Anthropic's official marketplace (`claude-plugins-official`) but the code lives in a third-party repo.
 - **listed** ("Community marketplace · 3rd-party"): third-party submission in `anthropics/claude-plugins-community`.
-- **verified** ("Verified"): in the curated list, OR stars>=50, age>=90d, pushed<=90d, license present, not archived, no star-anomaly, plus one of forks>=20 / found by >=2 independent source families / Organization owner.
+- **verified** ("Verified"): in the curated list, OR stars>=50, age>=90d, pushed<=90d, license present, not archived, no star-anomaly, plus one of forks>=5 / found by >=2 independent source families / Organization owner.
 - **new** ("New"): under 90 days old (too young for the Verified age check), not archived. Shown by default; star-burst and security flags still apply.
 - **watch** ("Watch"): everything else (stale/archived, missing metadata, "repo not found" are recorded in `tier_reasons`).
 

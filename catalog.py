@@ -937,7 +937,7 @@ def tier(hint, curated, repo, sources, origin="", item_level=False):
               (push is not None and push <= 90, f"pushed<=90d ({push})"), (bool(lic) and lic != "NOASSERTION", f"license ({lic}{', declared' if lic and not m.get('license') else ''})"),
               (not m.get("archived"), "not archived"), ("star-anomaly" not in flags, "no star-anomaly")]
     forks = m.get("forks") or 0
-    corro = [x for ok, x in [(forks >= 20, f"forks>=20 ({forks})"), (len(fams) >= 2, f"found by {len(fams)} independent sources"),
+    corro = [x for ok, x in [(forks >= MIN_FORKS, f"forks>={MIN_FORKS} ({forks})"), (len(fams) >= 2, f"found by {len(fams)} independent sources"),
                              (m.get("owner_type") == "Organization", "owner is Organization")] if ok]
     fails = [x for ok, x in checks if not ok]
     if not fails and corro and not stale:
@@ -986,6 +986,7 @@ EXCLUDED_MCP = []
 # official-marketplace repos and favorites.json entries are always published. Excluded repos are re-checked weekly
 # (young ones nightly) and enter on their own once they qualify.
 ACTIVE_DAYS, MIN_STARS, YOUNG_DAYS, YOUNG_STARS, TREND_STARS = 180, 50, 30, 20, 20
+MIN_FORKS = 5  # Verified corroboration: 10% of MIN_STARS, the proportion forks>=20 had with the old 200-star bar
 NEW_DAYS = 90  # repos younger than this can't be Verified yet (age check); relevant ones get the "new" tier instead of watch
 EXCLUDED_IRRELEVANT = {}  # repo -> reason
 
