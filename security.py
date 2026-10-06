@@ -702,7 +702,7 @@ def main():
     elif OFFLINE:
         todo = order
     else:
-        # pushed since the last visit first (a change is rescanned the next night), then never scanned, then rotation
+        # never scanned first (no verdict at all, most popular first), then pushed since the last visit, then rotation
         def changed(r):
             p = max((parse_ts(e.get("pushed_at")) for e in repos[r] if e.get("pushed_at")), default=None)
             v = parse_ts(state["repos"][r].get("visited_at"))
@@ -713,7 +713,7 @@ def main():
         old = [r for r in seen if r not in set(hot)]
         cur = state.get("cursor")
         k = old.index(cur) + 1 if cur in old else 0
-        todo = hot + new + old[k:] + old[:k]
+        todo = new + hot + old[k:] + old[:k]
         print(f"security scope: {len(scope)}/{len(repos)} repos; changed since last visit {len(hot)}, never scanned {len(new)}")
 
     full_calls = 0; visited = 0; pos = 0

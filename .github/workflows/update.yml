@@ -63,7 +63,7 @@ jobs:
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.CATALOG_TOKEN || secrets.GITHUB_TOKEN }}
-        run: python security.py --budget 600
+        run: python security.py --budget 900
 
       - name: Star history
         continue-on-error: true

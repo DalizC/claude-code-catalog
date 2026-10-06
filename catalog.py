@@ -1055,8 +1055,8 @@ def main():
     print("mode:", "TOKEN" if TOKEN else "NO-TOKEN")
     src_official(); src_curated(); src_repo_search(); src_code_search(); src_broad_search(); verify_broad(); expand_marketplaces(); src_mcp_registry()
     nmiss, ndone = enrich()
-    declared_licenses(sorted({e["repo"] for e in ENTRIES.values() if e["repo"]}))
     filter_mcp()
+    declared_licenses(sorted({e["repo"] for e in ENTRIES.values() if e["repo"]}))  # after the MCP rule: only records that stay
     finalize_hints()
     out, flat = build()
     DATA.mkdir(exist_ok=True); (DATA / "snapshots").mkdir(exist_ok=True)

@@ -230,11 +230,14 @@ def main():
                 if al in series: series[r["repo"]] = series[al]; break
     keep = {r["repo"] for r in rows}
     for k in [k for k in series if k not in keep]: del series[k]
-    cur = state.get("cursor", 0) % max(1, len(rows))
-    order = rows[cur:] + rows[:cur]
+    # repos without a series yet (new in the catalog) go first, by stars; the rotation cursor walks the rest
+    fresh = sorted((r for r in rows if r["repo"] not in series), key=lambda r: -(r.get("stars") or 0))
+    rest = [r for r in rows if r["repo"] in series]
+    cur = state.get("cursor", 0) % max(1, len(rest))
+    order = fresh + rest[cur:] + rest[:cur]
     client = Client(load_token(), budget)
     t0 = time.time(); done = {"n": 0}; mism = {}
-    print(f"in scope: {len(rows)} repos; cursor {cur}; budget {budget}")
+    print(f"in scope: {len(rows)} repos ({len(fresh)} without a series, first); cursor {cur}; budget {budget}")
 
     failed = set()
     def work(r):
@@ -254,10 +257,10 @@ def main():
             series[res[0]] = res[1]; mism[res[0]] = (res[2], res[3])
     # cursor advances past the contiguous prefix of refreshed repos
     adv = 0
-    for r in order:
+    for r in order[len(fresh):]:
         if r["repo"] in results or r["repo"] in failed: adv += 1
         else: break
-    state["cursor"] = (cur + adv) % max(1, len(rows)); state["runs"] = state.get("runs", 0) + 1
+    state["cursor"] = (cur + adv) % max(1, len(rest)); state["runs"] = state.get("runs", 0) + 1
     state["last_run"] = NOW.isoformat(timespec="seconds"); state["stop"] = client.stop
     jsave(HIST / "_state.json", state); jsave(HIST / "series.json", series); write_shards(series)
     n = apply_trends(catalog, series)
