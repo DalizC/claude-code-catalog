@@ -165,9 +165,15 @@ def push_age(r):
     return ((REF_TIME or now()) - d).days if d else None
 
 
+DEPS = {}  # record id -> {"lv": "paid"|"key", "ev"}, from classifications.json (loaded when --exclude-flag names paid-api/api-key)
+
+
 def all_flags(r):
-    """Catalog flags plus derived ones: security-review/high, archived, unmaintained."""
+    """Catalog flags plus derived ones: security-review/high, archived, unmaintained, paid-api/api-key."""
     out = list(r.get("flags") or [])
+    dl = (DEPS.get(r.get("id")) or {}).get("lv")
+    if dl:
+        out.append("paid-api" if dl == "paid" else "api-key")
     sec = r.get("security")
     lvl = sec.get("level") if isinstance(sec, dict) else sec
     if lvl in ("review", "high"):
@@ -484,8 +490,10 @@ def main():
     FAV_IDS.update(favorite_ids(repos, entries))
     tech_ids = area_ids = None
     classes = {}
-    if a.tech or a.area:
+    if a.tech or a.area or set(a.exclude_flag or []) & {"paid-api", "api-key"}:
         classes, tax = load_facets(path)
+        DEPS.update({k: v["deps"] for k, v in classes.items() if isinstance(v, dict) and v.get("deps")})
+    if a.tech or a.area:
         if not classes:
             sys.exit("classifications unavailable; cannot apply --tech/--area")
         if a.tech:

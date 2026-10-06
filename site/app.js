@@ -24,6 +24,8 @@
     moon: '<path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/>',
     ext: '<path d="M14 5h5v5M19 5l-8 8M17 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h4"/>',
     flag: '<path d="M5 21V4.5M5 4.5h11l-2 4 2 4H5"/>',
+    key: '<circle cx="8" cy="15" r="3.5"/><path d="m10.5 12.5 8-8M16 7l2 2M14 9l1.5 1.5"/>',
+    coin: '<circle cx="12" cy="12" r="8"/><path d="M14.5 9.5c-.4-.9-1.4-1.5-2.5-1.5-1.5 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1 2-2.5 2c-1.1 0-2.1-.6-2.5-1.5M12 6.5V8M12 16v1.5"/>',
     warn: '<path d="M10.3 4.6 3.2 17a2 2 0 0 0 1.7 3h14.2a2 2 0 0 0 1.7-3L13.7 4.6a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4M12 17h.01"/>',
     archive: '<rect x="4" y="5" width="16" height="4" rx="1"/><path d="M5.5 9v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9M10 13h4"/>',
     trend: '<path d="M4 17.5 9.5 12l3.5 3 7-7.5"/><path d="M15 7.5h5v5"/>',
@@ -126,6 +128,8 @@
     archived: { label: "Archived", short: "Archived", icon: "archive", cls: "arch", tip: "The repository is archived: read-only, no further changes." },
     unmaintained: { label: "Unmaintained", short: "Unmaintained", icon: "clock", cls: "stale", tip: "No push in more than 6 months (180 days before the catalog was built)." },
     unscanned: { label: "Not security-scanned", short: "Not scanned", icon: "shield", cls: "stale", tip: SCAN_SCOPE },
+    "paid-api": { label: "Paid API", short: "Paid API", icon: "coin", cls: "stale", tip: "Calls an external service that charges per use. The extension itself is free; check the service's pricing before installing." },
+    "api-key": { label: "Needs API key", short: "API key", icon: "key", cls: "stale", tip: "Needs an API key or account for an external service. Many have a free tier; check before installing." },
   };
   const FLAGORDER = Object.keys(FLAGS);
   const SUSFLAGS = FLAGORDER.filter(f => FLAGS[f].sus);
@@ -149,6 +153,7 @@
     azure: "microsoftazure", cloudflare: "cloudflare", vercel: "vercel", docker: "docker", kubernetes: "kubernetes",
     terraform: "terraform", playwright: "playwright",
     figma: "figma", adobe: "adobe", blender: "blender", canva: "canva", framer: "framer", "sketch-penpot": "sketch",
+    openai: "openai", gemini: "googlegemini", "local-models": "ollama", "model-gateways": "openrouter",
   };
 
   // ---------------------------------------------------------------- data prep
@@ -516,6 +521,7 @@
   // full description of one flag, shared by the warning popover and the details panel
   function flagFull(r, f) {
     const F = FLAGS[f] || {};
+    if ((f === "paid-api" || f === "api-key") && r.dpe) return (FLAGS[f] || {}).tip + " Evidence: " + r.dpe + ".";
     if (f === "unscanned" && r.sec && r.sec.at) return "Changed since its last security scan on " + sdate(r.sec.at) + " (last push " + sdate(r.p) + "). It is rescanned on the next nightly run if it is still in the scan scope; until then that result may be out of date.";
     return f === "unmaintained" && r.p ? "Last push " + sdate(r.p) + " (" + ageText(r.pd) + " before this catalog was built). Bugs and breaking changes in Claude Code may go unfixed." : F.tip || "Flagged by the catalog's checks.";
   }
@@ -618,9 +624,11 @@
       const kids = [...b.children], plus = kids[kids.length - 1];
       if (!plus || !plus.classList.contains("tmore")) return;
       const items = kids.slice(0, -1);
+      const textOf = c => c.classList.contains("tfb") ? c.querySelector(".tl") : c; // area chip, or the label of an icon-less technology
       items.forEach(c => {
         c.hidden = false;
-        if (c.dataset.full) { c.textContent = c.dataset.full; delete c.dataset.full; c.classList.remove("cut"); }
+        const t = textOf(c);
+        if (t && t.dataset.full) { t.textContent = t.dataset.full; delete t.dataset.full; c.classList.remove("cut"); }
       });
       plus.hidden = true;
       const ws = items.map(itemWidth);
@@ -630,14 +638,15 @@
       const reserve = items.length === 1 ? 0 : GAP + 8 + Math.ceil(tw("+" + items.length, FONT_TAG));
       let used = 0;
       const keep = items.map((c, i) => { const nx = used + (used ? GAP : 0) + ws[i]; if (nx + reserve <= w) { used = nx; return true; } return false; });
-      if (!keep.some(Boolean) && items[0].classList.contains("tag")) {
-        // last resort: the first area label alone is too wide, so shorten it at a word boundary (full label in the tooltip)
-        const c = items[0], full = c.textContent, room = w - reserve - 16 - tw("…", FONT_TAG);
+      if (!keep.some(Boolean) && (items[0].classList.contains("tag") || items[0].classList.contains("tfb"))) {
+        // last resort: the first label alone is too wide, so shorten it at a word boundary (full label in the tooltip)
+        const c = items[0], t = textOf(c), full = t.textContent, room = w - reserve - 16 - (t === c ? 0 : 22) - tw("…", FONT_TAG);
         const words = full.split(" ");
         let txt = "";
         for (let i = 0; i < words.length; i++) { const nx = (txt ? txt + " " : "") + words[i]; if (tw(nx, FONT_TAG) > room) break; txt = nx; }
         if (!txt) { let n = words[0].length - 1; while (n >= 3 && tw(words[0].slice(0, n), FONT_TAG) > room) n--; if (n >= 3) txt = words[0].slice(0, n); } // first word too long: cut mid-word, keep at least 3 letters
-        if (txt) { c.dataset.full = full; c.textContent = txt.replace(/[\s&,]+$/, "") + "…"; c.classList.add("cut"); keep[0] = true; }
+        if (txt) { t.dataset.full = full; t.textContent = txt.replace(/[\s&,]+$/, "") + "…"; c.classList.add("cut"); keep[0] = true; }
+        else if (t !== c) { t.dataset.full = full; t.textContent = ""; c.classList.add("cut"); keep[0] = true; } // icon-less technology: glyph only, name in the tooltip
       }
       const rest = items.filter((c, i) => !keep[i]);
       if (!rest.length) return;
@@ -1544,7 +1553,7 @@
         h("p", { class: "nd" }, "Uncheck a flag under Flags in the sidebar to hide every repo carrying it."));
     } else if (kind === "flag") {
       const f = anchor.dataset.flag, F = FLAGS[f] || {};
-      const tip = f === "unscanned" ? flagFull(r, f) : f === "unmaintained" && r.p ? "Last push " + sdate(r.p) + ": no push for " + ageText(r.pd) + "." : F.tip || "Flagged by the catalog's checks.";
+      const tip = f === "unscanned" || f === "paid-api" || f === "api-key" ? flagFull(r, f) : f === "unmaintained" && r.p ? "Last push " + sdate(r.p) + ": no push for " + ageText(r.pd) + "." : F.tip || "Flagged by the catalog's checks.";
       const extra = f.startsWith("security-") && r.sec ? h("p", { class: "nd" }, plural(isNum(r.sec.n) ? r.sec.n : (r.sec.f || []).length, "finding") + ". Open the details for the findings.") : null;
       setPop(h("div", { class: "ph" }, h("b", null, flagLabel(f))), h("p", { class: "pd" }, tip), extra,
         isSus(f) ? h("p", { class: "nd" }, "Flagged repos are ranked last in Trending.") : null,

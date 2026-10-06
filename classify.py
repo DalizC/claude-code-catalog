@@ -21,6 +21,7 @@ ABS_MIN = {"technologies": 0.60, "areas": 0.56}; MARGIN = 0.02
 CALIB_Z = {"technologies": 3.0, "areas": 2.3}
 HINT_RELIEF = 0.0; COLD_EXTRA = 0.04
 MAX_TOP = {"technologies": 1, "areas": 2}; MAX_SUB = 1
+LOGIC_V = 2  # bump whenever rule/deps code changes: it is part of the taxonomy version, so unchanged repos are reclassified too
 
 
 def load_token():  # same logic as catalog.py; never printed
@@ -116,7 +117,7 @@ DEFAULT_RULES = {"weights": {"topic": 3, "language": 3, "name": 3, "description"
 def load_taxonomy():
     tax = json.loads((ROOT / "taxonomy.json").read_text(encoding="utf-8"))
     # version covers the taxonomy and the embedding gate, so cached embedding results are redone when either changes
-    cfg = [MODEL, ABS_MIN, MARGIN, MAX_TOP, MAX_SUB, HINT_RELIEF, COLD_EXTRA, README_EMBED]
+    cfg = [MODEL, ABS_MIN, MARGIN, MAX_TOP, MAX_SUB, HINT_RELIEF, COLD_EXTRA, README_EMBED, LOGIC_V]
     version = hashlib.sha1((json.dumps(tax, sort_keys=True) + json.dumps(cfg)).encode()).hexdigest()[:12]
     nodes = {}  # dim -> [(id, parent_id|None, label, node_dict, description)]
     for dim in ("technologies", "areas"):
@@ -325,11 +326,47 @@ def run_rules(r, rd, compiled, rules, nodes):
 
 
 def input_sha(r, rd, eligible):
-    """Hash of everything run_rules / the embedding pass / the fallback read for one entry."""
-    items = [[i.get("name"), i.get("description")] for i in (r.get("items") or [])[:40] if isinstance(i, dict)]
+    """Hash of everything run_rules / the embedding pass / the fallback / deps_of read for one entry."""
+    items = [[i.get("name"), i.get("description"), i.get("install_hint")] for i in (r.get("items") or [])[:40] if isinstance(i, dict)]
     key = [r.get("id"), r.get("repo"), r.get("name"), r.get("description"), items, r.get("topics"), bool(r.get("archived")), eligible,
            rd.get("sha"), rd.get("topics"), rd.get("lang"), len(rd.get("text") or "")]
     return hashlib.sha1(json.dumps(key, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
+
+
+# ---------- external services (flags "paid-api" / "api-key") ----------
+# "paid": the extension calls a provider that charges per use (env var of a pay-per-use API, or an OpenAI/Jev tag), or it
+# needs a key/account and its own text talks about paid plans, credits or billing. "key": it needs an API key or account for
+# an external service with no evidence of charges (many have free tiers). GitHub/Anthropic/package-registry tokens don't count.
+KEY_ENV = re.compile(r"\b([A-Z][A-Z0-9]*(?:_[A-Z0-9]+)*_(?:API_KEY|APIKEY|API_TOKEN|ACCESS_TOKEN|BOT_TOKEN))\b")  # a bare *_TOKEN is often the tool's own local auth
+FREE_ENV = re.compile(r"^(?:GITHUB|GH|GITLAB|ANTHROPIC|CLAUDE|NPM|PYPI|CARGO|NODE|CI|JWT|CSRF|REFRESH|ID|YOUR)_")
+PAID_ENV = re.compile(r"^(?:OPENAI|AZURE_OPENAI|JEV|TYPESAFE|ELEVENLABS|REPLICATE|FAL|STABILITY|RUNWAY|PERPLEXITY|DEEPSEEK|XAI|MISTRAL|COHERE|SERPAPI|KLING|SUNO|DEEPGRAM|ASSEMBLYAI)_")
+KEY_PHRASE = re.compile(r"\b(?:requires?|needs?|get|grab|set|add|provide|paste|obtain|create|using|with)\s+(?:an?\s+|your\s+|the\s+)?"
+                        r"(?:own\s+|free\s+|personal\s+)?(?:[\w.-]+\s+){0,2}?(?:api[\s_-]?key|api\s+token|access\s+token)s?\b", re.I)
+PAID_PHRASE = re.compile(r"\b(?:paid\s+(?:plan|tier|account|subscription|api|service)|subscription\s+(?:is\s+)?required|requires?\s+(?:an?\s+)?"
+                         r"(?:paid|pro|premium|business)\s+(?:plan|account|subscription|tier)|api\s+credits|usage[- ]based\s+(?:pricing|billing)|"
+                         r"billed\s+per|pay[- ]as[- ]you[- ]go|pay[- ]per[- ](?:use|call|request))\b", re.I)
+PAID_TECH = {"openai", "jev"}
+
+
+def deps_of(r, rd, techs, tech_ev=None):
+    """{"lv": "paid"|"key", "ev": short evidence} or None. A paid-provider tag counts only when the repo's own name or
+    description names the provider (tech_ev: technology evidence from the rules), not for an optional backend in the README."""
+    sub = r.get("id") != r.get("repo")
+    items = [i for i in (r.get("items") or [])[:40] if isinstance(i, dict)]
+    hints = " ".join(i.get("install_hint") or "" for i in items)
+    text = " ".join([r.get("description") or "", " ".join(i.get("description") or "" for i in items), hints,
+                     "" if sub else (rd.get("text") or "")])
+    envs = sorted({e for e in KEY_ENV.findall(text) if not FREE_ENV.match(e)})
+    paid_env = [e for e in envs if PAID_ENV.match(e)]
+    needs = bool(envs) or bool(KEY_PHRASE.search(text))
+    paid_tech = sorted(t for t in set(techs) & PAID_TECH if {"name", "description"} & set(((tech_ev or {}).get(t) or {}).get("fields") or {}))
+    if paid_env: return {"lv": "paid", "ev": ", ".join(paid_env[:3])}
+    if paid_tech: return {"lv": "paid", "ev": "uses " + ", ".join(paid_tech)}
+    if needs:
+        m = PAID_PHRASE.search(text)
+        if m: return {"lv": "paid", "ev": "mentions " + m.group(0).lower()}
+        return {"lv": "key", "ev": ", ".join(envs[:3]) if envs else "asks for an API key"}
+    return None
 
 
 # ---------- embeddings ----------
@@ -443,7 +480,7 @@ def main():
                 emb = oe; reused += 1
             else: todo.append(r["id"])
         has_text = bool((r.get("description") or "").strip() or (r["id"] == r["repo"] and rd.get("text", "").strip()))
-        work[r["id"]] = {"sha": sha, "isha": isha, "rules": rules, "emb": emb, "fb_ok": has_text and not r.get("archived")}
+        work[r["id"]] = {"sha": sha, "isha": isha, "rules": rules, "emb": emb, "fb_ok": has_text and not r.get("archived"), "r": r, "rd": rd}
     t_emb = 0.0; n_emb = 0
     if todo and not a.no_embed:
         t0 = time.time(); E = Embedder(nodes); byid = {r["id"]: r for r in repos}
@@ -471,6 +508,8 @@ def main():
         final[rid] = {"readme_sha": o["sha"], "input_sha": o["isha"], "taxonomy_version": version, "technologies": tags["technologies"], "areas": tags["areas"],
                       "evidence": ev, "method": "+".join(sorted(methods)) if methods else ("fallback" if fb else "none"),
                       "classified_at": pc["classified_at"] if same and pc.get("classified_at") else now()}
+        dp = deps_of(o["r"], o["rd"], tags["technologies"], ev.get("technologies"))
+        if dp: final[rid]["deps"] = dp
     final = {r["id"]: kept.get(r["id"]) or final[r["id"]] for r in repos}  # catalog order
     DATA.mkdir(exist_ok=True); OUT.write_text(json.dumps(final, indent=1, ensure_ascii=False), encoding="utf-8")
     print(f"wrote {len(final)} classifications; {len(kept)} unchanged inputs reused, {len(work)} classified; "

@@ -184,7 +184,9 @@ def slim(r, cls, ref=None):
         "tr": r.get("tier") or "watch",
         "tx": [cut(x, 100 if mcp else 160) for x in (r.get("tier_reasons") or [])][:MCP_TX if mcp else 6],
         "fl": ids(r.get("flags")) + (["unmaintained"] if unmaintained(r, ref) and "unmaintained" not in ids(r.get("flags")) else [])
-              + (["unscanned"] if key and unscanned(r) else []),
+              + (["unscanned"] if key and unscanned(r) else [])
+              + ({"paid": ["paid-api"], "key": ["api-key"]}.get((c.get("deps") or {}).get("lv"), [])),
+        "dpe": cut((c.get("deps") or {}).get("ev"), 80) or None,
         "lg": license_group(lic),
         "src": sorted({s.split(":")[0] if s.startswith("search:") else s
                        for s in (r.get("sources") or []) if isinstance(s, str)}),
