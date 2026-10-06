@@ -1,24 +1,24 @@
 # Catalog report 2026-10-06
-Mode: **token**; run time 117s
-Repos (deduped): 2485; flat entries before dedup: 19429
+Mode: **token**; run time 3s
+Repos (deduped): 2484; flat entries before dedup: 19398
 
 ## Tier x type BEFORE dedup (flat entries)
-- new/mcp-server: 10989
+- new/mcp-server: 10957
 - listed/plugin: 2284
 - watch/mcp-server: 1992
-- verified/mcp-server: 1028
-- watch/skill: 475
-- watch/marketplace: 351
-- verified/skill: 346
-- watch/plugin: 307
+- verified/mcp-server: 1029
+- watch/skill: 477
+- watch/marketplace: 346
+- verified/skill: 345
+- watch/plugin: 309
 - official/plugin: 276
 - verified/plugin: 252
-- verified/marketplace: 211
+- verified/marketplace: 216
 - watch/agent: 197
 - verified/collection: 163
 - new/marketplace: 145
-- new/skill: 123
-- new/plugin: 105
+- new/skill: 122
+- new/plugin: 103
 - anthropic/plugin: 57
 - verified/agent: 36
 - new/agent: 36
@@ -28,17 +28,17 @@ Repos (deduped): 2485; flat entries before dedup: 19429
 - watch/collection: 1
 
 ## Tier AFTER dedup (repos)
-- verified: 1375
-- watch: 415
+- verified: 1380
+- watch: 411
 - official: 241
-- new: 228
+- new: 226
 - listed: 163
 - anthropic: 63
 
 ## Type AFTER dedup (items)
 - mcp-server: 1292
 - plugin: 1087
-- skill: 596
+- skill: 595
 - marketplace: 317
 - collection: 95
 - agent: 39
@@ -46,25 +46,24 @@ Repos (deduped): 2485; flat entries before dedup: 19429
 ## Primary type AFTER dedup (repos)
 - mcp-server: 867
 - plugin: 741
-- skill: 532
+- skill: 531
 - marketplace: 253
 - collection: 66
 - agent: 26
 
 ## Repos by discovery source family
 - mcp-registry: 952
-- topic: 942
+- topic: 941
 - anthropic: 465
 - code: 191
 - curated: 117
 - marketplace-expansion: 39
 
 ## Flags (all tiers)
-- star-anomaly: 17
+- none: 0
 
 ## star-anomaly by tier
-- new: 11
-- watch: 6
+- none: 0
 
 ## Metadata gaps
 - repos without metadata: 86
@@ -95,7 +94,7 @@ Repos (deduped): 2485; flat entries before dedup: 19429
 - repos with stale metadata reused from the previous catalog (meta_stale): 0
 
 ## MCP Registry
-- {"pages": 398, "fetched": 39759, "kept": 39279, "dropped": 480, "bad": 0, "complete": true, "excluded_remote_only": 10706, "excluded_low_signal": 14564, "fallback_merged": 0, "records": 952, "attached_existing": 89, "new_repo": 863, "remote_only": 0, "tiers": {"official": 24, "listed": 18, "verified": 685, "new": 89, "watch": 136}}
+- {"pages": 398, "fetched": 39759, "kept": 39279, "dropped": 480, "bad": 0, "complete": true, "excluded_remote_only": 10706, "excluded_low_signal": 14595, "fallback_merged": 0, "records": 952, "attached_existing": 89, "new_repo": 863, "remote_only": 0, "tiers": {"official": 24, "listed": 18, "verified": 686, "new": 88, "watch": 136}}
 
 ## Top 20 by trend_7d
 - n/a (no snapshot >=7 days old yet)
@@ -237,26 +236,21 @@ Repos (deduped): 2485; flat entries before dedup: 19429
 - code-yeongyu/oh-my-openagent [skill] *69827*  items=1 - OmO: Just type "mass ulw" keyword with your prompt. Now you are the master of gr
 - tldraw/tldraw [mcp-server] *50767*  items=1 - Draw and visually collaborate with your agents on tldraw's canvas.
 - metabase/metabase [mcp-server] *49545*  items=1 - Lets AI clients search, explore, query, and visualize data in a Metabase instanc
-- alibaba/open-code-review [marketplace] *43854* ['star-anomaly'] items=1 - Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture c
 - PostHog/posthog [mcp-server] *40152*  items=1 - Official PostHog MCP Server for product analytics, feature flags, experiments, a
 - oraios/serena [mcp-server] *30023*  items=1 - A powerful toolkit for coding, providing semantic retrieval and editing capabili
 - different-ai/openwork [mcp-server] *23872*  items=1 - Your OpenWork org's skills, plugins, workflows, and connections through one OAut
 - screenpipe/screenpipe [mcp-server] *21823*  items=1 - Search your local screen recordings, audio transcripts, and computer activity fr
-- citrolabs/ego-lite [marketplace] *16850* ['star-anomaly'] items=1 - The fastest browser for AI agents to run browser automation, built for sharing y
 - travisvn/awesome-claude-skills [skill] *15279*  items=1 - A curated list of awesome Claude Skills, resources, and tools for customizing Cl
 - kyegomez/OpenMythos [plugin] *14902*  items=1 - A theoretical reconstruction of the Claude Mythos architecture, built from first
 - NevaMind-AI/memU [skill] *14494*  items=1 - Personal memory across agents
 - Orchestra-Research/AI-Research-SKILLs [skill] *13277*  items=1 - Comprehensive open-source library of AI research and engineering skills for any 
-- ConardLi/garden-skills [marketplace] *12746* ['star-anomaly'] items=1 - ConardLi's open-source Skills collection, featuring web design, knowledge retrie
 - elie222/inbox-zero [mcp-server] *12417*  items=1 - Search Gmail and Outlook, save drafts, manage email rules, and view email stats.
-- cobusgreyling/loop-engineering [marketplace] *11421* ['star-anomaly'] items=1 - Practical patterns, starters & CLI tools for loop engineering with AI coding age
-- chuspeeism/dashi-ppt-skill [marketplace] *9162* ['star-anomaly'] items=1 - An AI-agent skill that generates browser-editable presentations from multiple vi
 - max-sixty/worktrunk [marketplace] *8848*  items=1 - Worktrunk is a CLI for Git worktree management, designed for parallel AI agent w
 - anbeime/skill [skill] *7567*  items=1 - 收录最全、更新最快的技能Skills商店：精选原创技能包（涵盖文档处理、内容创作、编程开发、机器学习、自动化工作流），全部打包好可直接安装使用！同时自动抓取Gi
 - modelcontextprotocol/registry [mcp-server] *7318*  items=7 - Check how to contact a business website, and whether that contact path actually 
 - deanpeters/Product-Manager-Skills [skill] *7169*  items=1 - Product Management skills framework built on battle-tested methods for Claude Co
 - tech-leads-club/agent-skills [marketplace] *7031*  items=1 - The secure, validated skill registry for professional AI coding agents. Extend A
-- internet-court/internet-court-skill [marketplace] *6387* ['star-anomaly'] items=1 - The trust layer for agent-to-agent commerce — natural-language mandates, ERC-771
+- internet-court/internet-court-skill [marketplace] *6387*  items=1 - The trust layer for agent-to-agent commerce — natural-language mandates, ERC-771
 - Klavis-AI/klavis [mcp-server] *5805*  items=1 - MCP server for progressive tool usage at any scale (see https://klavis.ai)
 - KnockOutEZ/wigolo [mcp-server] *5442*  items=1 - Local-first web intelligence MCP server for AI coding agents
 - brycewang-stanford/Auto-Empirical-Research-Skills [marketplace] *4490*  items=1 - 🔬 A curated collection of 23,000+ agent skills for empirical research across 8 s
@@ -264,34 +258,39 @@ Repos (deduped): 2485; flat entries before dedup: 19429
 - isjiamu/gzh-design-skill [skill] *3901*  items=1 - 把 Markdown 一键排成可直接粘进公众号编辑器的精致 HTML —— 6 套精选主题 + 主题生成器 + 双关卡校验。An AI-agent skill 
 - geekjourneyx/md2wechat-skill [skill] *3687*  items=1 - 面向 AI Agent 的微信公众号创作与发布 CLI：Markdown 排版、AI 配图、预览与草稿创建；支持由浏览器 Agent 保存知乎、CSDN、头条未
 - jangviktor-web/nihaixia [skill] *3446*  items=1 - 倪海厦视角的中医Agent Skill，基于倪海厦教学资料开发，蒸馏倪师伤寒论、金匮要略、黄帝内经、神农本草经、针灸篇等，人纪/医案/经方思维，六经辨证，八纲辨
+- codeaashu/claude-code [skill,mcp-server] *3369*  items=2 - Claude Code is an agentic coding tool that lives in your terminal, understands y
+- nexu-io/nexu [skill] *3281*  items=1 - The simplest desktop client for OpenClaw 🦞 — bridge your Agent to WeChat, Feishu
+- bergside/awesome-design-skills [skill] *3057*  items=1 - List of 67 awesome DESIGN.md and SKILL.md design skill files for agentic tools l
+- FreedomIntelligence/OpenClaw-Medical-Skills [skill] *3047*  items=1 - The largest open-source medical AI skills library for OpenClaw🦞.
+- NarratorAI-Studio/narrator-ai-cli-skill [skill] *3024*  items=1 - AI 解说大师 — Agent skill；封装 narrator-ai-cli 供 Claude/Codex 等工具调用
 
-## Random sample of 20 watch repos (of 415)
-- vyayasan/kyc-analyst [plugin] *58*  items=1 - Open-source KYC/AML compliance automation. 17 human-in-the-loop checkpoints, fre reasons=['fails: pushed<=90d (93)'] src=['topic']
-- joshua-zyy/academic-paper-writer [marketplace] *113*  items=1 - 面向 CS / AI / ML 领域的证据驱动、分节推进的论文写作 Agent Skill。 reasons=['no corroborating signal'] src=['topic']
-- screenpipe/screenpipe [mcp-server] *21823*  items=1 - Search your local screen recordings, audio transcripts, and computer activity fr reasons=['fails: license (NOASSERTION)'] src=['mcp-registry']
-- alexgreensh/token-optimizer [marketplace] *2496*  items=1 - Find the ghost tokens. Fix them. Survive compaction. Avoid context quality decay reasons=['fails: license (NOASSERTION)'] src=['topic']
-- chunxiaoxx/nautilus-compass [plugin,mcp-server] *1134*  items=2 - Reliability layer for multi-agent setups — keep agents coordinating without an o reasons=['fails: license (NOASSERTION)'] src=['mcp-registry', 'topic']
-- colibird-ai/local-mcp-releases [mcp-server] *66*  items=1 - Mac & Windows: let ChatGPT, Claude & Cursor use your email, calendar, iMessage,  reasons=['fails: license (NOASSERTION)'] src=['mcp-registry']
-- jdforsythe/forge [plugin,marketplace] *151*  items=2 - Skills for creating high quality skills and agents reasons=['fails: pushed<=90d (94)'] src=['code', 'marketplace-expansion']
+## Random sample of 20 watch repos (of 411)
+- V-Songbird/hush [plugin] *51*  items=1 - Quieter sessions for Claude Code: less narration, shorter tool output and concis reasons=['no corroborating signal'] src=['topic']
+- Klavis-AI/klavis [mcp-server] *5805*  items=1 - MCP server for progressive tool usage at any scale (see https://klavis.ai) reasons=['fails: pushed<=90d (126)'] src=['mcp-registry']
+- taisly/agent [mcp-server] *217*  items=1 - Publish videos to TikTok, Reels, Shorts, X, and Facebook through Taisly. reasons=['no corroborating signal'] src=['mcp-registry']
+- acogood/diffmode_free [marketplace] *161*  items=1 - Free guerrilla growth tactics for startups, the kind your competitors won't come reasons=['no corroborating signal'] src=['topic']
+- aldefy/compose-skill [marketplace] *595*  items=1 - Jetpack Compose Agent Skill — AI-powered coding guidance with actual androidx/an reasons=['fails: license (NOASSERTION)'] src=['topic']
+- twelvedata/mcp [mcp-server] *82*  items=1 - Twelve Data MCP: real-time & historical market data (stocks, crypto, forex, etc) reasons=['fails: license (None)'] src=['mcp-registry']
+- jdforsythe/forge [plugin,marketplace] *151*  items=2 - Skills for creating high quality skills and agents reasons=['fails: pushed<=90d (95)'] src=['code', 'marketplace-expansion']
 - massimodeluisa/recursive-decomposition-skill [skill] *50*  items=1 - Claude Code skill for handling long-context tasks through recursive decompositio reasons=['no corroborating signal'] src=['topic']
-- wgt19861219/godot-mcp-enhanced [mcp-server] *99*  items=1 - Enhanced Godot 4.5-4.7 MCP: headless+editor+bridge, secure GDScript sandbox, clo reasons=['fails: license (NOASSERTION)'] src=['mcp-registry']
-- Snailclimb/AIGuide [skill] *664*  items=1 - AI 应用开发、AI 编程实战与面试指南，涵盖 LLM、Agent、RAG、MCP、Claude Code、Codex 等核心技术与工程实践。 reasons=['fails: pushed<=90d (91)', 'fails: license (None)'] src=['topic']
-- proyecto26/system-design-skills [marketplace] *84*  items=1 - A divide-and-conquer wiki of system-design skills for Claude Code — reason about reasons=['fails: pushed<=90d (125)'] src=['topic']
-- KuvopLLC/better-bear [mcp-server] *66*  items=2 - MCP server for Bear notes — read, search, create, edit, tag, and manage notes vi reasons=['fails: pushed<=90d (165)'] src=['mcp-registry']
-- DottedSign-Official/dottedsign-mcp [mcp-server] *142*  items=1 - Automate eSignature workflows and signing tasks via natural language commands. reasons=['fails: license (None)'] src=['mcp-registry']
-- tolgee/tolgee-platform [mcp-server] *4119*  items=1 - Your app's translations in Tolgee: search keys, create translations, trigger mac reasons=['fails: license (NOASSERTION)'] src=['mcp-registry']
+- mixpeek/amux [skill] *514*  items=1 - Open-source control plane for AI coding agents. Run an AI engineering team: para reasons=['fails: license (NOASSERTION)'] src=['topic']
+- max-sixty/worktrunk [marketplace] *8848*  items=1 - Worktrunk is a CLI for Git worktree management, designed for parallel AI agent w reasons=['fails: license (NOASSERTION)'] src=['topic']
+- Mearman/mcp-wayback-machine [mcp-server] *56*  items=1 - MCP server and CLI tool for interacting with the Wayback Machine without API key reasons=['fails: license (NOASSERTION)'] src=['mcp-registry']
+- Intina47/context-sync [mcp-server] *190*  items=1 - Universal AI Memory - Sync context across Claude, VsCode, Cursor, Continue, Wind reasons=['fails: pushed<=90d (178)'] src=['mcp-registry']
+- w1ckedxt/cynical-sally [mcp-server] *95*  items=1 - Brutally honest code reviews: scores, real issues, and usable fixes. CLI + MCP s reasons=['fails: pushed<=90d (94)'] src=['mcp-registry']
 - tanweai/wooyun-legacy [plugin,marketplace] *1777*  items=3 - wooyun-legacy skill for claude code reasons=['fails: license (NOASSERTION)'] src=['code', 'marketplace-expansion']
-- rohitg00/awesome-claude-design [skill] *1124*  items=1 - Claude Design DESIGN.md prompts by aesthetic family, remix recipes, skills, vide reasons=['fails: pushed<=90d (165)'] src=['topic']
-- henkisdabro/wookstar-claude-plugins [marketplace] *90*  items=1 - An opinionated Claude Code Plugin Pack. Skills, Agents, Hooks, MCPs. Examples: E reasons=['fails: license (NOASSERTION)'] src=['topic']
-- ComeOnOliver/skillshub [skill] *65*  items=1 - 🧠 The right skill, one API call. AI agent skills registry with token-efficient s reasons=['fails: pushed<=90d (103)'] src=['code']
+- rohitg00/awesome-claude-design [skill] *1124*  items=1 - Claude Design DESIGN.md prompts by aesthetic family, remix recipes, skills, vide reasons=['fails: pushed<=90d (166)'] src=['topic']
+- vyayasan/kyc-analyst [plugin] *58*  items=1 - Open-source KYC/AML compliance automation. 17 human-in-the-loop checkpoints, fre reasons=['fails: pushed<=90d (93)'] src=['topic']
+- ComeOnOliver/skillshub [skill] *65*  items=1 - 🧠 The right skill, one API call. AI agent skills registry with token-efficient s reasons=['fails: pushed<=90d (104)'] src=['code']
 - nuwa-skills/awesome-nuwa [skill] *396*  items=1 - Awesome list of 女娲.skill — 用女娲蒸馏的人物思维框架合集 | Distilled human thinking frameworks  reasons=['fails: license (None)'] src=['topic']
-- ferdinandobons/startup-skill [skill] *1166*  items=1 - AI agent skills for startup validation, competitive intelligence, and planning reasons=['fails: pushed<=90d (96)'] src=['topic']
+- ferdinandobons/startup-skill [skill] *1166*  items=1 - AI agent skills for startup validation, competitive intelligence, and planning reasons=['fails: pushed<=90d (97)'] src=['topic']
+- ianho7/ai-friendly-web-design-skill [skill] *77*  items=1 - A skill for coding agents that build, review, and refactor Web UI that should be reasons=['fails: pushed<=90d (106)', 'no corroborating signal'] src=['topic']
 
 ## Errors
 - marketplace obra/claude-session-driver: no plugins list
 
 ## Rate limit
-- REST calls this run (uncached): {"core": 4, "search": 19}; last seen: {"core": {"remaining": "4996", "limit": "5000"}, "search": {"remaining": "8", "limit": "10"}}
-- GraphQL: 3 calls, cost 1, remaining 4998/5000, stopped early: False
+- REST calls this run (uncached): {"core": 0, "search": 0}; last seen: {}
+- GraphQL: 0 calls, cost 0, remaining None/None, stopped early: False
 - REST stopped early: False
 - repos lacking metadata: 3427; enriched this run: 27520

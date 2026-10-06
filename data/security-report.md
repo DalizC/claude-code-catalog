@@ -1,9 +1,9 @@
 # Security scan report
 
-Generated 2026-10-06T05:34:54Z by security.py (rules d2241ba97128). Static pattern scan; content is never executed.
+Generated 2026-10-06T15:51:52Z by security.py (rules d2241ba97128). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 2077 (repos visited this run: 1224, 460s)
-- API calls this run: 1225 (325 not-modified); raw files fetched 15669, from cache 10342, failed 0
+- Entries with scanned components: 2076 (repos visited this run: 2160, 503s)
+- API calls this run: 2160 (1260 not-modified); raw files fetched 8830, from cache 29333, failed 0
 
 ## Entries by level
 
@@ -11,20 +11,20 @@ Generated 2026-10-06T05:34:54Z by security.py (rules d2241ba97128). Static patte
 |---|---|
 | high | 1 |
 | review | 99 |
-| ok | 1977 |
+| ok | 1976 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 0 | 5 | 404 |
+| rce-pipe-shell | 0 | 5 | 401 |
 | perm-skip-permissions | 0 | 31 | 103 |
-| inject-conceal-from-user | 0 | 0 | 120 |
-| inject-ignore-instructions | 0 | 4 | 112 |
+| inject-conceal-from-user | 0 | 0 | 121 |
+| inject-ignore-instructions | 0 | 4 | 111 |
 | cred-ssh-cloud-keys | 0 | 7 | 96 |
 | destructive-rm-root-home | 0 | 2 | 77 |
 | perm-hook-auto-approve | 0 | 46 | 18 |
-| rce-powershell-iex | 0 | 0 | 59 |
+| rce-powershell-iex | 0 | 0 | 60 |
 | cred-token-dump | 0 | 32 | 22 |
 | persist-launchd-systemd | 0 | 21 | 19 |
 | persist-cron | 0 | 8 | 27 |
