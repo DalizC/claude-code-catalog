@@ -45,7 +45,8 @@ CODE_DIRS = {"hooks", "scripts", "bin", "skills", "commands", "agents", "tools",
 # MCP server source (kind "server"): scanned for mcp-server entries, entry points first; tests, examples and docs are skipped
 SERVER_EXT = {".ts", ".mts", ".cts", ".js", ".mjs", ".cjs", ".py", ".go", ".rs"}
 SERVER_SKIP = re.compile(r"(?:^|/)(?:tests?|__tests__|spec|specs|e2e|fixtures?|examples?|samples?|demos?|docs?|benchmarks?|mocks?|"
-                         r"site|website|public|static|assets|\.github|types|typings)(?:/|$)|\.(?:test|spec|d)\.[a-z]+$|(?:^|/)test_[^/]+$", re.I)
+                         r"site|website|public|static|assets|\.github|types|typings|bench|corpus|corpora|attacks?)(?:/|$)|\.(?:test|spec|d)\.[a-z]+$|"
+                         r"(?:^|/)test[_-][^/]+$|(?:^|/)[\w.]+[-_](?:tests?|fixtures?|mocks?|samples?|examples?|servers?-?mocks?)(?:/|$)", re.I)
 SERVER_ENTRY = re.compile(r"(?:^|/)(?:index|main|server|cli|app|mcp|__main__|__init__|tools?|handlers?)\.[a-z]+$", re.I)
 NOW = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -387,7 +388,8 @@ def scan_text(text, path, kind, repo_security_doc=False, repo="", depth=0):
     cmask = code_context_masks(lines, kind) if not is_md and not is_json else [False] * len(lines)
 
     def ctx_adjust(rule, sev, i, line, m):
-        if rule.get("context") is False: return sev
+        if rule.get("context") is False:  # no code-context suppression, but test files and security tools' samples still count less
+            return lower(sev) if kind == "server" and (is_test or sec_file) else sev
         pos = m.start() if m else 0
         if is_test: sev = lower(sev)
         if rule.get("context") == "light":  # only test paths, comments and non-executable text

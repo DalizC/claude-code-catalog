@@ -1002,13 +1002,13 @@
     "user"
    ],
    "patterns": [
-    "\\b(?:do not|don't|never)\\s+(?:tell|inform|notify|mention|reveal|disclose|show)\\s+(?:this\\s+|it\\s+|anything\\s+)?(?:to\\s+)?(?:the\\s+)?user\\b(?!\\s+to\\b|\\s*[`'\\\"]\\s*\\+?\\s*$)"
+    "\\b(?:do not|don't|never)\\s+(?:tell|inform|notify|mention|reveal|disclose)\\s+(?:this\\s+|it\\s+|anything\\s+)?(?:to\\s+)?(?:the\\s+)?user\\b(?=\\s*(?:[.!;:)<]|[`'\\\"](?!\\s*\\+)|$)|\\s+(?:about|that\\s+you|you\\b|what\\s+you|how\\s+you|anything|this|it\\b))"
    ]
   },
   {
    "id": "install-script-download",
    "category": "remote-code-execution",
-   "description": "A package install hook (preinstall/install/postinstall) downloads or runs remote code when the package is installed.",
+   "description": "A package install hook (preinstall/install/postinstall) downloads code or data from the network when the package is installed.",
    "severity": "review",
    "scope": [
     "manifest"
@@ -1018,7 +1018,7 @@
     "install"
    ],
    "patterns": [
-    "\"(?:pre|post)?install\"\\s*:\\s*\"[^\"\\n]*(?:\\bcurl\\b|\\bwget\\b|https?://|\\bnode\\s+-e\\b|\\biwr\\b|Invoke-WebRequest|\\bbash\\s+-c\\b|\\bsh\\s+-c\\b|\\bpython3?\\s+-c\\b)"
+    "\"(?:pre|post)?install\"\\s*:\\s*\"[^\"\\n]*(?:\\bcurl\\b|\\bwget\\b|https?://|\\biwr\\b|\\birm\\b|Invoke-WebRequest|Invoke-RestMethod)"
    ]
   },
   {
