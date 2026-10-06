@@ -164,7 +164,8 @@ def compile_taxonomy(nodes, tax):
         for nid, parent, label, n, _ in lst:
             als = list(n.get("aliases", []))
             build = dim == "technologies"
-            excl = list(n.get("exclude", [])) + ((_build_rx({**n, "label": label}) or []) if build and not n.get("fallback") else [])
+            # platforms (Figma, WordPress...): "a Figma plugin" is for Figma, so built-with phrases are not blanked
+            excl = list(n.get("exclude", [])) + ((_build_rx({**n, "label": label}) or []) if build and not n.get("fallback") and not n.get("platform") else [])
             out[(dim, nid)] = {
                 "parent": parent,
                 "rx": _alias_rx(als),

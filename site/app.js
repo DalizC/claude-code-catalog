@@ -148,6 +148,7 @@
     postgresql: "postgresql", sqlite: "sqlite", mysql: "mysql", supabase: "supabase", aws: "amazonwebservices", gcp: "googlecloud",
     azure: "microsoftazure", cloudflare: "cloudflare", vercel: "vercel", docker: "docker", kubernetes: "kubernetes",
     terraform: "terraform", playwright: "playwright",
+    figma: "figma", adobe: "adobe", blender: "blender", canva: "canva", framer: "framer", "sketch-penpot": "sketch",
   };
 
   // ---------------------------------------------------------------- data prep
