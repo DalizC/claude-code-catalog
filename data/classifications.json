@@ -1202,7 +1202,7 @@
  },
  "Eigenwise/atomic-agents": {
   "readme_sha": "06fede9f221abe1263a0dece7ac461c5b2db38c8",
-  "input_sha": "58500077fddc94be",
+  "input_sha": "fc13c14acce41cc9",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -10417,7 +10417,7 @@
  },
  "slackapi/slack-skills-plugin": {
   "readme_sha": "6f27800940c3af478073967ade2fa4577bbb7119",
-  "input_sha": "46e93c25b3643949",
+  "input_sha": "39c0e81b7f1dc482",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -14261,50 +14261,6 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "gtapps/hermitd": {
-  "readme_sha": "7aec52a00fa734052d90a19c7361ce74483e82a4",
-  "input_sha": "7afc4e6783b4880b",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "containers-iac",
-   "docker"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "containers-iac": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "docker",
-     "implied_by": "docker"
-    },
-    "docker": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "docker"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T18:02:13Z"
- },
  "mcpware/cross-code-organizer": {
   "readme_sha": "626233c03821ae7166859889e819beadd4bd9be4",
   "input_sha": "bc903d44ec398e57",
@@ -14365,70 +14321,6 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
- },
- "GarethManning/education-agent-skills": {
-  "readme_sha": "158348fc1848505e76c3d612ce308d1ec32d019f",
-  "input_sha": "89240c0e9527dbaa",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "prompt-engineering",
-   "business",
-   "education"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "agent orchestration"
-    },
-    "prompt-engineering": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "business": {
-     "rule_score": 9,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 2,
-      "readme": 1
-     },
-     "match": "education"
-    },
-    "education": {
-     "rule_score": 11,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 3,
-      "readme": 2
-     },
-     "match": "education"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T18:02:13Z"
  },
  "Chachamaru127/claude-code-harness": {
   "readme_sha": "c4ae1a16ec1f2aefe67e88ec78ba28b80d3d7a55",
@@ -15711,39 +15603,6 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
- },
- "credyt/ai-tools": {
-  "readme_sha": "9844ef10e6f366b423ac7f919f15bccd661329b9",
-  "input_sha": "dcb2342ed82b5fb8",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-06T18:02:13Z",
-  "deps": {
-   "lv": "key",
-   "ev": "asks for an API key"
-  }
  },
  "cybrixcc/cybrix-skills": {
   "readme_sha": "62168690712476422c426bf0859926801312de6a",
@@ -17054,48 +16913,6 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "buildomator/buildomator": {
-  "readme_sha": "ac9f76ac77f936a21f4daabe3f061ac2f12124b2",
-  "input_sha": "fbb7399490ebb14e",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "memory-context"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "memory-context": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "description": 2
-     },
-     "match": "cross session"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T18:02:13Z"
- },
  "OriNachum/claude-code-guide": {
   "readme_sha": "abc5a226263bc55947a0cc6a21c2bf22c88a3917",
   "input_sha": "82f1dc794e30b615",
@@ -17608,52 +17425,6 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "suxrobGM/jobpilot": {
-  "readme_sha": "3575ab508f6dab6fb183f8b09417c0405310d746",
-  "input_sha": "55b190701108873e",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "orchestration"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null,
-     "implied_by": "orchestration"
-    },
-    "orchestration": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T18:02:13Z",
-  "deps": {
-   "lv": "key",
-   "ev": "asks for an API key"
-  }
- },
  "pattern-ai-labs/agentcall": {
   "readme_sha": "89207290a746ee372e6f4ef5ae1b5806794d6183",
   "input_sha": "5b83aac9ab8948cb",
@@ -18038,69 +17809,6 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "LegalRabbit-AI/legalrabbit-docx-mcp": {
-  "readme_sha": "acbea8630857f8f47ac00b53311a3853c6efbb04",
-  "input_sha": "331cf4a6683d1598",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "docs-writing",
-   "office-documents",
-   "business",
-   "legal"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "docs-writing": {
-     "rule_score": 7,
-     "fields": {
-      "name": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "docx"
-    },
-    "office-documents": {
-     "rule_score": 7,
-     "fields": {
-      "name": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "docx"
-    },
-    "business": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "legal"
-    },
-    "legal": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "legal"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T18:02:13Z"
- },
  "wrsmith108/linear-claude-skill": {
   "readme_sha": "fec23969a3954a382406686bf499d8476613ad34",
   "input_sha": "37980cba98c07599",
@@ -18478,65 +18186,6 @@
    "lv": "key",
    "ev": "OUTLINE_API_KEY"
   }
- },
- "medusajs/medusa-agent-skills": {
-  "readme_sha": "3c0985e7c3a9e60e7d7b8d8e51634df1c5a11294",
-  "input_sha": "1f0e127e1429f24e",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "javascript",
-   "react"
-  ],
-  "areas": [
-   "backend",
-   "business",
-   "sales-crm"
-  ],
-  "evidence": {
-   "technologies": {
-    "javascript": {
-     "rule_score": 2,
-     "fields": {
-      "description": 2
-     },
-     "match": "react",
-     "implied_by": "react"
-    },
-    "react": {
-     "rule_score": 2,
-     "fields": {
-      "description": 2
-     },
-     "match": "react"
-    }
-   },
-   "areas": {
-    "backend": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "backend"
-    },
-    "business": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "sales-crm": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T18:02:13Z"
  },
  "mem0ai/mem0": {
   "readme_sha": "e03e608806bfe6b1859731bebaa20ad948210b34",
@@ -19087,59 +18736,6 @@
   "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "xiaolai/nlpm": {
-  "readme_sha": "cbb15a1077acd5e6d1b842ae9b5f69522bdbb1a2",
-  "input_sha": "8ac72875665beecf",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "security",
-   "ai-agents",
-   "agent-config"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "security": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "security scanner"
-    },
-    "ai-agents": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "hooks",
-     "implied_by": "agent-config"
-    },
-    "agent-config": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "hooks"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T18:02:13Z"
- },
  "norman-finance/norman-mcp-server": {
   "readme_sha": "2d9aca83b4e3eeba1caa03e3bfb520b20990e5e2",
   "input_sha": "c4dc3960338a317e",
@@ -19184,35 +18780,6 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
- },
- "MJbae/awesome-novel-studio": {
-  "readme_sha": "d705d5e18642a030ac8bb5536661af4e6be95eff",
-  "input_sha": "98544936c016f36d",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-06T18:02:13Z"
  },
  "nyldn/claude-octopus": {
   "readme_sha": "3b196edb9dee073eb5fe320b0cd6f444d786fe13",
@@ -19271,69 +18838,6 @@
    "lv": "key",
    "ev": "asks for an API key"
   }
- },
- "officecli/officecli": {
-  "readme_sha": "572db28516d9be5f8a50f86be092630349e06175",
-  "input_sha": "0d14e7e0fa6b9302",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "docs-writing",
-   "office-documents",
-   "design",
-   "media-generation"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "docs-writing": {
-     "rule_score": 8,
-     "fields": {
-      "topic": 3,
-      "description": 3,
-      "readme": 2
-     },
-     "match": "presentations"
-    },
-    "office-documents": {
-     "rule_score": 8,
-     "fields": {
-      "topic": 3,
-      "description": 3,
-      "readme": 2
-     },
-     "match": "powerpoint"
-    },
-    "design": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "image generation"
-    },
-    "media-generation": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "image generation"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T18:02:13Z"
  },
  "fabio-rovai/open-ontologies": {
   "readme_sha": "293f4b212b0726e1ca8ac38facde98f59fce408a",
@@ -20030,7 +19534,7 @@
  },
  "borghei/Claude-Skills": {
   "readme_sha": "9d349bb9702fb6c4bc5e3cc246c850cc549bb58b",
-  "input_sha": "54ada21d0c785e7a",
+  "input_sha": "416f99583856647f",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "python",
@@ -23609,6 +23113,42 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "imoonkey/openweb": {
+  "readme_sha": "62b51ae6b68e3de8331787ff28f467682c520310",
+  "input_sha": "634c29273f67a107",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "web-data",
+   "browser-automation"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "web-data": {
+     "score": 0.705
+    },
+    "browser-automation": {
+     "score": 0.736
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {
+     "web-data": 0.705,
+     "browser-automation": 0.736
+    }
+   }
+  },
+  "method": "embedding",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "SFKislev/Flue": {
   "readme_sha": "39ef4151eaf3c1dc99d982897e001917a68f808d",
   "input_sha": "69222287d9625262",
@@ -24059,6 +23599,56 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "cesarandreslopez/sidekick-agent-hub": {
+  "readme_sha": "1288fa5fe641f08677c0ee85508e636b9dec79be",
+  "input_sha": "0e6520a679e10bca",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "code-review",
+   "automated-review",
+   "git"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "code-review": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "automated-review": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "git": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "commit messages"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "leeguooooo/claude-code-usage-bar": {
   "readme_sha": "7d3fb236a78875883910c5c212ef06cfea753d69",
@@ -24794,6 +24384,58 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "coipond/coi": {
+  "readme_sha": "1cc1c6fdab445d8e081a244d88023a3ed0702af5",
+  "input_sha": "1e6c3b4c762aee83",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "containers-iac",
+   "docker"
+  ],
+  "areas": [
+   "security",
+   "agent-guardrails"
+  ],
+  "evidence": {
+   "technologies": {
+    "containers-iac": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "docker",
+     "implied_by": "docker"
+    },
+    "docker": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "docker"
+    }
+   },
+   "areas": {
+    "security": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "agent-guardrails": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "agentrhq/authsome": {
   "readme_sha": "61a0c7e36b5ca016b638979a8b20b6f0a58d3469",
   "input_sha": "68097508bdf4f000",
@@ -25375,7 +25017,7 @@
  },
  "wesammustafa/Claude-Code-Everything-You-Need-to-Know": {
   "readme_sha": "57c13a562d0c1ae6b0040718761a78b965c130f5",
-  "input_sha": "28d7da6f6f8097a5",
+  "input_sha": "f0592f85f1dfce66",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -25923,7 +25565,7 @@
  },
  "minchenlee/c9watch": {
   "readme_sha": "a6b3b42aff8822a701795d3be0ada5f7f0811e16",
-  "input_sha": "3f0743ba78d969e7",
+  "input_sha": "af3614a985fd5c99",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "rust"
@@ -26597,6 +26239,112 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "ThibautMelen/agentic-ai-systems": {
+  "readme_sha": "b7ad0c5f09d6e707db8071b5c57f3b4694786ad0",
+  "input_sha": "e28f81b773847d30",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "orchestration",
+   "memory-context"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "subagent"
+    },
+    "orchestration": {
+     "rule_score": 8,
+     "fields": {
+      "topic": 3,
+      "description": 3,
+      "readme": 2
+     },
+     "match": "subagent"
+    },
+    "memory-context": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "context engineering"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
+ "danielrosehill/Claude-Code-Projects-Index": {
+  "readme_sha": "9ed8e667bbf1ad753e88350f7bae4d2e1b5f689b",
+  "input_sha": "230f815144fd8f48",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "research",
+   "hardware-iot"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "agentic workflows"
+    },
+    "research": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "deep research"
+    },
+    "hardware-iot": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "iot"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "Piebald-AI/claude-code-system-prompts": {
   "readme_sha": "24d270030dbfd2641f8451a47e32aee5169e4b71",
   "input_sha": "b556dfbdb1650ffd",
@@ -26659,6 +26407,50 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "hluaguo/learn-faster-kit": {
+  "readme_sha": "79fbc5ddba6f5d7f5935d26b12fe4410602eed17",
+  "input_sha": "4498258a6267a86b",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "business",
+   "education"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "business": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "education": {
+     "rule_score": 11,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 3,
+      "readme": 2
+     },
+     "match": "learn faster"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "ayoubben18/ab-method": {
   "readme_sha": "f720782034168cc9db70475ce2cea74cc752d256",
@@ -28207,6 +27999,111 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "maxritter/pilot-shell": {
+  "readme_sha": "0fd97ffbf4a70f810cc417f4012249e591b40ee0",
+  "input_sha": "973c77d7c08aa400",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "memory-context",
+   "agent-config",
+   "ai-workflows",
+   "spec-driven",
+   "testing",
+   "tdd",
+   "code-review",
+   "automated-review"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "persistent memory"
+    },
+    "memory-context": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "cross session"
+    },
+    "agent-config": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "hooks"
+    },
+    "ai-workflows": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "description": 2
+     },
+     "match": "spec driven"
+    },
+    "spec-driven": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "description": 2
+     },
+     "match": "spec driven"
+    },
+    "testing": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "description": 2
+     },
+     "match": "tdd"
+    },
+    "tdd": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "description": 2
+     },
+     "match": "tdd"
+    },
+    "code-review": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "automated-review": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "JSONbored/awesome-claude": {
   "readme_sha": "f7a9c69d176148eb949852eab1ac3d1730c440b2",
   "input_sha": "98b666816ba07491",
@@ -28557,6 +28454,61 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "aannoo/hcom": {
+  "readme_sha": "564419b654f0ad5e0f47c9842a2954c60363e102",
+  "input_sha": "9733efdc24961efe",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "orchestration",
+   "agent-config"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 3,
+      "readme": 1
+     },
+     "match": "sub agents"
+    },
+    "orchestration": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 3,
+      "readme": 1
+     },
+     "match": "sub agents"
+    },
+    "agent-config": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "hooks"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "ldayton/Dippy": {
   "readme_sha": "25b7daa409d073f96cfb5329e3463f4336b5bf1c",
@@ -29058,6 +29010,40 @@
   "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "rehan-remade/universal-modder": {
+  "readme_sha": "bf5e24da0517d6e04cc73f41c0dd65d4c90a7740",
+  "input_sha": "97c0b3f5ba27bb20",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "games"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "games": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "minecraft"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z",
+  "deps": {
+   "lv": "key",
+   "ev": "asks for an API key"
+  }
+ },
  "Manavarya09/design-extract": {
   "readme_sha": "109f4f963ac18d3456314b438d8b17aed40c7ff5",
   "input_sha": "09ee8ab212dda08d",
@@ -29196,40 +29182,6 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
- },
- "rehan-remade/universal-modder": {
-  "readme_sha": "bf5e24da0517d6e04cc73f41c0dd65d4c90a7740",
-  "input_sha": "97c0b3f5ba27bb20",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "games"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "games": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "minecraft"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z",
-  "deps": {
-   "lv": "key",
-   "ev": "asks for an API key"
-  }
  },
  "nowork-studio/notfair-plugin": {
   "readme_sha": "da591889309840674a7e06759b414efbfc0841d2",
@@ -30101,48 +30053,6 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "ReflexioAI/claude-smart": {
-  "readme_sha": "212cd2739a6e7a0d6b38ed3d564ee0e278eaafaa",
-  "input_sha": "1ac8756b0698351d",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "memory-context"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "memory-context": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "remembers"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
  "Ark0N/Codeman": {
   "readme_sha": "35f192c16a51615addc526b0f4780debd3975894",
   "input_sha": "b42d36d830fa41a4",
@@ -30200,6 +30110,48 @@
       "topic": 3
      },
      "match": null
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "ReflexioAI/claude-smart": {
+  "readme_sha": "212cd2739a6e7a0d6b38ed3d564ee0e278eaafaa",
+  "input_sha": "1ac8756b0698351d",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "memory-context"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "memory-context": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "remembers"
     }
    },
    "embedding": {
@@ -30913,44 +30865,6 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "vladikk/modularity": {
-  "readme_sha": "7bc5571f298da431659729c48ffdb0fdbb5bd084",
-  "input_sha": "3786de8af63e2c66",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "backend",
-   "backend-best-practices"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "backend": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null,
-     "implied_by": "backend-best-practices"
-    },
-    "backend-best-practices": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
  "coldteadotai/abide": {
   "readme_sha": "910d2f8dbe2278df1c38f1a2d532e56e5bfea834",
   "input_sha": "f124096e13a23528",
@@ -30995,6 +30909,73 @@
    "ev": "asks for an API key"
   }
  },
+ "vladikk/modularity": {
+  "readme_sha": "7bc5571f298da431659729c48ffdb0fdbb5bd084",
+  "input_sha": "3786de8af63e2c66",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "backend",
+   "backend-best-practices"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "backend": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null,
+     "implied_by": "backend-best-practices"
+    },
+    "backend-best-practices": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "rsmdt/the-startup": {
+  "readme_sha": "4456769cf3913ade07f2484ff5e1a1146abb0035",
+  "input_sha": "e6cd3f26e8dcffb8",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "bitwize-music-studio/claude-ai-music-skills": {
   "readme_sha": "490afc8cb4b92b589c58da8c912bb664c55e24f6",
   "input_sha": "c7a9372b7c512aaf",
@@ -31038,15 +31019,16 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "posit-dev/skills": {
-  "readme_sha": "f7a410cd7caa7b90103ac27f98bda4abcf3d8fbf",
-  "input_sha": "c9225c253009b556",
+ "Hainrixz/the-architect": {
+  "readme_sha": "3a2ecbe2078894cc08288a4e501dea789f9f500d",
+  "input_sha": "9710bfc94c94e32d",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
   ],
   "areas": [
-   "general-purpose"
+   "ai-workflows",
+   "spec-driven"
   ],
   "evidence": {
    "technologies": {
@@ -31055,8 +31037,19 @@
     }
    },
    "areas": {
-    "general-purpose": {
-     "method": "fallback"
+    "ai-workflows": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "spec-driven": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
     }
    },
    "embedding": {
@@ -31064,7 +31057,7 @@
     "areas": {}
    }
   },
-  "method": "fallback",
+  "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
  "karanb192/claude-code-hooks": {
@@ -31131,79 +31124,9 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "Hainrixz/the-architect": {
-  "readme_sha": "3a2ecbe2078894cc08288a4e501dea789f9f500d",
-  "input_sha": "9710bfc94c94e32d",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-workflows",
-   "spec-driven"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-workflows": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "spec-driven": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "rsmdt/the-startup": {
-  "readme_sha": "4456769cf3913ade07f2484ff5e1a1146abb0035",
-  "input_sha": "e6cd3f26e8dcffb8",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "jqueryscript/awesome-claude-code": {
-  "readme_sha": "2fdca3e02d46b4737f275a439893b1c248854412",
-  "input_sha": "f9d0e23dd09a3573",
+ "posit-dev/skills": {
+  "readme_sha": "f7a410cd7caa7b90103ac27f98bda4abcf3d8fbf",
+  "input_sha": "c9225c253009b556",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -31276,9 +31199,9 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "umputun/cc-thingz": {
-  "readme_sha": "41e83ff7598a143aeab56e89dc0908b5c8125006",
-  "input_sha": "289488eca68d5826",
+ "jqueryscript/awesome-claude-code": {
+  "readme_sha": "2fdca3e02d46b4737f275a439893b1c248854412",
+  "input_sha": "f9d0e23dd09a3573",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -31381,6 +31304,35 @@
    }
   },
   "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "umputun/cc-thingz": {
+  "readme_sha": "41e83ff7598a143aeab56e89dc0908b5c8125006",
+  "input_sha": "289488eca68d5826",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
  },
  "josstei/maestro-orchestrate": {
@@ -31922,6 +31874,48 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "aerovato/operator-memory": {
+  "readme_sha": "a4975842a899546782988ed660689d83431bfdb0",
+  "input_sha": "6b7f9b2724586909",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "ai-models"
+  ],
+  "areas": [
+   "ai-agents",
+   "memory-context"
+  ],
+  "evidence": {
+   "technologies": {
+    "ai-models": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "deepseek"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "memory-context": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "kazukinagata/shinkoku": {
   "readme_sha": "63326b071e3b560fa70604d8bb6efd013e9d8be2",
   "input_sha": "72bbc163bcd5aa60",
@@ -32089,48 +32083,6 @@
      "match": null
     },
     "infrastructure": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "aerovato/operator-memory": {
-  "readme_sha": "a4975842a899546782988ed660689d83431bfdb0",
-  "input_sha": "eb07635cb3341aa3",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "ai-models"
-  ],
-  "areas": [
-   "ai-agents",
-   "memory-context"
-  ],
-  "evidence": {
-   "technologies": {
-    "ai-models": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "deepseek"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "memory-context": {
      "rule_score": 3,
      "fields": {
       "topic": 3
@@ -32445,40 +32397,6 @@
   "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "Mertcikla/tld": {
-  "readme_sha": "314cd820607212f05a584ac7c69a8e6de07cff2e",
-  "input_sha": "41a645305153b78d",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "frontend"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "frontend": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "frontend"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
  "yonatangross/orchestkit": {
   "readme_sha": "68d5ca37970e69e90845537bfeedaf07de03b72b",
   "input_sha": "a23334f189609a96",
@@ -32570,6 +32488,40 @@
      },
      "match": null
     }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "Mertcikla/tld": {
+  "readme_sha": "314cd820607212f05a584ac7c69a8e6de07cff2e",
+  "input_sha": "41a645305153b78d",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "frontend"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "frontend": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "frontend"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
    }
   },
   "method": "rules",
@@ -32668,6 +32620,35 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "danjdewhurst/story-skills": {
+  "readme_sha": "b68f871cc7672954aba2fa91e733e81ce1bee19e",
+  "input_sha": "220b3888ba06299d",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "ferdinandobons/brand-docs": {
   "readme_sha": "e81ec33f0503e84e56bad94692e64039d406ed52",
   "input_sha": "59b3e0c40255fd8a",
@@ -32710,35 +32691,6 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "danjdewhurst/story-skills": {
-  "readme_sha": "b68f871cc7672954aba2fa91e733e81ce1bee19e",
-  "input_sha": "220b3888ba06299d",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
  },
  "baidu-netdisk/bdpan-storage": {
@@ -32851,15 +32803,16 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "ed3dai/ed3d-plugins": {
-  "readme_sha": "99e94167e2cb1ac224e1ca16b00f9216c8d54a09",
-  "input_sha": "635af08ff3b7b4c5",
+ "karanb192/awesome-claude-code-mods": {
+  "readme_sha": "806cb9b540cb05ffabecdae9f878da77771823a2",
+  "input_sha": "f80d06411aa0f8fe",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
   ],
   "areas": [
-   "general-purpose"
+   "ai-agents",
+   "agent-config"
   ],
   "evidence": {
    "technologies": {
@@ -32868,16 +32821,28 @@
     }
    },
    "areas": {
-    "general-purpose": {
-     "method": "fallback"
+    "ai-agents": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "hooks",
+     "implied_by": "agent-config"
+    },
+    "agent-config": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "hooks"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
-  "method": "fallback",
+  "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
  "guaardvark/guaardvark": {
@@ -32948,6 +32913,35 @@
    }
   },
   "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "ed3dai/ed3d-plugins": {
+  "readme_sha": "99e94167e2cb1ac224e1ca16b00f9216c8d54a09",
+  "input_sha": "635af08ff3b7b4c5",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
  },
  "Sateezg/codex-bridge": {
@@ -33272,43 +33266,6 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "piercelamb/deep-project": {
-  "readme_sha": "0a96b0f3ccec11f243045f2cf9a0798406560ff3",
-  "input_sha": "746403d9d87815ee",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "productivity",
-   "project-management"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "productivity": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "project-management": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
  "dev-toolings/superpowers-symfony": {
   "readme_sha": "802878efac36186a8de71d52ef44db6084d04318",
   "input_sha": "2dbc6e723d42b4b7",
@@ -33405,6 +33362,68 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "piercelamb/deep-project": {
+  "readme_sha": "0a96b0f3ccec11f243045f2cf9a0798406560ff3",
+  "input_sha": "746403d9d87815ee",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "productivity",
+   "project-management"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "productivity": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "project-management": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "tamdogood/builder-essential-skills": {
+  "readme_sha": "594ffe59957c8328b787068ef562be7dae8f13ce",
+  "input_sha": "433b4d3172a22e39",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "Nako0/devglobe-extension": {
   "readme_sha": "54177811a9db02487dad912ff9d94cf3eff48c53",
   "input_sha": "8d087f7bdc6bb367",
@@ -33434,9 +33453,9 @@
    "ev": "asks for an API key"
   }
  },
- "tamdogood/builder-essential-skills": {
-  "readme_sha": "594ffe59957c8328b787068ef562be7dae8f13ce",
-  "input_sha": "433b4d3172a22e39",
+ "IngvarConsulting/unica": {
+  "readme_sha": "a9804c2421b94c28d014fb71bdf72fef1237cb20",
+  "input_sha": "1340a2de51c663d1",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -33531,15 +33550,16 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "IngvarConsulting/unica": {
-  "readme_sha": "a9804c2421b94c28d014fb71bdf72fef1237cb20",
-  "input_sha": "1340a2de51c663d1",
+ "glifxyz/glif-mcp-server": {
+  "readme_sha": "0f1e2f3386bdec7cff1b00bf99a9ac386053b905",
+  "input_sha": "b7e470e8e59c7a75",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
   ],
   "areas": [
-   "general-purpose"
+   "design",
+   "media-generation"
   ],
   "evidence": {
    "technologies": {
@@ -33548,51 +33568,26 @@
     }
    },
    "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "karanb192/awesome-claude-code-mods": {
-  "readme_sha": "806cb9b540cb05ffabecdae9f878da77771823a2",
-  "input_sha": "f80d06411aa0f8fe",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "agent-config"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 6,
+    "design": {
+     "rule_score": 3,
      "fields": {
-      "topic": 3,
-      "description": 2,
+      "items": 2,
       "readme": 1
      },
-     "match": "hooks",
-     "implied_by": "agent-config"
+     "match": "generate images"
     },
-    "agent-config": {
-     "rule_score": 6,
+    "media-generation": {
+     "rule_score": 3,
      "fields": {
-      "topic": 3,
-      "description": 2,
+      "items": 2,
       "readme": 1
      },
-     "match": "hooks"
+     "match": "generate images"
     }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
    }
   },
   "method": "rules",
@@ -33762,6 +33757,73 @@
   "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "sohaibt/product-mode": {
+  "readme_sha": "b63e0c065b36e5ec41c55fef9ad0cf80de5b1d34",
+  "input_sha": "77fabbc55fb08487",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "prompt-engineering",
+   "agent-config",
+   "productivity",
+   "project-management"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "prompt-engineering": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "agent-config": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "claude.md"
+    },
+    "productivity": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "project-management": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "yeap531/word-format-skill": {
   "readme_sha": "2e2198c5b95b28e346b5a8014a443483beb22c1e",
   "input_sha": "71143d82bc22c077",
@@ -33890,6 +33952,57 @@
    "ev": "SANDBASE_API_KEY"
   }
  },
+ "ilindaniel/ponytail-lite": {
+  "readme_sha": "2f38e3ab9af0205adf073156e1bc8411bae85480",
+  "input_sha": "536c2c754d00b540",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "prompt-engineering",
+   "agent-config"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "prompt-engineering": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "system prompt"
+    },
+    "agent-config": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "agents.md"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "murphytrueman/design-system-ops": {
   "readme_sha": "4ed7297240374c5bc24cf0d2f4745990201bc161",
   "input_sha": "d83979ce735e74cd",
@@ -33942,57 +34055,6 @@
      },
      "match": "design system"
     }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "ilindaniel/ponytail-lite": {
-  "readme_sha": "2f38e3ab9af0205adf073156e1bc8411bae85480",
-  "input_sha": "536c2c754d00b540",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "prompt-engineering",
-   "agent-config"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "prompt-engineering": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "system prompt"
-    },
-    "agent-config": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "agents.md"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -34768,6 +34830,76 @@
    "ev": "XAI_API_KEY"
   }
  },
+ "ash1794/vibe-engineering": {
+  "readme_sha": "7b699fd7347ef66888f619a9ded2927651887c56",
+  "input_sha": "89e0aa0b0c174639",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "ai-models"
+  ],
+  "areas": [
+   "ai-agents",
+   "orchestration",
+   "ai-workflows",
+   "testing",
+   "code-review"
+  ],
+  "evidence": {
+   "technologies": {
+    "ai-models": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "gemini models"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "multi agent"
+    },
+    "orchestration": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "multi agent"
+    },
+    "ai-workflows": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "engineering discipline"
+    },
+    "testing": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "root cause"
+    },
+    "code-review": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "op7418/m5-paper-buddy": {
   "readme_sha": "0f5bb5e8f0a13a0a4313aba5403c43e96ad4d1d3",
   "input_sha": "fe8541ea749bee02",
@@ -34792,6 +34924,44 @@
       "readme": 2
      },
      "match": "esp32"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "FavioVazquez/showtime": {
+  "readme_sha": "20e007a7d3ffb90eeb3bfd6b1a5c74762a32ee42",
+  "input_sha": "f0bb60b5ed3df2d0",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "design",
+   "media-generation"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "design": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "motion graphics"
+    },
+    "media-generation": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
     }
    }
   },
@@ -34869,73 +35039,6 @@
       "readme": 1
      },
      "match": "video editing"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "sohaibt/product-mode": {
-  "readme_sha": "b63e0c065b36e5ec41c55fef9ad0cf80de5b1d34",
-  "input_sha": "77fabbc55fb08487",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "prompt-engineering",
-   "agent-config",
-   "productivity",
-   "project-management"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "prompt-engineering": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "agent-config": {
-     "rule_score": 7,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "claude.md"
-    },
-    "productivity": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "project-management": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
     }
    },
    "embedding": {
@@ -35066,6 +35169,36 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "serpro69/claude-toolbox": {
+  "readme_sha": "96d159943119f66b9e0850cd65612e860b66f9e2",
+  "input_sha": "c2f34b52872a8924",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-workflows"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-workflows": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "development workflows"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "assafkip/research-mode": {
   "readme_sha": "2b89f6a8dc3c46048d95a1351a68ca7f2ac9a7b3",
   "input_sha": "e78005b090a4343e",
@@ -35109,36 +35242,6 @@
       "readme": 1
      },
      "match": "academic"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "serpro69/claude-toolbox": {
-  "readme_sha": "96d159943119f66b9e0850cd65612e860b66f9e2",
-  "input_sha": "c2f34b52872a8924",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-workflows"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-workflows": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "development workflows"
     }
    }
   },
@@ -35524,33 +35627,66 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "FavioVazquez/showtime": {
-  "readme_sha": "20e007a7d3ffb90eeb3bfd6b1a5c74762a32ee42",
-  "input_sha": "f0bb60b5ed3df2d0",
+ "aaddrick/building-with-typesafe-jev": {
+  "readme_sha": "94ca0123d5c2d1841f33bece6c76c1e5c8aa409c",
+  "input_sha": "7079c64ae1b52756",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
-   "general-purpose"
+   "ai-models",
+   "jev"
   ],
   "areas": [
-   "design",
-   "media-generation"
+   "security",
+   "agent-guardrails",
+   "ai-agents",
+   "prompt-engineering"
   ],
   "evidence": {
    "technologies": {
-    "general-purpose": {
-     "method": "fallback"
+    "ai-models": {
+     "rule_score": 10,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 3,
+      "readme": 1
+     },
+     "match": "jev"
+    },
+    "jev": {
+     "rule_score": 10,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 3,
+      "readme": 1
+     },
+     "match": "jev"
     }
    },
    "areas": {
-    "design": {
-     "rule_score": 4,
+    "security": {
+     "rule_score": 3,
      "fields": {
-      "topic": 3,
-      "readme": 1
+      "topic": 3
      },
-     "match": "motion graphics"
+     "match": null
     },
-    "media-generation": {
+    "agent-guardrails": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "prompt-engineering": {
      "rule_score": 3,
      "fields": {
       "topic": 3
@@ -35560,7 +35696,11 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
+  "classified_at": "2026-10-06T15:51:51Z",
+  "deps": {
+   "lv": "paid",
+   "ev": "TYPESAFE_API_KEY"
+  }
  },
  "popmechanic/VibesOS": {
   "readme_sha": "9169a6b8a58da9fb6da62ec1e491946d99331c26",
@@ -35659,81 +35799,6 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
- },
- "aaddrick/building-with-typesafe-jev": {
-  "readme_sha": "94ca0123d5c2d1841f33bece6c76c1e5c8aa409c",
-  "input_sha": "7079c64ae1b52756",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "ai-models",
-   "jev"
-  ],
-  "areas": [
-   "security",
-   "agent-guardrails",
-   "ai-agents",
-   "prompt-engineering"
-  ],
-  "evidence": {
-   "technologies": {
-    "ai-models": {
-     "rule_score": 10,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 3,
-      "readme": 1
-     },
-     "match": "jev"
-    },
-    "jev": {
-     "rule_score": 10,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 3,
-      "readme": 1
-     },
-     "match": "jev"
-    }
-   },
-   "areas": {
-    "security": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "agent-guardrails": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "prompt-engineering": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z",
-  "deps": {
-   "lv": "paid",
-   "ev": "TYPESAFE_API_KEY"
-  }
  },
  "HelloRuru/claude-memory-engine": {
   "readme_sha": "5a8578ad812d401475cb6434d5d86f6741a67e2c",
@@ -35844,44 +35909,41 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "hyqibot/A-share-Ai": {
-  "readme_sha": "4e674e319c532149db6f645748f12523402c1e65",
-  "input_sha": "1ca353093a7bda2a",
+ "bradautomates/content-ideas": {
+  "readme_sha": "bd15a76c57549104ecb4cf4a5677abe874587734",
+  "input_sha": "f2fd508c8e3447c7",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
-   "ai-models",
-   "other-model-apis"
+   "general-purpose"
   ],
   "areas": [
-   "general-purpose"
+   "marketing",
+   "social-media"
   ],
   "evidence": {
    "technologies": {
-    "ai-models": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "deepseek"
-    },
-    "other-model-apis": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "deepseek"
-    }
-   },
-   "areas": {
     "general-purpose": {
      "method": "fallback"
     }
    },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
+   "areas": {
+    "marketing": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "marketers"
+    },
+    "social-media": {
+     "rule_score": 8,
+     "fields": {
+      "topic": 3,
+      "description": 3,
+      "readme": 2
+     },
+     "match": "instagram"
+    }
    }
   },
   "method": "rules",
@@ -35935,6 +35997,49 @@
       "topic": 3
      },
      "match": null
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "hyqibot/A-share-Ai": {
+  "readme_sha": "4e674e319c532149db6f645748f12523402c1e65",
+  "input_sha": "1ca353093a7bda2a",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "ai-models",
+   "other-model-apis"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "ai-models": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "deepseek"
+    },
+    "other-model-apis": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "deepseek"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
     }
    },
    "embedding": {
@@ -36021,16 +36126,16 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "bradautomates/content-ideas": {
-  "readme_sha": "bd15a76c57549104ecb4cf4a5677abe874587734",
-  "input_sha": "f2fd508c8e3447c7",
+ "daypunk/LockedIn": {
+  "readme_sha": "60294764f808d088f32a44cbc8ce1217f74f9459",
+  "input_sha": "b005f78467bbd0a1",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
   ],
   "areas": [
-   "marketing",
-   "social-media"
+   "productivity",
+   "knowledge-management"
   ],
   "evidence": {
    "technologies": {
@@ -36039,22 +36144,19 @@
     }
    },
    "areas": {
-    "marketing": {
-     "rule_score": 4,
+    "productivity": {
+     "rule_score": 3,
      "fields": {
-      "topic": 3,
-      "readme": 1
+      "topic": 3
      },
-     "match": "marketers"
+     "match": null
     },
-    "social-media": {
-     "rule_score": 8,
+    "knowledge-management": {
+     "rule_score": 3,
      "fields": {
-      "topic": 3,
-      "description": 3,
-      "readme": 2
+      "topic": 3
      },
-     "match": "instagram"
+     "match": null
     }
    }
   },
@@ -36095,43 +36197,6 @@
       "readme": 1
      },
      "match": "sre"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "daypunk/LockedIn": {
-  "readme_sha": "60294764f808d088f32a44cbc8ce1217f74f9459",
-  "input_sha": "b005f78467bbd0a1",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "productivity",
-   "knowledge-management"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "productivity": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "knowledge-management": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
     }
    }
   },
@@ -36312,164 +36377,6 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "dat999zx/knowl": {
-  "readme_sha": "c91c288dfe5803b5cbcae36daf58ae09c44f9a35",
-  "input_sha": "09fa8060e6d833be",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "databases",
-   "sqlite"
-  ],
-  "areas": [
-   "ai-agents",
-   "memory-context",
-   "productivity",
-   "knowledge-management"
-  ],
-  "evidence": {
-   "technologies": {
-    "databases": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "sqlite",
-     "implied_by": "sqlite"
-    },
-    "sqlite": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "sqlite"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 8,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "items": 2,
-      "readme": 1
-     },
-     "match": "persistent memory"
-    },
-    "memory-context": {
-     "rule_score": 8,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "items": 2,
-      "readme": 1
-     },
-     "match": "persistent memory"
-    },
-    "productivity": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "knowledge-management": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "MIKOTOKAWAII25/local-ai-code-assistant": {
-  "readme_sha": "331d29477ef2639f34c7d1f61457461edf17e693",
-  "input_sha": "de9252c73d011fda",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "AgentToolkit/altk-evolve": {
-  "readme_sha": "0e706c6a5901eb3160579b4da93c0529669a3375",
-  "input_sha": "5b88ea602bbcb66c",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "memory-context",
-   "devops",
-   "observability"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "agent memory"
-    },
-    "memory-context": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "agent memory"
-    },
-    "devops": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "observability": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
  "Avinash-jetwani/jevmem": {
   "readme_sha": "e0f3235c734c68d51ae399f5f339ac7be45e5dbd",
   "input_sha": "d1821347959a6333",
@@ -36556,7 +36463,7 @@
  },
  "KumarSashank/motiscope": {
   "readme_sha": "e3ff444b1bf8ad2c42e1cdefe2f3c9613a4a8d71",
-  "input_sha": "6c6adb41e40c1460",
+  "input_sha": "1bdc2021771b2d48",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "css"
@@ -36612,6 +36519,227 @@
       "readme": 2
      },
      "match": "ffmpeg"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "MIKOTOKAWAII25/local-ai-code-assistant": {
+  "readme_sha": "331d29477ef2639f34c7d1f61457461edf17e693",
+  "input_sha": "de9252c73d011fda",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "dat999zx/knowl": {
+  "readme_sha": "c91c288dfe5803b5cbcae36daf58ae09c44f9a35",
+  "input_sha": "09fa8060e6d833be",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "databases",
+   "sqlite"
+  ],
+  "areas": [
+   "ai-agents",
+   "memory-context",
+   "productivity",
+   "knowledge-management"
+  ],
+  "evidence": {
+   "technologies": {
+    "databases": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "sqlite",
+     "implied_by": "sqlite"
+    },
+    "sqlite": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "sqlite"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 8,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "items": 2,
+      "readme": 1
+     },
+     "match": "persistent memory"
+    },
+    "memory-context": {
+     "rule_score": 8,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "items": 2,
+      "readme": 1
+     },
+     "match": "persistent memory"
+    },
+    "productivity": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "knowledge-management": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "AgentToolkit/altk-evolve": {
+  "readme_sha": "0e706c6a5901eb3160579b4da93c0529669a3375",
+  "input_sha": "5b88ea602bbcb66c",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "memory-context",
+   "devops",
+   "observability"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "agent memory"
+    },
+    "memory-context": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "agent memory"
+    },
+    "devops": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "observability": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "tuzhechen2005/opus-video-skills": {
+  "readme_sha": "7c6386d7f50cea922c264cf02babb2b4e4bda316",
+  "input_sha": "8d15920d77e9b178",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "javascript",
+   "threejs"
+  ],
+  "areas": [
+   "frontend",
+   "animation",
+   "design"
+  ],
+  "evidence": {
+   "technologies": {
+    "javascript": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "webgl",
+     "implied_by": "threejs"
+    },
+    "threejs": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "webgl"
+    }
+   },
+   "areas": {
+    "frontend": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null,
+     "implied_by": "animation"
+    },
+    "animation": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "design": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "typography"
     }
    }
   },
@@ -37064,128 +37192,6 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "tuzhechen2005/opus-video-skills": {
-  "readme_sha": "7c6386d7f50cea922c264cf02babb2b4e4bda316",
-  "input_sha": "8d15920d77e9b178",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "javascript",
-   "threejs"
-  ],
-  "areas": [
-   "frontend",
-   "animation",
-   "design"
-  ],
-  "evidence": {
-   "technologies": {
-    "javascript": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "webgl",
-     "implied_by": "threejs"
-    },
-    "threejs": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "webgl"
-    }
-   },
-   "areas": {
-    "frontend": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null,
-     "implied_by": "animation"
-    },
-    "animation": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "design": {
-     "rule_score": 7,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "typography"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "pillar-labs/sail-skill": {
-  "readme_sha": "8c55237a39ac8e5c081e0c8b8c3292c1d8f55e02",
-  "input_sha": "3e92bd102463cdd3",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "security",
-   "compliance",
-   "productivity",
-   "project-management"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "security": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "agent security"
-    },
-    "compliance": {
-     "rule_score": 6,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 1
-     },
-     "match": "compliance"
-    },
-    "productivity": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "roadmaps",
-     "implied_by": "project-management"
-    },
-    "project-management": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "roadmaps"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
  "Stickman230/claude-pentest": {
   "readme_sha": "3831fc27702b7d5ac62e2931d57eddb504da9a8c",
   "input_sha": "61b5917f0b23ae0e",
@@ -37323,20 +37329,18 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "HermeticOrmus/LibreUIUX-Claude-Code": {
-  "readme_sha": "f7784fb7d4d2e46044fafecd2ea342402d507a3b",
-  "input_sha": "5d130a457f554176",
+ "pillar-labs/sail-skill": {
+  "readme_sha": "8c55237a39ac8e5c081e0c8b8c3292c1d8f55e02",
+  "input_sha": "3e92bd102463cdd3",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
   ],
   "areas": [
-   "frontend",
-   "accessibility",
-   "ai-agents",
-   "prompt-engineering",
-   "design",
-   "design-systems"
+   "security",
+   "compliance",
+   "productivity",
+   "project-management"
   ],
   "evidence": {
    "technologies": {
@@ -37345,73 +37349,57 @@
     }
    },
    "areas": {
-    "frontend": {
-     "rule_score": 7,
+    "security": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "agent security"
+    },
+    "compliance": {
+     "rule_score": 6,
      "fields": {
       "topic": 3,
       "description": 2,
-      "readme": 2
-     },
-     "match": "frontend"
-    },
-    "accessibility": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "accessibility"
-    },
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "prompt-engineering": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
       "readme": 1
      },
-     "match": "prompt library"
+     "match": "compliance"
     },
-    "design": {
-     "rule_score": 7,
+    "productivity": {
+     "rule_score": 4,
      "fields": {
-      "topic": 3,
       "description": 2,
       "readme": 2
      },
-     "match": "ui/ux"
+     "match": "roadmaps",
+     "implied_by": "project-management"
     },
-    "design-systems": {
+    "project-management": {
      "rule_score": 4,
      "fields": {
-      "topic": 3,
-      "readme": 1
+      "description": 2,
+      "readme": 2
      },
-     "match": "design systems"
+     "match": "roadmaps"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "beefiker/superloopy": {
-  "readme_sha": "30489e2fc2f2de23a47039bd5d5081c961e2cc2d",
-  "input_sha": "6f669bbe23dfb15a",
+ "joetawil7/first-pass": {
+  "readme_sha": "082af1a17af1cc69993ec643bc4a1262580c1c1b",
+  "input_sha": "1502345f77df3f11",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
   ],
   "areas": [
-   "general-purpose"
+   "ai-agents",
+   "agent-config",
+   "code-review",
+   "automated-review"
   ],
   "evidence": {
    "technologies": {
@@ -37420,16 +37408,42 @@
     }
    },
    "areas": {
-    "general-purpose": {
-     "method": "fallback"
+    "ai-agents": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "hooks",
+     "implied_by": "agent-config"
+    },
+    "agent-config": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "hooks"
+    },
+    "code-review": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "code reviews"
+    },
+    "automated-review": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "code reviews"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
-  "method": "fallback",
+  "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
  "tt-a1i/archify": {
@@ -38578,6 +38592,49 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "Ryze-AI-Adgent/open-seo-mcp-skills": {
+  "readme_sha": "0ea0838aa8b668b7a9136094135824b05f67d8b6",
+  "input_sha": "5b14fb0fb3c893d6",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "marketing",
+   "seo"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "marketing": {
+     "rule_score": 10,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "seo"
+    },
+    "seo": {
+     "rule_score": 11,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 3,
+      "readme": 2
+     },
+     "match": "seo"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "sergebulaev/linkedin-skills": {
   "readme_sha": "7568061557ecf468fa39dd99b2372a8d87891883",
   "input_sha": "be9c43555f9c510e",
@@ -38686,16 +38743,17 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "Ryze-AI-Adgent/open-seo-mcp-skills": {
-  "readme_sha": "0ea0838aa8b668b7a9136094135824b05f67d8b6",
-  "input_sha": "5b14fb0fb3c893d6",
+ "irinabuht12-oss/marketing-skills": {
+  "readme_sha": "fc3d7c5aa21b6558cb87ff738c715a3075cd51c7",
+  "input_sha": "c94eee5cea8637b5",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
   ],
   "areas": [
    "marketing",
-   "seo"
+   "seo",
+   "ads"
   ],
   "evidence": {
    "technologies": {
@@ -38705,16 +38763,6 @@
    },
    "areas": {
     "marketing": {
-     "rule_score": 10,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "seo"
-    },
-    "seo": {
      "rule_score": 11,
      "fields": {
       "topic": 3,
@@ -38722,7 +38770,32 @@
       "description": 3,
       "readme": 2
      },
+     "match": "marketing"
+    },
+    "seo": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
      "match": "seo"
+    },
+    "ads": {
+     "rule_score": 8,
+     "fields": {
+      "topic": 3,
+      "description": 3,
+      "readme": 2
+     },
+     "match": "google ads"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {
+     "marketing": 0.688,
+     "ads": 0.681
     }
    }
   },
@@ -38833,65 +38906,6 @@
    "lv": "key",
    "ev": "IMAGE_API_KEY"
   }
- },
- "irinabuht12-oss/marketing-skills": {
-  "readme_sha": "fc3d7c5aa21b6558cb87ff738c715a3075cd51c7",
-  "input_sha": "c94eee5cea8637b5",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "marketing",
-   "seo",
-   "ads"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "marketing": {
-     "rule_score": 11,
-     "fields": {
-      "topic": 3,
-      "name": 3,
-      "description": 3,
-      "readme": 2
-     },
-     "match": "marketing"
-    },
-    "seo": {
-     "rule_score": 7,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "seo"
-    },
-    "ads": {
-     "rule_score": 8,
-     "fields": {
-      "topic": 3,
-      "description": 3,
-      "readme": 2
-     },
-     "match": "google ads"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {
-     "marketing": 0.688,
-     "ads": 0.681
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
  },
  "davepoon/buildwithclaude": {
   "readme_sha": "9416471811e1d4a60a8ef218b270760dd42b93fc",
@@ -39155,6 +39169,51 @@
   "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "filtalgo/Filtmall-Shopping-Skill": {
+  "readme_sha": "e144a9a8c02487408028b87953142dc473908676",
+  "input_sha": "0c1f345368299363",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "business",
+   "sales-crm"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "business": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "sales"
+    },
+    "sales-crm": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "sales"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "addyosmani/web-quality-skills": {
   "readme_sha": "787d8c182f58d047eaad8404588370b99e899b18",
   "input_sha": "97e1e91477285157",
@@ -39215,51 +39274,6 @@
      "web-data": 0.69,
      "web-search": 0.71
     }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "filtalgo/Filtmall-Shopping-Skill": {
-  "readme_sha": "e144a9a8c02487408028b87953142dc473908676",
-  "input_sha": "0c1f345368299363",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "business",
-   "sales-crm"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "business": {
-     "rule_score": 7,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "sales"
-    },
-    "sales-crm": {
-     "rule_score": 7,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "sales"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -39630,6 +39644,36 @@
    "ev": "ANYSEARCH_API_KEY"
   }
  },
+ "QingYunA/answer-me-with-html": {
+  "readme_sha": "ca01bbed34d5540f8a7f3a58896e87f1894c4620",
+  "input_sha": "b3945ee790337e21",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "html"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "html": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "description": 2
+     },
+     "match": "html"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "a5c-ai/babysitter": {
   "readme_sha": "14cf10074086a410d52f286ab2f1c724603a26fd",
   "input_sha": "04cc3a81bdb61fe0",
@@ -39899,9 +39943,51 @@
    "ev": "asks for an API key"
   }
  },
+ "michael-denyer/pstack-claude": {
+  "readme_sha": "147990d1f3c5ab21d6cc499c97dfabb50db6f7b6",
+  "input_sha": "80788afd6787cff9",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "code-review",
+   "automated-review"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "code-review": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "refactoring"
+    },
+    "automated-review": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "plugin87/ux-ui-agent-skills": {
   "readme_sha": "aef3485900805f8988c975747a1deba6a808bdc6",
-  "input_sha": "ef05070d28aa7c98",
+  "input_sha": "6aec77f5738f9cc7",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -40007,48 +40093,6 @@
       "readme": 2
      },
      "match": "scraper"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "michael-denyer/pstack-claude": {
-  "readme_sha": "147990d1f3c5ab21d6cc499c97dfabb50db6f7b6",
-  "input_sha": "80788afd6787cff9",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "code-review",
-   "automated-review"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "code-review": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "refactoring"
-    },
-    "automated-review": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
     }
    },
    "embedding": {
@@ -40276,7 +40320,7 @@
  },
  "conorluddy/ios-simulator-skill": {
   "readme_sha": "32e3eabd886807805d8a12cf28d686cb91dbaa3f",
-  "input_sha": "a3df2c87fee18ad6",
+  "input_sha": "e69749c9bdf1808d",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -41075,62 +41119,44 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "instavm/coderunner": {
-  "readme_sha": "3512be18f7c5b66339264b94ccce7dbf9b227150",
-  "input_sha": "285eacf1deea25b9",
+ "oil-oil/oil-ui": {
+  "readme_sha": "cde667a432c2c7693900202ac8e20d17464d6572",
+  "input_sha": "c459e702d73b4ba0",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
-   "ai-models",
-   "openai"
+   "general-purpose"
   ],
   "areas": [
-   "security",
-   "agent-guardrails"
+   "frontend",
+   "design"
   ],
   "evidence": {
    "technologies": {
-    "ai-models": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "openai api"
-    },
-    "openai": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "openai api"
+    "general-purpose": {
+     "method": "fallback"
     }
    },
    "areas": {
-    "security": {
-     "rule_score": 4,
+    "frontend": {
+     "rule_score": 5,
      "fields": {
-      "description": 2,
-      "readme": 2
+      "topic": 3,
+      "description": 2
      },
-     "match": "sandbox"
+     "match": "ui design"
     },
-    "agent-guardrails": {
-     "rule_score": 4,
+    "design": {
+     "rule_score": 5,
      "fields": {
-      "description": 2,
-      "readme": 2
+      "topic": 3,
+      "description": 2
      },
-     "match": "sandbox"
+     "match": "ui design"
     }
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z",
-  "deps": {
-   "lv": "key",
-   "ev": "asks for an API key"
-  }
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "scenario-labs/skills": {
   "readme_sha": "8a2c315906f9267b3102fc443899103527a64b78",
@@ -41194,6 +41220,63 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "instavm/coderunner": {
+  "readme_sha": "3512be18f7c5b66339264b94ccce7dbf9b227150",
+  "input_sha": "285eacf1deea25b9",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "ai-models",
+   "openai"
+  ],
+  "areas": [
+   "security",
+   "agent-guardrails"
+  ],
+  "evidence": {
+   "technologies": {
+    "ai-models": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "openai api"
+    },
+    "openai": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "openai api"
+    }
+   },
+   "areas": {
+    "security": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "sandbox"
+    },
+    "agent-guardrails": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "sandbox"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z",
+  "deps": {
+   "lv": "key",
+   "ev": "asks for an API key"
+  }
  },
  "laolaoshiren/claude-code-skills-zh": {
   "readme_sha": "a57475093c2eb9d54d7a42fd06652a2307d43f5f",
@@ -41761,6 +41844,31 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "Jakeschincariol/replica-skill": {
+  "readme_sha": "976a5f2ca16d3859a2325286957104c4c24ffd17",
+  "input_sha": "56c041123f0747fe",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "LukasNiessen/terrashark": {
   "readme_sha": "eb18ce0ed68b1ae3ceab940478404f035b74db47",
   "input_sha": "b5adc2307ca5ea21",
@@ -42315,43 +42423,6 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "Arindam200/cc-lens": {
-  "readme_sha": "bebfa4526ed27344b05f61b17a87ce7f4612e84c",
-  "input_sha": "27dab4ffdba5932b",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "data",
-   "analytics"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "data": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "analytics": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
  "liustack/modsearch": {
   "readme_sha": "34ce1faf1a23667b328d5d7e303bf6cbb7fccf2b",
   "input_sha": "d3f11e16fa5dc2f6",
@@ -42420,6 +42491,43 @@
    "lv": "key",
    "ev": "EXA_API_KEY, FIRECRAWL_API_KEY, TAVILY_API_KEY"
   }
+ },
+ "Arindam200/cc-lens": {
+  "readme_sha": "bebfa4526ed27344b05f61b17a87ce7f4612e84c",
+  "input_sha": "27dab4ffdba5932b",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "data",
+   "analytics"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "data": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "analytics": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
  },
  "avidevelops/claude-architect-exam-prep": {
   "readme_sha": "d0b7477e5b13441be72c07bdc0bd8a83796f8a4b",
@@ -42537,31 +42645,6 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "Jakeschincariol/replica-skill": {
-  "readme_sha": "976a5f2ca16d3859a2325286957104c4c24ffd17",
-  "input_sha": "56c041123f0747fe",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
  },
  "karanb192/awesome-claude-skills": {
@@ -43547,6 +43630,45 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "zhuyansen/awesome-claude-video-skills": {
+  "readme_sha": "3e7a6743b121ae4773d595d24f214a414a2bcc89",
+  "input_sha": "826912e13e5c6ba1",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "design",
+   "media-generation"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "design": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "remotion"
+    },
+    "media-generation": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "remotion"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "jabrena/plinth": {
   "readme_sha": "87bbf1a00e5724435547ad562fd64769a660da2e",
   "input_sha": "71312f637b90fabc",
@@ -43696,6 +43818,53 @@
   },
   "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "notque/vexjoy-agent": {
+  "readme_sha": "d289310b6cb2b42462690d8b3184f6779b97c9b8",
+  "input_sha": "0219a905300f3d07",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "ai-models",
+   "jev"
+  ],
+  "areas": [
+   "ai-workflows"
+  ],
+  "evidence": {
+   "technologies": {
+    "ai-models": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "jev"
+    },
+    "jev": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "jev"
+    }
+   },
+   "areas": {
+    "ai-workflows": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z",
+  "deps": {
+   "lv": "paid",
+   "ev": "TYPESAFE_API_KEY"
+  }
  },
  "tizzy916/humanities-writing-companion": {
   "readme_sha": "3f2b63dbb58a943c791d6681ee8dfc9357ce7195",
@@ -43911,53 +44080,6 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "notque/vexjoy-agent": {
-  "readme_sha": "d289310b6cb2b42462690d8b3184f6779b97c9b8",
-  "input_sha": "0219a905300f3d07",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "ai-models",
-   "jev"
-  ],
-  "areas": [
-   "ai-workflows"
-  ],
-  "evidence": {
-   "technologies": {
-    "ai-models": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "jev"
-    },
-    "jev": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "jev"
-    }
-   },
-   "areas": {
-    "ai-workflows": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z",
-  "deps": {
-   "lv": "paid",
-   "ev": "TYPESAFE_API_KEY"
-  }
- },
  "redfox-data/redfox-community": {
   "readme_sha": "03a0e2fa794ac2d3e7fe4b01b5f7ac93e9d172cc",
   "input_sha": "0049e9ceb9c35c16",
@@ -43990,45 +44112,6 @@
       "readme": 2
      },
      "match": "tiktok"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "zhuyansen/awesome-claude-video-skills": {
-  "readme_sha": "3e7a6743b121ae4773d595d24f214a414a2bcc89",
-  "input_sha": "826912e13e5c6ba1",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "design",
-   "media-generation"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "design": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "remotion"
-    },
-    "media-generation": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "remotion"
     }
    }
   },
@@ -44094,119 +44177,6 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "jamditis/claude-skills-journalism": {
-  "readme_sha": "fe80dd7137084d682929c477c9928a88cd4eb2e7",
-  "input_sha": "ca69fc09563d7af1",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "research"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "research": {
-     "rule_score": 6,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 1
-     },
-     "match": "academic"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {
-     "docs-writing": 0.616
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "cclank/lanshu-awesome-ai-video-kit": {
-  "readme_sha": "0f5ad2042ba6a41c79b8fab867f2e3be1e76c8e4",
-  "input_sha": "9feb91ed7ab6a90a",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "ai-models",
-   "openai",
-   "gemini"
-  ],
-  "areas": [
-   "ai-agents",
-   "prompt-engineering",
-   "design",
-   "media-generation"
-  ],
-  "evidence": {
-   "technologies": {
-    "ai-models": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "sora"
-    },
-    "openai": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "sora"
-    },
-    "gemini": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "veo"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "prompt-engineering": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "design": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "media-generation": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
  "ilyautov/humanizer-ru": {
   "readme_sha": "d327b80d1b60735bfe790e2aebacc4c5de6a33c8",
   "input_sha": "fd21acafb7a962e5",
@@ -44266,6 +44236,43 @@
    "embedding": {
     "technologies": {},
     "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "jamditis/claude-skills-journalism": {
+  "readme_sha": "fe80dd7137084d682929c477c9928a88cd4eb2e7",
+  "input_sha": "ca69fc09563d7af1",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "research"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "research": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "academic"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {
+     "docs-writing": 0.616
+    }
    }
   },
   "method": "rules",
@@ -44385,6 +44392,82 @@
       "description": 2
      },
      "match": "design systems"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "cclank/lanshu-awesome-ai-video-kit": {
+  "readme_sha": "0f5ad2042ba6a41c79b8fab867f2e3be1e76c8e4",
+  "input_sha": "dcb3829af78bbcd1",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "ai-models",
+   "openai",
+   "gemini"
+  ],
+  "areas": [
+   "ai-agents",
+   "prompt-engineering",
+   "design",
+   "media-generation"
+  ],
+  "evidence": {
+   "technologies": {
+    "ai-models": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "sora"
+    },
+    "openai": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "sora"
+    },
+    "gemini": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "veo"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "prompt-engineering": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "design": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "media-generation": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
     }
    }
   },
@@ -44864,222 +44947,6 @@
       "tech": 1
      },
      "match": "infrastructure as code"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "daymonio/daymon": {
-  "readme_sha": "71f314f564602c9faaf0942d25574d519c9da8b8",
-  "input_sha": "9a4dd5d2b99eaadf",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "databases",
-   "sqlite"
-  ],
-  "areas": [
-   "ai-agents",
-   "memory-context"
-  ],
-  "evidence": {
-   "technologies": {
-    "databases": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "sqlite",
-     "implied_by": "sqlite"
-    },
-    "sqlite": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "sqlite"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "remembers",
-     "implied_by": "memory-context"
-    },
-    "memory-context": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "remembers"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "leiting-eric/DailyBrief": {
-  "readme_sha": "52aa7ae7514ee538ec15f457ebcad970e631ac9d",
-  "input_sha": "e645a6beace9013e",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "devops",
-   "ci-cd"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "devops": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "github actions"
-    },
-    "ci-cd": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "github actions"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z",
-  "deps": {
-   "lv": "paid",
-   "ev": "DEEPSEEK_API_KEY"
-  }
- },
- "giuseppe-trisciuoglio/developer-kit": {
-  "readme_sha": "279e691765bf5419ff125ce2a5614d147801603f",
-  "input_sha": "08d027f3d4957603",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "python",
-   "typescript",
-   "java",
-   "spring-boot",
-   "cloud",
-   "aws"
-  ],
-  "areas": [
-   "ai-workflows",
-   "spec-driven",
-   "devops",
-   "infrastructure"
-  ],
-  "evidence": {
-   "technologies": {
-    "python": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "language": 1,
-      "description": 1
-     },
-     "match": "python"
-    },
-    "typescript": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "description": 1
-     },
-     "match": "typescript"
-    },
-    "java": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "description": 1
-     },
-     "match": "java"
-    },
-    "spring-boot": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "spring boot"
-    },
-    "cloud": {
-     "rule_score": 6,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 1
-     },
-     "match": "aws",
-     "implied_by": "aws"
-    },
-    "aws": {
-     "rule_score": 6,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 1
-     },
-     "match": "aws"
-    }
-   },
-   "areas": {
-    "ai-workflows": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "spec driven"
-    },
-    "spec-driven": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "spec driven"
-    },
-    "devops": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 1,
-      "tech": 1
-     },
-     "match": "cloudformation",
-     "implied_by": "infrastructure"
-    },
-    "infrastructure": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 1,
-      "tech": 1
-     },
-     "match": "cloudformation"
     }
    }
   },
@@ -46099,42 +45966,9 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "jiweiyeah/Skills-Manager": {
-  "readme_sha": "8d789b1f75529435f8f14674d5738fe64060673d",
-  "input_sha": "706d5b34fc75099e",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-06T15:51:51Z",
-  "deps": {
-   "lv": "key",
-   "ev": "asks for an API key"
-  }
- },
  "23blocks-OS/ai-maestro": {
   "readme_sha": "bf5812765df7af33fd0537875bc6e7051effc3dd",
-  "input_sha": "828bf618bdc34f48",
+  "input_sha": "d0cacbd99b99ad5d",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -46195,31 +46029,6 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "mliu98/awesome-human-distillation": {
-  "readme_sha": "3b1406b90cff4790640f398a3d3696dee2231cad",
-  "input_sha": "dffe04cd1dd599ae",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
  "decebals/claude-code-java": {
   "readme_sha": "8c5854dbf29e06b58789927766a0c9db6298e1b1",
   "input_sha": "584ded25691e231b",
@@ -46252,6 +46061,31 @@
    }
   },
   "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "mliu98/awesome-human-distillation": {
+  "readme_sha": "3b1406b90cff4790640f398a3d3696dee2231cad",
+  "input_sha": "dffe04cd1dd599ae",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
  },
  "wanghuan9/skilldock": {
@@ -46660,9 +46494,123 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "giuseppe-trisciuoglio/developer-kit": {
+  "readme_sha": "279e691765bf5419ff125ce2a5614d147801603f",
+  "input_sha": "08d027f3d4957603",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "python",
+   "typescript",
+   "java",
+   "spring-boot",
+   "cloud",
+   "aws"
+  ],
+  "areas": [
+   "ai-workflows",
+   "spec-driven",
+   "devops",
+   "infrastructure"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "language": 1,
+      "description": 1
+     },
+     "match": "python"
+    },
+    "typescript": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "description": 1
+     },
+     "match": "typescript"
+    },
+    "java": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "description": 1
+     },
+     "match": "java"
+    },
+    "spring-boot": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "spring boot"
+    },
+    "cloud": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "aws",
+     "implied_by": "aws"
+    },
+    "aws": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "aws"
+    }
+   },
+   "areas": {
+    "ai-workflows": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "spec driven"
+    },
+    "spec-driven": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "spec driven"
+    },
+    "devops": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 1,
+      "tech": 1
+     },
+     "match": "cloudformation",
+     "implied_by": "infrastructure"
+    },
+    "infrastructure": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 1,
+      "tech": 1
+     },
+     "match": "cloudformation"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "sunchaokun/PPT-Design-Skill": {
   "readme_sha": "4db837bf0934d91cefb7f0f7e678cc7f35368b74",
-  "input_sha": "c41d8f98460d278e",
+  "input_sha": "cc1f048d354bdc18",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -46705,6 +46653,10 @@
      },
      "match": "image generation"
     }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
    }
   },
   "method": "rules",
@@ -46781,6 +46733,36 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "sevenevesai/riso-windowseat": {
+  "readme_sha": "c9bace76184b4677e3d57c8f7432d0d2c8d971da",
+  "input_sha": "0ba7aec9b7e74f44",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "html"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "html": {
+     "rule_score": 4,
+     "fields": {
+      "language": 1,
+      "description": 3
+     },
+     "match": "html"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "JuneYaooo/social-account-doctor": {
   "readme_sha": "75dbd9e0c4ecb8398023896df6db13d5f6b6e203",
   "input_sha": "27f5c0064007ed3c",
@@ -46825,36 +46807,6 @@
    "embedding": {
     "technologies": {},
     "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "sevenevesai/riso-windowseat": {
-  "readme_sha": "c9bace76184b4677e3d57c8f7432d0d2c8d971da",
-  "input_sha": "0ba7aec9b7e74f44",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "html"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "html": {
-     "rule_score": 4,
-     "fields": {
-      "language": 1,
-      "description": 3
-     },
-     "match": "html"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
    }
   },
   "method": "rules",
@@ -47925,64 +47877,6 @@
   "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "joetawil7/first-pass": {
-  "readme_sha": "082af1a17af1cc69993ec643bc4a1262580c1c1b",
-  "input_sha": "650a7c9c2d8ecd9b",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "agent-config",
-   "code-review",
-   "automated-review"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "hooks",
-     "implied_by": "agent-config"
-    },
-    "agent-config": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "hooks"
-    },
-    "code-review": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "code reviews"
-    },
-    "automated-review": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "code reviews"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
  "meshy-dev/meshy-3d-agent": {
   "readme_sha": "1b93d491799dc5dc5915b1c20ec0151a56f73946",
   "input_sha": "221a6ff265161ceb",
@@ -48588,7 +48482,7 @@
  },
  "NulightJens/rocket-fuel-skill": {
   "readme_sha": "b1443aa2e0f01381f7c1cec7447109f8a10b5b5e",
-  "input_sha": "3fe49efc377e4df6",
+  "input_sha": "6e2e791a3a7ab960",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -48606,6 +48500,10 @@
     "general-purpose": {
      "method": "fallback"
     }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
    }
   },
   "method": "fallback",
@@ -48652,67 +48550,6 @@
     "areas": {
      "docs-writing": 0.611
     }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "oprogramadorreal/optimus-claude": {
-  "readme_sha": "88adac6bdc248921a1a854c684f763a7b16782a9",
-  "input_sha": "cc7673e1e740ce00",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "testing",
-   "tdd",
-   "code-review",
-   "automated-review"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "testing": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "tdd"
-    },
-    "tdd": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "tdd"
-    },
-    "code-review": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "technical debt"
-    },
-    "automated-review": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "code review"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -48782,6 +48619,67 @@
      },
      "match": null
     }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "oprogramadorreal/optimus-claude": {
+  "readme_sha": "88adac6bdc248921a1a854c684f763a7b16782a9",
+  "input_sha": "cc7673e1e740ce00",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "testing",
+   "tdd",
+   "code-review",
+   "automated-review"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "testing": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "tdd"
+    },
+    "tdd": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "tdd"
+    },
+    "code-review": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "technical debt"
+    },
+    "automated-review": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "code review"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
    }
   },
   "method": "rules",
@@ -49438,6 +49336,35 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "scdenney/open-science-skills": {
+  "readme_sha": "732cc3fdfe90e8c5844017f83935b1a4164d97ef",
+  "input_sha": "f14235f770b2f627",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "research"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "research": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "nostrband/ServiceGraph": {
   "readme_sha": "0acfb855d49a8f466f42fe8dd9db6773960a34f6",
   "input_sha": "226a2ee3508ce8f4",
@@ -49498,35 +49425,6 @@
    }
   },
   "method": "fallback",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "scdenney/open-science-skills": {
-  "readme_sha": "732cc3fdfe90e8c5844017f83935b1a4164d97ef",
-  "input_sha": "f14235f770b2f627",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "research"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "research": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
  "REMvisual/claude-handoff": {
@@ -49828,6 +49726,55 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "bjwanneng/veriflow-cc": {
+  "readme_sha": "132f1dec0b17a060e08bc98cff61ab67e482ac69",
+  "input_sha": "9ee724e0b4fdddf4",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "orchestration",
+   "hardware-iot"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "sub agent"
+    },
+    "orchestration": {
+     "rule_score": 5,
+     "fields": {
+      "description": 3,
+      "readme": 2
+     },
+     "match": "orchestration"
+    },
+    "hardware-iot": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "verilog"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
  "radekamirko/C.R.I.S.P": {
   "readme_sha": "10079526619a030d4d47a527de6e3317c58d41ea",
   "input_sha": "f46fb0996e07f647",
@@ -49883,55 +49830,6 @@
    "embedding": {
     "technologies": {},
     "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "bjwanneng/veriflow-cc": {
-  "readme_sha": "132f1dec0b17a060e08bc98cff61ab67e482ac69",
-  "input_sha": "9ee724e0b4fdddf4",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "orchestration",
-   "hardware-iot"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "sub agent"
-    },
-    "orchestration": {
-     "rule_score": 5,
-     "fields": {
-      "description": 3,
-      "readme": 2
-     },
-     "match": "orchestration"
-    },
-    "hardware-iot": {
-     "rule_score": 7,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "verilog"
-    }
    }
   },
   "method": "rules",
@@ -51107,9 +51005,9 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "caid-technologies/OpenCAD": {
-  "readme_sha": "c314c8ffa70fa0d63304f4410f5580c6c81f63ca",
-  "input_sha": "eaf7668995e8db0b",
+ "caid-technologies/Open-CAD": {
+  "readme_sha": "afceace692ee5d56520b000732f46844c18947b1",
+  "input_sha": "86ae66f293eced90",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -51134,7 +51032,7 @@
    }
   },
   "method": "fallback",
-  "classified_at": "2026-10-06T15:51:51Z"
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "PostHog/skills": {
   "readme_sha": "1002055d3107f4dabb1236ae4d93f0c02b7ecda2",
@@ -53033,7 +52931,7 @@
  },
  "kairyou/agent-tools": {
   "readme_sha": "48d0f1577c50738085517559ad2f1ac41a9c5325",
-  "input_sha": "7f4fdf7f54af5611",
+  "input_sha": "01ad10cc22d3049c",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -54102,53 +54000,34 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "Prisma-Labs-Dev/apple-skills": {
-  "readme_sha": "bd8e69601bdf88137d1144a66cefd650a937d14b",
-  "input_sha": "773bec837e0ade0d",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "swift"
-  ],
-  "areas": [
-   "mobile",
-   "ios"
-  ],
-  "evidence": {
-   "technologies": {
-    "swift": {
-     "rule_score": 2,
-     "fields": {
-      "description": 2
-     },
-     "match": "swiftui"
-    }
-   },
-   "areas": {
-    "mobile": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "swiftui",
-     "implied_by": "ios"
-    },
-    "ios": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "swiftui"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
  "tt-a1i/matt-skills-with-to-goal": {
   "readme_sha": "9c333fcbf9398aa0746c9005893b03dabf6ae30e",
   "input_sha": "c3360357b85ea90e",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "leewayworks/guochuang-gps": {
+  "readme_sha": "00fcaccbb61b59c5091462994c6e690cfc353654",
+  "input_sha": "a0eaa64554625bee",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -54247,72 +54126,115 @@
   "method": "embedding+rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "gitroomhq/agent-media": {
-  "readme_sha": "23a735d0b4a0dabe7f9a3ce5be2703976a87524d",
-  "input_sha": "4f93e0147e029e7e",
+ "Prisma-Labs-Dev/apple-skills": {
+  "readme_sha": "bd8e69601bdf88137d1144a66cefd650a937d14b",
+  "input_sha": "773bec837e0ade0d",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
-   "general-purpose"
+   "swift"
   ],
   "areas": [
-   "design",
-   "media-generation"
+   "mobile",
+   "ios"
   ],
   "evidence": {
    "technologies": {
-    "general-purpose": {
-     "method": "fallback"
+    "swift": {
+     "rule_score": 2,
+     "fields": {
+      "description": 2
+     },
+     "match": "swiftui"
     }
    },
    "areas": {
-    "design": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "media-generation": {
+    "mobile": {
      "rule_score": 4,
      "fields": {
-      "topic": 3,
-      "readme": 1
+      "description": 2,
+      "readme": 2
      },
-     "match": "text to speech"
+     "match": "swiftui",
+     "implied_by": "ios"
+    },
+    "ios": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "swiftui"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "leewayworks/guochuang-gps": {
-  "readme_sha": "00fcaccbb61b59c5091462994c6e690cfc353654",
-  "input_sha": "a0eaa64554625bee",
+ "AojdevStudio/Finance-Guru": {
+  "readme_sha": "5c898e102a154756c05a29a4115cc1584dda678a",
+  "input_sha": "728ea4b511fe71c5",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
-   "general-purpose"
+   "python",
+   "databases",
+   "sqlite"
   ],
   "areas": [
-   "general-purpose"
+   "business",
+   "finance"
   ],
   "evidence": {
    "technologies": {
-    "general-purpose": {
-     "method": "fallback"
+    "python": {
+     "rule_score": 8,
+     "fields": {
+      "topic": 3,
+      "language": 3,
+      "description": 2
+     },
+     "match": "python"
+    },
+    "databases": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "sqlite",
+     "implied_by": "sqlite"
+    },
+    "sqlite": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "sqlite"
     }
    },
    "areas": {
-    "general-purpose": {
-     "method": "fallback"
+    "business": {
+     "rule_score": 5,
+     "fields": {
+      "name": 3,
+      "readme": 2
+     },
+     "match": "finance"
+    },
+    "finance": {
+     "rule_score": 5,
+     "fields": {
+      "name": 3,
+      "readme": 2
+     },
+     "match": "finance"
     }
    }
   },
-  "method": "fallback",
-  "classified_at": "2026-10-06T15:51:51Z"
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "shift-labs-ai/markit": {
   "readme_sha": "962d9cf5d0cb4d61f312fb9f995f7b41c882223c",
@@ -55825,35 +55747,6 @@
   "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "cas-bigdatalab/piflow": {
-  "readme_sha": "2daabeb026953b63452d1ad81e7ab91fd208139e",
-  "input_sha": "8d1dc948feb7e898",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-06T15:51:51Z",
-  "deps": {
-   "lv": "key",
-   "ev": "asks for an API key"
-  }
- },
  "WellApp-ai/Well": {
   "readme_sha": "7c1a27bc87acf4202fbc1a45dd1773433787c491",
   "input_sha": "7deb74f2df567587",
@@ -55896,6 +55789,130 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "ECNU-ICALK/AutoSkill": {
+  "readme_sha": "9f9ca37a91483cf5f816404ee5d3e1030f7faca4",
+  "input_sha": "a631d36fd5236eaf",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "ComeOnOliver/skillshub": {
+  "readme_sha": "21622482fae3aeff1adfd24e529dff74c28c6587",
+  "input_sha": "3ccb2d4dc3f59590",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-06T15:51:51Z",
+  "deps": {
+   "lv": "key",
+   "ev": "asks for an API key"
+  }
+ },
+ "adrianco/retort": {
+  "readme_sha": "783e5be4c4862301c4bd45348bda25e91e765a32",
+  "input_sha": "3713d111e4235104",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "code-review",
+   "testing",
+   "tdd"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "code-review": {
+     "score": 0.722
+    },
+    "testing": {
+     "score": 0.67
+    },
+    "tdd": {
+     "score": 0.684
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {
+     "code-review": 0.722,
+     "testing": 0.67,
+     "tdd": 0.684
+    }
+   }
+  },
+  "method": "embedding",
+  "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "cas-bigdatalab/piflow": {
+  "readme_sha": "2daabeb026953b63452d1ad81e7ab91fd208139e",
+  "input_sha": "8d1dc948feb7e898",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-06T15:51:51Z",
+  "deps": {
+   "lv": "key",
+   "ev": "asks for an API key"
+  }
  },
  "CamilleScholtz/swmpc": {
   "readme_sha": "15cf8766da4904ea80b4a3e925f63d076f0c916b",
@@ -55994,31 +56011,6 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "ECNU-ICALK/AutoSkill": {
-  "readme_sha": "9f9ca37a91483cf5f816404ee5d3e1030f7faca4",
-  "input_sha": "a631d36fd5236eaf",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
  "agentskillexchange/skills": {
   "readme_sha": "e1635168a02e8a777efa6b40f48d42c341135e74",
   "input_sha": "a2620b486ebaf544",
@@ -56047,108 +56039,6 @@
   },
   "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
- },
- "lingxling/awesome-skills-cn": {
-  "readme_sha": "37df7ab75886ed3b18bfbc12f6e296bcabb725eb",
-  "input_sha": "7ba51efc3cdf6fcc",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "cloud",
-   "vercel"
-  ],
-  "areas": [
-   "data",
-   "machine-learning",
-   "productivity",
-   "knowledge-management"
-  ],
-  "evidence": {
-   "technologies": {
-    "cloud": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "vercel",
-     "implied_by": "vercel"
-    },
-    "vercel": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "vercel"
-    }
-   },
-   "areas": {
-    "data": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "hugging face",
-     "implied_by": "machine-learning"
-    },
-    "machine-learning": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "hugging face"
-    },
-    "productivity": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "obsidian"
-    },
-    "knowledge-management": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "obsidian"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "ComeOnOliver/skillshub": {
-  "readme_sha": "21622482fae3aeff1adfd24e529dff74c28c6587",
-  "input_sha": "3ccb2d4dc3f59590",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "general-purpose"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   }
-  },
-  "method": "fallback",
-  "classified_at": "2026-10-06T15:51:51Z",
-  "deps": {
-   "lv": "key",
-   "ev": "asks for an API key"
-  }
  },
  "makifbaysal/tasktrooper": {
   "readme_sha": "651ba0e42db70701a9e61594465fad1d897b4109",
@@ -56221,81 +56111,6 @@
      },
      "match": "kanban"
     }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "adrianco/retort": {
-  "readme_sha": "783e5be4c4862301c4bd45348bda25e91e765a32",
-  "input_sha": "3713d111e4235104",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "code-review",
-   "testing",
-   "tdd"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "code-review": {
-     "score": 0.722
-    },
-    "testing": {
-     "score": 0.67
-    },
-    "tdd": {
-     "score": 0.684
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {
-     "code-review": 0.722,
-     "testing": 0.67,
-     "tdd": 0.684
-    }
-   }
-  },
-  "method": "embedding",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "lzwei196/KISS-Knowledge-Infrastructure-for-Scientific-Simulation": {
-  "readme_sha": "dccbafd6d6f90238b094db7563301dfa0c4ba349",
-  "input_sha": "570df1eaa681b88b",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "research"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "research": {
-     "rule_score": 4,
-     "fields": {
-      "name": 3,
-      "readme": 1
-     },
-     "match": "scientific"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "rules",
@@ -57804,7 +57619,7 @@
  },
  "runkids/skillshare": {
   "readme_sha": "913bf234528452be311dc2fa42d3148e6a683353",
-  "input_sha": "da059f94608e616f",
+  "input_sha": "bf7299467deea26f",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -63794,13 +63609,13 @@
  },
  "KieranGao/general-readme-skill": {
   "readme_sha": "c730777171973dea865f718e9e68d40a9124833a",
-  "input_sha": "419e8dde8c728e42",
+  "input_sha": "ede1b66b52024690",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
   ],
   "areas": [
-   "general-purpose"
+   "docs-writing"
   ],
   "evidence": {
    "technologies": {
@@ -63809,13 +63624,19 @@
     }
    },
    "areas": {
-    "general-purpose": {
-     "method": "fallback"
+    "docs-writing": {
+     "score": 0.613
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {
+     "docs-writing": 0.613
     }
    }
   },
-  "method": "fallback",
-  "classified_at": "2026-10-06T15:51:51Z"
+  "method": "embedding",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "Sunnyeung369/human-first-agent-writing": {
   "readme_sha": "12f4132e1510f6be3bbd1b9289de58e9676e4331",
@@ -67718,7 +67539,7 @@
  },
  "diegosouzapw/awesome-omni-skills": {
   "readme_sha": "de9138316c8bc2e714162f1cbbffbd0448b29c09",
-  "input_sha": "1e063f72bd964acd",
+  "input_sha": "0c6daef04200650b",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -67736,10 +67557,6 @@
     "general-purpose": {
      "method": "fallback"
     }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
    }
   },
   "method": "fallback",
@@ -69015,7 +68832,7 @@
  },
  "boostvolt/claude-code-lsps": {
   "readme_sha": "005f2a825d2d759971e7b7c8434acbcbcd0bba1b",
-  "input_sha": "ad7734f90fd1938e",
+  "input_sha": "b189bd5cd87b3298",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "containers-iac",
@@ -70308,7 +70125,7 @@
  },
  "hamzafer/claude-code-mods": {
   "readme_sha": "df194ca02419545523003e445d5321958eefebff",
-  "input_sha": "0ab681df4c4ee75f",
+  "input_sha": "da2b0448fc2803ce",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -73751,11 +73568,10 @@
  },
  "mertkayacs/reevesagents": {
   "readme_sha": "bb8fea9f12e047be5aee96c85d276f63fa730b00",
-  "input_sha": "eb8c85167e3c87e9",
+  "input_sha": "dd5daa09421294e9",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
-   "ai-models",
-   "other-model-apis"
+   "general-purpose"
   ],
   "areas": [
    "ai-agents",
@@ -73763,21 +73579,8 @@
   ],
   "evidence": {
    "technologies": {
-    "ai-models": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "deepseek"
-    },
-    "other-model-apis": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "deepseek"
+    "general-purpose": {
+     "method": "fallback"
     }
    },
    "areas": {
@@ -73795,10 +73598,14 @@
      },
      "match": null
     }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "avivsinai/agent-message-queue": {
   "readme_sha": "d37069b6de28fd8ec20ae2c932b628bcac288317",
@@ -76446,76 +76253,6 @@
   "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "ash1794/vibe-engineering": {
-  "readme_sha": "7b699fd7347ef66888f619a9ded2927651887c56",
-  "input_sha": "89e0aa0b0c174639",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "ai-models"
-  ],
-  "areas": [
-   "ai-agents",
-   "orchestration",
-   "ai-workflows",
-   "testing",
-   "code-review"
-  ],
-  "evidence": {
-   "technologies": {
-    "ai-models": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "gemini models"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "multi agent"
-    },
-    "orchestration": {
-     "rule_score": 5,
-     "fields": {
-      "topic": 3,
-      "readme": 2
-     },
-     "match": "multi agent"
-    },
-    "ai-workflows": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "engineering discipline"
-    },
-    "testing": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "root cause"
-    },
-    "code-review": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
  "BV-Venky/excalidraw-architect-mcp": {
   "readme_sha": "5140ef5b7c0300e02942222e2e118bf75eb419f6",
   "input_sha": "a6579d9ad7c6167a",
@@ -77829,58 +77566,6 @@
       "readme": 1
      },
      "match": "email"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
- "terrylica/cc-skills": {
-  "readme_sha": "e71ae9acb821906157fba677844830c81f13fe72",
-  "input_sha": "2c60e97e1004ef4c",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "ai-agents",
-   "prompt-engineering",
-   "devops"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "ai-agents": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "prompt-engineering": {
-     "rule_score": 4,
-     "fields": {
-      "topic": 3,
-      "readme": 1
-     },
-     "match": "prompts"
-    },
-    "devops": {
-     "rule_score": 7,
-     "fields": {
-      "topic": 3,
-      "description": 2,
-      "readme": 2
-     },
-     "match": "devops"
     }
    },
    "embedding": {
@@ -79786,49 +79471,6 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
- "glifxyz/glif-mcp-server": {
-  "readme_sha": "0f1e2f3386bdec7cff1b00bf99a9ac386053b905",
-  "input_sha": "ffe8b1fc87a8113f",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "general-purpose"
-  ],
-  "areas": [
-   "design",
-   "media-generation"
-  ],
-  "evidence": {
-   "technologies": {
-    "general-purpose": {
-     "method": "fallback"
-    }
-   },
-   "areas": {
-    "design": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "generate images"
-    },
-    "media-generation": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "generate images"
-    }
-   },
-   "embedding": {
-    "technologies": {},
-    "areas": {}
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
- },
  "koala73/worldmonitor": {
   "readme_sha": "937227d71c4266573031cebce760c6cbd4da204c",
   "input_sha": "5c2edee464725396",
@@ -79861,6 +79503,52 @@
    "lv": "key",
    "ev": "asks for an API key"
   }
+ },
+ "jonashertner/opencaselaw": {
+  "readme_sha": "20bc3f1b17b6e73c0c6564022ccaed825002431b",
+  "input_sha": "9a68c7903166cb65",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "business",
+   "legal"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "business": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "court",
+     "implied_by": "legal"
+    },
+    "legal": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "court"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "Conway-Research/automaton": {
   "readme_sha": "b5b1f96e2320b9ad7b5fc4bbf302f48d86a21943",
@@ -80382,16 +80070,108 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "watt-mind/coach": {
+  "readme_sha": "6b2dd124c8b9f2759e782021fa5987dc076d6180",
+  "input_sha": "7165c3be621b7c84",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
+ "dbtrail/dbtrail": {
+  "readme_sha": "abe902731458da1911caebad3ff658025361ac87",
+  "input_sha": "820c50c14ab02106",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "databases",
+   "mysql"
+  ],
+  "areas": [
+   "data",
+   "databases-sql",
+   "data-engineering"
+  ],
+  "evidence": {
+   "technologies": {
+    "databases": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "mysql",
+     "implied_by": "mysql"
+    },
+    "mysql": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "mysql"
+    }
+   },
+   "areas": {
+    "data": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "tech": 1
+     },
+     "match": null
+    },
+    "databases-sql": {
+     "rule_score": 3,
+     "fields": {
+      "readme": 2,
+      "tech": 1
+     },
+     "match": "sql"
+    },
+    "data-engineering": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "decionis/agent-safe-pipeline": {
   "readme_sha": "f96ec66c9f9f3e7393f23f407fd053df6f42ac2d",
-  "input_sha": "6c9637091051151a",
+  "input_sha": "d18450e980db80f9",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
   ],
   "areas": [
    "security",
-   "agent-guardrails",
    "devops",
    "infrastructure"
   ],
@@ -80403,13 +80183,6 @@
    },
    "areas": {
     "security": {
-     "rule_score": 3,
-     "fields": {
-      "topic": 3
-     },
-     "match": null
-    },
-    "agent-guardrails": {
      "rule_score": 3,
      "fields": {
       "topic": 3
@@ -80435,7 +80208,36 @@
    }
   },
   "method": "rules",
-  "classified_at": "2026-10-06T15:51:51Z"
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
+ "proxysoul/Empryo": {
+  "readme_sha": "c74d27d8654d78ade6f700d4ccfd22e087325e8b",
+  "input_sha": "d71565729bccc561",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "code-intelligence"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "code-intelligence": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "igorzheludkov/execbro": {
   "readme_sha": "fc6f5eba492871e8d1fe9a2c7a207e6e0ae1c771",
@@ -81285,6 +81087,47 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "muxinc/mux-ts": {
+  "readme_sha": "1a2b4109f7c8505e223b16cd5307a25e2306e58e",
+  "input_sha": "b6d413f52c6ca57d",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "design",
+   "media-generation"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "design": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "media-generation": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "neondatabase/mcp-server-neon": {
   "readme_sha": "dd118049ea56c39bf747c212d06a20750da0d495",
@@ -82146,6 +81989,53 @@
    "ev": "asks for an API key"
   }
  },
+ "getsentry/MobileBuildMCP": {
+  "readme_sha": "d7d0348a9ca809cc06cf323cd95a57705f5eb326",
+  "input_sha": "700a4371d5f8fd57",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "swift"
+  ],
+  "areas": [
+   "mobile",
+   "ios"
+  ],
+  "evidence": {
+   "technologies": {
+    "swift": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "description": 2
+     },
+     "match": "xcode"
+    }
+   },
+   "areas": {
+    "mobile": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "xcode",
+     "implied_by": "ios"
+    },
+    "ios": {
+     "rule_score": 6,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "xcode"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "XposedOrNot/XposedOrNot-API": {
   "readme_sha": "4979c18d3f06117a5a17909ff62b9c26211b2c06",
   "input_sha": "c07ca7986de2b5f1",
@@ -82637,6 +82527,44 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "AndrewDryga/emisar": {
+  "readme_sha": "c623665e4c3d9ca4d7837459e5bfb78183b3e864",
+  "input_sha": "013bcad55fcf9b31",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "security",
+   "devops"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "security": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "sandbox"
+    },
+    "devops": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "kaeawc/auto-mobile": {
   "readme_sha": "afb232d4867f9c424fcfc5d080f4fd4ec0c113d1",
@@ -83678,7 +83606,7 @@
  },
  "54yyyu/zotero-mcp": {
   "readme_sha": "4cb46374fac5cc0e7baf3aa09338e91b1a6818e9",
-  "input_sha": "f86bf7024b746bd7",
+  "input_sha": "c7def395fa93d93c",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -84139,7 +84067,7 @@
  },
  "AliKarami/MikroMCP": {
   "readme_sha": "a3945208d8855fe1007a10ac8abcce671bd61a17",
-  "input_sha": "2a2313ae3b5dfc7a",
+  "input_sha": "04dd08c0b3fb5e24",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -84171,6 +84099,10 @@
      },
      "match": "firmware"
     }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
    }
   },
   "method": "rules",
@@ -85157,6 +85089,45 @@
    "ev": "SHODAN_API_KEY"
   }
  },
+ "w0h1v/mcp-virustotal": {
+  "readme_sha": "fbff684762b709eafa76e232bce3f203ddc3e67a",
+  "input_sha": "f75c222c434c3f8a",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "security"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "security": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "security analysis"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z",
+  "deps": {
+   "lv": "key",
+   "ev": "VIRUSTOTAL_API_KEY"
+  }
+ },
  "ClickHouse/mcp-clickhouse": {
   "readme_sha": "083f6b4f335ce409ca8dc6a91738727ef7ab82c5",
   "input_sha": "7ed7486a02d86997",
@@ -85974,6 +85945,73 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "cortex-works/cortex-scout": {
+  "readme_sha": "3bd5eafbfa634e3f9781113f5201ac56e7ccb314",
+  "input_sha": "47c0fd7902ca4155",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "test-frameworks",
+   "playwright"
+  ],
+  "areas": [
+   "web-data",
+   "web-search",
+   "scraping"
+  ],
+  "evidence": {
+   "technologies": {
+    "test-frameworks": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "playwright",
+     "implied_by": "playwright"
+    },
+    "playwright": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "playwright"
+    }
+   },
+   "areas": {
+    "web-data": {
+     "rule_score": 10,
+     "fields": {
+      "topic": 3,
+      "description": 3,
+      "items": 2,
+      "readme": 2
+     },
+     "match": "scraper"
+    },
+    "web-search": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "web search"
+    },
+    "scraping": {
+     "rule_score": 10,
+     "fields": {
+      "topic": 3,
+      "description": 3,
+      "items": 2,
+      "readme": 2
+     },
+     "match": "scraper"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "DottedSign-Official/dottedsign-mcp": {
   "readme_sha": "de45ccb42d3ebda125c3c57c2ed5b4bcf76be8b8",
   "input_sha": "38c2912b4bc813db",
@@ -86119,7 +86157,7 @@
  },
  "Erodenn/godot-mcp-runtime": {
   "readme_sha": "d05b5ab44e0ce36a608af912c0924562b2a32d64",
-  "input_sha": "37370028e062d699",
+  "input_sha": "7c36a0cdd4924f6a",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -86816,6 +86854,51 @@
    "ev": "asks for an API key"
   }
  },
+ "HaD0Yun/Doyunha-Gopeak": {
+  "readme_sha": "cd9b10931374a71fb825ecd094b9045f729c9744",
+  "input_sha": "8a13ad7b2b4865cc",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "code-intelligence",
+   "games"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "code-intelligence": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "lsp"
+    },
+    "games": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "godot"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "HarimxChoi/google-surf-mcp": {
   "readme_sha": "e5552d8e7c47a7e2cd0c5e6f95bb00584f3f63f8",
   "input_sha": "3bcec78c810429b8",
@@ -87207,7 +87290,7 @@
  },
  "INo-xious/stockbit-mcp": {
   "readme_sha": "971e0c26b19b53e09826387cbbca0d6748b45459",
-  "input_sha": "2b2c058e90e36054",
+  "input_sha": "b2405a53286cdc6c",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -87567,6 +87650,92 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "JKHeadley/instar": {
+  "readme_sha": "f6901a09628ab4b9754e6d746706476c3e532d22",
+  "input_sha": "e085d9b0c2c7f567",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "security",
+   "agent-guardrails",
+   "ai-agents",
+   "orchestration",
+   "memory-context",
+   "productivity",
+   "messaging"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "security": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null,
+     "implied_by": "agent-guardrails"
+    },
+    "agent-guardrails": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "ai-agents": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "orchestration": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "memory-context": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "remembers"
+    },
+    "productivity": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "telegram",
+     "implied_by": "messaging"
+    },
+    "messaging": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "telegram"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "JUNKDOGE-JOE/after-effects-mcp": {
   "readme_sha": "e8c7f58e23a700f56148d719cc121529326aeb79",
   "input_sha": "cc05eed1a4a1f0ca",
@@ -87679,6 +87848,71 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "CursorTouch/MacOS-MCP": {
+  "readme_sha": "28bfcfa097286aa7fb1a65bb3f5b8e986d5a6c0f",
+  "input_sha": "54d62cfc179594d5",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "frontend",
+   "accessibility",
+   "productivity",
+   "desktop-automation"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "frontend": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "accessibility",
+     "implied_by": "accessibility"
+    },
+    "accessibility": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "accessibility"
+    },
+    "productivity": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 3,
+      "readme": 1
+     },
+     "match": "desktop automation",
+     "implied_by": "desktop-automation"
+    },
+    "desktop-automation": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 3,
+      "readme": 1
+     },
+     "match": "desktop automation"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "JerBouma/FinanceToolkit": {
   "readme_sha": "c9d9410cfb691299cbf6dbbab5f8afc5ca24ce27",
@@ -89346,6 +89580,40 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "Muvon/octocode": {
+  "readme_sha": "2dad73cfc9b00ec84d54c7b725f8eaa9aa6e01f8",
+  "input_sha": "905d08a6545ac552",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "code-intelligence"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "code-intelligence": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "code intelligence"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "NVIDIA/elements": {
   "readme_sha": "6b6391355007f716c40f39eaee578e590b433ef2",
   "input_sha": "6aef87d02c2e646f",
@@ -90116,6 +90384,47 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "PascaleBeier/hitkeep": {
+  "readme_sha": "add755c4318d729102669c6d840efe554cc6de29",
+  "input_sha": "946250f75f694e8d",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "data",
+   "analytics"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "data": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "analytics": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "Patdolitse/piia-engram": {
   "readme_sha": "c1f20c6c52550fe98099b0883212d4ab8c6c6e8f",
   "input_sha": "ae85282af889a169",
@@ -90167,6 +90476,36 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "PayRam/payram-mcp": {
+  "readme_sha": "503ab4f57da02f5c14d626b429bb2f4fde7fc554",
+  "input_sha": "71ee377090960735",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "blockchain"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "blockchain": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "crypto"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "PlanExeOrg/PlanExe": {
   "readme_sha": "d619734e043a4ae0b529cd80d672be608786fb1c",
@@ -90543,7 +90882,7 @@
  },
  "RLabs-Inc/gemini-mcp": {
   "readme_sha": "fc55a45e761a3ae965f99b62cc18be5a47c1b5b8",
-  "input_sha": "02ab1bed845f9147",
+  "input_sha": "fd3d7a71fb4b2f4d",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "ai-models",
@@ -90652,6 +90991,45 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "RapierCraft/Perplexity-Comet-MCP": {
+  "readme_sha": "d98650885ac57a78c521cf71688e178596e9f649",
+  "input_sha": "6eef02b7025a1768",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "web-data",
+   "browser-automation"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "web-data": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "browser automation"
+    },
+    "browser-automation": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "browser automation"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "RareSense/Nova3D": {
   "readme_sha": "58e5ad3928e878db5b5ebbe8350a247ee4b749f4",
@@ -91312,6 +91690,55 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "SimplyLiz/ckb": {
+  "readme_sha": "aff1dcadb9b1d5ee6263ff2f45e925e10de30cc0",
+  "input_sha": "c4f7755f0bbc917d",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "code-review",
+   "refactoring",
+   "code-intelligence"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "code-review": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "dead code"
+    },
+    "refactoring": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "tech debt"
+    },
+    "code-intelligence": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "code intelligence"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "Skyvern-AI/skyvern": {
   "readme_sha": "9abb6f5eb1c0bde83da66d93906187c9e5a13f96",
@@ -91981,6 +92408,47 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "TickTockBent/charlotte": {
+  "readme_sha": "2b20d1c54a5dbf8ac78044429be9888e8829e0ea",
+  "input_sha": "1ec00ca2b3e0cb4e",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "web-data",
+   "scraping"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "web-data": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "scraping": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "TocharianOU/mcp-server-kibana": {
   "readme_sha": "5a9ed9e95e6eeccf29e61eb6a769357e2aa07d41",
   "input_sha": "45f1c9aa71d8e913",
@@ -92589,6 +93057,87 @@
   },
   "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "StayCurious-Xuan/wayfinder": {
+  "readme_sha": "abc0090df5a3985700f4096ba6c4a647314ed760",
+  "input_sha": "b8652b8d37216caf",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "security",
+   "compliance",
+   "ai-agents",
+   "sessions",
+   "ai-workflows",
+   "productivity",
+   "knowledge-management"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "security": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null,
+     "implied_by": "compliance"
+    },
+    "compliance": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "ai-agents": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "session history",
+     "implied_by": "sessions"
+    },
+    "sessions": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "session history"
+    },
+    "ai-workflows": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "productivity": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "knowledge-management": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "WYRE-AI/autotask-mcp": {
   "readme_sha": "23a6e3b7bdac1bc7875680b08aa2edd738845abc",
@@ -94153,6 +94702,36 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "amos689/paper-preflight": {
+  "readme_sha": "1ba3eb6c57544743a747e1dff53cba55fd9b4874",
+  "input_sha": "32f6b5ac9d3bc631",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "research"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "research": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "arxiv"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "reactive-resume/reactive-resume": {
   "readme_sha": "cd3049024391cafb541affb7c049d98c5e430f89",
@@ -95912,6 +96491,40 @@
    "ev": "OPENAI_API_KEY"
   }
  },
+ "bgauryy/octocode": {
+  "readme_sha": "72d668a5b6e39997760dc99c62c27964e141cebb",
+  "input_sha": "f0c83f99334a8265",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "code-intelligence"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "code-intelligence": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "lsp"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "bh-rat/context-awesome": {
   "readme_sha": "055d6f17f2038b4c6d34ed26c3927f0b527d6e75",
   "input_sha": "e09436e019593f20",
@@ -96583,6 +97196,51 @@
    "lv": "key",
    "ev": "BUILDKITE_API_TOKEN"
   }
+ },
+ "butterbase-ai/butterbase": {
+  "readme_sha": "79350b0550f8083d865d36fb90337e66d12c22a0",
+  "input_sha": "ae8d1e278a0df251",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "databases",
+   "postgresql"
+  ],
+  "areas": [
+   "backend"
+  ],
+  "evidence": {
+   "technologies": {
+    "databases": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "postgres",
+     "implied_by": "postgresql"
+    },
+    "postgresql": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "postgres"
+    }
+   },
+   "areas": {
+    "backend": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "backend"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "bvisible/mcp-ssh-manager": {
   "readme_sha": "e4e572823f133733ea0073ce533bc1bef1235c90",
@@ -99544,6 +100202,142 @@
   "method": "fallback",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "drhelius/Gearboy": {
+  "readme_sha": "2d7aa154904e6c481d894bcab2b15befabb29abc",
+  "input_sha": "906c0ef97ee8c96f",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "hardware-iot"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "hardware-iot": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "raspberry pi"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
+ "drhelius/Gearcoleco": {
+  "readme_sha": "c7e0b6c54aa839d5bab8a9f5f8f81ee15d089343",
+  "input_sha": "14b21b931e7daaf4",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "hardware-iot"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "hardware-iot": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "raspberry pi"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
+ "drhelius/Geargrafx": {
+  "readme_sha": "234b23e3ce27e2631aede83677e0ed60377bda5e",
+  "input_sha": "aa7a6038215a2122",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "hardware-iot"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "hardware-iot": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "raspberry pi"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
+ "drhelius/Gearsystem": {
+  "readme_sha": "b02c97af65278826bb626c7085cf5a19a6617bbe",
+  "input_sha": "829f0807bd91ea8a",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "hardware-iot"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "hardware-iot": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "raspberry pi"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "droidrun/mobilerun": {
   "readme_sha": "802924f5510379a691e6e9aae214d334aae29870",
   "input_sha": "ed39fbcc9bb48879",
@@ -100345,6 +101139,49 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "tight-studio/OpenBrand": {
+  "readme_sha": "eb933257fac8766b1e0fe337baf4f6b5b8870753",
+  "input_sha": "b3f7365b82209dce",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "design",
+   "brand"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "design": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "logos"
+    },
+    "brand": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "logos"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z",
+  "deps": {
+   "lv": "key",
+   "ev": "asks for an API key"
+  }
+ },
  "ethbak/icon-composer-mcp": {
   "readme_sha": "e2a6d6c91efcb74e381faab80ea1034dccaad51e",
   "input_sha": "ad77f230c851b5d2",
@@ -101089,6 +101926,59 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "frankchu91/mindbase-llm-wiki": {
+  "readme_sha": "5904e1fc52bbbf625a8dbe240e1d3cbd12bd33d5",
+  "input_sha": "6b391dafa2801fdb",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "ai-models",
+   "local-models"
+  ],
+  "areas": [
+   "productivity",
+   "knowledge-management"
+  ],
+  "evidence": {
+   "technologies": {
+    "ai-models": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "local model"
+    },
+    "local-models": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "local model"
+    }
+   },
+   "areas": {
+    "productivity": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "notion"
+    },
+    "knowledge-management": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "notion"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "freema/mcp-design-system-extractor": {
   "readme_sha": "9280937c77753f6904d8b0550465bac1b1aa2343",
   "input_sha": "21f8f467b3ddf0a8",
@@ -101624,6 +102514,73 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "getsentry/toolkit": {
+  "readme_sha": "7ed4de9a97bbd34dd5130ee5b23d23abdb93ee8a",
+  "input_sha": "c9e6a049d67e852d",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "testing",
+   "debugging",
+   "devops",
+   "observability"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "subagent"
+    },
+    "testing": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "debugging"
+    },
+    "debugging": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "debugging"
+    },
+    "devops": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "sentry",
+     "implied_by": "observability"
+    },
+    "observability": {
+     "rule_score": 4,
+     "fields": {
+      "description": 2,
+      "readme": 2
+     },
+     "match": "sentry"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "ggozad/haiku.rag": {
   "readme_sha": "ed73df54c6ced6132e2949dfc079948e69b007b3",
@@ -103363,6 +104320,35 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
  },
+ "jamesmontemagno/MonkeyMCP": {
+  "readme_sha": "397677fa1d605af2e14bb98a97019683370abe2d",
+  "input_sha": "a2db301a739e4eb7",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "jamesmontemagno/ohmyposh-configurator": {
   "readme_sha": "451852c5aa3997b58c0bde875f780b5798b9f65e",
   "input_sha": "6b62541b7467c639",
@@ -104369,6 +105355,59 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:51Z"
+ },
+ "dialog-tools/reddit-research-mcp": {
+  "readme_sha": "d40a25a1792a2678ba2433963187841fa012898a",
+  "input_sha": "61dc7fd08441194e",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "productivity",
+   "project-management",
+   "research"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "productivity": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "project-management": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "research": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "citations"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {
+     "research": 0.692
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "kiycoh/silica-core": {
   "readme_sha": "3c2629407b2f755af98cf36bdac46da45b35954a",
@@ -106253,6 +107292,79 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:52Z"
  },
+ "dmarcguardhq/parse-dmarc": {
+  "readme_sha": "6b6d5d441c1d125972ccd7fb95224221638bdea3",
+  "input_sha": "fb0a9eeda02ad720",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "databases",
+   "sqlite"
+  ],
+  "areas": [
+   "devops",
+   "infrastructure",
+   "productivity",
+   "email-calendar"
+  ],
+  "evidence": {
+   "technologies": {
+    "databases": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "sqlite",
+     "implied_by": "sqlite"
+    },
+    "sqlite": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "sqlite"
+    }
+   },
+   "areas": {
+    "devops": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "infrastructure": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "productivity": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "email",
+     "implied_by": "email-calendar"
+    },
+    "email-calendar": {
+     "rule_score": 7,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "email"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "mgwalkerjr95/texas-grocery-mcp": {
   "readme_sha": "d6029914591aa857f317108d888717b4ef83e457",
   "input_sha": "f3960f878113dc70",
@@ -107377,7 +108489,7 @@
  },
  "morluto/rea": {
   "readme_sha": "ff09d53db46ee1dc8233c280d69d909c73ee2cde",
-  "input_sha": "01dd1e853b6c7f02",
+  "input_sha": "9648dc7786c23989",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -108258,6 +109370,37 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:52Z"
  },
+ "Happy-Technologies-LLC/happy-platform-mcp": {
+  "readme_sha": "4592e3e77ee5b62831bf95a51a2d28b511df8763",
+  "input_sha": "4268e58c877f6f26",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "backend"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "backend": {
+     "score": 0.706
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {
+     "backend": 0.706
+    }
+   }
+  },
+  "method": "embedding",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "nikolausm/imap-mcp-server": {
   "readme_sha": "317b01d1449355609eba1f137432a1c1c75f82d6",
   "input_sha": "7ba3a62ebd736ab5",
@@ -108425,6 +109568,63 @@
    "lv": "paid",
    "ev": "mentions pay-per-use"
   }
+ },
+ "nirholas/fresh-start": {
+  "readme_sha": "5a2b87a5721ae0f1f55fbc5fa70c60fed7d2841e",
+  "input_sha": "90c8e3539f9b1cf5",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
+ "nirholas/cryptocurrency.cv": {
+  "readme_sha": "d18cb30a1376032f13df350799a0c4094ca26bca",
+  "input_sha": "81c91690af767a18",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "blockchain"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "blockchain": {
+     "rule_score": 10,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "cryptocurrency"
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "nirholas/pump-fun-sdk": {
   "readme_sha": "dbc62510dc109a842473f5f451a702335bd0ab94",
@@ -111023,6 +112223,143 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:52Z"
  },
+ "vintasoftware/django-ai-boost": {
+  "readme_sha": "ea6a630e599afdf1c3b202952c9609308c1c540b",
+  "input_sha": "8be063a10e275261",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "python",
+   "django",
+   "php",
+   "laravel"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "python": {
+     "rule_score": 9,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "django",
+     "implied_by": "django"
+    },
+    "django": {
+     "rule_score": 9,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "description": 2,
+      "readme": 1
+     },
+     "match": "django"
+    },
+    "php": {
+     "rule_score": 2,
+     "fields": {
+      "description": 2
+     },
+     "match": "laravel"
+    },
+    "laravel": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "laravel"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
+ "ralforion/orionbelt-semantic-layer": {
+  "readme_sha": "5d2e6f852a2f250b5b05575add9a717b5e08024c",
+  "input_sha": "7ec5ec8f718ad018",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "databases",
+   "postgresql",
+   "mysql"
+  ],
+  "areas": [
+   "data",
+   "databases-sql",
+   "analytics"
+  ],
+  "evidence": {
+   "technologies": {
+    "databases": {
+     "rule_score": 3,
+     "fields": {
+      "description": 2,
+      "readme": 1
+     },
+     "match": "sql"
+    },
+    "postgresql": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "postgresql"
+    },
+    "mysql": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "mysql"
+    }
+   },
+   "areas": {
+    "data": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "tech": 1
+     },
+     "match": null
+    },
+    "databases-sql": {
+     "rule_score": 8,
+     "fields": {
+      "topic": 3,
+      "description": 2,
+      "readme": 2,
+      "tech": 1
+     },
+     "match": "sql"
+    },
+    "analytics": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "rasinmuhammed/misata": {
   "readme_sha": "151e8add82c93fe3917971bb0fb818620b38a398",
   "input_sha": "ad957451a69ede9b",
@@ -111395,6 +112732,40 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:52Z"
+ },
+ "ThreatRecall/zettelforge": {
+  "readme_sha": "e2a3c44aefa598a93cd43d3d04dc7c984458b7f4",
+  "input_sha": "7a47545ef52c4a82",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "security"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "security": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "cves"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "rosasynthesiz/flstudio-mcp": {
   "readme_sha": "de122082e674ef089c989168a986f6c9c7ad2340",
@@ -112565,6 +113936,105 @@
   },
   "method": "fallback",
   "classified_at": "2026-10-06T15:51:52Z"
+ },
+ "vectora-foundry/native-devtools-mcp": {
+  "readme_sha": "084b2216d38cf669f003c6dd4f27a35f53b6d5cb",
+  "input_sha": "ac1640955c4d30f1",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "testing",
+   "e2e-testing",
+   "mobile",
+   "android",
+   "productivity",
+   "desktop-automation",
+   "web-data",
+   "browser-automation"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "testing": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "debugging"
+    },
+    "e2e-testing": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "mobile": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "mobile apps"
+    },
+    "android": {
+     "rule_score": 3,
+     "fields": {
+      "topic": 3
+     },
+     "match": null
+    },
+    "productivity": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "computer use",
+     "implied_by": "desktop-automation"
+    },
+    "desktop-automation": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "computer use"
+    },
+    "web-data": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "browser automation"
+    },
+    "browser-automation": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "chrome devtools"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {
+     "mobile": 0.668,
+     "ios": 0.629
+    }
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "shashankswe2020-ux/whoop-mcp": {
   "readme_sha": "fe8d3b9a3ef690f5f366474f624c18726f27ab24",
@@ -115517,6 +116987,52 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:52Z"
  },
+ "prometheus/prometheus-mcp": {
+  "readme_sha": "235b3b371881b28196dc84c8b3a3d7723f506c09",
+  "input_sha": "85144cf3819d7bfd",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "devops",
+   "observability"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "devops": {
+     "rule_score": 7,
+     "fields": {
+      "name": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "prometheus",
+     "implied_by": "observability"
+    },
+    "observability": {
+     "rule_score": 7,
+     "fields": {
+      "name": 3,
+      "description": 2,
+      "readme": 2
+     },
+     "match": "prometheus"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "tldraw/tldraw": {
   "readme_sha": "5cc802312f92efd0eb5fa6db4c0e039b00d1b2b8",
   "input_sha": "ea0f3fc578e005b6",
@@ -116386,6 +117902,49 @@
    "ev": "SHODH_API_KEY"
   }
  },
+ "qualixar/superlocalmemory": {
+  "readme_sha": "7a24342b4efb0b4943dbe0537d29919eab2fa99c",
+  "input_sha": "0d1a8af616fc76d7",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "ai-agents",
+   "memory-context"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "ai-agents": {
+     "rule_score": 4,
+     "fields": {
+      "topic": 3,
+      "readme": 1
+     },
+     "match": "long term memory"
+    },
+    "memory-context": {
+     "rule_score": 5,
+     "fields": {
+      "topic": 3,
+      "readme": 2
+     },
+     "match": "memory for ai"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "vbcherepanov/total-agent-memory": {
   "readme_sha": "cbe43f907756260b3cfce8be31adbdd4d239fdce",
   "input_sha": "7c3fed02f60eb3da",
@@ -117239,6 +118798,41 @@
   "method": "rules",
   "classified_at": "2026-10-06T15:51:52Z"
  },
+ "wise-vision/ros2_mcp": {
+  "readme_sha": "2f1e2b67beb0ad8df3398c440da8fd2aa2a35076",
+  "input_sha": "3200574877329c22",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "hardware-iot"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "hardware-iot": {
+     "rule_score": 8,
+     "fields": {
+      "topic": 3,
+      "name": 3,
+      "readme": 2
+     },
+     "match": "ros2"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "rules",
+  "classified_at": "2026-10-07T05:36:51Z"
+ },
  "wlsdks/ontology-atlas": {
   "readme_sha": "8a266d7e168a2e189002eae21115b9e4f4c96cd2",
   "input_sha": "90520a268921b922",
@@ -117353,6 +118947,35 @@
   },
   "method": "rules",
   "classified_at": "2026-10-06T15:51:52Z"
+ },
+ "xiaojiou176-open/codeflow": {
+  "readme_sha": "92c245fa83a1bf34bec3f1d8509d0beb271be8c7",
+  "input_sha": "f57987b0c089404b",
+  "taxonomy_version": "9068874a40d9",
+  "technologies": [
+   "general-purpose"
+  ],
+  "areas": [
+   "general-purpose"
+  ],
+  "evidence": {
+   "technologies": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "areas": {
+    "general-purpose": {
+     "method": "fallback"
+    }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
+   }
+  },
+  "method": "fallback",
+  "classified_at": "2026-10-07T05:36:51Z"
  },
  "xieyuschen/gopls-mcp": {
   "readme_sha": "a78e3758e910e1010dae61675797a27a29931e8c",
@@ -117498,7 +119121,7 @@
  },
  "ykarapazar/word-mcp-live": {
   "readme_sha": "7b411b958c82b793d7417af8eab85e2a3e9d65f1",
-  "input_sha": "3d05ed2355eeac1e",
+  "input_sha": "aac732d449d20492",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -117530,6 +119153,10 @@
      },
      "match": "word documents"
     }
+   },
+   "embedding": {
+    "technologies": {},
+    "areas": {}
    }
   },
   "method": "rules",
@@ -118422,7 +120049,7 @@
  },
  "micro/mu": {
   "readme_sha": "758d2d4bad2da7faa9f9209e02e9b188d75be9e7",
-  "input_sha": "f02805e8023d319c",
+  "input_sha": "6a5d8a96e6707305",
   "taxonomy_version": "9068874a40d9",
   "technologies": [
    "general-purpose"
@@ -118675,80 +120302,6 @@
       "readme": 1
      },
      "match": "observability"
-    }
-   }
-  },
-  "method": "rules",
-  "classified_at": "2026-10-06T15:51:52Z"
- },
- "WatermelonCorp/watermelon-platform": {
-  "readme_sha": "643188ba037eba28857a63d2448d537f6634a9da",
-  "input_sha": "197d9472721dc4d7",
-  "taxonomy_version": "9068874a40d9",
-  "technologies": [
-   "javascript",
-   "react",
-   "css",
-   "tailwind"
-  ],
-  "areas": [
-   "frontend",
-   "ui-components"
-  ],
-  "evidence": {
-   "technologies": {
-    "javascript": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "react",
-     "implied_by": "react"
-    },
-    "react": {
-     "rule_score": 3,
-     "fields": {
-      "description": 2,
-      "readme": 1
-     },
-     "match": "react"
-    },
-    "css": {
-     "rule_score": 4,
-     "fields": {
-      "description": 3,
-      "readme": 1
-     },
-     "match": "tailwind",
-     "implied_by": "tailwind"
-    },
-    "tailwind": {
-     "rule_score": 4,
-     "fields": {
-      "description": 3,
-      "readme": 1
-     },
-     "match": "tailwind"
-    }
-   },
-   "areas": {
-    "frontend": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "shadcn",
-     "implied_by": "ui-components"
-    },
-    "ui-components": {
-     "rule_score": 4,
-     "fields": {
-      "description": 2,
-      "readme": 2
-     },
-     "match": "shadcn"
     }
    }
   },
