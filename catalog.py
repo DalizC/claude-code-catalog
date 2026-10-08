@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Claude Code extensions catalog PoC. stdlib only. Fetched content is untrusted data."""
-import csv, hashlib, io, json, os, random, re, sys, time, urllib.request, urllib.error
+import base64, csv, hashlib, io, json, os, random, re, sys, time, urllib.request, urllib.error
 from datetime import datetime, timezone, date
 from pathlib import Path
 from urllib.parse import quote
@@ -218,12 +218,29 @@ def fetch_marketplace(repo, source, tier_hint):
     return None
 
 # ---------- 1 official ----------
+OFFICIAL_REPOS = ["anthropics/claude-plugins-official", "anthropics/claude-plugins-community", "anthropics/skills", "anthropics/claude-code"]
+
 def src_official():
-    for r in ["anthropics/claude-plugins-official", "anthropics/claude-plugins-community", "anthropics/skills", "anthropics/claude-code"]:
+    for r in OFFICIAL_REPOS:
         listed = r.endswith("community")
         n = fetch_marketplace(r, "listed" if listed else "official", "listed" if listed else "official")
         if n is None: ERRORS.append(f"official marketplace not found: {r}")
         else: print(f"official {r}: {n} plugins")
+
+def src_anthropic_org():
+    """Every other non-archived anthropics/ repo with a .claude-plugin/marketplace.json (e.g. knowledge-work-plugins)."""
+    repos = []
+    for page in range(1, 6):
+        d = jget(f"https://api.github.com/orgs/anthropics/repos?per_page=100&page={page}", api=True)
+        if not isinstance(d, list): break
+        repos += [(x["full_name"], x.get("default_branch") or "main") for x in d if not x.get("archived") and not x.get("fork")]
+        if len(d) < 100: break
+    n = 0
+    for r, br in repos:
+        if r in OFFICIAL_REPOS: continue
+        s, b = http_get(f"https://raw.githubusercontent.com/{r}/{br}/.claude-plugin/marketplace.json")
+        if s == 200 and parse_marketplace(b, r, "anthropic-org", "official", br): n += 1
+    print(f"anthropic org: {len(repos)} repos, {n} with a marketplace")
 
 # ---------- 2 curated ----------
 def guess_type(cat):
@@ -332,21 +349,28 @@ def expand_marketplaces():
         if n is not None: ok += 1
     print(f"marketplace expansion: {ok}/{len(cands)} had a marketplace.json")
 
-# ---------- 3a broad discovery (star-sorted topic combinations, verified by repo contents) ----------
-# Code search can't sort, so a popular repo can fall outside its first pages; these star-sorted repository searches
-# catch them. They also return apps that only mention Claude, so a candidate enters only when its tree holds something
-# installable: .claude-plugin/marketplace.json or plugin.json, a root SKILL.md, a skills/ folder, or root folders with
-# a SKILL.md. A project's own .claude/ config (skills or commands for working on that repo) does not count. A skills/
-# folder or SKILL.md subfolders only count when the repo's name or description is about skills, Claude or plugins:
-# apps that also ship a skill for themselves are not listed on the app's stars.
+# ---------- 3a broad discovery (star-sorted searches + GitHub Trending, verified by repo contents) ----------
+# Code search can't sort, so a popular repo can fall outside its first pages. Three more candidate lists catch them:
+# star-sorted topic combinations, every active repo above POPULAR_MIN_STARS (libraries that ship their own plugin, like
+# daisyUI or Next.js, carry no Claude topics), and GitHub Trending (new viral repos). A candidate enters only when its
+# tree holds something installable: .claude-plugin/marketplace.json or plugin.json, a root SKILL.md, a skills/ folder or
+# root folders with a SKILL.md, or an agents/ folder of .md files. A project's own .claude/ config (skills or commands for
+# working on that repo) does not count. A skills/ or agents/ folder only counts when the repo's README tells readers how
+# to install them: apps that keep skills for their own development don't, and a repo is judged as a whole, never split.
 BROAD_QUERIES = ["topic:claude-code topic:skills", "topic:claude-code topic:skill", "topic:agent-skills", "topic:skill-md",
                  "topic:claude-code topic:plugin", "topic:claude-code-plugins", "topic:claude-plugin", "topic:claude-code topic:subagents",
                  "topic:claude-code topic:agents", "topic:claude-code-agents", "topic:claude-code topic:mcp", "topic:claude topic:skills",
                  "topic:anthropic-skills"]
 BROAD_MIN_STARS = 20
-BROAD = {}  # repo -> (search item, query)
-VERIFY_TTL_D = 7; VERIFY_V = 2  # bump when installable_kind changes so cached verdicts are redone
+POPULAR_MIN_STARS = 5000; POPULAR_TTL_D = 7  # the popular list is re-searched weekly; each repo's contents follow VERIFY_TTL_D
+TRENDING_LANGS = ["", "python", "typescript", "javascript", "shell", "go", "rust", "html"]
+BROAD = {}  # repo -> (search item, query); query is "popular" / "trending" for those two lists
+VERIFY_TTL_D = 7; VERIFY_V = 3  # bump when installable_kind changes so cached verdicts are redone
 SKILL_FOCUS = re.compile(r"\b(?:skills?|claude|subagents?|plugins?|marketplace)\b", re.I)
+SKILL_DOC = re.compile(r"npx skills|skills add|\.claude/skills|/plugin (?:marketplace add|install)|install(?:ing)? (?:the |these |this |our |all )?(?:agent )?skills?\b"
+                       r"|agent skills?\b|skills? for (?:claude|codex|cursor|your (?:coding )?agents?|coding agents|ai agents)", re.I)
+AGENT_DOC = re.compile(r"\.claude/agents|sub-?agents?\b|/plugin (?:marketplace add|install)|install(?:ing)? (?:the |these |our |all )?agents\b", re.I)
+HOSTS = set()  # products (libraries, apps) that ship their own extension: their stars measure the product
 
 def src_broad_search():
     for q in BROAD_QUERIES:
@@ -357,6 +381,50 @@ def src_broad_search():
             for it in d.get("items", []): BROAD.setdefault(it["full_name"], (it, q))
             if len(d.get("items", [])) < 100: break
     print(f"broad search: {len(BROAD)} candidate repos")
+
+def src_popular():
+    """Every repo with >= POPULAR_MIN_STARS pushed within ACTIVE_DAYS. Search returns 1000 results per query, so the walk
+    goes down the star ranking: each query starts at the lowest star count the previous one reached."""
+    pc = CACHE / "popular.json"
+    try: cached = json.loads(pc.read_text(encoding="utf-8")) if pc.exists() and not REFRESH else {}
+    except Exception: cached = {}
+    if not (cached.get("repos") and (OFFLINE or time.time() - cached.get("t", 0) < POPULAR_TTL_D * 86400)) and not OFFLINE:
+        since = date.fromordinal(date.today().toordinal() - ACTIVE_DAYS).isoformat()
+        found = {}; hi = None; ok = True
+        while True:
+            rng = f"{POPULAR_MIN_STARS}..{hi}" if hi else f">={POPULAR_MIN_STARS}"
+            low = None; n = 0
+            for page in range(1, 11):
+                d = jget(f"https://api.github.com/search/repositories?q={quote(f'stars:{rng} pushed:>={since}')}&sort=stars&order=desc"
+                         f"&per_page=100&page={page}", api=True, search=True)
+                if not d: ok = False; break
+                for it in d.get("items", []):
+                    found[it["full_name"]] = {k: it.get(k) for k in ("full_name", "name", "description", "html_url", "stargazers_count")}
+                    low = it.get("stargazers_count"); n += 1
+                if len(d.get("items", [])) < 100: break
+            if not ok or n < 1000 or low is None or low == hi: break
+            hi = low
+        if ok and found:
+            cached = {"t": time.time(), "repos": found}; CACHE.mkdir(exist_ok=True); pc.write_text(json.dumps(cached), encoding="utf-8")
+        elif found:
+            ERRORS.append(f"popular search incomplete ({len(found)} repos): kept the previous list"); cached.setdefault("repos", found)
+    for r, it in (cached.get("repos") or {}).items(): BROAD.setdefault(r, (it, "popular"))
+    print(f"popular repos: {len(cached.get('repos') or {})}")
+
+TRENDING_RX = re.compile(r'return_to=%2F([^%"]+)%2F([^"&%]+)" rel="nofollow" data-hydro-click="[^"]*star button')
+
+def src_trending():
+    """GitHub Trending (no API: the HTML pages, daily/weekly/monthly, all languages + a few). A layout change only logs an error."""
+    if OFFLINE: return
+    found = set()
+    for since in ("daily", "weekly", "monthly"):
+        for lang in TRENDING_LANGS:
+            s, b = http_get(f"https://github.com/trending/{lang}?since={since}")
+            if s == 200: found |= {f"{o}/{n}" for o, n in TRENDING_RX.findall(b)}
+    if not found: ERRORS.append("trending: no repos parsed (page layout changed?)")
+    for r in found:
+        BROAD.setdefault(r, ({"full_name": r, "name": r.split("/")[1], "description": None, "html_url": f"https://github.com/{r}"}, "trending"))
+    print(f"trending: {len(found)} repos")
 
 def installable_kind(tree):
     """'marketplace' | 'plugin' | 'skill' | 'skill-dirs' (skills/ or root folders with a SKILL.md) | None
@@ -376,14 +444,26 @@ def _focus(r):
     it = BROAD[r][0]
     return bool(SKILL_FOCUS.search(f"{it.get('name') or ''} {it.get('description') or ''}".replace("-", " ")))
 
+def _agent_md(n):
+    return any(e.get("type") == "blob" and e["name"].lower().endswith(".md") and e["name"].lower() != "readme.md"
+               for e in ((n.get("a") or {}).get("entries") or []))
+
 def light_kind(n):
-    """installable_kind() from three cheap path lookups; None when only a two-level listing can still tell (SKILL.md subfolders)."""
+    """installable_kind() from four cheap path lookups; None when only a two-level listing can still tell (SKILL.md subfolders)."""
     cp = {e["name"] for e in ((n.get("p") or {}).get("entries") or [])}
     if "marketplace.json" in cp: return "marketplace"
     if "plugin.json" in cp: return "plugin"
     if (n.get("s") or {}).get("__typename") == "Blob": return "skill"
     if any(e.get("type") == "tree" for e in ((n.get("k") or {}).get("entries") or [])): return "skill-dirs"
+    if _agent_md(n): return "agent-dirs"
     return None
+
+def readme_documents(r, kind):
+    """True when the repo's README tells readers how to install its skills (skill-dirs) or agents (agent-dirs)."""
+    d = jget(f"https://api.github.com/repos/{r}/readme", api=True)
+    try: txt = base64.b64decode((d or {}).get("content") or "").decode("utf-8", "ignore")
+    except Exception: return False
+    return bool((SKILL_DOC if kind == "skill-dirs" else AGENT_DOC).search(txt))
 
 def _verify_pass(repos, fields, size, judge, cache, vc, label):
     """GraphQL lookups in batches; judge(node) -> verdict, or "deep" to leave the repo for the next pass. Returns the "deep" repos."""
@@ -400,9 +480,10 @@ def _verify_pass(repos, fields, size, judge, cache, vc, label):
         for j, r in enumerate(chunk):
             n = d["data"].get(f"r{j}")
             if n is None: continue
+            if "description" in n: cache.setdefault(r, {})["desc"] = n.get("description")
             v = judge(n)
             if v == "deep": deep.append(r)
-            else: cache[r] = {"t": time.time(), "v": VERIFY_V, "kind": v}
+            else: cache[r] = {**cache.get(r, {}), "t": time.time(), "v": VERIFY_V, "kind": v}
     return deep
 
 def verify_broad():
@@ -417,29 +498,40 @@ def verify_broad():
     todo = [r for r in cands if not fresh(r)]
     if todo and TOKEN and not OFFLINE:
         CACHE.mkdir(exist_ok=True)
-        # pass 1: three path lookups per repo, cheap enough for 40 repos per query
-        light = ('p:object(expression:"HEAD:.claude-plugin"){...on Tree{entries{name}}} s:object(expression:"HEAD:SKILL.md"){__typename} '
-                 'k:object(expression:"HEAD:skills"){...on Tree{entries{type}}}')
+        # pass 1: four path lookups per repo, cheap enough for 40 repos per query
+        light = ('description p:object(expression:"HEAD:.claude-plugin"){...on Tree{entries{name}}} s:object(expression:"HEAD:SKILL.md"){__typename} '
+                 'k:object(expression:"HEAD:skills"){...on Tree{entries{type}}} a:object(expression:"HEAD:agents"){...on Tree{entries{name type}}}')
         deep = _verify_pass(todo, light, 40, lambda n: light_kind(n) or "deep", cache, vc, "paths")
-        # pass 2: a two-level root listing (heavy: 5 per query) only where SKILL.md subfolders would be accepted
-        for r in [r for r in deep if not _focus(r)]: cache[r] = {"t": time.time(), "v": VERIFY_V, "kind": None}
+        for r in todo:  # trending items come without a description: the lookup above brings it
+            if BROAD[r][0].get("description") is None and (cache.get(r) or {}).get("desc"): BROAD[r][0]["description"] = cache[r]["desc"]
+        # pass 2: a two-level root listing (heavy: 5 per query) only for repos whose name or description is about skills
+        for r in [r for r in deep if not _focus(r)]: cache[r] = {**cache.get(r, {}), "t": time.time(), "v": VERIFY_V, "kind": None}
         dl = [r for r in deep if _focus(r)]
         full = 'k:object(expression:"HEAD:"){...on Tree{entries{name type object{...on Tree{entries{name type}}}}}}'
         _verify_pass(dl, full, 5, lambda n: installable_kind(n.get("k")), cache, vc, "subfolders")
+        for r in todo:  # skills/ and agents/ folders: does the README tell readers how to install them?
+            c = cache.get(r) or {}
+            if c.get("kind") in ("skill-dirs", "agent-dirs") and c.get("v") == VERIFY_V: c["doc"] = readme_documents(r, c["kind"])
         vc.write_text(json.dumps(cache), encoding="utf-8")
     added = Counter()
     for r in cands:
-        kind = (cache.get(r) or {}).get("kind")
+        c = cache.get(r) or {}; kind = c.get("kind")
         if not kind: continue
         it, q = BROAD[r]
-        if kind == "skill-dirs":
-            if not _focus(r): continue
-            kind = "skill"
-        set_meta(r, it)
-        hint = {"marketplace": f"/plugin marketplace add {r}", "plugin": f"/plugin marketplace add {r}", "skill": f"copy skills from {r}"}[kind]
-        add(f"repo:{r}:{kind}", it["name"], kind, it.get("description"), r, it["html_url"], "search:broad", hint)
+        if it.get("description") is None and c.get("desc"): it["description"] = c["desc"]
+        if kind in ("skill-dirs", "agent-dirs"):
+            if not c.get("doc"): continue
+            kind = kind.split("-")[0]
+        if "stargazers_count" in it and q not in ("popular", "trending"): set_meta(r, it)
+        hint = {"marketplace": f"/plugin marketplace add {r}", "plugin": f"/plugin marketplace add {r}", "skill": f"copy skills from {r}",
+                "agent": f"copy agents from {r}"}[kind]
+        add(f"repo:{r}:{kind}", it["name"], kind, it.get("description"), r, it["html_url"], f"search:{q if q in ('popular', 'trending') else 'broad'}", hint)
         added[kind] += 1
-    print(f"broad verify: {len(cands)} new candidates, {len(todo)} checked now, added {dict(added)}")
+    # a popular library or app whose name and description aren't about extensions ships its own: its stars measure the product
+    have = {(e["repo"] or "").lower() for e in ENTRIES.values()}
+    for r, (it, q) in BROAD.items():
+        if q == "popular" and r.lower() in have and not _focus(r): HOSTS.add(r)
+    print(f"broad verify: {len(cands)} new candidates, {len(todo)} checked now, added {dict(added)}, products shipping an extension: {len(HOSTS)}")
 
 # ---------- 3b official MCP Registry (standalone MCP servers) ----------
 # https://registry.modelcontextprotocol.io/v0/servers, public, no auth. `version=latest` makes the registry return only each
@@ -903,7 +995,7 @@ def days(ts):
 
 def family(src):
     if src in ("official", "listed"): return "anthropic"
-    if src.startswith("search:topic") or src == "search:broad": return "topic"
+    if src.startswith("search:topic") or src in ("search:broad", "search:popular", "search:trending"): return "topic"
     if src.startswith("search:code"): return "code"
     return src  # curated, marketplace-expansion
 
@@ -1018,6 +1110,7 @@ def build():
         except Exception: pass
     snaps = load_snapshots()
     favs = favorite_ids()
+    hosts = {h.lower() for h in HOSTS}
     nodes = {}  # GraphQL node id -> canonical nameWithOwner (renamed/transferred repos share one node id)
     for r, m in META.items():
         if m.get("node_id") and m.get("canonical"): nodes.setdefault(m["node_id"], m["canonical"])
@@ -1069,6 +1162,7 @@ def build():
         pct = None
         if t7 is not None and st is not None and st - t7 > 0: pct = round(100 * t7 / (st - t7), 2)
         if t7 is not None and st is not None and t7 > max(500, 0.2 * st): fl = fl + ["star-spike"]
+        if repo and repo.lower() in hosts: fl = fl + ["product-stars"]
         why = irrelevance(META.get(repo, {}) if repo else {}, t, t7, [rid, repo] + aliases, favs)  # item-level: its container's metadata
         if why:
             if repo: EXCLUDED_IRRELEVANT.setdefault(repo, why)
@@ -1107,7 +1201,7 @@ def mcp_counts(out):
 def main():
     t0 = time.time()
     print("mode:", "TOKEN" if TOKEN else "NO-TOKEN")
-    src_official(); src_curated(); src_repo_search(); src_code_search(); src_broad_search(); verify_broad(); expand_marketplaces(); src_mcp_registry()
+    src_official(); src_anthropic_org(); src_curated(); src_repo_search(); src_code_search(); src_broad_search(); src_popular(); src_trending(); verify_broad(); expand_marketplaces(); src_mcp_registry()
     nmiss, ndone = enrich()
     filter_mcp()
     declared_licenses(sorted({e["repo"] for e in ENTRIES.values() if e["repo"]}))  # after the MCP rule: only records that stay

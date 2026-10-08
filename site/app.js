@@ -117,7 +117,7 @@
   const TYPES = ["plugin", "skill", "agent", "marketplace", "mcp-server", "collection"];
   const TLABEL = { plugin: "Plugin", skill: "Skill", agent: "Agent", marketplace: "Marketplace", "mcp-server": "MCP server", collection: "Collection" };
   const METHOD = { r: "keyword rules", e: "embeddings", er: "embeddings + rules", f: "fallback (no specific match)" };
-  const SOURCE = { listed: "Community marketplace", official: "Official marketplace", curated: "Curated list", search: "GitHub search", "marketplace-expansion": "Another marketplace", "mcp-registry": "MCP Registry" };
+  const SOURCE = { listed: "Community marketplace", official: "Official marketplace", curated: "Curated list", search: "GitHub search", "marketplace-expansion": "Another marketplace", "mcp-registry": "MCP Registry", "anthropic-org": "Anthropic repository" };
   const SCAN_SCOPE = "Not security-scanned. The nightly scan covers every listed repo that is active (pushed in the last 6 months, not archived); new ones are scanned first. Read the files before installing.";
   const FLAGS = {
     "star-farming": { label: "Unusual star burst", short: "Star burst", icon: "flag", sus: true, tip: "One day brought an outsized share of recent stars with no code activity around it. Can be a viral launch or bought stars: don't rely on the star count alone." },
@@ -128,6 +128,7 @@
     archived: { label: "Archived", short: "Archived", icon: "archive", cls: "arch", tip: "The repository is archived: read-only, no further changes." },
     unmaintained: { label: "Unmaintained", short: "Unmaintained", icon: "clock", cls: "stale", tip: "No push in more than 6 months (180 days before the catalog was built)." },
     unscanned: { label: "Not security-scanned", short: "Not scanned", icon: "shield", cls: "stale", tip: SCAN_SCOPE },
+    "product-stars": { label: "Product's own extension", short: "Product stars", icon: "info", cls: "stale", tip: "A library or app that ships its own Claude extension. The star count measures the product, not the extension." },
     "paid-api": { label: "Paid API", short: "Paid API", icon: "coin", cls: "stale", tip: "Calls an external service that charges per use. The extension itself is free; check the service's pricing before installing." },
     "api-key": { label: "Needs API key", short: "API key", icon: "key", cls: "stale", tip: "Needs an API key or account for an external service. Many have a free tier; check before installing." },
   };
