@@ -127,10 +127,10 @@
     "security-high": { label: "Security high", short: "High risk", icon: "shield", sus: true, hi: true, tip: "The static scan found high-risk patterns (e.g. remote code execution, credential access)." },
     archived: { label: "Archived", short: "Archived", icon: "archive", cls: "arch", tip: "The repository is archived: read-only, no further changes." },
     unmaintained: { label: "Unmaintained", short: "Unmaintained", icon: "clock", cls: "stale", tip: "No push in more than 6 months (180 days before the catalog was built)." },
-    unscanned: { label: "Not security-scanned", short: "Not scanned", icon: "shield", cls: "stale", tip: SCAN_SCOPE },
-    "product-stars": { label: "Product's own extension", short: "Product stars", icon: "info", cls: "stale", tip: "A library or app that ships its own Claude extension. The star count measures the product, not the extension." },
-    "paid-api": { label: "Paid API", short: "Paid API", icon: "coin", cls: "stale", tip: "Calls an external service that charges per use. The extension itself is free; check the service's pricing before installing." },
-    "api-key": { label: "Needs API key", short: "API key", icon: "key", cls: "stale", tip: "Needs an API key or account for an external service. Many have a free tier; check before installing." },
+    unscanned: { label: "Not security-scanned", short: "Not scanned", icon: "shield", cls: "stale", note: true, tip: SCAN_SCOPE },
+    "product-stars": { label: "Product's own extension", short: "Product stars", icon: "info", cls: "stale", note: true, tip: "A library or app that ships its own Claude extension. The star count measures the product, not the extension." },
+    "paid-api": { label: "Paid API", short: "Paid API", icon: "coin", cls: "stale", note: true, tip: "Calls an external service that charges per use. The extension itself is free; check the service's pricing before installing." },
+    "api-key": { label: "Needs API key", short: "API key", icon: "key", cls: "stale", note: true, tip: "Needs an API key or account for an external service. Many have a free tier; check before installing." },
   };
   const FLAGORDER = Object.keys(FLAGS);
   const SUSFLAGS = FLAGORDER.filter(f => FLAGS[f].sus);
@@ -532,11 +532,12 @@
       return h("li", null, h("span", { class: "flag" + (F.hi ? " hi" : F.cls ? " " + F.cls : "") }, ic(F.icon || "flag"), F.short || flagLabel(f)), h("span", null, flagFull(r, f)));
     }));
   }
-  // table: one warning icon per flagged repo; its popover lists every issue in full
+  // table: one warning icon per repo with a risk flag (notes alone don't show it); its popover lists every flag in full
   function warnBtn(r) {
-    if (!r.pills.length) return null;
-    const sev = r.pills.includes("security-high") ? " hi" : r.pills.every(f => FLAGS[f] && FLAGS[f].cls) ? " mute" : "";
-    return h("button", { type: "button", class: "warnb" + sev, "data-tip": "warn", "data-act": "tip", "aria-label": plural(r.flg.length, "issue") + ": " + r.flg.map(flagLabel).join(", ") + ". Show details." }, ic("warn"));
+    const risk = r.pills.filter(f => !(FLAGS[f] && FLAGS[f].note));
+    if (!risk.length) return null;
+    const sev = risk.includes("security-high") ? " hi" : risk.every(f => FLAGS[f] && FLAGS[f].cls) ? " mute" : "";
+    return h("button", { type: "button", class: "warnb" + sev, "data-tip": "warn", "data-act": "tip", "aria-label": plural(risk.length, "issue") + ": " + r.flg.map(flagLabel).join(", ") + ". Show details." }, ic("warn"));
   }
   function favTitle(r) { return r.fv === 1 ? "Favorite, saved in the repo file. Click to remove." : r.fv === 2 ? "Favorite, local only (not exported yet). Click to remove." : "Add to favorites"; }
   function paintFav(b, r) {
@@ -972,7 +973,7 @@
       td("type", typeTag(r, true)),
       td("area", areasEl(r)),
       td("tech", techsEl(r)),
-      h("td", { class: "c-stars num", role: "cell" }, fmt(r.s)),
+      h("td", { class: "c-stars num", role: "cell" }, r.flg.includes("product-stars") ? h("span", { class: "pst", tabindex: "0", "data-tt": FLAGS["product-stars"].tip, "aria-label": FLAGS["product-stars"].label }, ic("info")) : null, fmt(r.s)),
       h("td", { class: "c-t7 c-trend", role: "cell" }, trendBtn(r, true)),
       td("upd", updEl(r)),
       td("lic", licEl(r)));

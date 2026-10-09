@@ -527,10 +527,11 @@ def verify_broad():
                 "agent": f"copy agents from {r}"}[kind]
         add(f"repo:{r}:{kind}", it["name"], kind, it.get("description"), r, it["html_url"], f"search:{q if q in ('popular', 'trending') else 'broad'}", hint)
         added[kind] += 1
-    # a popular library or app whose name and description aren't about extensions ships its own: its stars measure the product
+    # a popular library or app whose name and description aren't about extensions ships its own: its stars measure the product.
+    # Anthropic's own repos never count; MCP Registry servers are dropped in build() (the registry is read after this)
     have = {(e["repo"] or "").lower() for e in ENTRIES.values()}
     for r, (it, q) in BROAD.items():
-        if q == "popular" and r.lower() in have and not _focus(r): HOSTS.add(r)
+        if q == "popular" and r.lower() in have and not r.lower().startswith("anthropics/") and not _focus(r): HOSTS.add(r)
     print(f"broad verify: {len(cands)} new candidates, {len(todo)} checked now, added {dict(added)}, products shipping an extension: {len(HOSTS)}")
 
 # ---------- 3b official MCP Registry (standalone MCP servers) ----------
@@ -1087,6 +1088,12 @@ def favorite_ids():
     except Exception: return set()
     return {f.get("id") for f in (v.get("favorites") or []) if isinstance(f, dict) and f.get("id")}
 
+def extension_stars():
+    """extension_stars.json: popular repos whose stars do belong to the extension (hand-kept exceptions to product-stars)."""
+    try: v = json.loads((ROOT / "extension_stars.json").read_text(encoding="utf-8"))
+    except Exception: return set()
+    return {r.lower() for r in (v.get("repos") or []) if isinstance(r, str)}
+
 def irrelevance(m, t, t7, ids, favs):
     """None when the record is published, else the reason it is left out."""
     if t in ("anthropic", "official") or favs & set(ids): return None
@@ -1110,7 +1117,9 @@ def build():
         except Exception: pass
     snaps = load_snapshots()
     favs = favorite_ids()
-    hosts = {h.lower() for h in HOSTS}
+    # a registry MCP server named for MCP is the extension itself; products that also publish a server keep the flag
+    mcp = {(e["repo"] or "").lower() for e in ENTRIES.values() if "mcp-registry" in e["sources"] and "mcp" in (e["repo"] or "").lower().split("/")[-1]}
+    hosts = {h.lower() for h in HOSTS} - mcp - extension_stars()
     nodes = {}  # GraphQL node id -> canonical nameWithOwner (renamed/transferred repos share one node id)
     for r, m in META.items():
         if m.get("node_id") and m.get("canonical"): nodes.setdefault(m["node_id"], m["canonical"])

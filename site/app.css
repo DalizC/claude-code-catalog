@@ -314,6 +314,7 @@ button.flag{cursor:pointer}
 .warnb svg.i{width:15px;height:15px}
 .warnb.hi{color:var(--bad)}.warnb.hi:hover{background:var(--bad-bg)}
 .warnb.mute{color:var(--ink-3)}.warnb.mute:hover{background:var(--t-watch-bg)}
+.pst{display:inline-grid;place-items:center;margin-right:3px;color:var(--ink-3);cursor:default}.pst svg.i{width:12px;height:12px}
 .pop .ph svg.i{width:15px;height:15px;color:var(--warn)}
 .pop .flagx{margin-top:0}
 .flag svg.i{width:12px;height:12px}
