@@ -1,38 +1,38 @@
 # Security scan report
 
-Generated 2026-11-01T05:46:06Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-11-02T05:49:22Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3172 (repos visited this run: 3022, 455s)
-- API calls this run: 3023 (2442 not-modified); raw files fetched 1751, from cache 76479, failed 0
+- Entries with scanned components: 3185 (repos visited this run: 3036, 600s)
+- API calls this run: 3036 (2404 not-modified); raw files fetched 1740, from cache 76990, failed 0
 
 ## Entries by level
 
 | level | entries |
 |---|---|
 | high | 3 |
-| review | 131 |
-| ok | 2925 |
+| review | 132 |
+| ok | 2941 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 2 | 18 | 565 |
-| perm-skip-permissions | 0 | 36 | 125 |
+| rce-pipe-shell | 2 | 18 | 571 |
+| perm-skip-permissions | 0 | 36 | 124 |
 | inject-ignore-instructions | 0 | 10 | 146 |
 | cred-ssh-cloud-keys | 0 | 11 | 137 |
 | inject-conceal-from-user | 0 | 0 | 139 |
-| install-script | 0 | 0 | 106 |
-| rce-powershell-iex | 0 | 0 | 100 |
+| install-script | 0 | 0 | 108 |
+| rce-powershell-iex | 0 | 0 | 105 |
 | destructive-rm-root-home | 0 | 5 | 80 |
-| cred-token-dump | 0 | 31 | 32 |
+| cred-token-dump | 0 | 32 | 34 |
 | perm-hook-auto-approve | 0 | 41 | 17 |
 | persist-launchd-systemd | 0 | 21 | 27 |
 | persist-cron | 0 | 7 | 39 |
 | exfil-webhook-host | 0 | 0 | 40 |
 | persist-shell-rc | 0 | 0 | 33 |
 | destructive-force-push-main | 0 | 4 | 27 |
-| cred-browser-store | 0 | 1 | 24 |
+| cred-browser-store | 0 | 1 | 23 |
 | perm-default-bypass | 0 | 12 | 6 |
 | destructive-disk | 0 | 1 | 12 |
 | perm-allow-all | 0 | 9 | 4 |
@@ -100,6 +100,7 @@ Generated 2026-11-01T05:46:06Z by security.py (rules 1de5990eda36). Static patte
 - **alchaincyf/huashu-skills** `perm-skip-permissions` huashu-agent-swarm/scripts/agent_loop.sh:51 — claude --dangerously-skip-permissions \
 - **amElnagdy/delegate-skills** `perm-skip-permissions` skills/agy-delegate/SKILL.md:131 — '--dangerously-skip-permissions' only when the human explicitly accepts that Antigravity may
 - **amirfish1/claude-command-center** `perm-hook-auto-approve` hooks/permission-request.py:108 — body = {"behavior": "allow"}
+- **andrewbartels1/SolidworksMCP-python** `cred-token-dump` docs/agents/agents-and-testing.md:183 — $token = gh auth token
 - **apollographql/skills** `rce-pipe-shell` skills/graphos-factory/graphos-factory-core/scripts/toolchain.sh:94 — curl -fsSL "https://rover.apollo.dev/nix/v${ROVER_VERSION}" \| sh -s -- --force
 - **asklokesh/loki-mode** `perm-skip-permissions` SKILL.md:239 — claude --dangerously-skip-permissions
 - **avivsinai/agent-message-queue** `persist-cron` scripts/grok-computer-probe.sh:26 — for tool in amq grok claude codex hermes systemctl crontab nohup curl; do
@@ -135,4 +136,3 @@ Generated 2026-11-01T05:46:06Z by security.py (rules 1de5990eda36). Static patte
 - **erayendes/app-store-connect-mcp** `perm-skip-permissions` scripts/ax-agent.ts:492 — permissionMode: 'bypassPermissions',
 - **eugeniughelbur/obsidian-second-brain** `perm-skip-permissions` SKILL.md:1236 — cd "$VAULT" && claude --dangerously-skip-permissions \
 - **fcakyon/claude-codex-settings** `rce-pipe-shell` .claude/settings.json:192 — …code from external sources — e.g. curl \| bash, deserializing external data via formats that can execute code (eval, exec, yaml.unsafe_load, pickle, etc), or s…
-- **fivetaku/pumasi** `perm-skip-permissions` skills/pumasi/SKILL.md:427 — command: "agy --dangerously-skip-permissions -p" # 프롬프트는 -p 값으로 자동 전달됨
