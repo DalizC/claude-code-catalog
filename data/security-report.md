@@ -1,32 +1,32 @@
 # Security scan report
 
-Generated 2026-11-02T05:49:22Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-11-03T05:48:50Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3185 (repos visited this run: 3036, 600s)
-- API calls this run: 3036 (2404 not-modified); raw files fetched 1740, from cache 76990, failed 0
+- Entries with scanned components: 3191 (repos visited this run: 3039, 684s)
+- API calls this run: 3040 (2215 not-modified); raw files fetched 2220, from cache 76600, failed 0
 
 ## Entries by level
 
 | level | entries |
 |---|---|
 | high | 3 |
-| review | 132 |
-| ok | 2941 |
+| review | 133 |
+| ok | 2946 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 2 | 18 | 571 |
-| perm-skip-permissions | 0 | 36 | 124 |
-| inject-ignore-instructions | 0 | 10 | 146 |
+| rce-pipe-shell | 2 | 12 | 564 |
+| inject-ignore-instructions | 0 | 10 | 152 |
+| perm-skip-permissions | 0 | 37 | 125 |
 | cred-ssh-cloud-keys | 0 | 11 | 137 |
-| inject-conceal-from-user | 0 | 0 | 139 |
-| install-script | 0 | 0 | 108 |
+| inject-conceal-from-user | 0 | 0 | 140 |
+| install-script | 0 | 0 | 110 |
 | rce-powershell-iex | 0 | 0 | 105 |
-| destructive-rm-root-home | 0 | 5 | 80 |
-| cred-token-dump | 0 | 32 | 34 |
-| perm-hook-auto-approve | 0 | 41 | 17 |
+| destructive-rm-root-home | 0 | 5 | 81 |
+| cred-token-dump | 0 | 32 | 35 |
+| perm-hook-auto-approve | 0 | 42 | 18 |
 | persist-launchd-systemd | 0 | 21 | 27 |
 | persist-cron | 0 | 7 | 39 |
 | exfil-webhook-host | 0 | 0 | 40 |
@@ -34,11 +34,11 @@ Generated 2026-11-02T05:49:22Z by security.py (rules 1de5990eda36). Static patte
 | destructive-force-push-main | 0 | 4 | 27 |
 | cred-browser-store | 0 | 1 | 23 |
 | perm-default-bypass | 0 | 12 | 6 |
-| destructive-disk | 0 | 1 | 12 |
+| destructive-disk | 0 | 1 | 13 |
 | perm-allow-all | 0 | 9 | 4 |
 | obfusc-decode-exec | 0 | 8 | 4 |
-| destructive-chmod-777 | 0 | 0 | 11 |
 | exfil-reverse-shell | 0 | 3 | 7 |
+| destructive-chmod-777 | 0 | 0 | 10 |
 | obfusc-blob | 0 | 0 | 9 |
 | rce-eval-download | 0 | 0 | 6 |
 | inject-html-comment | 0 | 1 | 4 |
@@ -52,7 +52,7 @@ Generated 2026-11-02T05:49:22Z by security.py (rules 1de5990eda36). Static patte
 
 - **firebase/firebase-tools** `rce-pipe-shell` firebase-vscode/package.json:222 — "pretest:e2e": "curl -fsSL https://code-server.dev/install.sh \| sh -s -- --edge && npm run install:extensions",
 - **leeguooooo/claude-code-usage-bar** `rce-pipe-shell` .claude-plugin/plugin.json:3 — … x 9 themes with slash commands. Requires the 'cs' CLI ('curl … install.sh \| bash', or PyPI: pip install claude-statusbar / uv tool install claude-statusbar).…
-- **nyblnet/bento** `inject-bidi-override` scripts/gen-identity-vectors.ts:95 — const bidi = buildDev({ ...base, label: 'laptop<U+202E>gnp.exe' })
+- **nyblnet/bento** `inject-bidi-override` scripts/gen-identity-vectors.ts:105 — const bidi = buildDev({ ...base, label: 'laptop<U+202E>gnp.exe' })
 
 ## Review findings (first per entry, up to 80)
 
