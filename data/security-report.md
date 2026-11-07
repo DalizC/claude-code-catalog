@@ -1,39 +1,39 @@
 # Security scan report
 
-Generated 2026-11-06T05:44:36Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-11-07T05:53:56Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3208 (repos visited this run: 3055, 632s)
-- API calls this run: 3055 (2290 not-modified); raw files fetched 2203, from cache 77191, failed 0
+- Entries with scanned components: 3217 (repos visited this run: 3064, 549s)
+- API calls this run: 3065 (2300 not-modified); raw files fetched 2279, from cache 77318, failed 0
 
 ## Entries by level
 
 | level | entries |
 |---|---|
 | high | 2 |
-| review | 131 |
-| ok | 2964 |
+| review | 130 |
+| ok | 2986 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 2 | 12 | 566 |
-| inject-ignore-instructions | 0 | 10 | 160 |
-| perm-skip-permissions | 0 | 37 | 125 |
+| rce-pipe-shell | 2 | 12 | 564 |
+| inject-ignore-instructions | 0 | 10 | 159 |
+| perm-skip-permissions | 0 | 34 | 124 |
 | cred-ssh-cloud-keys | 0 | 9 | 140 |
 | inject-conceal-from-user | 0 | 0 | 142 |
-| rce-powershell-iex | 0 | 0 | 110 |
-| install-script | 0 | 0 | 110 |
-| destructive-rm-root-home | 0 | 5 | 83 |
+| install-script | 0 | 0 | 111 |
+| rce-powershell-iex | 0 | 0 | 108 |
+| destructive-rm-root-home | 0 | 5 | 84 |
 | cred-token-dump | 0 | 32 | 35 |
-| perm-hook-auto-approve | 0 | 42 | 16 |
+| perm-hook-auto-approve | 0 | 43 | 18 |
 | persist-launchd-systemd | 0 | 21 | 30 |
 | persist-cron | 0 | 7 | 36 |
 | exfil-webhook-host | 0 | 0 | 40 |
 | destructive-force-push-main | 0 | 4 | 31 |
 | persist-shell-rc | 0 | 0 | 34 |
-| cred-browser-store | 0 | 1 | 23 |
-| perm-default-bypass | 0 | 14 | 6 |
+| cred-browser-store | 0 | 1 | 21 |
+| perm-default-bypass | 0 | 13 | 6 |
 | destructive-disk | 0 | 1 | 14 |
 | perm-allow-all | 0 | 10 | 5 |
 | obfusc-decode-exec | 0 | 8 | 4 |
