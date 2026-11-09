@@ -1,41 +1,41 @@
 # Security scan report
 
-Generated 2026-11-08T05:41:47Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-11-09T06:04:51Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3222 (repos visited this run: 3069, 464s)
-- API calls this run: 3069 (2469 not-modified); raw files fetched 1493, from cache 77880, failed 0
+- Entries with scanned components: 3234 (repos visited this run: 3081, 605s)
+- API calls this run: 3081 (2481 not-modified); raw files fetched 1763, from cache 77769, failed 0
 
 ## Entries by level
 
 | level | entries |
 |---|---|
 | high | 2 |
-| review | 127 |
-| ok | 2995 |
+| review | 128 |
+| ok | 3007 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 2 | 12 | 566 |
-| inject-ignore-instructions | 0 | 10 | 159 |
+| rce-pipe-shell | 2 | 13 | 552 |
+| inject-ignore-instructions | 0 | 10 | 160 |
 | perm-skip-permissions | 0 | 34 | 121 |
-| cred-ssh-cloud-keys | 0 | 9 | 136 |
-| inject-conceal-from-user | 0 | 0 | 140 |
-| install-script | 0 | 0 | 111 |
-| rce-powershell-iex | 0 | 0 | 105 |
-| destructive-rm-root-home | 0 | 5 | 84 |
+| cred-ssh-cloud-keys | 0 | 9 | 135 |
+| inject-conceal-from-user | 0 | 0 | 142 |
+| install-script | 0 | 0 | 109 |
+| rce-powershell-iex | 0 | 0 | 106 |
+| destructive-rm-root-home | 0 | 5 | 81 |
 | cred-token-dump | 0 | 32 | 34 |
 | perm-hook-auto-approve | 0 | 40 | 16 |
-| persist-launchd-systemd | 0 | 21 | 29 |
+| persist-launchd-systemd | 0 | 21 | 27 |
 | persist-cron | 0 | 7 | 35 |
 | exfil-webhook-host | 0 | 0 | 41 |
-| destructive-force-push-main | 0 | 4 | 29 |
+| destructive-force-push-main | 0 | 4 | 31 |
 | persist-shell-rc | 0 | 0 | 31 |
 | cred-browser-store | 0 | 1 | 21 |
 | perm-default-bypass | 0 | 13 | 6 |
-| destructive-disk | 0 | 1 | 14 |
 | perm-allow-all | 0 | 10 | 5 |
+| destructive-disk | 0 | 1 | 13 |
 | obfusc-decode-exec | 0 | 8 | 4 |
 | destructive-chmod-777 | 0 | 0 | 10 |
 | obfusc-blob | 0 | 0 | 10 |
@@ -130,7 +130,7 @@ Generated 2026-11-08T05:41:47Z by security.py (rules 1de5990eda36). Static patte
 - **devantler-tech/ksail** `cred-token-dump` .agents/skills/gh-cli/SKILL.md:67 — gh auth token
 - **different-ai/openwork** `persist-launchd-systemd` .opencode/skills/daytona-windows-cert/SKILL.md:178 — schtasks /create /f /sc onstart /ru SYSTEM /tn OpenWorkTlsRepro /tr $cmdPath
 - **docker/skills** `cred-ssh-cloud-keys` skills/docker-build-strategies/SKILL.md:88 — --secret id=npmrc,src=$HOME/.npmrc \
-- **erayendes/app-store-connect-mcp** `perm-skip-permissions` scripts/ax-agent.ts:492 — permissionMode: 'bypassPermissions',
+- **erayendes/app-store-connect-mcp** `perm-skip-permissions` scripts/ax-agent.ts:499 — permissionMode: 'bypassPermissions',
 - **eugeniughelbur/obsidian-second-brain** `perm-skip-permissions` SKILL.md:1232 — cd "$VAULT" && claude --dangerously-skip-permissions \
 - **fcakyon/claude-codex-settings** `rce-pipe-shell` .claude/settings.json:192 — …code from external sources — e.g. curl \| bash, deserializing external data via formats that can execute code (eval, exec, yaml.unsafe_load, pickle, etc), or s…
 - **foryourhealth111-pixel/Vibe-Skills** `destructive-force-push-main` bundled/skills/autonomous-builder/SKILL.md:1042 — git push --force origin main
