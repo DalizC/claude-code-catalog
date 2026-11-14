@@ -1,44 +1,44 @@
 # Security scan report
 
-Generated 2026-11-13T05:56:09Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-11-14T05:47:07Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3266 (repos visited this run: 3113, 625s)
-- API calls this run: 3113 (2301 not-modified); raw files fetched 2552, from cache 78397, failed 1
+- Entries with scanned components: 3275 (repos visited this run: 3121, 558s)
+- API calls this run: 3121 (2359 not-modified); raw files fetched 2489, from cache 78734, failed 0
 
 ## Entries by level
 
 | level | entries |
 |---|---|
 | high | 4 |
-| review | 128 |
-| ok | 3037 |
+| review | 129 |
+| ok | 3045 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 2 | 13 | 575 |
-| inject-ignore-instructions | 1 | 11 | 172 |
-| perm-skip-permissions | 0 | 34 | 120 |
-| cred-ssh-cloud-keys | 0 | 11 | 142 |
+| rce-pipe-shell | 2 | 13 | 558 |
+| inject-ignore-instructions | 1 | 11 | 177 |
+| cred-ssh-cloud-keys | 0 | 11 | 145 |
+| perm-skip-permissions | 0 | 35 | 121 |
 | inject-conceal-from-user | 0 | 0 | 146 |
 | install-script | 0 | 0 | 112 |
-| rce-powershell-iex | 0 | 0 | 111 |
-| destructive-rm-root-home | 0 | 3 | 88 |
-| cred-token-dump | 0 | 32 | 38 |
+| rce-powershell-iex | 0 | 0 | 109 |
+| destructive-rm-root-home | 0 | 3 | 94 |
+| cred-token-dump | 0 | 32 | 39 |
 | perm-hook-auto-approve | 0 | 40 | 16 |
 | persist-launchd-systemd | 0 | 20 | 28 |
+| persist-cron | 0 | 7 | 34 |
 | exfil-webhook-host | 0 | 0 | 40 |
-| persist-cron | 0 | 6 | 34 |
-| destructive-force-push-main | 0 | 4 | 32 |
-| persist-shell-rc | 0 | 0 | 31 |
+| destructive-force-push-main | 0 | 4 | 30 |
+| persist-shell-rc | 0 | 0 | 28 |
 | cred-browser-store | 0 | 1 | 21 |
-| perm-default-bypass | 0 | 13 | 6 |
+| perm-default-bypass | 0 | 14 | 6 |
+| obfusc-decode-exec | 0 | 8 | 8 |
 | perm-allow-all | 0 | 10 | 6 |
-| destructive-disk | 0 | 1 | 13 |
-| obfusc-decode-exec | 0 | 8 | 5 |
-| destructive-chmod-777 | 0 | 0 | 13 |
-| obfusc-blob | 0 | 0 | 13 |
+| destructive-disk | 0 | 1 | 14 |
+| destructive-chmod-777 | 0 | 1 | 13 |
+| obfusc-blob | 0 | 0 | 14 |
 | exfil-reverse-shell | 0 | 1 | 7 |
 | rce-eval-download | 0 | 0 | 6 |
 | mcp-tool-conceal | 0 | 0 | 6 |
@@ -133,8 +133,8 @@ Generated 2026-11-13T05:56:09Z by security.py (rules 1de5990eda36). Static patte
 - **docker/skills** `cred-ssh-cloud-keys` skills/docker-build-strategies/SKILL.md:88 — --secret id=npmrc,src=$HOME/.npmrc \
 - **erayendes/app-store-connect-mcp** `perm-skip-permissions` scripts/ax-agent.ts:499 — permissionMode: 'bypassPermissions',
 - **eugeniughelbur/obsidian-second-brain** `perm-skip-permissions` SKILL.md:1232 — cd "$VAULT" && claude --dangerously-skip-permissions \
+- **every-app/open-seo** `destructive-chmod-777` scripts/celld/conformance/conformance.sh:13 — chmod -R a+rwX "$work"
 - **fcakyon/claude-codex-settings** `rce-pipe-shell` .claude/settings.json:193 — …code from external sources — e.g. curl \| bash, deserializing external data via formats that can execute code (eval, exec, yaml.unsafe_load, pickle, etc), or s…
 - **foryourhealth111-pixel/Vibe-Skills** `destructive-force-push-main` bundled/skills/autonomous-builder/SKILL.md:1042 — git push --force origin main
 - **garrytan/gbrain** `inject-ignore-instructions` skills/blog-ingest/SKILL.md:105 — "ignore previous instructions," embedded tool-call syntax, or urgent demands
 - **google/skills** `cred-ssh-cloud-keys` skills/cloud/agent-platform-migrate-from-ai-studio/SKILL.md:289 — …loud iam service-accounts keys create ~/.config/gcloud/application_default_credentials.json --iam-account="${PROJECT_NUMBER}-compute@developer.gserviceaccount…
-- **gtapps/hermitd** `perm-hook-auto-approve` plugins/hermitd-homeassistant/hooks/curl-host-gate.ts:95 — '"permissionDecision": "allow", ' +
