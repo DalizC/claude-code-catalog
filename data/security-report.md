@@ -1,9 +1,9 @@
 # Security scan report
 
-Generated 2026-11-14T05:47:07Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-11-15T05:49:00Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3275 (repos visited this run: 3121, 558s)
-- API calls this run: 3121 (2359 not-modified); raw files fetched 2489, from cache 78734, failed 0
+- Entries with scanned components: 3285 (repos visited this run: 3131, 490s)
+- API calls this run: 3131 (2540 not-modified); raw files fetched 1717, from cache 79863, failed 0
 
 ## Entries by level
 
@@ -11,31 +11,31 @@ Generated 2026-11-14T05:47:07Z by security.py (rules 1de5990eda36). Static patte
 |---|---|
 | high | 4 |
 | review | 129 |
-| ok | 3045 |
+| ok | 3055 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 2 | 13 | 558 |
+| rce-pipe-shell | 2 | 14 | 562 |
 | inject-ignore-instructions | 1 | 11 | 177 |
+| perm-skip-permissions | 0 | 35 | 122 |
 | cred-ssh-cloud-keys | 0 | 11 | 145 |
-| perm-skip-permissions | 0 | 35 | 121 |
 | inject-conceal-from-user | 0 | 0 | 146 |
 | install-script | 0 | 0 | 112 |
 | rce-powershell-iex | 0 | 0 | 109 |
-| destructive-rm-root-home | 0 | 3 | 94 |
+| destructive-rm-root-home | 0 | 3 | 93 |
 | cred-token-dump | 0 | 32 | 39 |
 | perm-hook-auto-approve | 0 | 40 | 16 |
 | persist-launchd-systemd | 0 | 20 | 28 |
-| persist-cron | 0 | 7 | 34 |
+| persist-cron | 0 | 7 | 37 |
 | exfil-webhook-host | 0 | 0 | 40 |
 | destructive-force-push-main | 0 | 4 | 30 |
 | persist-shell-rc | 0 | 0 | 28 |
-| cred-browser-store | 0 | 1 | 21 |
+| cred-browser-store | 0 | 1 | 22 |
 | perm-default-bypass | 0 | 14 | 6 |
-| obfusc-decode-exec | 0 | 8 | 8 |
 | perm-allow-all | 0 | 10 | 6 |
+| obfusc-decode-exec | 0 | 8 | 7 |
 | destructive-disk | 0 | 1 | 14 |
 | destructive-chmod-777 | 0 | 1 | 13 |
 | obfusc-blob | 0 | 0 | 14 |
@@ -45,7 +45,6 @@ Generated 2026-11-14T05:47:07Z by security.py (rules 1de5990eda36). Static patte
 | inject-html-comment | 0 | 1 | 4 |
 | exfil-secrets-upload | 0 | 1 | 3 |
 | persist-claude-settings-write | 0 | 0 | 2 |
-| install-script-download | 0 | 1 | 0 |
 | inject-bidi-override | 1 | 0 | 0 |
 | mcp-tool-poisoning | 0 | 1 | 0 |
 
@@ -53,7 +52,7 @@ Generated 2026-11-14T05:47:07Z by security.py (rules 1de5990eda36). Static patte
 
 - **firebase/firebase-tools** `rce-pipe-shell` firebase-vscode/package.json:222 — "pretest:e2e": "curl -fsSL https://code-server.dev/install.sh \| sh -s -- --edge && npm run install:extensions",
 - **leeguooooo/claude-code-usage-bar** `rce-pipe-shell` .claude-plugin/plugin.json:3 — … x 9 themes with slash commands. Requires the 'cs' CLI ('curl … install.sh \| bash', or PyPI: pip install claude-statusbar / uv tool install claude-statusbar).…
-- **nyblnet/bento** `inject-bidi-override` scripts/gen-device-vectors.ts:214 — await reject('wdev/label-bidi', 'a label with a bidi override', { chain: 'base', head: 3, ceremonyAt: C, label: 'Safari<U+202E>evil' }, 'label')
+- **nyblnet/bento** `inject-bidi-override` scripts/gen-device-vectors.ts:219 — await reject('wdev/label-bidi', 'a label with a bidi override', { chain: 'base', head: 3, ceremonyAt: C, label: 'Safari<U+202E>evil' }, 'label')
 - **tailucanh/offload-mcp-server** `inject-ignore-instructions` scripts/smoke.ts:138 — assert.match(dirtyDone, /reads like instructions to an agent \(ignore previous instructions[\s\S]*pipe-to-shell/, dirtyDone);
 
 ## Review findings (first per entry, up to 80)
