@@ -1,38 +1,38 @@
 # Security scan report
 
-Generated 2026-11-16T05:41:51Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-11-17T05:59:58Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3291 (repos visited this run: 3137, 540s)
-- API calls this run: 3137 (2466 not-modified); raw files fetched 1749, from cache 80025, failed 0
+- Entries with scanned components: 3312 (repos visited this run: 3158, 679s)
+- API calls this run: 3158 (2295 not-modified); raw files fetched 2810, from cache 79609, failed 0
 
 ## Entries by level
 
 | level | entries |
 |---|---|
 | high | 4 |
-| review | 130 |
-| ok | 3061 |
+| review | 131 |
+| ok | 3081 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 2 | 15 | 564 |
+| rce-pipe-shell | 2 | 15 | 556 |
 | inject-ignore-instructions | 1 | 11 | 177 |
-| perm-skip-permissions | 0 | 35 | 122 |
+| perm-skip-permissions | 0 | 35 | 123 |
 | cred-ssh-cloud-keys | 0 | 11 | 145 |
-| inject-conceal-from-user | 0 | 0 | 146 |
+| inject-conceal-from-user | 0 | 0 | 147 |
 | install-script | 0 | 0 | 112 |
 | rce-powershell-iex | 0 | 0 | 109 |
 | destructive-rm-root-home | 0 | 3 | 93 |
 | cred-token-dump | 0 | 32 | 41 |
-| perm-hook-auto-approve | 0 | 40 | 16 |
+| perm-hook-auto-approve | 0 | 41 | 18 |
 | persist-launchd-systemd | 0 | 22 | 29 |
 | persist-cron | 0 | 7 | 37 |
 | exfil-webhook-host | 0 | 0 | 40 |
 | destructive-force-push-main | 0 | 4 | 30 |
 | persist-shell-rc | 0 | 0 | 28 |
-| cred-browser-store | 0 | 1 | 22 |
+| cred-browser-store | 0 | 1 | 23 |
 | perm-default-bypass | 0 | 14 | 6 |
 | obfusc-decode-exec | 0 | 9 | 7 |
 | perm-allow-all | 0 | 10 | 6 |
@@ -104,7 +104,7 @@ Generated 2026-11-16T05:41:51Z by security.py (rules 1de5990eda36). Static patte
 - **asheshgoplani/agent-deck** `rce-pipe-shell` skills/agent-deck/scripts/contributing/self-check.sh:259 — if [ -n "$HITS" ]; then FAIL curl-pipe-sh "curl\|bash / wget\|sh introduced — automatic stop-for-human: $HITS"; else PASS curl-pipe-sh; fi
 - **asklokesh/loki-mode** `perm-skip-permissions` SKILL.md:239 — claude --dangerously-skip-permissions
 - **awesomezun/claude-statusline** `cred-token-dump` scripts/TRASH/awesome-statusline-1.0.0-legacy.sh:228 — token=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null \| jq -r '.claudeAiOauth.accessToken // empty' 2>/dev/null)
-- **babamba2/superclaude-for-sap** `perm-hook-auto-approve` scripts/permission-approver.mjs:94 — permissionDecision: 'allow',
+- **babamba2/superclaude-for-sap** `perm-hook-auto-approve` scripts/permission-approver.mjs:95 — permissionDecision: 'allow',
 - **bam-bam-2/solo-skills** `persist-launchd-systemd` skills/discord-reminder/SKILL.md:9 — > - macOS **launchd 항목 하나**('~/Library/LaunchAgents/com.bambam.reminder-<slug>.plist')를 등록합니다.
 - **bentoml/BentoML** `persist-launchd-systemd` skills/bentoml-ec2-deploy/SKILL.md:104 — install -y docker && sudo systemctl enable --now docker'. Ubuntu: 'sudo apt-get update
 - **boshu2/agentops** `perm-skip-permissions` skills/agy-native/SKILL.md:82 — '--sandbox --dangerously-skip-permissions' with '--add-dir' on its own
@@ -132,7 +132,7 @@ Generated 2026-11-16T05:41:51Z by security.py (rules 1de5990eda36). Static patte
 - **devantler-tech/ksail** `cred-token-dump` .agents/skills/gh-cli/SKILL.md:67 — gh auth token
 - **docker/skills** `cred-ssh-cloud-keys` skills/docker-build-strategies/SKILL.md:88 — --secret id=npmrc,src=$HOME/.npmrc \
 - **erayendes/app-store-connect-mcp** `perm-skip-permissions` scripts/ax-agent.ts:499 — permissionMode: 'bypassPermissions',
-- **eugeniughelbur/obsidian-second-brain** `perm-skip-permissions` SKILL.md:1232 — cd "$VAULT" && claude --dangerously-skip-permissions \
+- **eugeniughelbur/obsidian-second-brain** `perm-skip-permissions` SKILL.md:1233 — cd "$VAULT" && claude --dangerously-skip-permissions \
 - **every-app/open-seo** `destructive-chmod-777` scripts/celld/conformance/conformance.sh:13 — chmod -R a+rwX "$work"
 - **fcakyon/claude-codex-settings** `rce-pipe-shell` .claude/settings.json:195 — …code from external sources — e.g. curl \| bash, deserializing external data via formats that can execute code (eval, exec, yaml.unsafe_load, pickle, etc), or s…
 - **foryourhealth111-pixel/Vibe-Skills** `destructive-force-push-main` bundled/skills/autonomous-builder/SKILL.md:1042 — git push --force origin main
