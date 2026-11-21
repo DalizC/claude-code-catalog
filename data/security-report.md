@@ -1,31 +1,31 @@
 # Security scan report
 
-Generated 2026-11-20T05:47:53Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-11-21T05:46:22Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3363 (repos visited this run: 3209, 452s)
-- API calls this run: 3209 (2389 not-modified); raw files fetched 2484, from cache 81164, failed 0
+- Entries with scanned components: 3367 (repos visited this run: 3213, 557s)
+- API calls this run: 3213 (2465 not-modified); raw files fetched 2059, from cache 81803, failed 0
 
 ## Entries by level
 
 | level | entries |
 |---|---|
 | high | 4 |
-| review | 133 |
-| ok | 3132 |
+| review | 134 |
+| ok | 3136 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 2 | 15 | 553 |
-| inject-ignore-instructions | 1 | 11 | 167 |
+| rce-pipe-shell | 2 | 15 | 551 |
+| inject-ignore-instructions | 1 | 11 | 168 |
 | perm-skip-permissions | 0 | 36 | 121 |
 | inject-conceal-from-user | 0 | 0 | 150 |
 | cred-ssh-cloud-keys | 0 | 9 | 141 |
 | install-script | 0 | 0 | 113 |
 | rce-powershell-iex | 0 | 0 | 108 |
-| destructive-rm-root-home | 0 | 2 | 91 |
-| cred-token-dump | 0 | 34 | 42 |
+| destructive-rm-root-home | 0 | 3 | 91 |
+| cred-token-dump | 0 | 34 | 43 |
 | perm-hook-auto-approve | 0 | 40 | 17 |
 | persist-launchd-systemd | 0 | 25 | 24 |
 | persist-cron | 0 | 11 | 37 |
@@ -33,7 +33,7 @@ Generated 2026-11-20T05:47:53Z by security.py (rules 1de5990eda36). Static patte
 | destructive-force-push-main | 0 | 4 | 28 |
 | persist-shell-rc | 0 | 0 | 27 |
 | cred-browser-store | 0 | 1 | 23 |
-| perm-default-bypass | 0 | 15 | 5 |
+| perm-default-bypass | 0 | 16 | 5 |
 | obfusc-decode-exec | 0 | 8 | 7 |
 | destructive-disk | 0 | 1 | 14 |
 | perm-allow-all | 0 | 10 | 5 |
@@ -82,7 +82,7 @@ Generated 2026-11-20T05:47:53Z by security.py (rules 1de5990eda36). Static patte
 - **OthmanAdi/planning-with-files** `obfusc-decode-exec` hooks/codex-hooks.json:11 — powershell -EncodedCommand decodes to: & (Join-Path $env:PLUGIN_ROOT '.codex\hooks\pwf-hook.cmd') plugin_dispatch.py
 - **Owloops/claude-powerline** `rce-pipe-shell` plugin/commands/powerline.md:51 — curl -fsSL https://deb.nodesource.com/setup_22.x \| sudo -E bash -
 - **PayRam/payram-mcp** `rce-pipe-shell` skills/payram-self-hosted-payment-gateway/SKILL.md:76 — sudo bash -c 'bash <(curl -fsSL https://payram.com/setup_payram.sh)' # then choose 5) Update SSL Configuration
-- **PostHog/ai-plugin** `perm-hook-auto-approve` hooks/codex-gate-exec-write.sh:23 — printf '{"hookSpecificOutput":{"hookEventName":"PermissionRequest","decision":{"behavior":"allow"}}}'
+- **PostHog/ai-plugin** `perm-hook-auto-approve` hooks/codex-gate-exec-write.sh:24 — printf '{"hookSpecificOutput":{"hookEventName":"PermissionRequest","decision":{"behavior":"allow"}}}'
 - **PrismorSec/prismor** `exfil-secrets-upload` scripts/setup.py:237 — ("secret-exfiltration", "CRITICAL", "Blocks cat .env \| curl, piping secrets to external hosts"),
 - **Protocol-zero-0/compound-memory** `persist-cron` tools/global-gate/install.sh:49 — crontab -l 2>/dev/null \| grep -v "$TAG" \| crontab - \|\| true
 - **REPOZY/superpowers-optimized** `perm-hook-auto-approve` hooks/bash-compress-hook.js:143 — permissionDecision: 'allow',
