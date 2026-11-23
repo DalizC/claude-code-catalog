@@ -1,44 +1,44 @@
 # Security scan report
 
-Generated 2026-11-22T05:47:01Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-11-23T05:56:32Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3368 (repos visited this run: 3214, 704s)
-- API calls this run: 3214 (2578 not-modified); raw files fetched 1614, from cache 82370, failed 0
+- Entries with scanned components: 3377 (repos visited this run: 3222, 608s)
+- API calls this run: 3223 (2546 not-modified); raw files fetched 1879, from cache 82348, failed 0
 
 ## Entries by level
 
 | level | entries |
 |---|---|
 | high | 4 |
-| review | 135 |
-| ok | 3136 |
+| review | 133 |
+| ok | 3146 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 2 | 15 | 559 |
-| inject-ignore-instructions | 1 | 11 | 168 |
+| rce-pipe-shell | 2 | 15 | 565 |
+| inject-ignore-instructions | 1 | 11 | 169 |
 | perm-skip-permissions | 0 | 36 | 123 |
-| cred-ssh-cloud-keys | 0 | 11 | 144 |
-| inject-conceal-from-user | 0 | 0 | 148 |
+| cred-ssh-cloud-keys | 0 | 11 | 143 |
+| inject-conceal-from-user | 0 | 0 | 147 |
 | install-script | 0 | 0 | 113 |
-| rce-powershell-iex | 0 | 0 | 110 |
+| rce-powershell-iex | 0 | 0 | 107 |
 | destructive-rm-root-home | 0 | 3 | 91 |
-| cred-token-dump | 0 | 34 | 43 |
+| cred-token-dump | 0 | 33 | 43 |
 | perm-hook-auto-approve | 0 | 39 | 16 |
 | persist-launchd-systemd | 0 | 25 | 24 |
 | persist-cron | 0 | 10 | 37 |
 | exfil-webhook-host | 0 | 0 | 40 |
-| destructive-force-push-main | 0 | 4 | 28 |
+| destructive-force-push-main | 0 | 4 | 27 |
 | persist-shell-rc | 0 | 0 | 27 |
 | cred-browser-store | 0 | 1 | 23 |
 | perm-default-bypass | 0 | 16 | 5 |
-| obfusc-decode-exec | 0 | 11 | 7 |
+| obfusc-decode-exec | 0 | 8 | 7 |
 | destructive-disk | 0 | 1 | 14 |
 | perm-allow-all | 0 | 10 | 5 |
 | destructive-chmod-777 | 0 | 1 | 12 |
-| obfusc-blob | 0 | 3 | 10 |
+| obfusc-blob | 0 | 0 | 10 |
 | exfil-reverse-shell | 0 | 1 | 7 |
 | rce-eval-download | 0 | 0 | 6 |
 | inject-html-comment | 0 | 1 | 5 |
@@ -136,4 +136,4 @@ Generated 2026-11-22T05:47:01Z by security.py (rules 1de5990eda36). Static patte
 - **eugeniughelbur/obsidian-second-brain** `perm-skip-permissions` SKILL.md:1233 — cd "$VAULT" && claude --dangerously-skip-permissions \
 - **every-app/open-seo** `destructive-chmod-777` scripts/celld/conformance/conformance.sh:13 — chmod -R a+rwX "$work"
 - **fcakyon/claude-codex-settings** `rce-pipe-shell` .claude/settings.json:195 — …code from external sources — e.g. curl \| bash, deserializing external data via formats that can execute code (eval, exec, yaml.unsafe_load, pickle, etc), or s…
-- **flisk-sh/flisk** `cred-token-dump` .claude/skills/flisk-release/SKILL.md:64 — GH_TOKEN="$(gh auth token)" node scripts/check-release-candidate.mjs --sha "$(gh api repos/flisk-sh/flisk/git/refs/heads/$RC --jq .object.sha)" --repo flisk-s…
+- **foryourhealth111-pixel/Vibe-Skills** `destructive-force-push-main` bundled/skills/autonomous-builder/SKILL.md:1042 — git push --force origin main
