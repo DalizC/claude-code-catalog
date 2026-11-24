@@ -1,42 +1,42 @@
 # Security scan report
 
-Generated 2026-11-23T05:56:32Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-11-24T05:45:06Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3377 (repos visited this run: 3222, 608s)
-- API calls this run: 3223 (2546 not-modified); raw files fetched 1879, from cache 82348, failed 0
+- Entries with scanned components: 3392 (repos visited this run: 3238, 524s)
+- API calls this run: 3238 (2394 not-modified); raw files fetched 2317, from cache 82366, failed 0
 
 ## Entries by level
 
 | level | entries |
 |---|---|
-| high | 4 |
-| review | 133 |
-| ok | 3146 |
+| high | 5 |
+| review | 131 |
+| ok | 3163 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 2 | 15 | 565 |
-| inject-ignore-instructions | 1 | 11 | 169 |
+| rce-pipe-shell | 2 | 15 | 567 |
+| inject-ignore-instructions | 1 | 11 | 170 |
 | perm-skip-permissions | 0 | 36 | 123 |
 | cred-ssh-cloud-keys | 0 | 11 | 143 |
 | inject-conceal-from-user | 0 | 0 | 147 |
 | install-script | 0 | 0 | 113 |
-| rce-powershell-iex | 0 | 0 | 107 |
+| rce-powershell-iex | 0 | 0 | 110 |
 | destructive-rm-root-home | 0 | 3 | 91 |
-| cred-token-dump | 0 | 33 | 43 |
+| cred-token-dump | 0 | 31 | 43 |
 | perm-hook-auto-approve | 0 | 39 | 16 |
 | persist-launchd-systemd | 0 | 25 | 24 |
 | persist-cron | 0 | 10 | 37 |
 | exfil-webhook-host | 0 | 0 | 40 |
-| destructive-force-push-main | 0 | 4 | 27 |
+| destructive-force-push-main | 0 | 4 | 28 |
 | persist-shell-rc | 0 | 0 | 27 |
 | cred-browser-store | 0 | 1 | 23 |
-| perm-default-bypass | 0 | 16 | 5 |
+| perm-default-bypass | 0 | 16 | 6 |
+| perm-allow-all | 0 | 10 | 6 |
 | obfusc-decode-exec | 0 | 8 | 7 |
 | destructive-disk | 0 | 1 | 14 |
-| perm-allow-all | 0 | 10 | 5 |
 | destructive-chmod-777 | 0 | 1 | 12 |
 | obfusc-blob | 0 | 0 | 10 |
 | exfil-reverse-shell | 0 | 1 | 7 |
@@ -45,11 +45,13 @@ Generated 2026-11-23T05:56:32Z by security.py (rules 1de5990eda36). Static patte
 | mcp-tool-conceal | 0 | 0 | 6 |
 | exfil-secrets-upload | 0 | 1 | 3 |
 | persist-claude-settings-write | 0 | 0 | 1 |
+| inject-unicode-tags | 1 | 0 | 0 |
 | inject-bidi-override | 1 | 0 | 0 |
 | mcp-tool-poisoning | 0 | 1 | 0 |
 
 ## High findings
 
+- **erkamyaman/safe-anything** `inject-unicode-tags` tests/fixtures/agent/.claude/skills/helper/SKILL.md:9 — 3 hidden tag chars, decoded start: 'Ign'
 - **firebase/firebase-tools** `rce-pipe-shell` firebase-vscode/package.json:222 — "pretest:e2e": "curl -fsSL https://code-server.dev/install.sh \| sh -s -- --edge && npm run install:extensions",
 - **leeguooooo/claude-code-usage-bar** `rce-pipe-shell` .claude-plugin/plugin.json:3 — … x 9 themes with slash commands. Requires the 'cs' CLI ('curl … install.sh \| bash', or PyPI: pip install claude-statusbar / uv tool install claude-statusbar).…
 - **nyblnet/bento** `inject-bidi-override` scripts/gen-device-vectors.ts:219 — await reject('wdev/label-bidi', 'a label with a bidi override', { chain: 'base', head: 3, ceremonyAt: C, label: 'Safari<U+202E>evil' }, 'label')
@@ -103,7 +105,7 @@ Generated 2026-11-23T05:56:32Z by security.py (rules 1de5990eda36). Static patte
 - **apollographql/skills** `rce-pipe-shell` skills/graphos-factory/graphos-factory-core/scripts/toolchain.sh:94 — curl -fsSL "https://rover.apollo.dev/nix/v${ROVER_VERSION}" \| sh -s -- --force
 - **asheshgoplani/agent-deck** `rce-pipe-shell` skills/agent-deck/scripts/contributing/self-check.sh:259 — if [ -n "$HITS" ]; then FAIL curl-pipe-sh "curl\|bash / wget\|sh introduced — automatic stop-for-human: $HITS"; else PASS curl-pipe-sh; fi
 - **asklokesh/loki-mode** `perm-skip-permissions` SKILL.md:239 — claude --dangerously-skip-permissions
-- **awesomezun/claude-statusline** `cred-token-dump` scripts/TRASH/awesome-statusline-1.0.0-legacy.sh:228 — token=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null \| jq -r '.claudeAiOauth.accessToken // empty' 2>/dev/null)
+- **awesomejun/claude-statusline** `cred-token-dump` scripts/TRASH/awesome-statusline-1.0.0-legacy.sh:228 — token=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null \| jq -r '.claudeAiOauth.accessToken // empty' 2>/dev/null)
 - **babamba2/superclaude-for-sap** `perm-hook-auto-approve` scripts/permission-approver.mjs:95 — permissionDecision: 'allow',
 - **bam-bam-2/solo-skills** `persist-launchd-systemd` skills/discord-reminder/SKILL.md:9 — > - macOS **launchd 항목 하나**('~/Library/LaunchAgents/com.bambam.reminder-<slug>.plist')를 등록합니다.
 - **bentoml/BentoML** `persist-launchd-systemd` skills/bentoml-ec2-deploy/SKILL.md:104 — install -y docker && sudo systemctl enable --now docker'. Ubuntu: 'sudo apt-get update
