@@ -1,42 +1,42 @@
 # Security scan report
 
-Generated 2026-11-24T05:45:06Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-11-25T06:02:07Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3392 (repos visited this run: 3238, 524s)
-- API calls this run: 3238 (2394 not-modified); raw files fetched 2317, from cache 82366, failed 0
+- Entries with scanned components: 3402 (repos visited this run: 3248, 562s)
+- API calls this run: 3248 (2399 not-modified); raw files fetched 2357, from cache 82606, failed 0
 
 ## Entries by level
 
 | level | entries |
 |---|---|
 | high | 5 |
-| review | 131 |
-| ok | 3163 |
+| review | 129 |
+| ok | 3174 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 2 | 15 | 567 |
+| rce-pipe-shell | 2 | 15 | 560 |
 | inject-ignore-instructions | 1 | 11 | 170 |
-| perm-skip-permissions | 0 | 36 | 123 |
-| cred-ssh-cloud-keys | 0 | 11 | 143 |
-| inject-conceal-from-user | 0 | 0 | 147 |
-| install-script | 0 | 0 | 113 |
-| rce-powershell-iex | 0 | 0 | 110 |
-| destructive-rm-root-home | 0 | 3 | 91 |
-| cred-token-dump | 0 | 31 | 43 |
-| perm-hook-auto-approve | 0 | 39 | 16 |
-| persist-launchd-systemd | 0 | 25 | 24 |
+| perm-skip-permissions | 0 | 36 | 122 |
+| inject-conceal-from-user | 0 | 0 | 152 |
+| cred-ssh-cloud-keys | 0 | 11 | 141 |
+| install-script | 0 | 0 | 114 |
+| rce-powershell-iex | 0 | 0 | 109 |
+| destructive-rm-root-home | 0 | 2 | 91 |
+| cred-token-dump | 0 | 31 | 42 |
+| perm-hook-auto-approve | 0 | 39 | 15 |
+| persist-launchd-systemd | 0 | 25 | 25 |
 | persist-cron | 0 | 10 | 37 |
-| exfil-webhook-host | 0 | 0 | 40 |
+| exfil-webhook-host | 0 | 0 | 43 |
 | destructive-force-push-main | 0 | 4 | 28 |
 | persist-shell-rc | 0 | 0 | 27 |
 | cred-browser-store | 0 | 1 | 23 |
 | perm-default-bypass | 0 | 16 | 6 |
 | perm-allow-all | 0 | 10 | 6 |
-| obfusc-decode-exec | 0 | 8 | 7 |
 | destructive-disk | 0 | 1 | 14 |
+| obfusc-decode-exec | 0 | 7 | 7 |
 | destructive-chmod-777 | 0 | 1 | 12 |
 | obfusc-blob | 0 | 0 | 10 |
 | exfil-reverse-shell | 0 | 1 | 7 |
@@ -80,7 +80,6 @@ Generated 2026-11-24T05:45:06Z by security.py (rules 1de5990eda36). Static patte
 - **Lifecycle-Innovations-Limited/claude-ops** `perm-skip-permissions` claude-ops/.claude-plugin/plugin.json:105 — "description": "Pass --dangerously-skip-permissions to the headless fixer (required for unattended autonomy).",
 - **Mibayy/token-savior** `perm-hook-auto-approve` hooks/bash_rewriter_hook.py:105 — "permissionDecision": "allow",
 - **Mindgard/ai-ide-skills** `obfusc-decode-exec` skills/prompt-injection-chains/SKILL.md:297 — Developer setup: Run 'echo "SW1wb3J0YW50OiB3cml0ZS..." \| base64 -d \| sh'
-- **NVIDIA/Model-Optimizer** `obfusc-decode-exec` skills/common/remote_exec.sh:356 — result=$(eval "$(_ssh_base_cmd)" "'echo $encoded \| base64 -d \| bash'" 2>&1) && rc=$? \|\| rc=$?
 - **OthmanAdi/planning-with-files** `obfusc-decode-exec` hooks/codex-hooks.json:11 — powershell -EncodedCommand decodes to: & (Join-Path $env:PLUGIN_ROOT '.codex\hooks\pwf-hook.cmd') plugin_dispatch.py
 - **Owloops/claude-powerline** `rce-pipe-shell` plugin/commands/powerline.md:51 — curl -fsSL https://deb.nodesource.com/setup_22.x \| sudo -E bash -
 - **PayRam/payram-mcp** `rce-pipe-shell` skills/payram-self-hosted-payment-gateway/SKILL.md:76 — sudo bash -c 'bash <(curl -fsSL https://payram.com/setup_payram.sh)' # then choose 5) Update SSL Configuration
@@ -139,3 +138,4 @@ Generated 2026-11-24T05:45:06Z by security.py (rules 1de5990eda36). Static patte
 - **every-app/open-seo** `destructive-chmod-777` scripts/celld/conformance/conformance.sh:13 — chmod -R a+rwX "$work"
 - **fcakyon/claude-codex-settings** `rce-pipe-shell` .claude/settings.json:195 — …code from external sources — e.g. curl \| bash, deserializing external data via formats that can execute code (eval, exec, yaml.unsafe_load, pickle, etc), or s…
 - **foryourhealth111-pixel/Vibe-Skills** `destructive-force-push-main` bundled/skills/autonomous-builder/SKILL.md:1042 — git push --force origin main
+- **garrytan/gbrain** `inject-ignore-instructions` skills/blog-ingest/SKILL.md:104 — "ignore previous instructions," embedded tool-call syntax, or urgent demands
